@@ -3,8 +3,17 @@ from enum import Enum
 from enumfields import EnumField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from jsonfield import JSONField
+from apps.core.profiles import Gamer
 
 # Mechanics-related models
+
+def username_exists(value):
+    qs = Gamer.objects.filter(user__username = value)
+    if len(qs) == 0:
+        raise ValidationError(
+            _('%(value)s is not an existing username'),
+            params={'value': value},
+        )
 
 class GMechanic(models.Model):
 
