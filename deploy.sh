@@ -6,5 +6,5 @@ git add .
 git commit -m "Deploy"
 git push origin main
 echo "+ Gamification-App Git updated"
-git pull heroku main
+git push heroku main
 echo "+ Gamification-App Heroku app updated"
