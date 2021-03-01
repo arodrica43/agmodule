@@ -4,7 +4,7 @@ from django.http import Http404
 from rest_framework import serializers
 from drf_enum_field.serializers import EnumFieldSerializerMixin
 from . import fields
-import apps.core.models as models
+from apps.core.models import *
 import threading
 
 lock = threading.Lock()
@@ -34,7 +34,7 @@ class GamerProfileSerializer(serializers.HyperlinkedModelSerializer):
 
 class SocialProfileSerializer(serializers.HyperlinkedModelSerializer):
     data = fields.JSONSerializerField()
-    image = fields.EnumField(enum=models.SocialProfile.AvatarType)
+    image = fields.EnumField(enum=SocialProfile.AvatarType)
     class Meta:
         model = SocialProfile
         fields = ['url', 'image', 'description','data']
@@ -218,7 +218,7 @@ class InteractionStatisticSerializer(serializers.HyperlinkedModelSerializer):
              
         
 class GMechanicSerializer(EnumFieldSerializerMixin,serializers.HyperlinkedModelSerializer):
-    mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     
     #statistics = InteractionStatisticSerializer(many = True, read_only = True)
     class Meta:
@@ -240,7 +240,7 @@ class GMechanicSerializer(EnumFieldSerializerMixin,serializers.HyperlinkedModelS
             raise Http404
         
 class GMechanicListSerializer(GMechanicSerializer):
-    mechanic = fields.EnumField(enum=models.GMechanicList.Mechanics)
+    mechanic = fields.EnumField(enum=GMechanicList.Mechanics)
     
     #statistics = InteractionStatisticSerializer(many = True, read_only = True)
     class Meta(GMechanicSerializer.Meta):
@@ -259,53 +259,53 @@ class GMechanicListSerializer(GMechanicSerializer):
 
 
 class DevelopmentToolSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
-    mechanic_class = fields.EnumField(enum=models.DevelopmentTool.Mechanic)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
+    mechanic_class = fields.EnumField(enum=DevelopmentTool.Mechanic)
     class Meta(GMechanicSerializer.Meta):
         model = DevelopmentTool
         fields = GMechanicSerializer.Meta.fields[:3] + ['mechanic_class','attempts'] +  GMechanicSerializer.Meta.fields[3:]
 
 class ChallengeSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Challenge
         fields = GMechanicSerializer.Meta.fields[:3] + ['icon','name','state','by', 'threshold', 'reward_by', 'reward_value'] +  GMechanicSerializer.Meta.fields[3:]
         read_only_fields = ('state','html','statistics')
         
 class EasterEggSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = EasterEgg
         fields = GMechanicSerializer.Meta.fields[:3] + ['feedback','egg_html'] +  GMechanicSerializer.Meta.fields[3:]
    
 class UnlockableSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Unlockable
         fields = GMechanicSerializer.Meta.fields[:3] + ['icon','name','state','by', 'threshold','locked_html'] +  GMechanicSerializer.Meta.fields[3:]
         read_only_fields = ('state','html','statistics')
         
 class BadgeSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Badge
         fields = GMechanicSerializer.Meta.fields[:3] + ['icon','name','state','by', 'threshold'] +  GMechanicSerializer.Meta.fields[3:]
         read_only_fields = ('state','html','statistics')
    
 class LevelSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Level
         fields = GMechanicSerializer.Meta.fields[:3] + ['value','max_value','by'] +  GMechanicSerializer.Meta.fields[3:]
    
 class PointSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Point
         fields = GMechanicSerializer.Meta.fields[:3] + ['user','score','given_by'] +  GMechanicSerializer.Meta.fields[3:]
 
 class LeaderboardSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     leadders = fields.JSONSerializerField(read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Leaderboard
@@ -313,7 +313,7 @@ class LeaderboardSerializer(GMechanicSerializer):
         #read_only_fields = ('leadders',)
    
 class LotterySerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Lottery
         fields = GMechanicSerializer.Meta.fields[:3] + ['items','by'] +  GMechanicSerializer.Meta.fields[3:]
@@ -325,7 +325,7 @@ class SocialNetworkSerializer(GMechanicSerializer):
         fields = GMechanicSerializer.Meta.fields[:3] + ['messages'] +  GMechanicSerializer.Meta.fields[3:]
    
 class SocialStatusSerializer(GMechanicSerializer):
-    competitiveness = fields.EnumField(enum=models.SocialStatus.CompetitionLevel)
+    competitiveness = fields.EnumField(enum=SocialStatus.CompetitionLevel)
     class Meta(GMechanicSerializer.Meta):
         model = SocialStatus
         fields = GMechanicSerializer.Meta.fields[:3] + ['competitiveness'] +  GMechanicSerializer.Meta.fields[3:]
@@ -337,19 +337,19 @@ class KnowledgeShareSerializer(GMechanicSerializer):
         fields = GMechanicSerializer.Meta.fields[:3] + ['messages'] +  GMechanicSerializer.Meta.fields[3:]
    
 class GiftSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Gift
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class GiftOpenerSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = GiftOpener
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class AdaptativeSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = Adaptative
         fields = GMechanicSerializer.Meta.fields
@@ -357,53 +357,53 @@ class AdaptativeSerializer(GMechanicSerializer):
 #GWidget serializers ----------------------------------------------------------------------------------------
 
 class DevelopmentToolWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     
     class Meta(GMechanicSerializer.Meta):
         model = DevelopmentToolWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class ChallengeWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = ChallengeWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
         #read_only_fields = ('state','html','statistics')
         
 class EasterEggWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = EasterEggWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
    
 class UnlockableWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = UnlockableWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
         #read_only_fields = ('state','html','statistics')
         
 class BadgeWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = BadgeWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
         #read_only_fields = ('state','html','statistics')
    
 class LevelWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = LevelWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
    
 class PointWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = PointWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class LeaderboardWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     #leadders = fields.JSONSerializerField(read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = LeaderboardWidget
@@ -411,7 +411,7 @@ class LeaderboardWidgetSerializer(GMechanicSerializer):
         #read_only_fields = ('leadders',)
    
 class LotteryWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = LotteryWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
@@ -423,7 +423,7 @@ class SocialNetworkWidgetSerializer(GMechanicSerializer):
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
    
 class SocialStatusWidgetSerializer(GMechanicSerializer):
-    #competitiveness = fields.EnumField(enum=models.SocialStatus.CompetitionLevel)
+    #competitiveness = fields.EnumField(enum=SocialStatus.CompetitionLevel)
     class Meta(GMechanicSerializer.Meta):
         model = SocialStatusWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
@@ -435,19 +435,19 @@ class KnowledgeShareWidgetSerializer(GMechanicSerializer):
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
    
 class GiftWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = GiftWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class GiftOpenerWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = GiftOpenerWidget
         fields = GMechanicSerializer.Meta.fields[:3] + [] +  GMechanicSerializer.Meta.fields[3:]
 
 class AdaptativeWidgetSerializer(GMechanicSerializer):
-    #mechanic_type = fields.EnumField(enum=models.GMechanic.MechanicType, read_only = True)
+    #mechanic_type = fields.EnumField(enum=GMechanic.MechanicType, read_only = True)
     class Meta(GMechanicSerializer.Meta):
         model = AdaptativeWidget
         fields = GMechanicSerializer.Meta.fields
