@@ -1,0 +1,47 @@
+<style>
+.pnt-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:3vw;
+}
+.pnt-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "pnt-widget-dynamic_index" class="pnt-container"></div>
+<param id = "pnt-widget-handshake-dynamic_index" value=0></param> 
+
+<script>
+document.querySelector("#pnt-widget-handshake-dynamic_index").value = 1;
+function render_pnt(point, point_by, reward){
+	document.querySelector("#pnt-widget-dynamic_index").innerHTML = '<div>Your won a reward!</div><div>+' + reward + ' ' + point_by + '</div>';
+}
+
+function selectPolicy(list){
+	return list[0];
+}
+
+function chooseReward(){
+	return 10;
+}
+
+url = "https://agmodule.herokuapp.com/api/points/";
+reward = chooseReward();
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((point) => (console.log(point), 
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + point.id + "/?user=dynamic_user&show_title=false&increase=" + reward)
+						.then(response => response.json())
+						.then((updated_point) => (console.log(updated_point), render_pnt(updated_point, point.given_by, reward)))
+						.catch(error => (console.log("Error: " + error)))))
+.catch(error => (console.log("Error: " + error)))
+</script>
