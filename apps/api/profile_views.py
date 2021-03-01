@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from api.serializers import *
 from django.http import Http404
-from apps.core.models import *
+from rest_framework import viewsets
 from rest_framework.response import Response
+from apps.api.serializers import *
+from apps.core.models import *
 
 # User-related API views.
 
