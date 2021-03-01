@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+def index(request):
+    """
+    Landingpage
+    TO DO: Migrate to the main webapp
+    """
+
+    #request.GET.get('id', '')
+    return TemplateResponse(request, 'index.html', {})
+    
