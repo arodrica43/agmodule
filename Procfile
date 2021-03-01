@@ -1,1 +1,1 @@
-web: gunicorn adaptative_gamification.wsgi --log-file -
+web: gunicorn agmodule.wsgi --log-file -
