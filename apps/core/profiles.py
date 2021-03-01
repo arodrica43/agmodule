@@ -5,7 +5,6 @@ from enumfields import EnumField
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
-#from django.db.models.manager import EmptyManager
 from jsonfield import JSONField
 
 # User-related models
@@ -24,7 +23,6 @@ class GamerProfile(models.Model):
     philantropist = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)],default=1)
     no_player = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)],default=0)
     data = JSONField(default = dict)
- 
     associated_mechanic = {
         'disruptor':'Change',
         'free_spirit':'Autonomy',
@@ -42,13 +40,12 @@ class GamerProfile(models.Model):
         5:'Purpose',
         6:''
     }
-
     def vectorize(self):
         return (self.disruptor,self.free_spirit,self.achiever,self.player,self.socializer,self.philantropist,self.no_player)
 
 class SocialProfile(models.Model):
 
-    class AvatarType(Enum):   # A subclass of Enum
+    class AvatarType(Enum): 
         art = "art"
         diamond = "diamond"
         games = "games"
@@ -74,12 +71,8 @@ def username_exists(value):
         )
 
 def unique_individual_group(value):
-    #print("Hey Hey")
-    #print(value)
-    #print(value['groups'])
     if 'groups' in value.keys():
         groups =  value['groups']
-        #print("groups: ",groups)
         for g in groups:
             if len(g.name) >= 10:
                 if g.name[:10] == 'individual' and g.name[10:] != '_' + value['username']:
