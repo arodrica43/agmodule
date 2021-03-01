@@ -3,6 +3,7 @@ from django.conf import settings
 from rest_framework import viewsets
 from apps.api.serializers import *
 from apps.core.models import *
+from apps.api.mechanic_views import GMechanicViewSet
 from apps.api.utils import ensamble_interaction_dynamic_properties
 import numpy as np
 import random as rdm
