@@ -4,7 +4,7 @@ from django.http import Http404
 from rest_framework import serializers
 from drf_enum_field.serializers import EnumFieldSerializerMixin
 from . import fields
-from apps.core.models import *
+import apps.core.models as models
 import threading
 
 lock = threading.Lock()
