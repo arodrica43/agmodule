@@ -46,7 +46,6 @@ urlpatterns = [
     path('api/badges/retrieve_for_user/<str:username>', api.view_badge_set),
     path('api/unlockables/retrieve_for_user/<str:username>', api.view_unlockable_set),
     path('api/challenges/retrieve_for_user/<str:username>', api.view_challenge_set),
-    path('api/g_mechanics/preview_game/<int:id>/<str:username>', api.preview_game),
     path('api/g_mechanics/retrieve_adaptative_widget_id', api.retrieve_adaptative_widget_id),
     path('api/challenges/claim_reward/<int:challenge_id>/<str:username>', api.claim_challenge_reward),
     path('api/<str:mechanic_class>/retrieve_dashboard_mechanic', api.retrieve_dashboard_mechanic),
