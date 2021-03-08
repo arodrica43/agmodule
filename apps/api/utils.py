@@ -255,7 +255,7 @@ def unlock_unlockable(request,username,pk):
         try:
             user = Gamer.objects.filter(user__username = username)[0]
         except:
-            print("User not found by username," username)
+            print("User not found by username", username)
             raise Http404
 
         try:
