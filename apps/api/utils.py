@@ -12,6 +12,7 @@ lock2 = threading.Lock()
 lock3 = threading.Lock()
 lock4 = threading.Lock()
 lock5 = threading.Lock()
+lock6 = threading.Lock()
 lock7 = threading.Lock()
 lock8 = threading.Lock()
 lock9 = threading.Lock()
@@ -247,30 +248,59 @@ def view_badge_set(request, username):
         lock9.release()
         return JsonResponse({'results':[]})
 
+def unlock_unlockable(request,username,pk):
+
+    lock6.acquire()
+    try:
+        try:
+            user = Gamer.objects.filter(user__username = username)[0]
+        except:
+            print("User not found by username," username)
+            raise Http404
+
+        try:
+            unlk = Unlockable.objects.filter(id = pk)
+        except:
+            print("Unlockable not found by id", pk)
+            raise Http404
+
+        user.gamer_profile.data['unlockables'] += [unlk.id]
+        user.gamer_profile.save()
+        lock6.release()
+        return JsonResponse({'results':'OK'})
+    except:
+        lock6.release()
+        raise Http404
+
 
 def view_unlockable_set(request, username):
    
+    lock6.acquire()
     try:
-        user = Gamer.objects.filter(user__username = username)[0]
+        try:
+            user = Gamer.objects.filter(user__username = username)[0]
+        except:
+            print("User found")
+            raise Http404
+
+        unlock_ids = []
+        if 'unlockables' in user.gamer_profile.data.keys():
+            unlock_ids = user.gamer_profile.data['unlockables']
+      
+        all_unlocks = Unlockable.objects.all()
+
+        unlocks_set = []
+        for unlk in all_unlocks:
+            if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['unlockables']):
+                user.gamer_profile.data['unlockables'] += [unlk.id]
+                user.gamer_profile.save()
+            unlocks_set += [[UnlockableSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids]]
+        
+        lock6.release()
+        return JsonResponse({'results':unlocks_set})
     except:
-        print("User found")
+        lock6.release()
         raise Http404
-
-    unlock_ids = []
-    if 'unlockables' in user.gamer_profile.data.keys():
-        unlock_ids = user.gamer_profile.data['unlockables']
-  
-    all_unlocks = Unlockable.objects.all()
-
-    unlocks_set = []
-    for unlk in all_unlocks:
-        if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['unlockables']):
-            user.gamer_profile.data['unlockables'] += [unlk.id]
-            user.gamer_profile.save()
-        unlocks_set += [[UnlockableSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids]]
-    
-    return JsonResponse({'results':unlocks_set})
-
 
 def claim_challenge_reward(request, challenge_id, username):
     lock8.acquire()
