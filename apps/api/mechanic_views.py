@@ -86,74 +86,76 @@ class GMechanicViewSet(viewsets.ModelViewSet):
         try:
             instance = self.queryset.get(id=pk)
             data = request.data
-            print(data)
-            if data['user'] != "dynamic_user":
-                statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
-                if not statistic:
-                    try:        
-                        statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 1e-2)
-                        statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
-                    except:
-                        lock.release()
-                        raise Http404
-                for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time']:
-                    uplog = statistic[0].log
-                    if arg in statistic[0].log.keys():
-                        uplog[arg] += data['log'][arg]
-                    else: 
-                        uplog[arg] = data['log'][arg]
-                    statistic.update(log = uplog)
-                #Interaction index update ----------------------------------------------------------------------------------------------------
-                # for s in InteractionStatistic.objects.all():
-                #     s.log = {}
-                #     s.interaction_index = 0
-                #     s.save()
-                # for u in Gamer.objects.all():
-                #     u.gamer_profile.disruptor = 0
-                #     u.gamer_profile.free_spirit = 0
-                #     u.gamer_profile.achiever = 0
-                #     u.gamer_profile.player = 0
-                #     u.gamer_profile.socializer = 0
-                #     u.gamer_profile.philantropist = 0
-                #     u.gamer_profile.no_player = 0
-                #     u.gamer_profile.save()   
+            if 'user' in data.keys():
+                if data['user'] != "dynamic_user":
+                    statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
+                    if not statistic:
+                        try:        
+                            statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 1e-2)
+                            statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
+                        except:
+                            lock.release()
+                            raise Http404
+                    for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time']:
+                        uplog = statistic[0].log
+                        if arg in statistic[0].log.keys():
+                            uplog[arg] += data['log'][arg]
+                        else: 
+                            uplog[arg] = data['log'][arg]
+                        statistic.update(log = uplog)
+                    #Interaction index update ----------------------------------------------------------------------------------------------------
+                    # for s in InteractionStatistic.objects.all():
+                    #     s.log = {}
+                    #     s.interaction_index = 0
+                    #     s.save()
+                    # for u in Gamer.objects.all():
+                    #     u.gamer_profile.disruptor = 0
+                    #     u.gamer_profile.free_spirit = 0
+                    #     u.gamer_profile.achiever = 0
+                    #     u.gamer_profile.player = 0
+                    #     u.gamer_profile.socializer = 0
+                    #     u.gamer_profile.philantropist = 0
+                    #     u.gamer_profile.no_player = 0
+                    #     u.gamer_profile.save()   
 
-                import math
-                _, name = g_mechanic_cast(pk)
-                n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
-                l = 4
-                I = 0
-                for t_label in ['main_time', 'focus_time', 'interaction_time']:
-                    I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
-                I = I/3
-                statistic.update(interaction_index = I)
-                #------------------------------------------------------------------------------------------------------------------------------
-                # Gamer profile update --------------------------------------------------------------------------------------------------------
-                current_user = Gamer.objects.filter(user__username = data['user'])
-                if current_user:
-                    current_gstate = np.array(current_user[0].gamer_profile.vectorize())
-                    current_statistics = np.array(instance.statistics_vector(data['user']))
-                    #print("Here",instance.matrix().T.dot(current_statistics))
-                    print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
-                    new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()[:len(current_statistics),:]).dot(current_statistics))
-                    print(new_gstate)
-                    current_user[0].gamer_profile.disruptor = new_gstate[0]
-                    current_user[0].gamer_profile.free_spirit = new_gstate[1]
-                    current_user[0].gamer_profile.achiever = new_gstate[2]
-                    current_user[0].gamer_profile.player = new_gstate[3]
-                    current_user[0].gamer_profile.socializer = new_gstate[4]
-                    current_user[0].gamer_profile.philantropist = new_gstate[5]
-                    current_user[0].gamer_profile.no_player = new_gstate[6]
-                    current_user[0].gamer_profile.save()                
-                #------------------------------------------------------------------------------------------------------------------------------
-                serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
-                lock.release()
-                return Response(serializer.data)
-            else:
-                lock.release()
-                return HttpResponse('Invalid user!')  
+                    import math
+                    _, name = g_mechanic_cast(pk)
+                    n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
+                    l = 4
+                    I = 0
+                    for t_label in ['main_time', 'focus_time', 'interaction_time']:
+                        I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
+                    I = I/3
+                    statistic.update(interaction_index = I)
+                    #------------------------------------------------------------------------------------------------------------------------------
+                    # Gamer profile update --------------------------------------------------------------------------------------------------------
+                    current_user = Gamer.objects.filter(user__username = data['user'])
+                    if current_user:
+                        current_gstate = np.array(current_user[0].gamer_profile.vectorize())
+                        current_statistics = np.array(instance.statistics_vector(data['user']))
+                        #print("Here",instance.matrix().T.dot(current_statistics))
+                        print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
+                        new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()[:len(current_statistics),:]).dot(current_statistics))
+                        print(new_gstate)
+                        current_user[0].gamer_profile.disruptor = new_gstate[0]
+                        current_user[0].gamer_profile.free_spirit = new_gstate[1]
+                        current_user[0].gamer_profile.achiever = new_gstate[2]
+                        current_user[0].gamer_profile.player = new_gstate[3]
+                        current_user[0].gamer_profile.socializer = new_gstate[4]
+                        current_user[0].gamer_profile.philantropist = new_gstate[5]
+                        current_user[0].gamer_profile.no_player = new_gstate[6]
+                        current_user[0].gamer_profile.save()                
+                    #------------------------------------------------------------------------------------------------------------------------------
+                    serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
+                    serializer.is_valid(raise_exception=True)
+                    serializer.save()
+                    lock.release()
+                    return Response(serializer.data)
+                else:
+                    lock.release()
+                    return HttpResponse('Invalid user!')  
+            else if 'title' in data.keys():
+                super().update(request,pk)
         except:
             lock.release()
             raise Http404     
