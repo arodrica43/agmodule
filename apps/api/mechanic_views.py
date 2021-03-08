@@ -86,6 +86,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
         try:
             instance = self.queryset.get(id=pk)
             data = request.data
+            print(data)
             if data['user'] != "dynamic_user":
                 statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                 if not statistic:
