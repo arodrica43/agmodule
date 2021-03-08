@@ -15,6 +15,12 @@
         transition: .15s; 
     }
 
+.unk-card > div > img{
+        padding: 40px;
+    }
+
+
+
 </style>
 
 <div id = "unk-widget-dynamic_index" class="unk-container"></div>
@@ -40,7 +46,7 @@ function unlock(unlockable){
 }
 
 function fillHTML(data){
-document.getElementById("unk-widget-dynamic_index").innerHTML += '<img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:8vw;height:8vw;">';
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="unk-card"><img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:8vw;height:8vw;"></div>';
 }
 
 url = "https://agmodule.herokuapp.com/api/unlockables/";
