@@ -33,11 +33,16 @@ function selectPolicy(list){
 	return select
 }
 
+function unlock(unlockable){
+
+}
+
 url = "https://agmodule.herokuapp.com/api/unlockables/";
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
-.then((unlockables) => (console.log(unlockables)))
+.then((unlockables) => (console.log(unlockables),
+						unlockables.forEach((item,index) => (document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>" + item.id + "</div>"))))
 .catch(error => (console.log("Error: " + error)))
 </script>
