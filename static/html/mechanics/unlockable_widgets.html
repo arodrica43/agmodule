@@ -1,7 +1,43 @@
-<div id = "ulk-widget-dynamic_index">Unlockable Widget</div>
-<param id = "ulk-widget-handshake-dynamic_index" value=0></param> 
+<style>
+.unk-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.unk-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "unk-widget-dynamic_index" class="unk-container"></div>
+<param id = "unk-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#ulk-widget-dynamic_index").innerHTML += " (WIP)";
-document.querySelector("#ulk-widget-handshake-dynamic_index").value = 1;
+document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
+function render_unk(unlockable){
+	document.querySelector("#unk-widget-dynamic_index").innerHTML = unlockable.html;
+    $(unlockable.html).appendTo(document.body);
+}
+
+function selectPolicy(list){
+	select = [];
+	for (let i = 0; i < Math.min(5, list.length); i++) {
+	  select.append(list[i]);
+	}
+	return select
+}
+
+url = "https://agmodule.herokuapp.com/api/unlockables/";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((unlockables) => (console.log(unlockables)))
+.catch(error => (console.log("Error: " + error)))
 </script>
