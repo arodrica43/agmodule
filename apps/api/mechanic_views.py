@@ -155,6 +155,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     lock.release()
                     return HttpResponse('Invalid user!')  
             elif 'title' in data.keys():
+                lock.release()
                 return super().update(request,pk)
         except:
             lock.release()
