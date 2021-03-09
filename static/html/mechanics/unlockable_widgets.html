@@ -102,10 +102,10 @@ function selectPolicy(list){
 
 function unlock(unlockable){
 	console.log(unlockable.dataset.id);
-	//unlockable.querySelector(".card-inner").style.transition = 'all 2s';
-	unlockable.style.transition = 'all 2s';
-	//unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)';
-	unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
+	unlockable.querySelector(".card-inner").style.transition = 'all 2s';
+	//unlockable.style.transition = 'all 2s';
+	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateZ(50px)';
+	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
 
 function fillHTML(data){
