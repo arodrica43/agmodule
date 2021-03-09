@@ -26,8 +26,8 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.card:focus .card-inner {
-  transform: rotateY(180deg);
+.card:hover .card-inner {
+  transform: scale(2);
 }
 
 .card-front, .card-back {
@@ -84,7 +84,9 @@
 <param id = "unk-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
+
 function render_unk(unlockable){
 	document.querySelector("#unk-widget-dynamic_index").innerHTML = unlockable.html;
     $(unlockable.html).appendTo(document.body);
@@ -99,11 +101,11 @@ function selectPolicy(list){
 }
 
 function unlock(unlockable){
-
+	cardBefore.style.transform = 'rotateY(180deg)';
 }
 
 function fillHTML(data){
-document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="card">'+
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="card" onclik="unlock(this)">'+
 																	'<div class="card-inner">'+
 																	    '<div class="card-front">'+
 																	      '<img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:100%;height:100%;">'+
@@ -113,6 +115,7 @@ document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="ca
 																	    '</div>'+
 																	'</div>'+
 																 '</div>';
+
 }
 
 url = "https://agmodule.herokuapp.com/api/unlockables/";
