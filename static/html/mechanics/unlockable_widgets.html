@@ -104,10 +104,8 @@ function unlock(unlockable){
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 2s';
 	unlockable.style.transition = 'all 2s';
-	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2.5) translateY(10px)';
-	unlockable.style.transform = "rotateY(180deg) scale(2.5) translateY(10px)";
-
-
+	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translate(-50%, -50%);';
+	unlockable.style.transform = "rotateY(180deg) scale(2) translate(-50%, -50%);";
 }
 
 function fillHTML(data){
