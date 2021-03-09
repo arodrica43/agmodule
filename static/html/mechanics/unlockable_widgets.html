@@ -112,7 +112,7 @@ function unlock(unlockable){
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
 	var y = unlockable.querySelector(".card-inner").style.transform.y;
-	var x_incr = -w_width/4 + x/3 + w/4;
+	var x_incr = -w_width/6 + x/3 + w/6;
 	var y_incr = w_height/2 - y;
 	console.log("Window width " + w_width);
 	console.log("Pos " + x);
@@ -130,7 +130,7 @@ document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="ca
 																	      '<img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:100%;height:100%;">'+
 																	    '</div>'+
 																	    '<div class="card-back">'+
-																	      '<h1>John Doe</h1> '+
+																	      '<h1>' +  data.id + '</h1> '+
 																	    '</div>'+
 																	'</div>'+
 																 '</div>';
