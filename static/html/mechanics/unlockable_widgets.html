@@ -14,6 +14,7 @@
   width: calc( 100% / 5 - 20px);
   height:120px;
   text-align:center;
+  z-index: 0;
 }
 
 .card-inner {
@@ -104,7 +105,8 @@ function unlock(unlockable){
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 2s';
 	//unlockable.style.transition = 'all 2s';
-	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateZ(50px)';
+	unlockable.querySelector(".card-inner").style.zIndex = 1;
+	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateX(30vw)';
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
 
