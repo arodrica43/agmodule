@@ -16,9 +16,37 @@
   text-align:center;
 }
 
-.card:hover{
-	transform: rotatey(-180deg) translatex(0px) translatey(0px);
-  	transition: transform 1s;
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
 }
 
 
@@ -75,7 +103,16 @@ function unlock(unlockable){
 }
 
 function fillHTML(data){
-document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="card"><img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:6vw;height:6vw;"></div>';
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="card">'+
+																	'<div class="card-inner">'+
+																	    '<div class="card-front">'+
+																	      '<img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:300px;height:300px;">'+
+																	    '</div>'+
+																	    '<div class="card-back">'+
+																	      '<h1>John Doe</h1> '+
+																	    '</div>'+
+																	'</div>'+
+																 '</div>';
 }
 
 url = "https://agmodule.herokuapp.com/api/unlockables/";
