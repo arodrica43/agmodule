@@ -103,9 +103,9 @@ function selectPolicy(list){
 function unlock(unlockable){
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-front").style.transition = 'all 1s';
-	//unlockable.querySelector(".card-back").style.transition = 'all 1s';
-	unlockable.querySelector(".card-front").style.transform = 'rotateY(180deg) scale(2.5)';
-	//unlockable.querySelector(".card-back").style.transform = 'rotateY(180deg)';
+	unlockable.querySelector(".card-back").style.transition = 'all 1s';
+	unlockable.querySelector(".card-front").style.transform = 'rotateY(180deg)';
+	unlockable.querySelector(".card-back").style.transform = 'rotateY(180deg) scale(2.5)';
 
 
 }
