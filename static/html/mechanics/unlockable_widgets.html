@@ -112,7 +112,7 @@ function unlock(unlockable){
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
 	var y = unlockable.querySelector(".card-inner").style.transform.y;
-	var x_incr = -w_width/2 + x - w/2;
+	var x_incr = -w_width/2 + x + w/2 + x/2;
 	var y_incr = w_height/2 - y;
 	console.log("Window width " + w_width);
 	console.log("Pos " + x);
