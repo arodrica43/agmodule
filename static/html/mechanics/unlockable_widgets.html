@@ -107,18 +107,17 @@ function unlock(unlockable){
 	unlockable.querySelector(".card-inner").style.transition = 'all 2s';
 	//unlockable.style.transition = 'all 2s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
-	var w_width = $(window).width() ;
-	var w_height = $(window).height();
+	var w_width = window.innerWidth ;
+	var w_height = window.innerWidth;
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
-
 	var y = unlockable.querySelector(".card-inner").style.transform.y;
-	var x_incr = -w_width/2 + x + w/2 ;
+	var x_incr = -w_width/2 + x + w/2;
 	var y_incr = w_height/2 - y;
 	console.log("Window width " + w_width);
 	console.log("Pos " + x);
-	console.log("Offset Width" + w)
-	console.log("Incr" + x_incr);	
+	console.log("Offset Width " + w)
+	console.log("Incr " + x_incr);	
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateX(' + x_incr + 'px)';
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
