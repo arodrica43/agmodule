@@ -113,13 +113,14 @@ function unlock(unlockable){
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
 
 	var y = unlockable.querySelector(".card-inner").style.transform.y;
-	var x_incr = w_width/2 - x - w/2 ;
+	var x_incr = -w_width/2 + x + w/2 ;
 	var y_incr = w_height/2 - y;
-	console.log(w_width);
-	console.log(x);
-	console.log(x_incr);	
+	console.log("Window width " + w_width);
+	console.log("Pos " + x);
+	console.log("Offset Width" + w)
+	console.log("Incr" + x_incr);	
 	
-	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateX(-' + x_incr + 'px)';
+	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(2) translateX(' + x_incr + 'px)';
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
 
