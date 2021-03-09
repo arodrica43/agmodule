@@ -109,7 +109,7 @@ function unlock(unlockable){
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
 	var w_width = $(window).width() ;
 	var w_height = $(window).height();
-	var x = unlockable.querySelector(".card-inner").style.offsetLeft;
+	var x = unlockable.querySelector(".card-inner").offsetLeft;
 
 	var y = unlockable.querySelector(".card-inner").style.transform.y;
 	var x_incr = w_width/2 - x;
