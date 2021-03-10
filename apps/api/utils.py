@@ -250,7 +250,6 @@ def view_badge_set(request, username):
 
 def unlock_unlockable(request,username,pk):
 
-    print("aiosdnsbdibdd --------------------------------------")
     lock6.acquire()
     try:
         try:
@@ -264,6 +263,8 @@ def unlock_unlockable(request,username,pk):
         except:
             print("Unlockable not found by id", pk)
             raise Http404
+
+        print("aiosdnsbdibdd --------------------------------------")
         if "index" in request.keys():
             if request.GET["index"] not in user.gamer_profile.data['unlockables']:
                 user.gamer_profile.data['unlockables'] += [unlk.id]
