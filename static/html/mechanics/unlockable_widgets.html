@@ -103,12 +103,15 @@ function selectPolicy(list){
 
 function unlock(unlockable){
 	console.log(unlockable.dataset.id);
+
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
+	unlockable.querySelector(".card-inner").style.zIndex = 1;
 	var w_width = window.innerWidth ;
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
 	lambda = 6;
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
+	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
@@ -120,7 +123,7 @@ document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="ca
 																	      '<img src="https://www.flaticon.com/svg/vstatic/svg/0/827.svg?token=exp=1615225341~hmac=a4b78ba965dc14ba74b7e3cfc91b6c16" alt="Avatar" style="width:100%;height:100%;">'+
 																	    '</div>'+
 																	    '<div class="card-back">'+
-																	      '<h1>' +  data.locked_html + '</h1> '+
+																	      '<h1>' +  data.id + '</h1> '+
 																	    '</div>'+
 																	'</div>'+
 																 '</div>';
