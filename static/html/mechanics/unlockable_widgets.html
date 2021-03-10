@@ -142,6 +142,7 @@ function unlock(unlockable){
 			unlockable.innerHTML = unlockable.dataset.locked_content;
 			unlockable.style.width = "300px";
 			unlockable.style.height = "300px";
+			document.querySelector(".card").forEach((item,index) => (item.innerHTML = ""));
 			//unlockable.querySelector(".card-back").style.transform  = 'scaleX(1.1)';
 		});
 	
