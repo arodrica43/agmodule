@@ -122,7 +122,7 @@ function whichTransitionEvent(el){
 
 function unlock(unlockable){
 
-	fetch("https://agmodule.herokuapp.com/api/unlockables/" + unlockable.dataset.id + "/unlock_for/dynamic_user")
+	fetch("https://agmodule.herokuapp.com/api/unlockables/" + unlockable.dataset.id + "/unlock_for/dynamic_user?index=dynamic_index")
 	.then(function(){
 		unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
 		unlockable.querySelector(".card-inner").style.zIndex = 1;
