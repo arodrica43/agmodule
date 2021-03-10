@@ -136,9 +136,9 @@ function unlock(unlockable){
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
 	    function(event) {
-	    	unlockable.querySelector(".card-back").style.transform = 'scale(' + (1/lambda) + ')';
+	    	//unlockable.querySelector(".card-inner").style.transform = 'scale(' + (1/lambda) + ')';
 	    	//document.querySelector(".unk-locked-content");
-			//unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
+			unlockable.querySelector(".card-inner").innerHTML = unlockable.dataset.locked_content;
 			//unlockable.querySelector(".card-back").style.transform  = 'scale(-' + lambda + ')';
 		});
 	
