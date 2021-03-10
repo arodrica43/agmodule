@@ -250,6 +250,7 @@ def view_badge_set(request, username):
 
 def unlock_unlockable(request,username,pk):
 
+    print("aiosdnsbdibdd --------------------------------------")
     lock6.acquire()
     try:
         try:
