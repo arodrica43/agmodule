@@ -102,7 +102,6 @@ function selectPolicy(list){
 
 function unlock(unlockable){
 	console.log(unlockable.dataset.id);
-	unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
 	var w_width = window.innerWidth ;
@@ -112,6 +111,8 @@ function unlock(unlockable){
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
+	
+	unlockable.innerHTML = unlockable.dataset.locked_content;
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
 
