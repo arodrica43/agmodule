@@ -2,7 +2,11 @@
 <style>
 .unk-locked-content{
 	background:red;
-    z-index:2;
+    z-index:1;
+    width:300px;
+    height:200px;
+    left: 0;
+    top: 0;
 }
 
 .card {
@@ -132,7 +136,8 @@ function unlock(unlockable){
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
 	    function(event) {
-			unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
+	    	//document.querySelector(".unk-locked-content");
+			//unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 			//unlockable.querySelector(".card-back").style.transform  = 'scale(-' + lambda + ')';
 		});
 	
