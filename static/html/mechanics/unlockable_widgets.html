@@ -26,10 +26,6 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.card:hover .card-inner {
-  transform: scale(1.1);
-}
-
 .card-front, .card-back {
   position: absolute;
   width: 100%;
@@ -123,9 +119,8 @@ function unlock(unlockable){
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
 	    function(event) {
-		    alert("The transition has ended!" + unlockable.dataset.id);
+			unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 		});
-	unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
