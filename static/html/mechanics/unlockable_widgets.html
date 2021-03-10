@@ -133,7 +133,7 @@ function unlock(unlockable){
 	$(this).one(transitionEvent,
 	    function(event) {
 			unlockable.innerHTML = unlockable.dataset.locked_content;
-			unlockable.style.width = 2*unlockable.style.width;
+			unlockable.style.width = "300px";
 			rect = unlockable.getBoundingClientRect();
 			console.log(rect.left);
 			console.log(rect.width);
