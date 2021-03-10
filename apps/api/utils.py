@@ -259,7 +259,7 @@ def unlock_unlockable(request,username,pk):
             raise Http404
 
         try:
-            unlk = Unlockable.objects.filter(id = pk)
+            unlk = Unlockable.objects.filter(id = pk)[0]
         except:
             print("Unlockable not found by id", pk)
             raise Http404
