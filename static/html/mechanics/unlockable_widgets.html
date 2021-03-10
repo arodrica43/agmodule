@@ -101,7 +101,7 @@ function selectPolicy(list){
 }
 
 function unlock(unlockable){
-	unlockable.innerHTML = unlockable.dataset.locked_content;
+	unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
