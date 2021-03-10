@@ -83,6 +83,7 @@
 
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
 
+var selected = false;
 function render_unk(unlockable){
 	document.querySelector("#unk-widget-dynamic_index").innerHTML = unlockable.html;
     $(unlockable.html).appendTo(document.body);
@@ -116,6 +117,7 @@ function whichTransitionEvent(el){
 
 
 function unlock(unlockable){
+	selected = true;
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
@@ -131,6 +133,7 @@ function unlock(unlockable){
 	$(this).one(transitionEvent,
 	    function(event) {
 			unlockable.innerHTML = unlockable.dataset.locked_content;
+			unlockable.style.width *= 2;
 			rect = unlockable.getBoundingClientRect();
 			console.log(rect.left);
 			console.log(rect.width);
