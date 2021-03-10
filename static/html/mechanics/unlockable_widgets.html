@@ -108,7 +108,7 @@ function unlock(unlockable){
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
 	lambda = 6;
-	var x_incr = (-w_width/2 + x + w)/lambda;	
+	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
