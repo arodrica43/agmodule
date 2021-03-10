@@ -132,7 +132,7 @@ function unlock(unlockable){
 	var lambda = 4;
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	
-	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scaleX(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
+	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scaleX(' + lambda + ') scaleY(' + (lambda-2) + ') translateX(' + x_incr + 'px) translateY(30px)';
 
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
