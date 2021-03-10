@@ -266,14 +266,14 @@ def unlock_unlockable(request,username,pk):
 
        
         if "index" in request.keys():
-             print("aiosdnsbdibdd --------------------------------------1")
+            print("aiosdnsbdibdd --------------------------------------1")
             if request.GET["index"] not in user.gamer_profile.data['unlockables']:
                 print("aiosdnsbdibdd --------------------------------------2")
                 user.gamer_profile.data['unlockables'] += [unlk.id]
                 user.gamer_profile.data['unlockables'] += [request.GET["index"]]
                 user.gamer_profile.save()
                 lock6.release()
-                 print("aiosdnsbdibdd --------------------------------------3")
+                print("aiosdnsbdibdd --------------------------------------3")
                 return JsonResponse({'results':'OK'})
             else:
                 lock6.release()
