@@ -129,7 +129,7 @@ function unlock(unlockable){
 	var w_width = window.innerWidth ;
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
-	var lambda = 3;
+	var lambda = 4;
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scaleX(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
