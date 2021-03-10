@@ -112,7 +112,10 @@ function unlock(unlockable){
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
 
-	unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
+	window.setTimeout(function () {
+	    unlockable.innerHTML = unlockable.dataset.locked_content;
+	}, 1000);
+	
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
 
