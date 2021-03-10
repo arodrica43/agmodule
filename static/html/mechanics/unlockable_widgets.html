@@ -88,7 +88,6 @@
 
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
 
-var selected = false;
 function render_unk(unlockable){
 	document.querySelector("#unk-widget-dynamic_index").innerHTML = unlockable.html;
     $(unlockable.html).appendTo(document.body);
@@ -122,33 +121,25 @@ function whichTransitionEvent(el){
 
 
 function unlock(unlockable){
-	selected = true;
-	console.log(unlockable.dataset.id);
-	unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
-	unlockable.querySelector(".card-inner").style.zIndex = 1;
-	var w_width = window.innerWidth ;
-	var x = unlockable.querySelector(".card-inner").offsetLeft;
-	var w = unlockable.querySelector(".card-inner").offsetWidth;
-	var lambda = 4;
-	var x_incr = (-w_width/2 + x + w/2)/lambda;	
-	
-	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scaleX(' + lambda + ') scaleY(' + (lambda-2) + ') translateX(' + x_incr + 'px) translateY(30px)';
 
-	var transitionEvent = whichTransitionEvent(unlockable);
-	$(this).one(transitionEvent,
-	    function(event) {
-	    	//unlockable.querySelector(".card-inner").style.transform = 'scale(' + (1/lambda) + ')';
-	    	//document.querySelector(".unk-locked-content");
-	    	document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
-			document.getElementById("unk-widget-dynamic_index").style.height = "300px";
-			//unlockable.style.width = "300px";
-			//unlockable.style.height = "300px";
-			//console.log(document.querySelector(".card"));
-			//forEach((item,index) => (item.id itemitem.innerHTML = ""));
-			//unlockable.querySelector(".card-back").style.transform  = 'scaleX(1.1)';
-		});
-	
-	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
+	fetch("https://agmodule.herokuapp.com/api/unlockables/" + unlockable.dataset.id + "/unlock_for/dynamic_user")
+	.then(function(){
+		unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
+		unlockable.querySelector(".card-inner").style.zIndex = 1;
+		var w_width = window.innerWidth ;
+		var x = unlockable.querySelector(".card-inner").offsetLeft;
+		var w = unlockable.querySelector(".card-inner").offsetWidth;
+		var lambda = 4;
+		var x_incr = (-w_width/2 + x + w/2)/lambda;	
+		unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scaleX(' + lambda + ') scaleY(' + (lambda-2) + ') translateX(' + x_incr + 'px) translateY(30px)';
+		var transitionEvent = whichTransitionEvent(unlockable);
+		$(this).one(transitionEvent,
+		    function(event) {
+		    	document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
+				document.getElementById("unk-widget-dynamic_index").style.height = "300px";
+			});
+	})
+	.catch(error => (console.log("Error: " + error)))
 }
 
 function fillHTML(data){
