@@ -265,7 +265,7 @@ def unlock_unlockable(request,username,pk):
             raise Http404
 
        
-        if "index" in request.keys():
+        if "index" in request.GET.keys():
             print("aiosdnsbdibdd --------------------------------------1")
             if request.GET["index"] not in user.gamer_profile.data['unlockables']:
                 print("aiosdnsbdibdd --------------------------------------2")
