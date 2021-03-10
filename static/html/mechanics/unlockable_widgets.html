@@ -139,10 +139,11 @@ function unlock(unlockable){
 	    function(event) {
 	    	//unlockable.querySelector(".card-inner").style.transform = 'scale(' + (1/lambda) + ')';
 	    	//document.querySelector(".unk-locked-content");
-			unlockable.innerHTML = unlockable.dataset.locked_content;
-			unlockable.style.width = "300px";
-			unlockable.style.height = "300px";
-			console.log(document.querySelector(".card"));
+	    	document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
+			
+			//unlockable.style.width = "300px";
+			//unlockable.style.height = "300px";
+			//console.log(document.querySelector(".card"));
 			//forEach((item,index) => (item.id itemitem.innerHTML = ""));
 			//unlockable.querySelector(".card-back").style.transform  = 'scaleX(1.1)';
 		});
