@@ -165,7 +165,7 @@ document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-'
 
 }
 
-url = "https://agmodule.herokuapp.com/api/unlockables/";
+url = "https://agmodule.herokuapp.com/api/unlockables/retrieve_for_user/dynamic_user?index=dynamic_index";
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))

@@ -263,11 +263,19 @@ def unlock_unlockable(request,username,pk):
         except:
             print("Unlockable not found by id", pk)
             raise Http404
-
-        user.gamer_profile.data['unlockables'] += [unlk.id]
-        user.gamer_profile.save()
-        lock6.release()
-        return JsonResponse({'results':'OK'})
+        if "index" in request.keys():
+            if request.GET["index"] not in user.gamer_profile.data['unlockables']:
+                user.gamer_profile.data['unlockables'] += [unlk.id]
+                user.gamer_profile.data['unlockables'] += [request.GET["index"]]
+                user.gamer_profile.save()
+                lock6.release()
+                return JsonResponse({'results':'OK'})
+            else:
+                lock6.release()
+                raise Http404
+        else:
+            lock6.release()
+            raise Http404
     except:
         lock6.release()
         raise Http404
@@ -294,7 +302,11 @@ def view_unlockable_set(request, username):
             if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['unlockables']):
                 user.gamer_profile.data['unlockables'] += [unlk.id]
                 user.gamer_profile.save()
-            unlocks_set += [[UnlockableSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids]]
+            if 'index' in request.GET.keys():
+                if unlk.id not in user.gamer_profile.data['unlockables'] and request.GET['index'] not in user.gamer_profile.data['unlockables']:
+                    unlocks_set += [UnlockableSerializer(unlk, context={'request': request}).data]
+            else:
+                unlocks_set += [[UnlockableSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids]]
         
         lock6.release()
         return JsonResponse({'results':unlocks_set})
