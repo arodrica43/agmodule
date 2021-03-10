@@ -133,7 +133,7 @@ function unlock(unlockable){
 	$(this).one(transitionEvent,
 	    function(event) {
 			unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
-			unlockable.querySelector(".card-back").style.transform  = 'scale(-' + lambda + ')';
+			//unlockable.querySelector(".card-back").style.transform  = 'scale(-' + lambda + ')';
 		});
 	
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
