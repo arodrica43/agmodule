@@ -136,7 +136,8 @@ function unlock(unlockable){
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
 	    function(event) {
-	    	document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="unk-locked-content"></div>';
+	    	document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="card"></div>';
+	    	document.getElementById("unk-widget-dynamic_index").style.background = "red";
 	    	//document.querySelector(".unk-locked-content");
 			//unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 			//unlockable.querySelector(".card-back").style.transform  = 'scale(-' + lambda + ')';
