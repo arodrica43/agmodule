@@ -133,12 +133,7 @@ function unlock(unlockable){
 	$(this).one(transitionEvent,
 	    function(event) {
 			unlockable.innerHTML = unlockable.dataset.locked_content;
-			unlockable.style.width = "100%";
-			unlockable.style.height = "100%";
-			unlockable.style.zIndex = 2;
-			rect = unlockable.getBoundingClientRect();
-			console.log(rect.left);
-			console.log(rect.width);
+			unlockable.querySelector(".card-back").style.transform = 'scale(' + (1/lambda) + ')';
 		});
 	
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
