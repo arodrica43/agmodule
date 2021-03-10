@@ -140,6 +140,8 @@ function unlock(unlockable){
 	    	//unlockable.querySelector(".card-inner").style.transform = 'scale(' + (1/lambda) + ')';
 	    	//document.querySelector(".unk-locked-content");
 			unlockable.innerHTML = unlockable.dataset.locked_content;
+			unlockable.offsetTop = "300px";
+			unlockable.offsetWidth = "300px";
 			//unlockable.querySelector(".card-back").style.transform  = 'scaleX(1.1)';
 		});
 	
