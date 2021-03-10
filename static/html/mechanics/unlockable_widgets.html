@@ -81,7 +81,7 @@
 
 </style>
 
-<div id = "unk-widget-dynamic_index" class="unk-container"></div>
+<div id = "unk-widget-dynamic_index" style="text-align:center;" class="unk-container"></div>
 
 <param id = "unk-widget-handshake-dynamic_index" value=0></param> 
 <script>
@@ -124,12 +124,12 @@ function whichTransitionEvent(el){
 function unlock(unlockable){
 	selected = true;
 	console.log(unlockable.dataset.id);
-	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
+	unlockable.querySelector(".card-inner").style.transition = 'all 0.6s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
 	var w_width = window.innerWidth ;
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
 	var w = unlockable.querySelector(".card-inner").offsetWidth;
-	var lambda = 15;
+	var lambda = 6;
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
