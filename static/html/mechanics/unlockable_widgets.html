@@ -123,7 +123,7 @@ function whichTransitionEvent(el){
 function unlock(unlockable){
 	selected = true;
 	console.log(unlockable.dataset.id);
-	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
+	unlockable.querySelector(".card-inner").style.transition = 'all 0.1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
 	var w_width = window.innerWidth ;
 	var x = unlockable.querySelector(".card-inner").offsetLeft;
