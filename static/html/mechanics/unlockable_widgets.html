@@ -101,6 +101,7 @@ function selectPolicy(list){
 }
 
 function unlock(unlockable){
+	unlockable.innerHTML = unlockable.dataset.locked_content;
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
 	unlockable.querySelector(".card-inner").style.zIndex = 1;
@@ -111,13 +112,6 @@ function unlock(unlockable){
 	var x_incr = (-w_width/2 + x + w/2)/lambda;	
 	
 	unlockable.querySelector(".card-inner").style.transform = 'rotateY(180deg) scale(' + lambda + ') translateX(' + x_incr + 'px) translateY(30px)';
-
-	window.setTimeout(function () {
-		unlockable.style.left = "0px";
-		unlockable.style.top = "0px";
-		
-	    unlockable.innerHTML = unlockable.dataset.locked_content;
-	}, 1000);
 	
 	//unlockable.style.transform = "rotateY(180deg) scale(2) translateX(0.5vw) translateY(0.5vh)";
 }
