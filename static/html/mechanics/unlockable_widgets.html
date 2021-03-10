@@ -132,11 +132,10 @@ function unlock(unlockable){
 	var transitionEvent = whichTransitionEvent(unlockable);
 	$(this).one(transitionEvent,
 	    function(event) {
-			unlockable.innerHTML = unlockable.dataset.locked_content;
-			unlockable.style.width = "100%";
-			unlockable.style.height = "100%";
-			unlockable.style.zIndex = 2;
-			unlockable.style.float = "none";
+			unlockable.querySelector(".card-inner").innerHTML = unlockable.dataset.locked_content;
+			unlockable.querySelector(".card-inner").style.width = "100%";
+			unlockable.querySelector(".card-inner").style.height = "100%";
+			unlockable.querySelector(".card-inner")style.zIndex = 2;
 			rect = unlockable.getBoundingClientRect();
 			console.log(rect.left);
 			console.log(rect.width);
