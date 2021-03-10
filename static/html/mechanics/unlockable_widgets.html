@@ -100,7 +100,31 @@ function selectPolicy(list){
 	return select
 }
 
+function whichTransitionEvent(el){
+  
+
+  var transitions = {
+    "transition"      : "transitionend",
+    "OTransition"     : "oTransitionEnd",
+    "MozTransition"   : "transitionend",
+    "WebkitTransition": "webkitTransitionEnd"
+  }
+
+  for (t in transitions){
+    if (el.style[t] !== undefined){
+      return transitions[t];
+    }
+  }
+}
+
+
+
 function unlock(unlockable){
+	var transitionEvent = whichTransitionEvent(unlockable);
+	$(this).one(transitionEvent,
+	    function(event) {
+		    alert("The transition has ended!" + unlockable.dataset.id);
+		});
 	unlockable.querySelector(".card-back").innerHTML = unlockable.dataset.locked_content;
 	console.log(unlockable.dataset.id);
 	unlockable.querySelector(".card-inner").style.transition = 'all 1s';
