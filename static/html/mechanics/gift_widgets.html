@@ -19,7 +19,6 @@
 <param id = "gft-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-
 var rewards = [
 				{'value' : 1, 'by' : 'score', 'message' : '+1 point'},
 				{'value' : 5, 'by' : 'score', 'message' : '+5 points'},
@@ -46,22 +45,10 @@ function send_gift(gift){
 	.catch(error => (console.log("Error: " + error)))
 }
 
-function render_gft(gift){
+function render_gft(){
 	var reward = choose_reward();
 	document.querySelector("#gft-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/1843/1843447.svg?token=exp=1615498590~hmac=b4801c40be323118c593020dedcf7b24'><br><button onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
 }
 
-function selectPolicy(to_select){
-	// Select non social leaderboard
-	var r = Math.floor(Math.random() * to_select.length);
-	return to_select[r];
-	
-}
-
-url = "https://agmodule.herokuapp.com/api/giftuses/widget/dynamic_user";
-fetch(url)
-.then(response => response.json())
-.then(res_json => (console.log(res_json),selectPolicy(res_json.results)))
-.then((selected) => render_gft(selected))
-.catch(error => (console.log("Error: " + error)))
+render_gft();
 </script>
