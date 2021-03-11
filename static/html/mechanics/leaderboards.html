@@ -40,16 +40,28 @@
             users.forEach(populateTable);
             function populateTable(item, index) {
                 //alert(myJson.user.email );
-                var hidden_html = "class='no-main-row'";
-                if(item == "dynamic_user"){
-                    hidden_html = "style='background:#FFEBCD;' class='main-row'"
-                }
-                document.querySelector("#t-incr-dynamic_index").innerHTML += 
+                if("only_me" == "yes"){
+                    if(item == "dynamic_user"){
+                        document.querySelector("#t-incr-dynamic_index").innerHTML += 
+                            "<tr id='row-element-dynamic_index-" + index + "' style='background:#FFEBCD;'>" + 
+                                "<td>#" + (index + 1) + "</td>" +
+                                "<td>" + item + "</td>" + 
+                                "<td>" + scores[index] + "</td>" + 
+                            "</tr>";
+                    }
+                }else{
+                    var hidden_html = "";
+                    if(item == "dynamic_user"){
+                        hidden_html = "style='background:#FFEBCD;'";
+                    }
+                    document.querySelector("#t-incr-dynamic_index").innerHTML += 
                     "<tr id='row-element-dynamic_index-" + index + "' " + hidden_html + ">" + 
                         "<td>#" + (index + 1) + "</td>" +
                         "<td>" + item + "</td>" + 
                         "<td>" + scores[index] + "</td>" + 
                     "</tr>";
+                }
+                
             }
             users.forEach(function(item,index){
                 document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){

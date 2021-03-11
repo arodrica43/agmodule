@@ -54,6 +54,11 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain dynamic_index argument")
+                try:
+                    new_html = re.sub("(?!only_me=)only_me",request.GET['only_me'],queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain dynamic_index argument")
                 tmp_title = queryset[0].title
                 if 'show_title' in request.GET.keys():
                     st = request.GET['show_title']
