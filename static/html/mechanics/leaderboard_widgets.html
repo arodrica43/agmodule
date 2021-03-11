@@ -25,7 +25,8 @@ function render_ldb(leadboard){
     $(leadboard.html).appendTo(document.body);
     var rows = document.getElementsByTagName("table")[0].rows;
     console.log(rows);
-    console.log(rows.length);
+    console.log(rows[0])
+    console.log(Array.from(rows));
     var i = 0;
     for (const row of rows){
     	console.log(row);
