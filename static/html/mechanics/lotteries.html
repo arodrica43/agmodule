@@ -80,7 +80,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     // ---------------------------------------------------------------------------------------
 
   document.querySelector("#button_div").innerHTML = '<input class="btn btn-light" type="button" value="spin" id="spin" />';
-  document.querySelector("#roulette_div").innerHTML = ' <canvas id="canvas" width="' + (window.innerWidth/2) + '" height="200"></canvas>';
+  document.querySelector("#roulette_div").innerHTML = ' <canvas id="canvas" width="' + (window.innerWidth/2) + '" height="' + (window.innerHeight/2) + '"></canvas>';
   document.querySelector("#roulette_div").onclick = function(){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
@@ -129,9 +129,10 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var arc = Math.PI / (options.length / 2);
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
-      var outsideRadius = canvas.width/2;
-      var textRadius = canvas.width/3;
-      var insideRadius = canvas.width/4;
+      var reference = Math.min(canvas.width, canvas.height);
+      var outsideRadius = reference/2;
+      var textRadius = reference/3;
+      var insideRadius = reference/4;
 
       ctx = canvas.getContext("2d");
       ctx.clearRect(0,0,500,500);
