@@ -1,7 +1,67 @@
-<div id = "gft-widget-dynamic_index">Gift Widget</div>
+<style>
+.gft-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.gft-container > div > img{
+        width: 25%;
+        height: 25%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "gft-widget-dynamic_index" class="gft-container"></div>
 <param id = "gft-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#gft-widget-dynamic_index").innerHTML += " (WIP)";
+
+var rewards = [
+				{'value' : 1, 'by' : 'score', 'message' : '+1 point'}
+				{'value' : 5, 'by' : 'score', 'message' : '+5 points'},
+				{'value' : 10, 'by' : 'score', 'message' : '+10 points'},
+				{'value' : 20, 'by' : 'score', 'message' : '+20 points'},
+				{'value' : 50, 'by' : 'score', 'message' : '+50 points'},
+				{'value' : 1, 'by' : '$', 'message' : '+1 $'},
+				{'value' : 5, 'by' : '$', 'message' : '+5 $'},
+				{'value' : 10, 'by' : '$', 'message' : '+10 $'},
+				{'value' : 20, 'by' : '$', 'message' : '+20 $'},
+				{'value' : 50, 'by' : '$', 'message' : '+50 $'}				
+]
 document.querySelector("#gft-widget-handshake-dynamic_index").value = 1;
+
+funtion choose_reward(){
+	var r = Math.floor(Math.random() * rewards.length);
+	return rewards[r];	
+}
+
+function send_gift(gift){
+	fetch("https://agmodule.herokuapp.com/api/gamers/add_gift?from=dynamic_user&type=" + gift.dataset.by + "&content=" + gift.dataset.value)
+	.then(response => response.json())
+	.then(res_json => (console.log(res_json), alert("Present sent!")))
+	.catch(error => (console.log("Error: " + error)))
+}
+
+function render_gft(gift){
+	var reward = choose_reward();
+	document.querySelector("#gft-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/1843/1843447.svg?token=exp=1615498590~hmac=b4801c40be323118c593020dedcf7b24'><br><button onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
+}
+
+function selectPolicy(to_select){
+	// Select non social leaderboard
+	var r = Math.floor(Math.random() * to_select.length);
+	return to_select[r];
+	
+}
+
+url = "https://agmodule.herokuapp.com/api/giftuses/widget/dynamic_user";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (console.log(res_json),selectPolicy(res_json.results)))
+.then((selected) => render_gft(selected))
+.catch(error => (console.log("Error: " + error)))
 </script>

@@ -112,38 +112,62 @@ def retrieve_adaptative_widget_id(request):
 
 def open_gift(request,username):
 
-    lock5.acquire()
-    message = ""
-    text = "false" 
-    user = Gamer.objects.filter(user__username = username)[0]
-    if 'index' in request.GET.keys():
-        if user.gamer_profile.data['gifts'][int(request.GET['index'])][1] == 'text':
-            text = "true"
-            message = "The user " + user.gamer_profile.data['gifts'][int(request.GET['index'])][0] + " send you the following message: " +  user.gamer_profile.data['gifts'][int(request.GET['index'])][2]
-        else:
-            user.gamer_profile.data[user.gamer_profile.data['gifts'][int(request.GET['index'])][1]] += int(user.gamer_profile.data['gifts'][int(request.GET['index'])][2])
-            what = "$"
-            if(user.gamer_profile.data['gifts'][int(request.GET['index'])][1] == 'score'):
-                what = "points"    
-            message = "You have recieved " + user.gamer_profile.data['gifts'][int(request.GET['index'])][2] + " " + what + " from " + user.gamer_profile.data['gifts'][int(request.GET['index'])][0] + "!"
-        del user.gamer_profile.data['gifts'][int(request.GET['index'])] 
-        user.gamer_profile.save()
-    lock5.release()
-    return JsonResponse({'results': 'OK', 'message':message})
-
-def add_gift(request,username):
-
     lock4.acquire()
-    print("Adding gift to",username)
-    user = Gamer.objects.filter(user__username = username)[0]
+    try:
+        message = ""
+        text = "false" 
+        user = Gamer.objects.filter(user__username = username)[0]
+        if 'index' in request.GET.keys():
+            if user.gamer_profile.data['gifts'][int(request.GET['index'])][1] == 'text':
+                text = "true"
+                message = "The user " + user.gamer_profile.data['gifts'][int(request.GET['index'])][0] + " send you the following message: " +  user.gamer_profile.data['gifts'][int(request.GET['index'])][2]
+            else:
+                user.gamer_profile.data[user.gamer_profile.data['gifts'][int(request.GET['index'])][1]] += int(user.gamer_profile.data['gifts'][int(request.GET['index'])][2])
+                what = "$"
+                if(user.gamer_profile.data['gifts'][int(request.GET['index'])][1] == 'score'):
+                    what = "points"    
+                message = "You have recieved " + user.gamer_profile.data['gifts'][int(request.GET['index'])][2] + " " + what + " from " + user.gamer_profile.data['gifts'][int(request.GET['index'])][0] + "!"
+            del user.gamer_profile.data['gifts'][int(request.GET['index'])] 
+            user.gamer_profile.save()
+        lock4.release()
+        return JsonResponse({'results': 'OK', 'message':message})
+    except:
+        lock4.release()
+        raise Http404
+
+def append_gift(request, user):
     if 'from' in request.GET.keys():
         if 'type' in request.GET.keys():
             if "content" in request.GET.keys():
                 user.gamer_profile.data['gifts'] += [[request.GET['from'],request.GET['type'], request.GET['content']]]
                 user.gamer_profile.save()
-    lock4.release()
-    #print(len(user.gamer_profile.data['gifts']))
-    return JsonResponse({'results': 'OK'})
+
+def add_gift(request,username):
+
+    lock4.acquire()
+    try:
+        print("Adding gift to",username)
+        user = Gamer.objects.filter(user__username = username)[0]
+        append_gift(request,user)
+        lock4.release()
+        return JsonResponse({'results': 'OK'})
+    except:
+        lock4.release()
+        raise Http404
+
+def add_gift_all(request):
+
+    lock4.acquire()
+    try:
+        print("Adding gift to everyone")
+        users = Gamer.objects.all()
+        for user in users:
+            append_gift(request,user)
+        lock4.release()
+        return JsonResponse({'results': 'OK'})
+    except:
+        lock4.release()
+        raise Http404
 
 def add_friend(request,username,friend_username):
 
