@@ -80,7 +80,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     // ---------------------------------------------------------------------------------------
 
   document.querySelector("#button_div").innerHTML = '<input class="btn btn-light" type="button" value="spin" id="spin" />';
-  document.querySelector("#roulette_div").innerHTML = ' <canvas id="canvas" width="100%" height="400"></canvas>';
+  document.querySelector("#roulette_div").innerHTML = ' <canvas id="canvas" width="' + window.innerWidth + '" height="200"></canvas>';
   document.querySelector("#roulette_div").onclick = function(){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
