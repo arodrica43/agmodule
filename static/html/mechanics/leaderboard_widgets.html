@@ -24,7 +24,7 @@ function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
     var rows = document.getElementsByTagName("table")[0].rows;
-    console.log(document.getElementsByTagName("table")[0]);
+    console.log(document.getElementsByTagName("table")[0].rows);
     for(i = 0; i < rows.length; i++){
     	
     	if(rows[i][0] != "dynamic_user"){
@@ -43,7 +43,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((leadboard) => (console.log(leadboard), 
-						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + leadboard.id + "/?user=dynamic_user&show_title=false")
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + leadboard.id + "/?user=dynamic_user&show_title=false&dynamic_index=dynamic_index")
 						.then(response => response.json())
 						.then((updated_leadboard) => (console.log(updated_leadboard), render_ldb(updated_leadboard)))
 						.catch(error => (console.log("Error: " + error)))))
