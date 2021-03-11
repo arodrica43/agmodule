@@ -28,7 +28,7 @@ function render_ldb(leadboard){
     console.log(tbody);
     var rows = tbody.getElementsByTagName("tr");
     console.log(rows);
-    var user_row = "You are not classified";
+    var user_row = "You are not classified in this leaderboard";
     var done = false;
     var idx = 0;
     while(!done && idx < rows.length){
@@ -38,7 +38,10 @@ function render_ldb(leadboard){
     		done = true;
     	}
     }
-    document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody')[0].innerHTML = user_row;
+    var new_tbody = document.createElement('tbody');
+	new_tbody.innerHTML = user_row;
+	tbody.parentNode.replaceChild(new_tbody, tbody);
+    //document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody')[0].innerHTML = user_row;
 
     /*for (const row of rows){
     	console.log(row);
