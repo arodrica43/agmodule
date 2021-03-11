@@ -157,6 +157,7 @@ def add_gift(request,username):
 
 def add_gift_all(request):
 
+    print("adasd")
     lock4.acquire()
     try:
         print("Adding gift to everyone")

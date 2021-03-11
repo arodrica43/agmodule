@@ -47,7 +47,7 @@ function send_gift(gift){
 
 function render_gft(){
 	var reward = choose_reward();
-	document.querySelector("#gft-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/1843/1843447.svg?token=exp=1615498590~hmac=b4801c40be323118c593020dedcf7b24'><br><br><button class='btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
+	document.querySelector("#gft-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/1843/1843447.svg?token=exp=1615498590~hmac=b4801c40be323118c593020dedcf7b24'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
 }
 
 render_gft();
