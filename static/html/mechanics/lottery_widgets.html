@@ -1,7 +1,43 @@
-<div id = "lot-widget-dynamic_index">Lottery Widget</div>
+<style>
+.lot-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.lot-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "lot-widget-dynamic_index" class="lot-container"></div>
 <param id = "lot-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#lot-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#lot-widget-handshake-dynamic_index").value = 1;
+function render_lot(lottery){
+	document.querySelector("#lot-widget-dynamic_index").innerHTML = lottery.html;
+    $(lottery.html).appendTo(document.body);
+}
+
+function selectPolicy(list){
+	return list[0]
+}
+
+url = "https://agmodule.herokuapp.com/api/lotteries/";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((lottery) => (console.log(lottery), 
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + lottery.id + "/?user=dynamic_user&show_title=false")
+						.then(response => response.json())
+						.then((updated_lottery) => (console.log(updated_lottery), render_lot(updated_lottery)))
+						.catch(error => (console.log("Error: " + error)))))
+.catch(error => (console.log("Error: " + error)))
 </script>
