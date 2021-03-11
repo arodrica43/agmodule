@@ -65,6 +65,9 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
 
 <script>
 
+  var r_ox =  window.innerWidth;
+  var r_oy = 120;
+
   //INTERACTION INIT -----------------------------------------------------------------------
     //Dynamic property :: Log tracking functions
     include-base-tracking
@@ -129,7 +132,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
       var insideRadius = 5*options.length;
 
       ctx = canvas.getContext("2d");
-      ctx.clearRect(0,0,500,500);
+      ctx.clearRect(0,0,400,400);
 
       ctx.strokeStyle = "black";
       ctx.lineWidth = 0.1;
@@ -141,8 +144,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
         ctx.fillStyle = getColor(i, options.length);
 
         ctx.beginPath();
-        ctx.arc(150, 100, outsideRadius, angle, angle + arc, false);
-        ctx.arc(150, 100, insideRadius, angle + arc, angle, true);
+        ctx.arc(200, 200, outsideRadius, angle, angle + arc, false);
+        ctx.arc(200, 200, insideRadius, angle + arc, angle, true);
         ctx.stroke();
         ctx.fill();
 
@@ -152,8 +155,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
         ctx.shadowBlur    = 0;
         ctx.shadowColor   = "rgb(220,220,220)";
         ctx.fillStyle = "black";
-        ctx.translate(150 + Math.cos(angle + arc / 2) * textRadius, 
-                      100 + Math.sin(angle + arc / 2) * textRadius);
+        ctx.translate(200 + Math.cos(angle + arc / 2) * textRadius, 
+                      200 + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
         var text = options[i];
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
@@ -166,14 +169,14 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
       my_gradient.addColorStop(1, "black");
       ctx.fillStyle = my_gradient;
       ctx.beginPath();
-      ctx.moveTo(150 - 4, 100 - (1.05*outsideRadius + 5));
-      ctx.lineTo(150 + 4, 100 - (1.05*outsideRadius + 5));
-      ctx.lineTo(150 + 4, 100 - (outsideRadius - 5));
-      ctx.lineTo(150 + 9, 100 - (outsideRadius - 5));
-      ctx.lineTo(150 + 0, 100 - (outsideRadius - 13));
-      ctx.lineTo(150 - 9, 100 - (outsideRadius - 5));
-      ctx.lineTo(150 - 4, 100 - (outsideRadius - 5));
-      ctx.lineTo(150 - 4, 100 - (outsideRadius + 5));
+      ctx.moveTo(200 - 4, 200 - (1.05*outsideRadius + 5));
+      ctx.lineTo(200 + 4, 200 - (1.05*outsideRadius + 5));
+      ctx.lineTo(200 + 4, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 + 9, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 + 0, 200 - (outsideRadius - 13));
+      ctx.lineTo(200 - 9, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 - 4, 200 - (outsideRadius - 5));
+      ctx.lineTo(200 - 4, 200 - (outsideRadius + 5));
       ctx.fill();
     }
   }
@@ -212,7 +215,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     ctx.save();
     ctx.font = 'bold 30px Helvetica, Arial';
     var text = options[index]
-    ctx.fillText(text, 100 - ctx.measureText(text).width / 2, 100 + 10);
+    ctx.fillText(text, 200 - ctx.measureText(text).width / 2, 200 + 10);
     
       fetch("called_mechanic_url&prize=" + text) // WARNING: should be replaced by a concrete mechanic url
         .then(function (response) {
