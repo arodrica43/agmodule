@@ -48,6 +48,8 @@
                                 "<td>" + item + "</td>" + 
                                 "<td>" + scores[index] + "</td>" + 
                             "</tr>";
+                    }else{
+
                     }
                 }else{
                     var hidden_html = "";
@@ -64,12 +66,24 @@
                 
             }
             users.forEach(function(item,index){
-                document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){
-                    // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-                    //Logging :: button-click interaction
-                    log_click({itime: 2, message:"User at row " + index + " clicked", register : log, level:1,type:"TextClick"});
-                    // --------------------------------------------------------------------------
+                if("only_me" == "yes"){
+                    if(item == "dynamic_user"){
+                        document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){
+                            // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+                            //Logging :: button-click interaction
+                            log_click({itime: 2, message:"User at row " + index + " clicked", register : log, level:1,type:"TextClick"});
+                            // --------------------------------------------------------------------------
+                        }
+                    }
+                }else{
+                    document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){
+                        // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+                        //Logging :: button-click interaction
+                        log_click({itime: 2, message:"User at row " + index + " clicked", register : log, level:1,type:"TextClick"});
+                        // --------------------------------------------------------------------------
+                    }
                 }
+                
             });
 
         })
