@@ -39,7 +39,7 @@ function choose_reward(){
 }
 
 function send_gift(gift){
-	fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=" + gift.dataset.by + "&content=" + gift.dataset.value)
+	fetch("https://agmodule.herokuapp.com/api/gamers/add_gift?from=dynamic_user&type=" + gift.dataset.by + "&content=" + gift.dataset.value)
 	.then(response => response.json())
 	.then(res_json => (console.log(res_json), alert("Present sent!")))
 	.catch(error => (console.log("Error: " + error)))
