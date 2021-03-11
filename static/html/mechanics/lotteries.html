@@ -67,6 +67,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
 
   var r_ox =  window.innerWidth;
   var r_oy = 120;
+  var w = 50;
+  var h = 50;
 
   //INTERACTION INIT -----------------------------------------------------------------------
     //Dynamic property :: Log tracking functions
@@ -132,7 +134,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
       var insideRadius = 5*options.length;
 
       ctx = canvas.getContext("2d");
-      ctx.clearRect(0,0,50,50);
+      ctx.clearRect(0,0,w,h);
 
       ctx.strokeStyle = "black";
       ctx.lineWidth = 0.1;
