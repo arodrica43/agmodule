@@ -24,9 +24,10 @@ function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
     
-    console.log(document.querySelector(".no-main-row"));
-    /*var tbody = document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody');
-    var body = "";
+    //console.log(document.querySelector(".no-main-row"));
+    var tbody = document.querySelector("#t-incr-dynamic_index");
+    console.log(tbody);
+    /*var body = "";
     tbody.forEach(function(item,index){
     	if(item.innerHTML != ""){
     		body = item;
