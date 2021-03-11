@@ -23,10 +23,10 @@ document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
-    var rows = document.getElementsByTagName("table")[0].rows;
+    var rows = document.getElementsByTagName("table")[0].getElementsByTagName("tr");
+    document.getElementsByTagName("table")[0].deleteRow(i);
     console.log(rows);
-    console.log(rows[0])
-    console.log(Array.from(rows));
+    console.log(rows[0]);
     var i = 0;
     for (const row of rows){
     	console.log(row);
