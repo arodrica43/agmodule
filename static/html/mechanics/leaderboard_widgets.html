@@ -26,11 +26,14 @@ function render_ldb(leadboard){
     var rows = document.getElementsByTagName("table")[0].rows;
     console.log(rows);
     console.log(typeof rows);
-    for(var i = 0; i < rows.length; i++){
+    var i = 0;
+    for (const row of rows){
+    	console.log(row);
     	console.log(document.getElementsByTagName("table")[0].rows[i].cells);
     	if(rows[i].cells[0].innerHTML != "dynamic_user"){
     		document.getElementsByTagName("table")[0].deleteRow(i);
     	}
+    	i++;
     }
 }
 
