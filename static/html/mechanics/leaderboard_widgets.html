@@ -24,10 +24,9 @@ function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
     var rows = document.getElementsByTagName("table")[0].rows;
-    console.log(document.getElementsByTagName("table")[0].rows);
-    for(i = 0; i < rows.length; i++){
-    	
-    	if(rows[i][0] != "dynamic_user"){
+    for(var i = 0; i < rows.length; i++){
+    	console.log(document.getElementsByTagName("table")[0].rows[i].cells);
+    	if(rows[i].cells[0].innerHTML != "dynamic_user"){
     		document.getElementsByTagName("table")[0].deleteRow(i);
     	}
     }
