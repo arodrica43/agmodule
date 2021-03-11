@@ -124,9 +124,9 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var arc = Math.PI / (options.length / 2);
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
-      var outsideRadius = 80;
-      var textRadius = 65;
-      var insideRadius = 40;
+      var outsideRadius = 11*options.length;
+      var textRadius = 8*options.length;
+      var insideRadius = 5*options.length;
 
       ctx = canvas.getContext("2d");
       ctx.clearRect(0,0,500,500);
@@ -141,8 +141,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
         ctx.fillStyle = getColor(i, options.length);
 
         ctx.beginPath();
-        ctx.arc(200, 200, outsideRadius, angle, angle + arc, false);
-        ctx.arc(200, 200, insideRadius, angle + arc, angle, true);
+        ctx.arc(0, 0, outsideRadius, angle, angle + arc, false);
+        ctx.arc(0,0, insideRadius, angle + arc, angle, true);
         ctx.stroke();
         ctx.fill();
 
