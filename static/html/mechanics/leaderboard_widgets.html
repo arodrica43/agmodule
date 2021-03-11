@@ -26,7 +26,7 @@ function render_ldb(leadboard){
     var rows = document.querySelector("#tablehead-lb-dynamic_index").rows;
 
     console.log(rows);
-    console.log(rows['length']);
+    console.log($('#tablehead-lb-dynamic_index').length);
     var i = 0;
     for (const row of rows){
     	console.log(row);
