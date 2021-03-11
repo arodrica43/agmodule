@@ -23,7 +23,17 @@ document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
-    var tbody = document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody')[0];
+    
+
+    var tables = document.getElementsByTagName('tbody');
+    console.log(tables);
+    /*var tbody = document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody');
+    var body = "";
+    tbody.forEach(function(item,index){
+    	if(item.innerHTML != ""){
+    		body = item;
+    	}
+    });
     console.log(tbody);
     var rows = tbody.getElementsByTagName("tr");
     console.log(rows);
@@ -39,7 +49,7 @@ function render_ldb(leadboard){
     }
     //document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody')[0].innerHTML = user_row;
 
-    /*for (const row of rows){
+    for (const row of rows){
     	console.log(row);
     	console.log(document.getElementsByTagName("table")[0].rows[i].cells);
     	if(rows[i].cells[0].innerHTML != "dynamic_user"){
