@@ -159,13 +159,16 @@ def add_gift_all(request):
 
     print("adasd")
     lock4.acquire()
-   
-    print("Adding gift to everyone")
-    users = Gamer.objects.all()
-    for user in users:
-        append_gift(request,user)
-    lock4.release()
-    return JsonResponse({'results': 'OK'})
+    try:
+        print("Adding gift to everyone")
+        users = Gamer.objects.all()
+        for user in users:
+            append_gift(request,user)
+        lock4.release()
+        return JsonResponse({'results': 'OK'})
+    except:
+        lock4.release()
+        raise Http404
 
 def add_friend(request,username,friend_username):
 

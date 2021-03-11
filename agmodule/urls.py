@@ -37,7 +37,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/gamers/<str:username>', api.GamerViewSet),
     path('api/gamers/<str:username>/add_gift', api.add_gift),
-    path('api/gamers/gift_to_all', api.add_gift_all),
+    path('api/gift_to_all/', api.add_gift_all),
     path('api/gamers/<str:username>/open_gift', api.open_gift),
     path('api/gamers/<str:username>/add_friend/<str:friend_username>', api.add_friend),
     path('api/gamers/<str:username>/del_friend/<str:friend_username>', api.del_friend),
@@ -50,7 +50,6 @@ urlpatterns = [
     path('api/challenges/retrieve_for_user/<str:username>', api.view_challenge_set),
     path('api/g_mechanics/retrieve_adaptative_widget_id', api.retrieve_adaptative_widget_id),
     path('api/challenges/claim_reward/<int:challenge_id>/<str:username>', api.claim_challenge_reward),
-    path('api/social_statuses/widget/<str:username>', api.social_status_widget),
     path('api/<str:mechanic_class>/retrieve_dashboard_mechanic', api.retrieve_dashboard_mechanic),
     path('admin/doc/', include('django.contrib.admindocs.urls'))
 ]
