@@ -29,7 +29,7 @@
             document.querySelector("#header-lb-dynamic_index").innerHTML = '<h2>' + myJson.title + '</h2>';
             var users = Object.keys(myJson.leadders);
             var scores = Object.values(myJson.leadders);
-            document.querySelector("#tablehead-lb-dynamic_index").innerHTML +=   '<thead id="tablehead-lb-dynamic_index"><tr>'+
+            document.querySelector("#tablehead-lb-dynamic_index").innerHTML +=   '<thead id="tablehead-lb-dynamic_index" style="background:whitesmoke;"><tr>'+
                                                                                     '<th id="head-col0-dynamic_index" style="text-align:center">Position</th>'+
                                                                                     '<th id="head-col1-dynamic_index" style="text-align:center">Username</th>'+
                                                                                     '<th id="score-type-dynamic_index" style="text-align:center">' + myJson.sort_by + '</th>'+
