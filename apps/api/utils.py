@@ -361,3 +361,15 @@ def view_challenge_set(request, username):
     except:
         lock8.release()
         raise Http404
+
+def social_status_widget(request, username):
+    
+    try:
+        user = Gamer.objects.filter(user__username = username)[0]
+    except:
+        print("User found")
+        raise Http404
+
+    data = user.social_profile.data
+    res = [['friends', data['friends']],['followers',  data['followers']],['views', data['views']]]
+    return JsonResponse({'results': res})

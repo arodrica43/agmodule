@@ -23,39 +23,6 @@ document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
-    
-    //console.log(document.querySelector(".no-main-row"));
-    //var tbody = document.querySelectorAll("#t-incr-dynamic_index");
-    //console.log(tbody);
-    /*var body = "";
-    tbody.forEach(function(item,index){
-    	if(item.innerHTML != ""){
-    		body = item;
-    	}
-    });
-    console.log(tbody);
-    var rows = tbody.getElementsByTagName("tr");
-    console.log(rows);
-    var user_row = "You are not classified in this leaderboard";
-    var done = false;
-    var idx = 0;
-    while(!done && idx < rows.length){
-    	var tmp_uname = rows[idx].getElementsByTagName('td')[1];
-    	if(tmp_uname == "dynamic_index"){
-    		user_row = item;
-    		done = true;
-    	}
-    }
-    //document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody')[0].innerHTML = user_row;
-
-    for (const row of rows){
-    	console.log(row);
-    	console.log(document.getElementsByTagName("table")[0].rows[i].cells);
-    	if(rows[i].cells[0].innerHTML != "dynamic_user"){
-    		document.getElementsByTagName("table")[0].deleteRow(i);
-    	}
-    	i++;
-    }*/
 }
 
 function selectPolicy(list){

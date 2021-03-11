@@ -1,7 +1,40 @@
-<div id = "sst-widget-dynamic_index">Social Status Widget</div>
+<style>
+.sst-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.sst-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "sst-widget-dynamic_index" class="sst-container"></div>
 <param id = "sst-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#sst-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#sst-widget-handshake-dynamic_index").value = 1;
+function render_sst(social_stat){
+	document.querySelector("#sst-widget-dynamic_index").innerHTML = "<h3>Sociability</h3> <p>You have " + social_stat[1] + " " + social_stat[0] + "!</p>";
+}
+
+function selectPolicy(to_select){
+	// Select non social leaderboard
+	var r = Math.floor(Math.random() * to_select.length);
+	return to_select[r];
+	
+}
+
+url = "https://agmodule.herokuapp.com/api/social_statuses/widget/dynamic_user";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (console.log(res_json),selectPolicy(to_select.results)))
+.then((selected) => render_sst(selected))
+.catch(error => (console.log("Error: " + error)))
 </script>

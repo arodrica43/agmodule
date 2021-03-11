@@ -49,6 +49,7 @@ urlpatterns = [
     path('api/challenges/retrieve_for_user/<str:username>', api.view_challenge_set),
     path('api/g_mechanics/retrieve_adaptative_widget_id', api.retrieve_adaptative_widget_id),
     path('api/challenges/claim_reward/<int:challenge_id>/<str:username>', api.claim_challenge_reward),
+    path('api/social_statuses/widget/<str:username>', api.social_status_widget),
     path('api/<str:mechanic_class>/retrieve_dashboard_mechanic', api.retrieve_dashboard_mechanic),
     path('admin/doc/', include('django.contrib.admindocs.urls'))
 ]
