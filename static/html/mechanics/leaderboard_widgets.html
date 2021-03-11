@@ -24,11 +24,11 @@ function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
     var rows = document.getElementsByTagName("table")[0].rows;
-    rows.forEach(function(row,i){
-    	if(row[0] != "dynamic_user"){
+    for(i = 0; i < rows.length; i++){
+    	if(rows[i][0] != "dynamic_user"){
     		document.getElementsByTagName("table")[0].deleteRow(i);
     	}
-    });
+    }
 }
 
 function selectPolicy(list){
