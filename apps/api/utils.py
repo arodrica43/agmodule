@@ -371,5 +371,5 @@ def social_status_widget(request, username):
         raise Http404
 
     data = user.social_profile.data
-    res = [['friends', data['friends']],['followers',  data['followers']],['views', data['views']]]
+    res = [['friends', len(data['friends'])],['followers',  data['followers']],['views', data['views']]]
     return JsonResponse({'results': res})
