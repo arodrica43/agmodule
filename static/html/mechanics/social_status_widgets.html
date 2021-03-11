@@ -34,7 +34,7 @@ function selectPolicy(to_select){
 url = "https://agmodule.herokuapp.com/api/social_statuses/widget/dynamic_user";
 fetch(url)
 .then(response => response.json())
-.then(res_json => (console.log(res_json),selectPolicy(to_select.results)))
+.then(res_json => (console.log(res_json),selectPolicy(res_json.results)))
 .then((selected) => render_sst(selected))
 .catch(error => (console.log("Error: " + error)))
 </script>
