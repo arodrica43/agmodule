@@ -86,8 +86,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
   //Options and Arc are dynamically charged through <param>
 
 
-  var ox = document.getElementById("canvas").offsetLeft + 50;
-  var oy = document.getElementById("canvas").offsetTop - 50;
+  var ox = window.innerWidth/2 - document.getElementById("canvas").width;//document.getElementById("canvas").offsetLeft + 50;
+  var oy = document.getElementById("canvas").offsetTop + 20;
 
   var startAngle = 0;
   var spinTimeout = null;
@@ -129,9 +129,9 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
       var reference = Math.min(canvas.width, canvas.height);
-      var outsideRadius = reference/2;
-      var textRadius = reference/3;
-      var insideRadius = reference/4;
+      var outsideRadius = reference/3;
+      var textRadius = reference/4;
+      var insideRadius = reference/5;
 
       ctx = canvas.getContext("2d");
       ctx.clearRect(0,0,500,500);
