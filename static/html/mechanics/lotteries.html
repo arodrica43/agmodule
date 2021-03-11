@@ -141,8 +141,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
         ctx.fillStyle = getColor(i, options.length);
 
         ctx.beginPath();
-        ctx.arc(100, 100, outsideRadius, angle, angle + arc, false);
-        ctx.arc(100, 100, insideRadius, angle + arc, angle, true);
+        ctx.arc(150, 100, outsideRadius, angle, angle + arc, false);
+        ctx.arc(150, 100, insideRadius, angle + arc, angle, true);
         ctx.stroke();
         ctx.fill();
 
@@ -152,7 +152,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
         ctx.shadowBlur    = 0;
         ctx.shadowColor   = "rgb(220,220,220)";
         ctx.fillStyle = "black";
-        ctx.translate(100 + Math.cos(angle + arc / 2) * textRadius, 
+        ctx.translate(150 + Math.cos(angle + arc / 2) * textRadius, 
                       100 + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
         var text = options[i];
@@ -166,14 +166,14 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
       my_gradient.addColorStop(1, "black");
       ctx.fillStyle = my_gradient;
       ctx.beginPath();
-      ctx.moveTo(100 - 4, 100 - (1.05*outsideRadius + 5));
-      ctx.lineTo(100 + 4, 100 - (1.05*outsideRadius + 5));
-      ctx.lineTo(100 + 4, 100 - (outsideRadius - 5));
-      ctx.lineTo(100 + 9, 100 - (outsideRadius - 5));
-      ctx.lineTo(100 + 0, 100 - (outsideRadius - 13));
-      ctx.lineTo(100 - 9, 100 - (outsideRadius - 5));
-      ctx.lineTo(100 - 4, 100 - (outsideRadius - 5));
-      ctx.lineTo(100 - 4, 100 - (outsideRadius + 5));
+      ctx.moveTo(150 - 4, 100 - (1.05*outsideRadius + 5));
+      ctx.lineTo(150 + 4, 100 - (1.05*outsideRadius + 5));
+      ctx.lineTo(150 + 4, 100 - (outsideRadius - 5));
+      ctx.lineTo(150 + 9, 100 - (outsideRadius - 5));
+      ctx.lineTo(150 + 0, 100 - (outsideRadius - 13));
+      ctx.lineTo(150 - 9, 100 - (outsideRadius - 5));
+      ctx.lineTo(150 - 4, 100 - (outsideRadius - 5));
+      ctx.lineTo(150 - 4, 100 - (outsideRadius + 5));
       ctx.fill();
     }
   }
