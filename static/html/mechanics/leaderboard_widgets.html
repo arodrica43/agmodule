@@ -24,9 +24,7 @@ function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
     $(leadboard.html).appendTo(document.body);
     
-
-    var tables = document.querySelector(".no-main-row");
-    console.log(tables);
+    console.log(document.querySelector(".no-main-row"));
     /*var tbody = document.querySelector("#tablehead-lb-dynamic_index").getElementsByTagName('tbody');
     var body = "";
     tbody.forEach(function(item,index){
