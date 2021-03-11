@@ -1,7 +1,49 @@
-<div id = "ldb-widget-dynamic_index">Leaderboard Widget</div>
+<style>
+.ldb-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.ldb-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "ldb-widget-dynamic_index" class="ldb-container"></div>
 <param id = "ldb-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#ldb-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
+function render_ldb(leadboard){
+	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
+    $(leadboard.html).appendTo(document.body);
+    var rows = document.getElementsByTagName("table")[0].rows;
+    rows.forEach(function(row,i){
+    	if(row[0] != "dynamic_user"){
+    		document.getElementsByTagName("table")[0].deleteRow(i);
+    	}
+    });
+}
+
+function selectPolicy(list){
+	return list[0]
+}
+
+url = "https://agmodule.herokuapp.com/api/leaderboards/";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((leadboard) => (console.log(leadboard), 
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + leadboard.id + "/?user=dynamic_user&show_title=false")
+						.then(response => response.json())
+						.then((updated_leadboard) => (console.log(updated_leadboard), render_ldb(updated_leadboard)))
+						.catch(error => (console.log("Error: " + error)))))
+.catch(error => (console.log("Error: " + error)))
 </script>
