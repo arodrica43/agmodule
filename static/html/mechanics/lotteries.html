@@ -129,9 +129,9 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var arc = Math.PI / (options.length / 2);
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
-      var outsideRadius = 12*options.length;
-      var textRadius = 8*options.length;
-      var insideRadius = 5*options.length;
+      var outsideRadius = canvas.width/2;
+      var textRadius = canvas.width/3;
+      var insideRadius = canvas.width/4;
 
       ctx = canvas.getContext("2d");
       ctx.clearRect(0,0,500,500);
