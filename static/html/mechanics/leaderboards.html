@@ -40,9 +40,9 @@
             users.forEach(populateTable);
             function populateTable(item, index) {
                 //alert(myJson.user.email );
-                var hidden_html = "";
+                var hidden_html = "class='no-main-row'";
                 if(item == "dynamic_user"){
-                    hidden_html = "style='background:#FFEBCD;'"
+                    hidden_html = "style='background:#FFEBCD;' class='main-row'"
                 }
                 document.querySelector("#t-incr-dynamic_index").innerHTML += 
                     "<tr id='row-element-dynamic_index-" + index + "' " + hidden_html + ">" + 
