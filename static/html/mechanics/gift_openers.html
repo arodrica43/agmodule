@@ -50,7 +50,7 @@ function openGift(gift,index){
         })
         .then(function (myJson) {
             if(myJson.results == 'OK'){
-                gift.innerHTML = "Opened!"
+                gift.innerHTML = "Opened!";
                 gift.disabled = true;
                 for(var i = 0; i < document.getElementById("num-gifts").value; i++){
                     var g = document.getElementById("open-button-" + i);
@@ -62,8 +62,9 @@ function openGift(gift,index){
                         }
                     }
                 }
+                alert("Hello2");
                 gift.value = "-";
-                alert("Hello");
+                alert("Hello2");
                 alert(myJson.message);
             }
              
