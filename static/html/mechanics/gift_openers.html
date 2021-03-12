@@ -49,6 +49,8 @@ function openGift(gift,index){
             return response.json();
         })
         .then(function (myJson) {
+            console.log(myJson);
+            alert("WTF");
             if(myJson.results == 'OK'){
                 gift.innerHTML = "Opened!";
                 gift.disabled = true;
