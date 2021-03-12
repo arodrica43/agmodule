@@ -9,7 +9,7 @@
 }
 .gop-container > div > img{
         width: 25%;
-        height: 10%;
+        height: 60%;
         -webkit-transition: .15s;
         transition: .15s; 
     }
@@ -35,7 +35,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((opener) => (console.log(opener), 
-						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + opener.id + "/?user=dynamic_user&show_title=false")
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + opener.id + "/?user=dynamic_user")
 						.then(response => response.json())
 						.then((updated_opener) => (console.log(updated_opener), render_gop(updated_opener)))
 						.catch(error => (console.log("Error: " + error)))))
