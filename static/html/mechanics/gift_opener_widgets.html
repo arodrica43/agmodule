@@ -1,7 +1,43 @@
-<div id = "gop-widget-dynamic_index">Gift Opener Widget</div>
+<style>
+.gop-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:90%;
+        font-size:4vw;
+}
+.gop-container > div > img{
+        width: 25%;
+        height: 60%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+<div id = "gop-widget-dynamic_index" class="gop-container"></div>
 <param id = "gop-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#gop-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
+function render_gop(opener){
+	document.querySelector("#gop-widget-dynamic_index").innerHTML = opener.html;
+    $(opener.html).appendTo(document.body);
+}
+
+function selectPolicy(list){
+	return list[0]
+}
+
+url = "https://agmodule.herokuapp.com/api/gift_openers/";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((opener) => (console.log(opener), 
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + opener.id + "/?user=dynamic_user&show_title=false")
+						.then(response => response.json())
+						.then((updated_opener) => (console.log(updated_opener), render_gop(updated_opener)))
+						.catch(error => (console.log("Error: " + error)))))
+.catch(error => (console.log("Error: " + error)))
 </script>
