@@ -6,8 +6,8 @@ var scrollables = [];
 var focusables = [];
 var all_interactables = [clickables, scrollables, focusables];
 
-// Disable alerts
-alert = function() {};
+// Disable alerts to speed up the bot
+//alert = function() {};
 
 function init_auto_interactions(interactable_elements) {
     for (var i = 0; i < interactable_elements.length; i++) {

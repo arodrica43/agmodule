@@ -49,8 +49,6 @@ function openGift(gift,index){
             return response.json();
         })
         .then(function (myJson) {
-            console.log(myJson);
-            alert("WTF");
             if(myJson.results == 'OK'){
                 gift.innerHTML = "Opened!";
                 gift.disabled = true;
@@ -64,9 +62,7 @@ function openGift(gift,index){
                         }
                     }
                 }
-                alert("Hello2");
                 gift.value = "-";
-                alert("Hello2");
                 alert(myJson.message);
             }
              
