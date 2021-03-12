@@ -45,7 +45,7 @@ function send_tip(tip){
 	}else{
 			fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=text&content=" + document.getElementById("tip-input-dynamic_index").value)
 		.then(response => response.json())
-		.then(res_json => (console.log(res_json), alert("Hint sent!")))
+		.then(res_json => (console.log(res_json), alert("Tip sent!")))
 		.catch(error => (console.log("Error: " + error)));
 		tip.disabled = true;
 	}
@@ -53,7 +53,7 @@ function send_tip(tip){
 
 function render_ksh(){
 	var reward = choose_reward();
-	document.querySelector("#ksh-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/2228/2228042.svg?token=exp=1615511984~hmac=3b87f94aff0a861e646a8081e04ac476'><br><br><input type='text' id='tip-input-dynamic_index' value=''><br><br><button class='btn btn-light' onclick='send_tip(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send a tip to everyone!</button></div>";
+	document.querySelector("#ksh-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/2228/2228042.svg?token=exp=1615511984~hmac=3b87f94aff0a861e646a8081e04ac476'><br><input type='text' id='tip-input-dynamic_index' value=''><br><br><button class='btn btn-light' onclick='send_tip(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send a tip to everyone!</button></div>";
 }
 
 render_ksh();
