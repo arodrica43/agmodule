@@ -63,49 +63,49 @@ def retrieve_dashboard_mechanic(request,mechanic_class):
 
 def retrieve_adaptative_widget_id(request):
 
-    #lock7.acquire()
-    #try:
-    queryset = AdaptativeWidget.objects.all()
-    args = request.GET
-    if 'user' in args.keys():
-        user = Gamer.objects.filter(user__username = args['user'])
-        if user:
-            user = user[0]
-            utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
-            if 'difficulty' in args.keys():
-                if args['difficulty'] in ['easy', 'hard']:
-                    for i in range(len(utilities)):
-                        if utilities[i] > 0:
-                            _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
-                            if val not in allowed_mechanics[args['difficulty']]:
-                                utilities[i] = 0
-            prob = utilities/utilities.sum()
-            r = rdm.random()
-            acc, idx = 0, 0
-            for i in range(len(prob)):
-                pi = prob[i]
-                if acc < r and r < acc + pi:
-                    idx = i
-                    break
-                acc += pi
-            gmechanic = GMechanic.objects.all()[idx]
-            _ , val = g_mechanic_cast(gmechanic.pk)
-            if 'accessible_mechanics' not in user.gamer_profile.data.keys():
-                 user.gamer_profile.data["accessible_mechanics"] = []
-                 user.gamer_profile.save()
-            acc_mechs = user.gamer_profile.data["accessible_mechanics"]
-            if val not in acc_mechs :
-                user.gamer_profile.data["accessible_mechanics"] += [val]
-                user.gamer_profile.save()
-            lock7.release() 
-            return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
+    lock7.acquire()
+    try:
+        queryset = AdaptativeWidget.objects.all()
+        args = request.GET
+        if 'user' in args.keys():
+            user = Gamer.objects.filter(user__username = args['user'])
+            if user:
+                user = user[0]
+                utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                if 'difficulty' in args.keys():
+                    if args['difficulty'] in ['easy', 'hard']:
+                        for i in range(len(utilities)):
+                            if utilities[i] > 0:
+                                _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
+                                if val not in allowed_mechanics[args['difficulty']]:
+                                    utilities[i] = 0
+                prob = utilities/utilities.sum()
+                r = rdm.random()
+                acc, idx = 0, 0
+                for i in range(len(prob)):
+                    pi = prob[i]
+                    if acc < r and r < acc + pi:
+                        idx = i
+                        break
+                    acc += pi
+                gmechanic = GMechanic.objects.all()[idx]
+                _ , val = g_mechanic_cast(gmechanic.pk)
+                if 'accessible_mechanics' not in user.gamer_profile.data.keys():
+                     user.gamer_profile.data["accessible_mechanics"] = []
+                     user.gamer_profile.save()
+                acc_mechs = user.gamer_profile.data["accessible_mechanics"]
+                if val not in acc_mechs :
+                    user.gamer_profile.data["accessible_mechanics"] += [val]
+                    user.gamer_profile.save()
+                lock7.release() 
+                return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
+            else:
+                raise Exception("No selected user")
         else:
             raise Exception("No selected user")
-    else:
-        raise Exception("No selected user")
-#except:
-    #    lock7.release()
-    #    raise Http404
+    except:
+        lock7.release()
+        raise Http404
 
 
 def open_gift(request,username):
