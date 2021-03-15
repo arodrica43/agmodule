@@ -100,10 +100,8 @@ def retrieve_adaptative_widget_id(request):
                 lock7.release() 
                 return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
             else:
-                lock7.release()
                 raise Exception("No selected user")
         else:
-            lock7.release()
             raise Exception("No selected user")
     except:
         lock7.release()
