@@ -1,12 +1,12 @@
 #!/bin/bash
 # A sample Bash script, by Ryan
 to=~/Documentos/feina/dev/deploy/gamification-app/
-cp -r adaptative_gamification $to
+cp -r agmodule $to
 cp db.sqlite3 $to
 cp LICENSE $to
 cp -r media $to
 cp requirements.txt $to
-cp -r api $to
+cp -r apps $to
 cp favicon.ico $to
 cp manage.py $to
 cp README.md $to
