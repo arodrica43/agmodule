@@ -109,6 +109,62 @@
 <script>
 document.querySelector("#snt-widget-handshake-dynamic_index").value = 1;
 
+function followUser(uname,ids,from){
+
+  switch(from){
+      case 0: //Comes from search tab
+        // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+        //Logging :: button-click interaction
+        log_click({itime: 1, message:"Follow " + uname + " button (search tab) clicked", register : log, level:1,type:"ButtonClick"});
+        // --------------------------------------------------------------------------
+        break;
+      case 1: //Comes from modal
+        // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+        //Logging :: button-click interaction
+        log_click({itime: 1, message:"Follow " + uname + " button (modal) clicked", register : log, level:2,type:"ButtonClick"});
+        // --------------------------------------------------------------------------
+        break;
+    }
+
+  if (document.getElementById(ids).innerHTML == "Follow"){
+    fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/add_friend/" + uname)
+    .then(function (response) {
+        return response.text();
+    })
+    .then(function (answer) {
+      if(answer == "OK"){
+        //alert("You have added " + uname + " to your friends list");
+          document.getElementById(ids).innerHTML = "Following";
+          
+          document.getElementById("follow-" + uname).innerHTML = "Following";
+          document.getElementById("friends-grid").innerHTML = "";
+          populateWithUsers(populateFriends,"");
+      }
+    })
+    .catch(function (error) {
+        console.log("Error: " + error);
+    });
+  }else if(document.getElementById(ids).innerHTML == "Following"){
+      fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/del_friend/" + uname)
+      .then(function (response) {
+          return response.text();
+      })
+      .then(function (answer) {
+        if(answer == "OK"){
+          //alert("You have deleted " + uname + " from your friends list");
+          document.getElementById(ids).innerHTML = "Follow";
+          document.getElementById("follow-" + uname).innerHTML = "Follow";
+
+          document.getElementById("friends-grid").innerHTML = "";
+          populateWithUsers(populateFriends,"");
+        }
+      })
+      .catch(function (error) {
+          console.log("Error: " + error);
+      });
+  }
+}
+
 function populateSearch(item,index,follow_text){
    document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
                                                             '<div class="profilecard">'+
