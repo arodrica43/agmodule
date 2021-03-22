@@ -1,7 +1,200 @@
-<div id = "snt-widget-dynamic_index">Social Network Widget</div>
+<style>
+#search-scrollable-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 800px;
+  overflow: auto;
+  background-color: white;
+}
+
+.profilecards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profilecard:before {
+  content:'';
+  width:100%;
+  height:100%;    
+  position:absolute;
+  left:0;
+  top:0;
+  background:linear-gradient(rgba(255,255,255,0) 180px, white);
+}
+
+.profilecards_item {
+  height:350px;
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 30rem) {
+  .profilecards_item {
+    width: 33.333%;
+  }
+}
+
+@media (min-width: 40rem) {
+  .profilecards_item {
+    width: 25%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .profilecards_item {
+    width: 20%;
+  }
+}
+
+.profilecard {
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position:relative;
+  width:100%; 
+}
+
+.profilecard_btn{
+  position:absolute;
+  bottom:0;
+  background: gray;
+  border: 0;
+  color: white;
+  width: 100%;
+  display:block;
+}
+
+.profilecard_btn:hover{
+   background-color: black;
+   color:white;
+}
+.profilecard_content {
+}
+
+.user-name{
+  text-align:center;
+}
+
+.profilecard_title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.profilecard_text {
+  padding:1rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
+
+
+/* Create three equal columns that sits next to each other */
+
+
+</style>
+
+<div id = "snt-widget-dynamic_index" style="width:80%;margin: 0 auto;"></div>
 <param id = "snt-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#snt-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#snt-widget-handshake-dynamic_index").value = 1;
+
+function populateSearch(item,index,follow_text){
+   document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
+                                                            '<div class="profilecard">'+
+                                                              '<div class="profilecard" style=" height:500px; cursor: pointer;" onclick="showProfileModal(\'' + item.user.username + '\',\'' + item.social_profile.image + '\',\'' + item.social_profile.description + '\',\'dynamic_follow\',1)">'+
+                                                                  '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
+                                                                    '<div class="profilecard_content">'+
+                                                                        '<h2><div class="user-name">' + item.user.username + '</div></h2>' +  
+                                                                      '<p class="profilecard_text">' + item.social_profile.description + '</p>' +
+                                                                    '</div>'+
+                                                              '</div>'+
+                                                              '<button class="btn profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
+                                                            '</div>'+
+                                                          '</li>';  
+}
+
+function loadPopulateSearch(url){
+  fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/")
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function (myJson1) {
+    /*document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/social_icons/" + myJson1.social_profile.image + ".png";
+    document.querySelector("#profile-img").name = myJson1.social_profile.image;
+    document.querySelector("#username").innerHTML = myJson1.user.username ;
+    document.querySelector("#mydescr").innerHTML = myJson1.social_profile.description ;
+        document.querySelector("#profile-img").onclick = function(){
+      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+        //Logging :: button-click interaction
+        log_click({itime: 1, message:"Profile image clicked", register : log, level:1,type:"ImageClick"});
+        // --------------------------------------------------------------------------
+    }
+    document.querySelector("#username").onclick = function(){
+      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+        //Logging :: button-click interaction
+        log_click({itime: 1, message:"Username text clicked", register : log, level:1,type:"TextClick"});
+        // --------------------------------------------------------------------------
+    }
+    document.querySelector("#mydescr").onclick = function(){
+      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+        //Logging :: button-click interaction
+        log_click({itime: 1, message:"Description text clicked", register : log, level:1,type:"TextClick"});
+        // --------------------------------------------------------------------------
+    }
+    try{
+      document.getElementById("avatar-" + myJson1.social_profile.image).style = "width:100%; opacity:1;";
+    }catch(e){}
+    */
+
+    var friends =  myJson1.social_profile.data.friends;
+    fetch(url)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (myJson) {
+        document.getElementById("search-grid").innerHTML = "";
+        document.getElementById("search-users-grid").innerHTML = "";
+        for(var i = 0; i < myJson.results.length; i++){
+            var follow_text = "";
+            if(friends.includes(myJson.results[i].user.username)){
+              follow_text = "Following";
+            }else{
+              follow_text = "Follow";
+            }
+            if( myJson.results[i].user.username != 'dynamic_user' ){
+              populateSearch(myJson.results[i],i,follow_text);
+            } 
+        }
+    })
+    .catch(function (error) {
+        console.log("Error: " + error);
+    });
+  })
+  .catch(function (error) {
+      console.log("Error: " + error);
+  });
+}
+
+
+document.getElementById("snt-widget-dynamic_index").innerHTML =    '<div id="Search">'+ // class="mytabcontent"
+                                                              '<main class="grid" id="search-grid">'+
+                                                              '</main>'+
+                                                              '<div id="search-scrollable-content">'+
+                                                                '<ul class="profilecards" id="search-users-grid">'+
+                                                                '</ul>'+
+                                                              '</div>'+
+                                                            '</div>';
+loadPopulateSearch("https://agmodule.herokuapp.com/api/retrieve_users_search?uname_contains=");
 </script>
+

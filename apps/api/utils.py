@@ -203,7 +203,6 @@ def retrieve_users_search(request):
 
     return JsonResponse({'results':queryset})
 
-
 def edit_social_profile(request,username):
 
     print("Uploading new social profile...")
