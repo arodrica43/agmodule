@@ -111,7 +111,7 @@ document.querySelector("#snt-widget-handshake-dynamic_index").value = 1;
 
 function followUser(uname,ids,from){
 
-  switch(from){
+  /*switch(from){
       case 0: //Comes from search tab
         // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
         //Logging :: button-click interaction
@@ -124,7 +124,7 @@ function followUser(uname,ids,from){
         log_click({itime: 1, message:"Follow " + uname + " button (modal) clicked", register : log, level:2,type:"ButtonClick"});
         // --------------------------------------------------------------------------
         break;
-    }
+    }*/
 
   if (document.getElementById(ids).innerHTML == "Follow"){
     fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/add_friend/" + uname)
