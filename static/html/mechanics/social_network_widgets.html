@@ -2,7 +2,7 @@
 #search-scrollable-content {
   padding-left: 20px;
   padding-right: 20px;
-  height: 400px;
+  height: 370px;
   overflow: auto;
   background-color: white;
 }
@@ -225,7 +225,16 @@ function loadPopulateSearch(url){
     .then(function (myJson) {
         document.getElementById("search-grid").innerHTML = "";
         document.getElementById("search-users-grid").innerHTML = "";
-        for(var i = 0; i < myJson.results.length; i++){
+        var w =  window.innerWidth;
+        console.log(w);
+        var fw = 5;
+        if(w < 611){
+        	fw = 3;
+        }else if(w < 876){
+        	fw = 4;
+        }
+        var top = Math.min( myJson.results.length, fw);
+        for(var i = 0; i < top; i++){
             var follow_text = "";
             if(friends.includes(myJson.results[i].user.username)){
               follow_text = "Following";
