@@ -172,7 +172,7 @@ function emptyF(){
 function populateSearch(item,index,follow_text){
    document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
                                                             '<div class="profilecard">'+
-                                                              '<div class="profilecard" style=" height:500px; cursor: pointer;" onclick="emptyF()">'+
+                                                              '<div class="profilecard" style=" height:200px; cursor: pointer;" onclick="emptyF()">'+
                                                                   '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
                                                                     '<div class="profilecard_content">'+
                                                                         '<h2><div class="user-name">' + item.user.username + '</div></h2>' +  
@@ -226,7 +226,7 @@ function loadPopulateSearch(url){
         document.getElementById("search-grid").innerHTML = "";
         document.getElementById("search-users-grid").innerHTML = "";
         var w =  window.innerWidth;
-        console.log(w);
+        //console.log(w);
         var fw = 6;
         if(w/16 < 40){
         	fw = 4;
