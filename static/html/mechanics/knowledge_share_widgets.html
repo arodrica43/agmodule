@@ -52,7 +52,7 @@ function send_tip(tip){
 
 function render_ksh(){
 	var reward = choose_reward();
-	document.querySelector("#ksh-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://www.flaticon.com/svg/vstatic/svg/2228/2228042.svg?token=exp=1615511984~hmac=3b87f94aff0a861e646a8081e04ac476'><br><div style='height:10px;'></div><input type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send a tip to everyone!</button></div>";
+	document.querySelector("#ksh-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.svg'><br><div style='height:10px;'></div><input type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send a tip to everyone!</button></div>";
 }
 
 render_ksh();
