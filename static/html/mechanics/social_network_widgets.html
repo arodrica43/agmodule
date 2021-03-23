@@ -227,11 +227,11 @@ function loadPopulateSearch(url){
         document.getElementById("search-users-grid").innerHTML = "";
         var w =  window.innerWidth;
         console.log(w);
-        var fw = 5;
+        var fw = 6;
         if(w < 611){
-        	fw = 3;
-        }else if(w < 876){
         	fw = 4;
+        }else if(w < 876){
+        	fw = 5;
         }
         var top = Math.min( myJson.results.length, fw);
         for(var i = 0; i < top; i++){
