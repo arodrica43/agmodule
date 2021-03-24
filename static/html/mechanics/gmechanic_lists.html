@@ -156,12 +156,22 @@
         .catch(error => (console.log("Error: " + error)))
 
     }
-</script>
 
-<script>
+function loadMechanic(mechanic){
+
+	fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + mechanic.dataset.id + "/")
+	    .then((response)  => (response.json()))
+	    .then(function (myJson) {
+	        document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
+	        $(myJson.html).appendTo(document.body);
+        	modal.style.display = "block";
+	        
+	    })
+	    .catch((error) => console.log("Error: " + error));
+}
 
 function populateNaiveGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="alert(1);">' + item.title + '</button</p>';
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button</p>';
 }
 
 function populateDevToolsGrid(item,index){
