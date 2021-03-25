@@ -18,7 +18,7 @@
     transition: .15s; 
 }
 .discover {
-	padding: 10px;
+	margin: -10px;
 	position: absolute;
     bottom: 0;
     right: 0;
@@ -33,7 +33,7 @@ document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
 function choose_bdg(badge){
 	var locked_style = "";
     if(badge[1]){
-        locked_style = 'The last badge you won: ';
+        locked_style = 'The last badge you won: '; //useless
     }else{
     	  locked_style = 'You won a new badge: ';
     	  document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img ' + locked_style + ' src="' + badge[0].icon + '"></div>';
