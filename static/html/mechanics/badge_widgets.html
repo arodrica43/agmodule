@@ -61,19 +61,20 @@ function valorate(stars){
 document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
 function choose_bdg(badge){
 	var locked_style = "";
-	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
+    if(badge[1]){
+        locked_style = 'The last badge you won: '; //useless
+    }else{
+    	  locked_style = 'You won a new badge: ';
+    } 
+    document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
 																		'<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star"></span>'+
 																		'<span id="star-3-dynamic_index" onclick="valorate(3);" class="fa fa-star"></span>'+
 																		'<span id="star-4-dynamic_index" onclick="valorate(4);" class="fa fa-star"></span>'+
 																		'<span id="star-5-dynamic_index" onclick="valorate(5);" class="fa fa-star"></span>'+
 																	'</p>';
-    if(badge[1]){
-        locked_style = 'The last badge you won: '; //useless
-    }else{
-    	  locked_style = 'You won a new badge: ';
-    	  document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img ' + locked_style + ' src="' + badge[0].icon + '"></div>';
-    } 
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img ' + locked_style + ' src="' + badge[0].icon + '"></div>';
+
     document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<a class="discover">Discover more \> </a>';
 }
 url = "https://agmodule.herokuapp.com/api/badges/retrieve_for_user/dynamic_user?unlock=true&widget_id=dynamic_index";
