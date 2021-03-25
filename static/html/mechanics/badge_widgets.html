@@ -29,10 +29,14 @@
     right: 0;
 }
 .valorate{
-
+	margin: -10px;
+	position: absolute;
+    top: 0;
+    right: 0;
 }
-.checked {
-  color: orange;
+
+.fa-star{
+	cursor:pointer;
 }
 </style>
 
@@ -42,8 +46,13 @@
 <script>
 
 function valorate(stars){
-	for(var i = 1; i <= stars; i++){
-		document.querySelector("#star-" + i + "-dynamic_index").style.color = "orange"; 
+	for(var i = 1; i <= 5; i++){
+		if(i <= stars){
+			document.querySelector("#star-" + i + "-dynamic_index").style.color = "orange"; 
+		}else{
+			document.querySelector("#star-" + i + "-dynamic_index").style.color = "black"; 
+		}
+		
 	}
 }
 
