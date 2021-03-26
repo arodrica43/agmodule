@@ -54,7 +54,7 @@
     include-base-tracking
     include-onclick-tracking
     start_main_time();
-    start_focus_time("main-content-bdg");
+    start_focus_time("bdg-widget-dynamic_index");
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",15)
     // ---------------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ function choose_bdg(badge){
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img ' + locked_style + ' src="' + badge[0].icon + '"></div>';
 
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
-    																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
+    																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star" style="calc(1.2em + 1.2vw)"></span>'+
 																		'<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star"></span>'+
 																		'<span id="star-3-dynamic_index" onclick="valorate(3);" class="fa fa-star"></span>'+
 																		'<span id="star-4-dynamic_index" onclick="valorate(4);" class="fa fa-star"></span>'+
