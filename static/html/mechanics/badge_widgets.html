@@ -14,7 +14,7 @@
     margin: .5em;
     text-align: center;
     width:90%;
-    font-size:4vw;
+    font-size:calc(1em + 1vw);
 }
 .bdg-container > div > img{
     width: 25%;
@@ -86,7 +86,7 @@ function choose_bdg(badge){
     	  locked_style = 'You won a new badge: ';
     } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><div style="font-size:calc(1em + 1vw);">' + locked_style + badge[0].title + '</div><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
   
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
