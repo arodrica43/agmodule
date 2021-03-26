@@ -72,6 +72,13 @@ function valorate(stars){
 }
 
 document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
+function log_bdg_click(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          console.log("clicked!!");
+          log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
+           // --------------------------------------------------------------------------
+          };
 function choose_bdg(badge){
 	var locked_style = "";
     if(badge[1]){
@@ -81,16 +88,7 @@ function choose_bdg(badge){
     } 
     
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
-   	console.log(document.getElementById("bdg-icon-dynamic_index"));
-   	var bdg_icon = document.getElementById("bdg-icon-dynamic_index");
-   	function log_bdg_click(){
-              // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-              //Logging :: button-click interaction
-              console.log("clicked!!");
-              log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
-               // --------------------------------------------------------------------------
-              };
-
+  
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
 																		'<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star"></span>'+
