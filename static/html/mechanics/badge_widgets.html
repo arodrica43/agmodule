@@ -80,7 +80,7 @@ function choose_bdg(badge){
     	  locked_style = 'You won a new badge: ';
     } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="alert(1);" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
    	console.log(document.getElementById("bdg-icon-dynamic_index"));
    	var bdg_icon = document.getElementById("bdg-icon-dynamic_index");
    	bdg_icon.onclick = function(){
@@ -89,7 +89,7 @@ function choose_bdg(badge){
               console.log("clicked!!");
               log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
                // --------------------------------------------------------------------------
-              }
+              };
 
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
