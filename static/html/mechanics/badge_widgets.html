@@ -75,14 +75,13 @@ document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
 function log_bdg_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
-          console.log("clicked!!");
           log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
            // --------------------------------------------------------------------------
           };
 function choose_bdg(badge){
 	var locked_style = "";
     if(badge[1]){
-        locked_style = 'The last badge you won: '; //useless
+        locked_style = 'The last badge you won: '; 
     }else{
     	  locked_style = 'You won a new badge: ';
     } 
