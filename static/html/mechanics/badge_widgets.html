@@ -22,6 +22,7 @@
     -webkit-transition: .15s;
     transition: .15s; 
 }
+/*Transversal style for valoration and link*/
 .discover {
 	/*margin: -10px;*/
 	position: absolute;
@@ -79,7 +80,14 @@ function choose_bdg(badge){
     	  locked_style = 'You won a new badge: ';
     } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img ' + locked_style + ' src="' + badge[0].icon + '"></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img id="bdg-icon-dynamic_index"' + locked_style + ' src="' + badge[0].icon + '"></div>';
+
+   	document.querySelector("bdg-icon-dynamic_index").onclick = function(){
+              // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+              //Logging :: button-click interaction
+              log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
+               // --------------------------------------------------------------------------
+              }
 
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
