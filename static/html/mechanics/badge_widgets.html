@@ -82,7 +82,7 @@ function choose_bdg(badge){
     
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img id="bdg-icon-dynamic_index"' + locked_style + ' src="' + badge[0].icon + '"></div>';
 
-   	document.querySelector("bdg-icon-dynamic_index").onclick = function(){
+   	document.querySelector("#bdg-icon-dynamic_index").onclick = function(){
               // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
               //Logging :: button-click interaction
               log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
