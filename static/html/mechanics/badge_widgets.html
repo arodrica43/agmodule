@@ -80,10 +80,10 @@ function choose_bdg(badge){
     	  locked_style = 'You won a new badge: ';
     } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="alert(1);" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
    	console.log(document.getElementById("bdg-icon-dynamic_index"));
    	var bdg_icon = document.getElementById("bdg-icon-dynamic_index");
-   	bdg_icon.onclick = function(){
+   	function log_bdg_click(){
               // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
               //Logging :: button-click interaction
               console.log("clicked!!");
