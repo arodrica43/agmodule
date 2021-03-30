@@ -19,6 +19,17 @@
 <param id = "egg-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+
+    //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("bdg-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    set_widget_defaults("#egg-widget-dynamic_index");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#egg-widget-handshake-dynamic_index").value = 1;
 function render_egg(e_egg){
 	document.querySelector("#egg-widget-dynamic_index").innerHTML = e_egg.html;
