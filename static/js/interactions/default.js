@@ -192,7 +192,7 @@ try {
     }
 
     function set_widget_defaults(id){
-        document.querySelector(id).style.position = 'relative;';
+
         document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-2-dynamic_index" onclick="valorate(2,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
