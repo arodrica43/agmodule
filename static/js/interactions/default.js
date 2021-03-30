@@ -179,4 +179,27 @@ try {
             }, update_time * 1000, "JavaScript"); // Update statistics on server each 15 seconds 
         }
     }
+
+    function valorate(stars, dindex){
+        for(var i = 1; i <= 5; i++){
+            if(i <= stars){
+                document.querySelector("#star-" + i + "-" + dindex).style.color = "orange"; 
+            }else{
+                document.querySelector("#star-" + i + "-" + dindex).style.color = "black"; 
+            }
+            
+        }
+    }
+
+    function set_widget_defaults(id){
+        document.querySelector(id).style.position = 'relative;';
+        document.querySelector(id).innerHTML += '<p style="margin-top:-10px; position: absolute; top: 0; right: 0;">'+
+                                                    '<span id="star-1-dynamic_index" onclick="valorate(1,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-2-dynamic_index" onclick="valorate(2,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-3-dynamic_index" onclick="valorate(3,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-4-dynamic_index" onclick="valorate(4,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-5-dynamic_index" onclick="valorate(5,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span><br>'+
+                                                '</p>' + 
+                                                 '<br><a href="https://consumerbrandbuilders.com/wp-content/uploads/2013/02/Well-Done.jpg" style="position: absolute;bottom: 0;right: 0;cursor:pointer; font-size: calc(0.8em + 0.8vw);">Discover more \> </a>'
+    }
 }

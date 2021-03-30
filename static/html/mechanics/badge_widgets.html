@@ -23,27 +23,24 @@
     transition: .15s; 
 }
 /*Transversal style for valoration and link*/
-.discover {
-	/*margin: -10px;*/
+/*.discover {
 	position: absolute;
     bottom: 0;
     right: 0;
     cursor:pointer;
     font-size: calc(0.8em + 0.8vw);
-    /*background: red;*/
 }
 .valoration{
 	margin-top:-10px;
 	position: absolute;
     top: 0;
     right: 0;
-    /*background: blue;*/
 }
 
 .fa-star{
 	cursor:pointer;
 	font-size: calc(0.8em + 0.8vw);
-}
+}*/
 </style>
 
 <div id = "bdg-widget-dynamic_index" class="bdg-container"></div>
@@ -57,10 +54,11 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("bdg-widget-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15)
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    set_widget_defaults("#bdg-widget-dynamic_index");
     // ---------------------------------------------------------------------------------------
 
-function valorate(stars){
+/*function valorate(stars){
 	for(var i = 1; i <= 5; i++){
 		if(i <= stars){
 			document.querySelector("#star-" + i + "-dynamic_index").style.color = "orange"; 
@@ -69,7 +67,7 @@ function valorate(stars){
 		}
 		
 	}
-}
+}*/
 
 document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
 function log_bdg_click(){
@@ -88,7 +86,7 @@ function choose_bdg(badge){
     
    	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4>' + locked_style + badge[0].title + '</h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
   
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
+   	/*document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<p class="valoration">'+
     																	'<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star"></span>'+
 																		'<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star"></span>'+
 																		'<span id="star-3-dynamic_index" onclick="valorate(3);" class="fa fa-star"></span>'+
@@ -96,6 +94,7 @@ function choose_bdg(badge){
 																		'<span id="star-5-dynamic_index" onclick="valorate(5);" class="fa fa-star"></span><br>'+
 																	'</p>' + 
 																	 '<br><a href="https://consumerbrandbuilders.com/wp-content/uploads/2013/02/Well-Done.jpg" class="discover">Discover more \> </a>';
+	*/
 }
 url = "https://agmodule.herokuapp.com/api/badges/retrieve_for_user/dynamic_user?unlock=true&widget_id=dynamic_index";
 fetch(url)
