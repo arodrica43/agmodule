@@ -395,3 +395,30 @@ def social_status_widget(request, username):
     data = user.social_profile.data
     res = [['friends', len(data['friends'])],['followers',  data['followers']],['views', data['views']]]
     return JsonResponse({'results': res})
+
+def get_previous_valoration(username, mechanic_id):
+
+    user_stats = InteractionStatistic.objects.filter(user = username)
+    demand = None
+    for stat in user_stats:
+        if stat.mechanic.id == mechanic_id:
+            demand = stat
+            break
+    if demand:
+        if 'valoration' in demand.log.keys():
+            val = demand.log['valoration']
+            if 0 <= val and val < 0.2:
+                val = 1
+            elif 0.2 <= val and val < 0.4:
+                val = 2
+            elif 0.4 <= val and val < 0.6:
+                val = 3
+            elif 0.6 <= val and val < 0.8:
+                val = 4
+            elif 0.8 <= val and val < 1:
+                val = 5
+            return JsonResponse({'results': val})
+        else: 
+            return JsonResponse({'results': 3})
+    else:
+        return JsonResponse({'results': 3})
