@@ -188,24 +188,26 @@ try {
         }
     }
 
-    function valorate(stars, dindex){
+    function valorate(stars){
         for(var i = 1; i <= 5; i++){
             if(i <= stars){
-                document.querySelector("#star-" + i + "-" + dindex).style.color = "orange"; 
+                document.querySelector("#star-" + i + "-dynamic_index").style.color = "orange"; 
             }else{
-                document.querySelector("#star-" + i + "-" + dindex).style.color = "black"; 
+                document.querySelector("#star-" + i + "-dynamic_index").style.color = "black"; 
             }
         }
     }
 
     function set_widget_defaults(id){
+
+        //call to see if ther's a previous valoration!!!
         
         document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
-                                                    '<span id="star-1-dynamic_index" onclick="valorate(1,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-2-dynamic_index" onclick="valorate(2,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-3-dynamic_index" onclick="valorate(3,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-4-dynamic_index" onclick="valorate(4,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-5-dynamic_index" onclick="valorate(5,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span><br>'+
+                                                    '<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-3-dynamic_index" onclick="valorate(3);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-4-dynamic_index" onclick="valorate(4);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                    '<span id="star-5-dynamic_index" onclick="valorate(5);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span><br>'+
                                                 '</p>' + 
                                                  '<br><a href="https://consumerbrandbuilders.com/wp-content/uploads/2013/02/Well-Done.jpg" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>'
     }
