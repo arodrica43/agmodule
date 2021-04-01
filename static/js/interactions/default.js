@@ -200,7 +200,7 @@ try {
 
     function set_widget_defaults(id, mechanic_id){
 
-        fetch("https://agmodule.herokuapp.comapi/statistics/get_current_valoration/dynamic_user/" + mechanic_id + "/")
+        fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
