@@ -198,7 +198,7 @@ try {
         }
     }
 
-    function set_widget_defaults(log_data,id){
+    function set_widget_defaults(id){
         
         document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
