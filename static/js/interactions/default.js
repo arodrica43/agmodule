@@ -131,6 +131,14 @@ try {
         log_data['hidden_content_time'] = locked_time() / 100;
         log_data['shown_content_time'] = unlocked_time() / 100;
 
+        var val_cnt = 0;
+        for(var i = 1; i <= 5; i++){ 
+            if(document.querySelector("#star-" + i + "-" + dindex).style.color == "orange"){
+                val_cnt += 0.2;  
+            }
+        }
+        log_data['valoration'] =  val_cnt;
+
         //alert(log_data['main_time']);
         fetch('https://agmodule.herokuapp.com/api/g_mechanics/' + mechanic_index + '/', { //if window is closing,  fetch answer fails, but it makes the put method!
                 method: 'PUT',
@@ -188,10 +196,9 @@ try {
                 document.querySelector("#star-" + i + "-" + dindex).style.color = "black"; 
             }
         }
-        log_data['valoration'] = stars/5;
     }
 
-    function set_widget_defaults(id){
+    function set_widget_defaults(log_data,id){
         
         document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1,\'dynamic_index\');" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
