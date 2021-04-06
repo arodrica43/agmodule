@@ -396,7 +396,7 @@ def social_status_widget(request, username):
     res = [['friends', len(data['friends'])],['followers',  data['followers']],['views', data['views']]]
     return JsonResponse({'results': res})
 
-def get_previous_valoration(username, mechanic_id):
+def get_previous_valoration(request, username, mechanic_id):
 
     user_stats = InteractionStatistic.objects.filter(user = username)
     demand = None
