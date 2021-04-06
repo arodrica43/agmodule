@@ -269,6 +269,11 @@
 </div>
 
 <script>
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/user1")
+  .then(response => response.json())
+  .then(res_json => (console.log(res_json)))
+  .catch(error => (console.log("Error: " + error)))
+
   var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=user1";
   var list_data = {};
   fetch(url)

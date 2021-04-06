@@ -415,3 +415,11 @@ def get_previous_valoration(request, username, mechanic_id):
             return JsonResponse({'results': 3})
     else:
         return JsonResponse({'results': 3})
+
+def get_accessible_mechanics(request, username):
+     try:
+        user = Gamer.objects.filter(user__username = username)[0]
+    except:
+        print("User found")
+        raise Http404
+    return JsonResponse({'results': user.gamer_profile.data['accessible_mechanics']})
