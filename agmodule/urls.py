@@ -53,6 +53,7 @@ urlpatterns = [
     path('api/<str:mechanic_class>/retrieve_dashboard_mechanic', api.retrieve_dashboard_mechanic),
     path('api/social_statuses/widget/<str:username>', api.social_status_widget),
     path('api/statistics/get_current_valoration/<str:username>/<int:mechanic_id>', api.get_previous_valoration), # doesnt work!
+    path('api/get_accessible_mechanics/<str:username>', api.get_accessible_mechanics), # doesnt work!
     path('admin/doc/', include('django.contrib.admindocs.urls'))
 ]
 
