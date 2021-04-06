@@ -99,7 +99,10 @@ class GMechanic(models.Model):
             res_i = 0
             if stat_i:
                 # mean between interaction index and valoration
-                res_i = 0.5*(stat_i[0].interaction_index + stat_i[0].log['valoration']) 
+                if 'valoration' in stat_i[0].log.keys():
+                    res_i = 0.5*(stat_i[0].interaction_index + stat_i[0].log['valoration']) 
+                else:
+                    res_i = stat_i[0].interaction_index 
             v += [res_i]
 
         print(v, len(v))
