@@ -417,7 +417,7 @@ def get_previous_valoration(request, username, mechanic_id):
         return JsonResponse({'results': 3})
 
 def get_accessible_mechanics(request, username):
-     try:
+    try:
         user = Gamer.objects.filter(user__username = username)[0]
     except:
         print("User found")
