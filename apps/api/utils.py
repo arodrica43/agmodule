@@ -398,6 +398,8 @@ def social_status_widget(request, username):
 
 def get_previous_valoration(request, username, mechanic_id):
 
+    import math as ma
+
     user_stats = InteractionStatistic.objects.filter(user = username)
     demand = None
     for stat in user_stats:
@@ -407,16 +409,7 @@ def get_previous_valoration(request, username, mechanic_id):
     if demand:
         if 'valoration' in demand.log.keys():
             val = demand.log['valoration']
-            if 0 <= val and val < 0.2:
-                val = 1
-            elif 0.2 <= val and val < 0.4:
-                val = 2
-            elif 0.4 <= val and val < 0.6:
-                val = 3
-            elif 0.6 <= val and val < 0.8:
-                val = 4
-            elif 0.8 <= val and val < 1:
-                val = 5
+            val = ma.floor(5*val + 1 - ma.floor(val))
             return JsonResponse({'results': val})
         else: 
             return JsonResponse({'results': 3})

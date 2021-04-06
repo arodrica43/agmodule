@@ -209,7 +209,8 @@ try {
                                                     '<span id="star-4-dynamic_index" onclick="valorate(4);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-5-dynamic_index" onclick="valorate(5);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span><br>'+
                                                 '</p>' + 
-                                                 '<br><a href="https://consumerbrandbuilders.com/wp-content/uploads/2013/02/Well-Done.jpg" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>', valorate(res_json['results'])))
+                                                 '<br><a href="https://consumerbrandbuilders.com/wp-content/uploads/2013/02/Well-Done.jpg" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>',
+                                                  valorate(res_json['results'])))
         .catch(error => (console.log("Error: " + error)))
                 
        
