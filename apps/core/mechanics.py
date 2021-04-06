@@ -84,10 +84,25 @@ class GMechanic(models.Model):
         all_mechanics = GMechanic.objects.all()
         v = []
         for gm in all_mechanics:
-            stat_i = InteractionStatistic.objects.filter(user=user, mechanic = gm)
+            stat_i = InteractionStatistic.objects.filter(user = user, mechanic = gm)
             if stat_i:
                 stat_i = stat_i[0].interaction_index
                 v += [stat_i] 
+        #print(v, len(v))
+        return v
+
+    def statistics_with_valoration_vector(self,user):
+        all_mechanics = GMechanic.objects.all()
+        v = []
+        for gm in all_mechanics:
+            stat_i = InteractionStatistic.objects.filter(user = user, mechanic = gm)
+            if stat_i:
+                # mean between interaction index and valoration
+                res_i = 0.5*(stat_i[0].interaction_index + stat_i[0].log['valoration']) 
+            else:
+                res_i = 0
+            v += [res_i]
+
         #print(v, len(v))
         return v
 
