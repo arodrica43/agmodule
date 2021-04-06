@@ -409,8 +409,8 @@ def get_previous_valoration(request, username, mechanic_id):
     if demand:
         if 'valoration' in demand.log.keys():
             val = demand.log['valoration']
-            val = ma.floor(5*val + 1 - ma.floor(val))
-            return JsonResponse({'results': val})
+            new_val = ma.floor(5*val + 1 - ma.floor(val))
+            return JsonResponse({'results': new_val, 'float_result':val})
         else: 
             return JsonResponse({'results': 3})
     else:
