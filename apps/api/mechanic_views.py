@@ -143,7 +143,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         #Statistics With valoration
                         current_statistics = np.array(instance.statistics_with_valoration_vector(data['user']))
                         #print("Here",instance.matrix().T.dot(current_statistics))
-                        #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics)) # [:len(current_statistics),:]
+                        print(instance.matrix().shape,len(current_statistics)) # [:len(current_statistics),:]
                         new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()).dot(current_statistics))
                         #print(new_gstate)
                         current_user[0].gamer_profile.disruptor = new_gstate[0]
