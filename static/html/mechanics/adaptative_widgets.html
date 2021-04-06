@@ -24,7 +24,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
         document.querySelector("#incr").innerHTML = (myJson.html);
         $(myJson.html).appendTo(document.body);
     })
-    .catch(error => (console.log("Error: " + error)));
+    .catch(error => (console.log("Error: " + error)))
     ))
 .catch(error => (console.log("Error: " + error)))
 
