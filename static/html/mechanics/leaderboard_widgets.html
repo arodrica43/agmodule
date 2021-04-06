@@ -19,6 +19,17 @@
 <param id = "ldb-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+
+    //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("ldb-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    set_widget_defaults("#ldb-widget-dynamic_index", "dynamic_mechanic_index");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
