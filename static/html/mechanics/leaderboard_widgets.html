@@ -37,7 +37,7 @@
 
 document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
-	document.querySelector("#ldb-widget-dynamic_index").innerHTML = leadboard.html;
+	document.querySelector("#ldb-widget-dynamic_index").innerHTML += leadboard.html;
     $(leadboard.html).appendTo(document.body);
 }
 
