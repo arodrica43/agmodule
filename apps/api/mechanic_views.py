@@ -103,11 +103,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             raise Http404
                     for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time', 'valoration']:
                         uplog = statistic[0].log
-                        if arg in statistic[0].log.keys():
-                            if arg == 'valoration':
-                                uplog[arg] = 0.5*(uplog[arg] + data['log'][arg])
-                            else:
-                                uplog[arg] += data['log'][arg]
+                        if arg in statistic[0].log.keys() and arg != 'valoration':
+                            uplog[arg] += data['log'][arg]
                         else: 
                             uplog[arg] = data['log'][arg]
                         statistic.update(log = uplog)
