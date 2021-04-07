@@ -294,17 +294,23 @@
                       ['?', 'Advanced Badges', '?'],
                       ['lotteries', 'Lotteries', 'lottery_widgets'],
                       ['?', 'Team Tools', '?'],
-                      ['?', 'Valoration Tools', '?']
+                      ['?', 'Valoration Tools', '?'],
+                      ['label', 'Disruptor', ''],
+                      ['label', 'Free Spirit', ''],
+                      ['label', 'Achiever', ''],
+                      ['label', 'Player', ''],
+                      ['label', 'Socializer', ''],
+                      ['label', 'Philantropist', ''],
                     ]
-  player_types = ['Disruptor', 'Free Spirit', 'Achiever', 'Player', 'Socializer', 'Philantropist']
-  
-  console.log("social_statuses".slice(0, Math.floor("social_statuses".length/2)));
+
   fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/user1")
   .then(response => response.json())
   .then(res_json => (res_json.results))
   .then(acc_mechanics => (
       mechanic_names.forEach(function(item,index){
-        if(item[0] != '?'){
+        if(item[0] == 'label'){
+          document.getElementById("circle-container").innerHTML += '<li style="font-size: 2vw;">' + item[1] + '</li>';  
+        }else if(item[0] != '?'){
           if(acc_mechanics.includes(item[2])){
             document.getElementById("circle-container").innerHTML += '<li><img name="' + item[0] + '" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/' + item[0] + '.png" onclick="openMechanic(this);"></li>';
           }else{
@@ -313,11 +319,7 @@
         }else{
           document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
         }
-        
-      }
-      player_types.forEach(function(item,index){
-        document.getElementById("circle-container").innerHTML += ' <li style="font-size: 2vw;">' + item + '</li>';  
-      })) 
+      })
     ))
   .catch(error => (console.log("Error: " + error)))
 
