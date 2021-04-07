@@ -138,11 +138,11 @@ try {
                     val_cnt += 0.2;  
                 }
             }
+            log_data['valoration'] =  val_cnt;
         }catch(error){
-            val_cnt = 0.5;
-            console.error(error);
+            console.error("No loaded valoration :: " + error);
         }
-        log_data['valoration'] =  val_cnt;
+        
 
         //alert(log_data['main_time']);
         fetch('https://agmodule.herokuapp.com/api/g_mechanics/' + mechanic_index + '/', { //if window is closing,  fetch answer fails, but it makes the put method!
