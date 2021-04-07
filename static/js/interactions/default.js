@@ -140,7 +140,7 @@ try {
             }
             log_data['valoration'] =  val_cnt;
         }catch(error){
-            console.error("No loaded valoration :: " + error);
+            //console.error("No loaded valoration :: " + error);
         }
         
 
