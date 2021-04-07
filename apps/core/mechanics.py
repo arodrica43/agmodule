@@ -150,16 +150,16 @@ class GMechanicList(GMechanic):
     mechanic = EnumField(Mechanics,max_length=17,default = Mechanics.badges)
 
 
-class Dashboard(GMechanic):
+# class Dashboard(GMechanic):
 
-    def __init__(self, *args, **kwargs):
-        """If object is being updated don't allow contact to be changed."""
-        super().__init__(*args, **kwargs)
-        self.mechanic_type = GMechanic.MechanicType.Unknown
-            # self.fields.pop('parent') # or remove the field
+#     def __init__(self, *args, **kwargs):
+#         """If object is being updated don't allow contact to be changed."""
+#         super().__init__(*args, **kwargs)
+#         self.mechanic_type = GMechanic.MechanicType.Unknown
+#             # self.fields.pop('parent') # or remove the field
 
-    #Course ID, or Gamified Component ID
-    component_id = models.CharField(max_length=256,default = 'Unlockable')
+#     #Course ID, or Gamified Component ID
+#     component_id = models.CharField(max_length=256,default = 'Unlockable')
 
 
 class DevelopmentTool(GMechanic):
