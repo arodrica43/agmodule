@@ -59,6 +59,11 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain only_me argument")
+                try:
+                    new_html = re.sub("(?!dynamic_link_url=)dynamic_link_url",request.GET['dynamic_link_url'],queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain link_url argument")
                 tmp_title = queryset[0].title
                 if 'show_title' in request.GET.keys():
                     st = request.GET['show_title']
