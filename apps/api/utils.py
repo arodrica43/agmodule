@@ -27,6 +27,7 @@ allowed_mechanics = {"easy" : [
                                 "easter_egg_widgets",
                                 "level_widgets",
                                 "point_widgets",
+                                "leaderboard_widgets",
                                 "social_status_widgets",
                                 "knowledge_share_widgets"
                             ],  
@@ -34,7 +35,6 @@ allowed_mechanics = {"easy" : [
                                 "development_tool_widgets",
                                 "unlockable_widgets",
                                 "badge_widgets",
-                                "leaderboard_widgets",
                                 "gift_opener_widgets",
                                 "lottery_widgets",
                                 "social_network_widgets",
