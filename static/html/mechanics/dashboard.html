@@ -220,14 +220,14 @@
 
 <!-- Chart -->
 <div class="container-fluid" style="width:100%; text-align:center;"> <!-- background:blue; .-->
-  <div class='circle-container'>
+  <div id="circle-container" class='circle-container'>
     <li></li>
     <li><img name="challenges" data-title="Challenges" src='http://agmodule.herokuapp.com/media/dashboard_icons/challenges.png' onclick="openMechanic(this);"></li>
     <li><img name="easter_eggs" data-title="Easter Eggs" src='http://agmodule.herokuapp.com/media/dashboard_icons/easter_eggs.png' onclick="openMechanic(this);"></li>
     <li><img name="levels" data-title="Levels" src='http://agmodule.herokuapp.com/media/dashboard_icons/levels.png' onclick="openMechanic(this);"></li>
     <li><img name="points" data-title="Points" src='http://agmodule.herokuapp.com/media/dashboard_icons/points.png' onclick="openMechanic(this);"></li>
-    <li><img name="social_stats" data-title="Social Statuses" src='http://agmodule.herokuapp.com/media/dashboard_icons/social_stats.png' onclick="openMechanic(this);"></li>
-    <li><img name="knowledge_shares" data-title="Knowledge Sharing Tools" src='http://agmodule.herokuapp.com/media/dashboard_icons/knowledge_share.png' onclick="openMechanic(this);"></li> 
+    <li><img name="social_statuses" data-title="Social Statuses" src='http://agmodule.herokuapp.com/media/dashboard_icons/social_statuses.png' onclick="openMechanic(this);"></li>
+    <li><img name="knowledge_shares" data-title="Knowledge Sharing Tools" src='http://agmodule.herokuapp.com/media/dashboard_icons/knowledge_shares.png' onclick="openMechanic(this);"></li> 
     <li><img name="development_tools" data-title="Development Tools" src='http://agmodule.herokuapp.com/media/dashboard_icons/dev_tools.png' onclick="openMechanic(this);"></li>
     <li><img name="unlockables" data-title="Unlockables" src='http://agmodule.herokuapp.com/media/dashboard_icons/unlockables.png' onclick="openMechanic(this);"></li>
     <li><img name="badges" data-title="Badges" src='http://agmodule.herokuapp.com/media/dashboard_icons/badges.png' onclick="openMechanic(this);"></li>
@@ -269,9 +269,17 @@
 </div>
 
 <script>
+
+  mechanic_names = [['challenges', 'Challenges'], , 'easter_eggs', 'levels', 'points', 'social_stats', 'knowledge_shares', 'development_tools', 'unlockables', 'badges', 'leaderboards', '?', 'gifts', '?', '?', '?', 'gift_openers', 'social_networks', '?', '?', '?', '?', 'lotteries', '?', '?']
+  console.log("social_statuses".slice(0, Math.floor("social_statuses".length/2)));
   fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/user1")
   .then(response => response.json())
-  .then(res_json => (console.log(res_json)))
+  .then(res_json => (res_json.results))
+  .then(acc_mechanics => (
+      mechanic_names.forEach(function(item,index){
+        document.getElementById("circle-container").innerHTML += '<li><img name="challenges" data-title="Challenges" src="http://agmodule.herokuapp.com/media/dashboard_icons/challenges.png" onclick="openMechanic(this);"></li>';
+      }) 
+    ))
   .catch(error => (console.log("Error: " + error)))
 
   var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=user1";
