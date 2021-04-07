@@ -222,7 +222,7 @@
 <div class="container-fluid" style="width:100%; text-align:center;"> <!-- background:blue; .-->
   <div id="circle-container" class='circle-container'>
     <li></li>
-    <li><img name="challenges" data-title="Challenges" src='http://agmodule.herokuapp.com/media/dashboard_icons/challenges.png' onclick="openMechanic(this);"></li>
+    <!-- <li><img name="challenges" data-title="Challenges" src='http://agmodule.herokuapp.com/media/dashboard_icons/challenges.png' onclick="openMechanic(this);"></li>
     <li><img name="easter_eggs" data-title="Easter Eggs" src='http://agmodule.herokuapp.com/media/dashboard_icons/easter_eggs.png' onclick="openMechanic(this);"></li>
     <li><img name="levels" data-title="Levels" src='http://agmodule.herokuapp.com/media/dashboard_icons/levels.png' onclick="openMechanic(this);"></li>
     <li><img name="points" data-title="Points" src='http://agmodule.herokuapp.com/media/dashboard_icons/points.png' onclick="openMechanic(this);"></li>
@@ -252,7 +252,7 @@
     <li style="font-size: 2vw;">Achiever</li>
     <li style="font-size: 2vw;">Player</li>
     <li style="font-size: 2vw;">Socializer</li> 
-    <li style="font-size: 2vw;">Philantropist</li> 
+    <li style="font-size: 2vw;">Philantropist</li> -->
   </div>
 </div>
 
@@ -270,15 +270,54 @@
 
 <script>
 
-  mechanic_names = [['challenges', 'Challenges'], , 'easter_eggs', 'levels', 'points', 'social_stats', 'knowledge_shares', 'development_tools', 'unlockables', 'badges', 'leaderboards', '?', 'gifts', '?', '?', '?', 'gift_openers', 'social_networks', '?', '?', '?', '?', 'lotteries', '?', '?']
+  mechanic_names = [
+                      ['challenges', 'Challenges', 'challenge_widgets'],
+                      ['easter_eggs', 'Easter Eggs', 'easter_egg_widgets'],
+                      ['levels', 'Levels', 'level_widgets'],
+                      ['points', 'Points', 'point_widgets'],
+                      ['social_statuses', 'Social Statuses', 'social_status_widget'],
+                      ['knowledge_shares', 'Knowledge Sharing', 'knowledge_share_widgets'],
+                      ['development_tools', 'Development Tools', 'development_tool_widgets'],
+                      ['unlockables', 'Unlockables', 'unlockable_widgets'],
+                      ['badges', 'Badges', 'badge_widgets'],
+                      ['leaderboards', 'Leaderboards', 'leaderboard_widgets'],
+                      ['?', 'Publishing Tools', '?'],
+                      ['gifts', 'Gifting', 'gift_widgets'],
+                      ['?', 'Advanced Challenges', '?'],
+                      ['?', 'Advanced Easter Eggs', '?'],
+                      ['?', 'Expertise', '?'],
+                      ['gift_openers', 'Gift Openeing Tools', 'gift_opener_widgets'],
+                      ['social_networks', 'Social Networks', 'social_network_widgets'],
+                      ['?', 'Advanced Gifting', '?'],
+                      ['?', 'Advanced Development Tools', '?'],
+                      ['?', 'Advanced Unlockables', '?'],
+                      ['?', 'Advanced Badges', '?'],
+                      ['lotteries', 'Lotteries', 'lottery_widgets'],
+                      ['?', 'Team Tools', '?'],
+                      ['?', 'Valoration Tools', '?']
+                    ]
+  player_types = ['Disruptor', 'Free Spirit', 'Achiever', 'Player', 'Socializer', 'Philantropist']
+  
   console.log("social_statuses".slice(0, Math.floor("social_statuses".length/2)));
   fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/user1")
   .then(response => response.json())
   .then(res_json => (res_json.results))
   .then(acc_mechanics => (
       mechanic_names.forEach(function(item,index){
-        document.getElementById("circle-container").innerHTML += '<li><img name="challenges" data-title="Challenges" src="http://agmodule.herokuapp.com/media/dashboard_icons/challenges.png" onclick="openMechanic(this);"></li>';
-      }) 
+        if(item[0] != '?'){
+          if(acc_mechanics.includes(item[2])){
+            document.getElementById("circle-container").innerHTML += '<li><img name="' + item[0] + '" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/' + item[0] + '.png" onclick="openMechanic(this);"></li>';
+          }else{
+            document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
+          }
+        }else{
+          document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
+        }
+        
+      }
+      player_types.forEach(function(item,index){
+        document.getElementById("circle-container").innerHTML += ' <li style="font-size: 2vw;">' + item + '</li>';  
+      })) 
     ))
   .catch(error => (console.log("Error: " + error)))
 
@@ -298,19 +337,23 @@
     container.hide();
   }
   function openMechanic(mechanic){
-    document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
-    console.log(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name);
-    document.getElementById("main-modal-title").innerHTML = "List of " + mechanic.dataset.title;
-    fetch(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name)
-    .then(response => response.json())
-    .then(function(res_json){
-      document.querySelector("#main-modal-content").innerHTML = (res_json.html); 
-      $(res_json.html).appendTo(document.body);
-     
-      console.log("loaded");
-      return 1;
-    })
-    .catch(error => (console.log("Error: " + error)))
-     container.show();
+    if(mechanic.name != "blocked"){
+      document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
+      console.log(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name);
+      document.getElementById("main-modal-title").innerHTML = "List of " + mechanic.dataset.title;
+      fetch(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name)
+      .then(response => response.json())
+      .then(function(res_json){
+        document.querySelector("#main-modal-content").innerHTML = (res_json.html); 
+        $(res_json.html).appendTo(document.body);
+       
+        console.log("loaded");
+        return 1;
+      })
+      .catch(error => (console.log("Error: " + error)))
+      container.show();
+    }else{
+      alert("This mechanic isn't alredy discovered!");
+    }
   }
 </script>
