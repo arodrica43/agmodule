@@ -422,7 +422,7 @@ class PointViewSet(GMechanicViewSet):
 
     def logic(self,queryset,request):
          # I don't know if its necessary, sience we have lock in parent class
-        print("alo?")
+        print("-________----------------__---------___________---------___--------__--__-__------______________------------_____________----_---_-_-___----------")
         if 'user' in request.GET.keys():
             if request.GET['user']:
                 user = Gamer.objects.filter(user__username = request.GET['user'])
