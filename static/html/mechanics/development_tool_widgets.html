@@ -11,15 +11,15 @@
         font-size:2.2rem;
 }
 .dvt-container > div > img{
-        width: 16%;
+        width: 20%;
         height: 16%;
         -webkit-transition: .15s;
         transition: .15s; 
     }
 
 .dvt-container > div > div > img{
-        width: 8%;
-        height: 8%;
+        width: 10%;
+        height: 10%;
         cursor: pointer;
         -webkit-transition: .15s;
         transition: .15s; 
@@ -39,7 +39,7 @@
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Change the icon of the Badge</h3><img id="main-badge-dynamic_index" src="' + modifiable.icon + '">' + modifiable.title + '<hr>' +
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Change the icon of the Badge</div><div>' + modifiable.title + '</div><div><img id="main-badge-dynamic_index" src="' + modifiable.icon + '"><hr>' +
 																	'<div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1);">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2);">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3);">' +
