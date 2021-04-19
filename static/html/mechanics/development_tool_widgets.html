@@ -8,7 +8,7 @@
         margin: .5em;
         text-align: center;
         width:100%;
-        font-size:2.2rem;
+        font-size:3vw;
 }
 .dvt-container > div > img{
         width: 25%;
@@ -53,11 +53,10 @@ function selectPolicy(list){
 }
 
 function changeIcon(type, id){
-    
+    document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"
     fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + type)
 	.then(response => response.json())
-	.then(res_json => (document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"))
-	.then(whatever => alert("Badge icon changed!"))
+	.then(res_json => (alert("Badge icon changed!")))
 	.catch(error => (console.log("Error: " + error)))
 
 }
