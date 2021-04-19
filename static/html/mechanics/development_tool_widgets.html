@@ -56,7 +56,7 @@ function changeIcon(type, id){
     
     fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + type)
 	.then(response => response.json())
-	.then(res_json => (alert("Icon changed!"), document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"))
+	.then(res_json => (document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg", alert("Badge icon changed!")))
 	.catch(error => (console.log("Error: " + error)))
 
 }
