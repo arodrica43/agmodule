@@ -48,7 +48,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list)))
 .then((modifiable) => ( console.log(modifiable), 
-						fetch("https://agmodule.herokuapp.com/api/badges/" + modifiable.id + "/change_icon?option=1")
+						fetch("https://agmodule.herokuapp.com/api/badges/" + modifiable.id + "/change_icon?option=2")
 						.then(response => response.json())
 						.then(res_json => (console.log(res_json.results)))
 						.catch(error => (console.log("Error: " + error)))))
