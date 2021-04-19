@@ -1,3 +1,9 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
 <style>
 .dvt-container{
     position: relative;
@@ -36,10 +42,20 @@
 <param id = "dvt-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+ //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("dvt-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#dvt-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Change the icon of ' + modifiable.title + '</div>' + 
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div>Change the icon of ' + modifiable.title + '</div>' + 
 																	'<div><img id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
 																	'<br><div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
