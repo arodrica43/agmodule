@@ -1,7 +1,55 @@
-<div id = "dvt-widget-dynamic_index">Development Tool Widget</div>
+<style>
+.dvt-container{
+    position: relative;
+}
+.dvt-container > div{
+        font-size: 30px;
+        padding: .5em;
+        margin: .5em;
+        text-align: center;
+        width:80%;
+        font-size:2.2rem;
+}
+.dvt-container > div > img{
+        width: 30%;
+        height: 40%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }
+</style>
+
+
+<div id = "dvt-widget-dynamic_index"></div>
 <param id = "dvt-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-document.querySelector("#dvt-widget-dynamic_index").innerHTML += " (WIP)";
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
+
+function render_dvt(modifiable, modifiable_by, reward){
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Your won a reward!</div><div>+' + reward + ' ' + modifiable_by + '</div>';
+}
+
+function selectPolicy(list){
+	return list[Math.floor(Math.random() * list.length)];
+}
+
+function chooseReward(){
+    values =  [5,10,15,20];
+	return values[Math.floor(Math.random() * values.length)];
+}
+
+mdifiables = ["badges"]
+mod_type =  modifiables[Math.floor(Math.random() * modifiables.length)];
+
+list[Math.floor(Math.random() * list.length)];
+
+url = "https://agmodule.herokuapp.com/api/" + mod_type + "/";
+reward = chooseReward();
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((modifiable) => (console.log(modifiable), console.log(modifiable.icon)))
+.catch(error => (console.log("Error: " + error)))
+
 </script>
