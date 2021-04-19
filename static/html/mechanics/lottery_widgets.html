@@ -1,4 +1,11 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
+.lot-container{
+    position: relative;
+}
 .lot-container > div{
         font-size: 30px;
         padding: .5em;
@@ -19,9 +26,19 @@
 <param id = "lot-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+    //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("lot-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#lot-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#lot-widget-handshake-dynamic_index").value = 1;
 function render_lot(lottery){
-	document.querySelector("#lot-widget-dynamic_index").innerHTML = lottery.html;
+	document.querySelector("#lot-widget-dynamic_index").innerHTML += lottery.html;
     $(lottery.html).appendTo(document.body);
 }
 
