@@ -7,7 +7,7 @@
         padding: .5em;
         margin: .5em;
         text-align: center;
-        width:80%;
+        width:100%;
         font-size:2.2rem;
 }
 .dvt-container > div > img{
@@ -16,6 +16,17 @@
         -webkit-transition: .15s;
         transition: .15s; 
     }
+
+.selectable-image{
+    width: 20%;
+    height: 20%;
+    -webkit-transition: .15s;
+    transition: .15s;
+  }
+.selectable-image :hover{
+     -webkit-transform: scale(1.3); 
+      transform: scale(1.3);
+  }
 </style>
 
 
@@ -27,11 +38,11 @@ document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
 function render_dvt(modifiable){
 	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div><img src="' + modifiable.icon + '"><hr>' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg">' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg">' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg">' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg">' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg"></div>';
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg"></div>';
 }
 
 function selectPolicy(list){
