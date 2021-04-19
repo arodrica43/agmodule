@@ -25,8 +25,13 @@
 <script>
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
-function render_dvt(modifiable, modifiable_by, reward){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Your won a reward!</div><div>+' + reward + ' ' + modifiable_by + '</div>';
+function render_dvt(modifiable){
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<img src="' + modifiable.icon + '"><hr>' +
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg">' +
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg">' +
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg">' +
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg">' +
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg">';
 }
 
 function selectPolicy(list){
@@ -47,11 +52,7 @@ fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list)))
-.then((modifiable) => ( console.log(modifiable), 
-						fetch("https://agmodule.herokuapp.com/api/badges/" + modifiable.id + "/change_icon?option=2")
-						.then(response => response.json())
-						.then(res_json => (console.log(res_json.results)))
-						.catch(error => (console.log("Error: " + error)))))
+.then((modifiable) => ( console.log(modifiable), render_dvt(modifiable)))
 .catch(error => (console.log("Error: " + error)))
 
 </script>
