@@ -426,6 +426,7 @@ def get_accessible_mechanics(request, username):
 
 def change_icon(request, id):
     badge = Badges.objects.filter(id = id)
+    result = 'ERROR'
     if badge:
         if 'option' in request.GET.keys():
             img = 'reward.png'
@@ -434,6 +435,8 @@ def change_icon(request, id):
                 if option == i:
                     img = 'b' + i + ".svg"
             badge.update(icon = "https://agmodule.herokuapp.com/media/badge_icons/" + img)
+            result = "OK"
+    return JsonResponse({'results': result})
 
 
 

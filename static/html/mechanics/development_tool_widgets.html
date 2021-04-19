@@ -46,8 +46,12 @@ reward = chooseReward();
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
-.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
-.then((modifiable) => (console.log(modifiable), console.log(modifiable.icon)))
+.then((list) => (selectPolicy(list)))
+.then((modifiable) => ( console.log(modifiable), 
+						fetch("https://agmodule.herokuapp.com/api/badges/" + modifiable.id + "/change_icon?option=1")
+						.then(response => response.json())
+						.then(res_json => (console.log(res_json.results)))
+						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
 
 </script>
