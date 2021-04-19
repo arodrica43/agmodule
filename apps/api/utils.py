@@ -423,3 +423,17 @@ def get_accessible_mechanics(request, username):
         print("User found")
         raise Http404
     return JsonResponse({'results': user.gamer_profile.data['accessible_mechanics']})
+
+def change_icon(request, id):
+    badge = Badges.objects.filter(id = id)
+    if badge:
+        if 'option' in request.GET.keys():
+            img = 'reward.png'
+            option = request.GET['option']
+            for i in ['1','2','3','4','5']:
+                if option == i:
+                    img = 'b' + i + ".svg"
+            badge.update(icon = "https://agmodule.herokuapp.com/media/badge_icons/" + img)
+
+
+
