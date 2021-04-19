@@ -1,3 +1,7 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
 #search-scrollable-content {
   padding-left: 20px;
@@ -97,16 +101,31 @@
   font-weight: 400;
 }
 
+.dvt-container{
+    position: relative;
+    width:80%;
+    margin: 0 auto;
+}
 
 /* Create three equal columns that sits next to each other */
 
 
 </style>
 
-<div id = "snt-widget-dynamic_index" style="width:80%;margin: 0 auto;"></div>
+<div id = "snt-widget-dynamic_index" class="snt-container"></div>
 <param id = "snt-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+  //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("dvt-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#dvt-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#snt-widget-handshake-dynamic_index").value = 1;
 
 function followUser(uname,ids,from){
@@ -256,7 +275,7 @@ function loadPopulateSearch(url){
 }
 
 
-document.getElementById("snt-widget-dynamic_index").innerHTML =    '<div id="Search">'+ // class="mytabcontent"
+document.getElementById("snt-widget-dynamic_index").innerHTML += '<div id="Search">'+ // class="mytabcontent"
                                                               '<main class="grid" id="search-grid">'+
                                                               '</main>'+
                                                               '<div id="search-scrollable-content">'+
