@@ -434,7 +434,7 @@ def change_icon(request, id):
             for i in ['1','2','3','4','5']:
                 if option == i:
                     img = 'b' + i + ".svg"
-            badge.update(icon = "https://agmodule.herokuapp.com/media/badge_icons/" + img)
+            badge.update(icon = "badge_icons/" + img)
             result = "OK"
     return JsonResponse({'results': result})
 
