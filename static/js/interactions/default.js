@@ -128,6 +128,8 @@ try {
         log_data['main_time'] = main_time() / 100;
         log_data['focus_time'] = Math.min(focus_time(), main_time()) / 100;
         log_data['interaction_time'] = Math.min(interaction_time(), Math.min(focus_time(), main_time()) / 100);
+        //Interaction time could depend on focus time, and on interaction_time()
+        //log_data['interaction_time'] = Math.max(Math.min(interaction_time(), Math.min(focus_time(), main_time()) / 100),  Math.min(focus_time(), main_time()) / 100);
         log_data['hidden_content_time'] = locked_time() / 100;
         log_data['shown_content_time'] = unlocked_time() / 100;
 

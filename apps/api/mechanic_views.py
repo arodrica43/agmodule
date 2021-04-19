@@ -112,6 +112,15 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             uplog[arg] += data['log'][arg]
                         else: 
                             uplog[arg] = data['log'][arg]
+
+                        scrolls =  [x for x in uplog['history'] if x[0]['type'] == "Scroll"]
+                        scrolls_join = [{
+                                        "timestamp" : scrolls[0][0]['timestamp'],
+                                        "type" : "Scrolling",
+                                        "level" : round(sum([x[0]['level'] for x in scrolls])/len(scrolls)),
+                                        "description" : scrolls[0][0]['description'] + " (x" + str(len(scrolls)) + ")"
+                                        }]
+                        uplog['history'] = [x for x in uplog['history'] if x[0]['type'] != "Scroll"] + [scrolls_join]
                         statistic.update(log = uplog)
                     #Interaction index update ----------------------------------------------------------------------------------------------------
                     # for s in InteractionStatistic.objects.all():
