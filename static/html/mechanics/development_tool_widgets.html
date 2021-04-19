@@ -41,8 +41,6 @@ function chooseReward(){
 modifiables = ["badges"]
 mod_type =  modifiables[Math.floor(Math.random() * modifiables.length)];
 
-list[Math.floor(Math.random() * list.length)];
-
 url = "https://agmodule.herokuapp.com/api/" + mod_type + "/";
 reward = chooseReward();
 fetch(url)
