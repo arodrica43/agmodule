@@ -1,4 +1,11 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
+.lvl-container{
+    position: relative;
+}
 .lvl-container > div{
         font-size: 30px;
         padding: .5em;
@@ -19,9 +26,20 @@
 <param id = "lvl-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+//INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("lvl-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#lvl-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+    
+
 document.querySelector("#lvl-widget-handshake-dynamic_index").value = 1;
 function render_lvl(level){
-	document.querySelector("#lvl-widget-dynamic_index").innerHTML = level.html;
+	document.querySelector("#lvl-widget-dynamic_index").innerHTML += level.html;
     $(level.html).appendTo(document.body);
 }
 
