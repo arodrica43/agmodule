@@ -26,12 +26,12 @@
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<img src="' + modifiable.icon + '"><hr>' +
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div><img src="' + modifiable.icon + '"><hr>' +
 																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg">' +
 																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg">' +
 																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg">' +
 																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg">' +
-																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg">';
+																	'<img src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg"></div>';
 }
 
 function selectPolicy(list){
