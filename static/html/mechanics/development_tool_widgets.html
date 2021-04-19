@@ -11,8 +11,8 @@
         font-size:2.2rem;
 }
 .dvt-container > div > img{
-        width: 20%;
-        height: 16%;
+        width: 25%;
+        height: 25%;
         -webkit-transition: .15s;
         transition: .15s; 
     }
@@ -39,20 +39,27 @@
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Change the icon of the Badge</div><div>' + modifiable.title + '</div><div><img id="main-badge-dynamic_index" src="' + modifiable.icon + '"><hr>' +
-																	'<div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1);">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2);">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3);">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg" onclick="changeIcon(4);">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg" onclick="changeIcon(5);"></div></div>';
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML = '<div>Change the icon of ' + modifiable.title + '</div>' + 
+																	'<div><img id="main-badge-dynamic_index" src="' + modifiable.icon + '"><hr>' +
+																	'<div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg" onclick="changeIcon(4,' + modifiable.id + ');">' +
+																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg" onclick="changeIcon(5,' + modifiable.id + ');"></div></div>';
 }
 
 function selectPolicy(list){
 	return list[Math.floor(Math.random() * list.length)];
 }
 
-function changeIcon(type){
-    alert(type);
+function changeIcon(type, id){
+    
+    fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + type)
+	.then(response => response.json())
+	.then(res_json => (res_json.results))
+	.then((res) => (console.log(res), document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"))
+	.catch(error => (console.log("Error: " + error)))
+
 }
 
 modifiables = ["badges"]
