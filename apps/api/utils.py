@@ -425,7 +425,7 @@ def get_accessible_mechanics(request, username):
     return JsonResponse({'results': user.gamer_profile.data['accessible_mechanics']})
 
 def change_icon(request, id):
-    badge = Badges.objects.filter(id = id)
+    badge = Badge.objects.filter(id = id)
     result = 'ERROR'
     if badge:
         if 'option' in request.GET.keys():
