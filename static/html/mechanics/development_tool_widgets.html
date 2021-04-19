@@ -59,7 +59,6 @@ modifiables = ["badges"]
 mod_type =  modifiables[Math.floor(Math.random() * modifiables.length)];
 
 url = "https://agmodule.herokuapp.com/api/" + mod_type + "/";
-reward = chooseReward();
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
