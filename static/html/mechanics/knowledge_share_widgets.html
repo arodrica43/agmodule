@@ -1,11 +1,19 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
+.ksh-container{
+    position: relative;
+    margin-bottom:20px;
+}
 .ksh-container > div{
         font-size: 30px;
         padding: .5em;
         margin: .5em;
         text-align: center;
-        width:90%;
-        font-size:4vw;
+        width:100%;
+        font-size:calc(1em + 1vw);
 }
 .ksh-container > div > img{
         width: 25%;
@@ -19,24 +27,17 @@
 <param id = "ksh-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
-var rewards = [
-				{'value' : 1, 'by' : 'score', 'message' : '+1 point'},
-				{'value' : 5, 'by' : 'score', 'message' : '+5 points'},
-				{'value' : 10, 'by' : 'score', 'message' : '+10 points'},
-				{'value' : 20, 'by' : 'score', 'message' : '+20 points'},
-				{'value' : 50, 'by' : 'score', 'message' : '+50 points'},
-				{'value' : 1, 'by' : '$', 'message' : '+1 $'},
-				{'value' : 5, 'by' : '$', 'message' : '+5 $'},
-				{'value' : 10, 'by' : '$', 'message' : '+10 $'},
-				{'value' : 20, 'by' : '$', 'message' : '+20 $'},
-				{'value' : 50, 'by' : '$', 'message' : '+50 $'}				
-]
-document.querySelector("#ksh-widget-handshake-dynamic_index").value = 1;
+	//INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("ksh-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#ksh-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
 
-function choose_reward(){
-	var r = Math.floor(Math.random() * rewards.length);
-	return rewards[r];	
-}
+document.querySelector("#ksh-widget-handshake-dynamic_index").value = 1;
 
 function send_tip(tip){
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
@@ -51,8 +52,7 @@ function send_tip(tip){
 }
 
 function render_ksh(){
-	var reward = choose_reward();
-	document.querySelector("#ksh-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.svg'><br><div style='height:10px;'></div><input type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send a tip to everyone!</button></div>";
+	document.querySelector("#ksh-widget-dynamic_index").innerHTML += "<div><p>Let's help each other</p><img src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.svg'><br><div style='height:10px;'></div><input type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)'>Send a tip to everyone!</button></div>";
 }
 
 render_ksh();
