@@ -7,9 +7,6 @@
 .gop-container{
     position: relative;
 }
-.gop-container > div{
-    margin-bottom: 15px;
-}
 </style>
 
 <div id = "gop-widget-dynamic_index" class="gop-container"></div>
@@ -28,7 +25,7 @@
 
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
-	document.querySelector("#gop-widget-dynamic_index").innerHTML += "<div>" + opener.html +  "</div>";
+	document.querySelector("#gop-widget-dynamic_index").innerHTML += opener.html +  "<br><br>";
     $(opener.html).appendTo(document.body);
 }
 
