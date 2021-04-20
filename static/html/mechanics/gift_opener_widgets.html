@@ -1,14 +1,31 @@
-<style>
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
+<style>
+.gop-container{
+    position: relative;
+}
 </style>
 
 <div id = "gop-widget-dynamic_index" class="gop-container"></div>
 <param id = "gop-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+	//INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("gop-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#gop-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
-	document.querySelector("#gop-widget-dynamic_index").innerHTML = opener.html;
+	document.querySelector("#gop-widget-dynamic_index").innerHTML += opener.html;
     $(opener.html).appendTo(document.body);
 }
 
