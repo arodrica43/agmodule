@@ -148,9 +148,7 @@ class GamerSerializer(serializers.HyperlinkedModelSerializer):
         if 'no_player' in gamer_profile_data.keys(): no_player_data = gamer_profile_data['no_player']
         else: no_player_data = instance.gamer_profile.no_player
         if 'data' in gamer_profile_data.keys(): data_data = gamer_profile_data['data']
-        else: 
-            data_data = instance.gamer_profile.data 
-            data_data['case'] = "C"
+        else: data_data = instance.gamer_profile.data 
 
         # The following code add an attribute to gamer_profile.data when a created user updates its profile. Use it carefully!
         # Can be used in a similar fashion to update social_profile.data

@@ -74,7 +74,7 @@ def retrieve_adaptative_widget_id(request):
                 # BEGIN CASE ANALYSIS ###################################################################################
                 #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data    #
                 #Once the experiment is done, you should delete this code                                               #
-                                                                                                                        #
+                print("Henloooooooooooooooooooooooooooooooooo --")                                                                                     #
                 if 'experimental' in args.keys():                                                                       #
                     case = user.gamer_profile.data['case']
                     if case == "A":
