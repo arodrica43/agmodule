@@ -1,4 +1,11 @@
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
+.sst-container{
+    position: relative;
+}
 .gft-container > div{
         font-size: 30px;
         padding: .5em;
@@ -19,6 +26,16 @@
 <param id = "gft-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
+
+//INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("sst-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#sst-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
 var rewards = [
 				{'value' : 1, 'by' : 'score', 'message' : '+1 point'},
 				{'value' : 5, 'by' : 'score', 'message' : '+5 points'},
@@ -48,7 +65,7 @@ function send_gift(gift){
 
 function render_gft(){
 	var reward = choose_reward();
-	document.querySelector("#gft-widget-dynamic_index").innerHTML = "<div><p>Let's help each other</p><img src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.svg'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
+	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div><p>Let's help each other</p><img src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.svg'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
 }
 
 render_gft();
