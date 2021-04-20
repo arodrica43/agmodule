@@ -87,8 +87,8 @@ class GamerSerializer(serializers.HyperlinkedModelSerializer):
         if 'data' in gamer_profile_data.keys(): 
             if gamer_profile_data['data']:
                 data_data = gamer_profile_data['data']
-            else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : []}
-        else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : []}
+            else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C"}
+        else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C" }
         
         gprofile = GamerProfile.objects.create(disruptor = disruptor_data,
                                                 free_spirit =  free_spirit_data,
@@ -148,7 +148,9 @@ class GamerSerializer(serializers.HyperlinkedModelSerializer):
         if 'no_player' in gamer_profile_data.keys(): no_player_data = gamer_profile_data['no_player']
         else: no_player_data = instance.gamer_profile.no_player
         if 'data' in gamer_profile_data.keys(): data_data = gamer_profile_data['data']
-        else: data_data = instance.gamer_profile.data 
+        else: 
+            data_data = instance.gamer_profile.data 
+            data_data['case'] = "C"
 
         # The following code add an attribute to gamer_profile.data when a created user updates its profile. Use it carefully!
         # Can be used in a similar fashion to update social_profile.data
