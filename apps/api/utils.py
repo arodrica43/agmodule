@@ -74,16 +74,18 @@ def retrieve_adaptative_widget_id(request):
                 # BEGIN CASE ANALYSIS ###################################################################################
                 #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data    #
                 #Once the experiment is done, you should delete this code                                               #                                                                                    #
-                if 'experimental' in args.keys():   
-                    print("Henloooooooooooooooooooooooooooooooooo --1")                                                                     #
+                if 'experimental' in args.keys():                                                                     #
                     case = user.gamer_profile.data['case']
-                    print("Henloooooooooooooooooooooooooooooooooo --2") 
                     if case == "A":
                         pass
                     elif case == "B":
                         pass
                     elif case == "C":
-                        pass                                                                                            #
+                        pass  
+
+                    lock7.release() 
+                    return JsonResponse({'gmechanic_id': 1, 'gmechanic_class': "WIP", 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
+                    #TO DO :: Need of response                                                                                          #
                                                                                                                         #
                 # END OF CASE ANALYSIS ##################################################################################
                 
