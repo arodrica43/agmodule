@@ -201,7 +201,7 @@ function select_far_rpt0(pt0){
 		dist = Math.sqrt(dot(item,pt0));
 		if(dist > m){
 			m = dist;
-			who = item
+			who = item;
 		}
 	});
 	return who;
@@ -274,8 +274,7 @@ function start_parametric_bot(username, rpt0){
 								"&p3=" + rpt0[3] + 
 								"&p4=" + rpt0[4] + 
 								"&p5=" + rpt0[5] + 
-								"&p6=" + rpt0[6] + 
-								,"","width=600,height=600");
+								"&p6=" + rpt0[6] ,"","width=600,height=600");
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
     updateLogs("Total number of bots :: " + num_bots + ".");
