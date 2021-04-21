@@ -180,14 +180,22 @@ function init_statistics(){
 }*/
 
 constants = {
-	"PT0s" : [], //Marczewski -> [x1, x2, x3, x4, x5, x6]
+	"PT0s" : [
+				[0.1,0.1,0.1,0.1,0.1,0.1,0.1],
+				[0.1,0.2,0.1,0.1,0.2,0.2,0.1],
+				[0.1,0.3,0.1,0.1,0.3,0.3,0.1],
+				[0.1,0.4,0.1,0.1,0.4,0.4,0.1],
+				[0.1,0.5,0.1,0.1,0.5,0.5,0.1],
+				[0.1,0.6,0.1,0.1,0.6,0.6,0.1],
+					
+			],
 	"cases" : ['A', 'B1a', 'B2a', 'B1b', 'B2b', 'C1a', 'C2a', 'C1b', 'C2b'],
 	"interactivities" : [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
 	"bot_accuracies" : ["low", "high"], 
 	"T+" : (x) => (10),
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
-	"t+" : 0.1, //in minutes
+	"t+" : 1, //in minutes
 	"step" : 16, // in seconds
 	"err" : 0.1 
 }
@@ -210,12 +218,10 @@ function select_far_rpt0(pt0){
 function initExperiment(){
 
 	experiments = [];
-	console.log(constants);
 	constants["PT0s"].forEach(function(pt0,pt0_idx){
 		constants["cases"].forEach(function(cs,cs_idx){
 			constants["interactivities"].forEach(function(inter,inter_idx){
 				constants["bot_accuracies"].forEach(function(acc,acc_idx){
-					console.log("??");
 					if(acc == "low"){
 						rpt0 = select_far_rpt0(pt0);
 					}else{
@@ -288,7 +294,6 @@ results = [];
 function startExperiment(){
 	updateLogs("Starting Simulation.");
 	experiments = initExperiment();
-	console.log(experiments);
 	document.getElementById("download-results-button").disabled = false;
 	total_exps = experiments.length;
 	updateLogs("Experimental cases created.");
