@@ -387,7 +387,7 @@ function create_user(pt0,exp_group, username){
             socializer: 	pt04,
             philantropist: 	pt05,
             no_player: 		pt06,
-            data: {
+            data: JSON.stringify({
             	"level":0,
             	"score":0,
             	"$":0,
@@ -397,7 +397,7 @@ function create_user(pt0,exp_group, username){
             	"gifts" : [], 
             	"accessible_mechanics" : [], 
             	"case" : exp_group  // Case selection
-            	}
+            	})
         },
         emotion_profile: {
             valence: 0,
