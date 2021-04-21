@@ -187,7 +187,7 @@ constants = {
 	"T+" : (x) => (10),
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
-	"t+" : 1, //in minutes
+	"t+" : 0.1, //in minutes
 	"step" : 16, // in seconds
 	"err" : 0.1 
 }
@@ -284,10 +284,12 @@ function start_parametric_bot(username, rpt0){
 results = [];
 
 function startExperiment(){
+	updateLogs("Starting Simulation.");
 	experiments = initExperiment();
+	console.log(experiments);
 	document.getElementById("download-results-button").disabled = false;
 	total_exps = experiments.length;
-	updateLogs("Starting Simulation.");
+	updateLogs("Experimental cases created.");
 	count = 0;
 	to_store = {}; 
 	bot_window = undefined;
