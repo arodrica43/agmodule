@@ -55,7 +55,7 @@ var count = 0;
 var colors = ['red', 'green', 'blue','purple','pink','orange','gray'];
 var traces = ['Disruptor', 'Free Spirit', 'Achiever','Player','Socializer','Philantropist', 'No Player'];
 //fun = (x ,k) => (Math.sin(k*x/(2*Math.PI)))
-
+var global_uname;
 var data = [];
 
 function adjustValue(idx,value_x,value_y) {
@@ -72,7 +72,7 @@ function updateLogs(message){
 
 var num_bots = 0;
 function startBot(){
-    window.open("https://agmodule.herokuapp.com/api/g_mechanics/20/preview?user="+document.getElementById("uname_input").value,"","width=600,height=600");
+    window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?dynamic_index=bot&user=" + global_uname,"","width=600,height=600");
     num_bots++;
     updateLogs("Bot number " + num_bots + " created");
 }
@@ -324,7 +324,7 @@ function startExperiment(){
         		"-" + exp["case"] + 
         		"-" + exp["interactivity"] + 
         		"-" + exp["accuracy"];
-
+        global_uname = uname;
         create_user(exp["PT0"], exp['case'], uname);
 
         bot_window = start_parametric_bot(uname, exp["RPT0"]);
