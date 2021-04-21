@@ -27,12 +27,13 @@ def adaptative_statistics(request):
     #request.GET.get('id', '')
     user = ""
     existing_user = False
+    exp = "experiment" in request.GET.keys():
     if "user" in request.GET.keys():
         user = Gamer.objects.filter(user__username = request.GET['user'])
         if user:
             user = user[0].user.username
             existing_user = True
-    return TemplateResponse(request, 'adaptative_statistics.html', {'users': users,'user':user, 'existing_user': existing_user})
+    return TemplateResponse(request, 'adaptative_statistics.html', {'users': users,'user':user, 'existing_user': existing_user, "experimental" : exp})
     
 def preview_gmechanic(request, gmechanic_id):
     """

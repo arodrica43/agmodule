@@ -149,26 +149,29 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     statistic.update(interaction_index = I)
                     #------------------------------------------------------------------------------------------------------------------------------
                     # Gamer profile update --------------------------------------------------------------------------------------------------------
+                    # If user experimental case = B, don't update its profile
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
-                        current_gstate = np.array(current_user[0].gamer_profile.vectorize())
+                        #TO DELETE :: Delete if clause once the experiment is finished
+                        if "B" not in current_user.gamer_profile.data['case']:
+                            current_gstate = np.array(current_user[0].gamer_profile.vectorize())
 
-                        #Statistics Without valoration
-                        #current_statistics = np.array(instance.statistics_vector(data['user']))
-                        #Statistics With valoration
-                        current_statistics = np.array(instance.statistics_with_valoration_vector(data['user']))
-                        #print("Here",instance.matrix().T.dot(current_statistics))
-                        #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
-                        new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()[:len(current_statistics),:]).dot(current_statistics))
-                        #print(new_gstate)
-                        current_user[0].gamer_profile.disruptor = new_gstate[0]
-                        current_user[0].gamer_profile.free_spirit = new_gstate[1]
-                        current_user[0].gamer_profile.achiever = new_gstate[2]
-                        current_user[0].gamer_profile.player = new_gstate[3]
-                        current_user[0].gamer_profile.socializer = new_gstate[4]
-                        current_user[0].gamer_profile.philantropist = new_gstate[5]
-                        current_user[0].gamer_profile.no_player = new_gstate[6]
-                        current_user[0].gamer_profile.save()                
+                            #Statistics Without valoration
+                            #current_statistics = np.array(instance.statistics_vector(data['user']))
+                            #Statistics With valoration
+                            current_statistics = np.array(instance.statistics_with_valoration_vector(data['user']))
+                            #print("Here",instance.matrix().T.dot(current_statistics))
+                            #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
+                            new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()[:len(current_statistics),:]).dot(current_statistics))
+                            #print(new_gstate)
+                            current_user[0].gamer_profile.disruptor = new_gstate[0]
+                            current_user[0].gamer_profile.free_spirit = new_gstate[1]
+                            current_user[0].gamer_profile.achiever = new_gstate[2]
+                            current_user[0].gamer_profile.player = new_gstate[3]
+                            current_user[0].gamer_profile.socializer = new_gstate[4]
+                            current_user[0].gamer_profile.philantropist = new_gstate[5]
+                            current_user[0].gamer_profile.no_player = new_gstate[6]
+                            current_user[0].gamer_profile.save()                
                     #------------------------------------------------------------------------------------------------------------------------------
                     serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
                     serializer.is_valid(raise_exception=True)
@@ -432,7 +435,6 @@ class PointViewSet(GMechanicViewSet):
 
     def logic(self,queryset,request):
          # I don't know if its necessary, sience we have lock in parent class
-        print("-________----------------__---------___________---------___--------__--__-__------______________------------_____________----_---_-_-___----------")
         if 'user' in request.GET.keys():
             if request.GET['user']:
                 user = Gamer.objects.filter(user__username = request.GET['user'])

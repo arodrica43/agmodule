@@ -71,23 +71,50 @@ def retrieve_adaptative_widget_id(request):
             user = Gamer.objects.filter(user__username = args['user'])
             if user:
                 user = user[0]
-                # BEGIN CASE ANALYSIS ###################################################################################
-                #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data    #
-                #Once the experiment is done, you should delete this code                                               #                                                                                    #
-                if 'experimental' in args.keys():                                                                     #
+                # BEGIN CASE ANALYSIS ################################################################################################################################
+                #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data                                                 #
+                #Once the experiment is done, you should delete this code                                                                                            #                                                                                    
+                if 'experimental' in args.keys():                                                                     
                     case = user.gamer_profile.data['case']
-                    if case == "A":
-                        pass
-                    elif case == "B":
-                        pass
-                    elif case == "C":
-                        pass  
+                    if "A" in case: # Random mechanic                                                                                                                #
+                        gmechanic = rdm.choice(GMechanic.objects.all())
+                    elif "B" in case or "C" in case: 
+                        #Case B :: Gamer profile isn't updated at every GMechanic&User PUT request -- See at Serializers.GMechanic.update (case B don't modify PT)   #
+                        #Case C :: Dynamic Gamer Profile (Our main algorithm). Only change on Serializers.GMechanic.update                                           #
+                        #Lavue cases are tagged by 'a' and 'b', while choice cases by '1' and '2'                                                                    #
+                        
+                        #Lavue Matrix Utilities                                                                                                                      #
+                        #Lavue case -- Current matrix = 1s and 0s matrix => alg ~ choose PTi predominating and ponderate mechanics of the same type in utilities     #
+                        utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                        #Lavue case -- We can consider a refined matrix, so every mechanic has its own MPT (Mechanic PT)                                             #
+                        # WIP :: Compute utilities from a refined matrix (refined_widget_matrix())                                                                  #
+                        # utilities = refined_widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                        #GMechanic Choosing                                                                                                                          #
+                        if "1" in case: #Max Random                                                                                                                  #
+                            m = max(utilities)
+                            gmechanics = GMechanic.objects.all()
+                            gmechanic = rdm.choice([gmechanics[i] for i in range(len(utilities)) if utilities[i] == m])
+                        elif "2" in case: #Weighted Random                                                                                                           #
+                            prob = utilities/utilities.sum()
+                            r = rdm.random()
+                            acc, idx = 0, 0
+                            for i in range(len(prob)):
+                                pi = prob[i]
+                                if acc < r and r < acc + pi:
+                                    idx = i
+                                    break
+                                acc += pi
+                            gmechanic = GMechanic.objects.all()[idx] 
 
+                    _ , val = g_mechanic_cast(gmechanic.pk)
                     lock7.release() 
-                    return JsonResponse({'gmechanic_id': 1, 'gmechanic_class': "WIP", 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
-                    #TO DO :: Need of response                                                                                          #
-                                                                                                                        #
-                # END OF CASE ANALYSIS ##################################################################################
+                    return JsonResponse({
+                                            'gmechanic_id': gmechanic.pk,
+                                            'gmechanic_class': val, 
+                                            'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]
+                                        })
+                                                                                                                                                                     #                                                                                                                                    #
+                # END OF CASE ANALYSIS ###############################################################################################################################
                 
                 # This is the default adaptative_widget procedure
                 else: 
