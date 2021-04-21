@@ -12,7 +12,7 @@ p {
   margin-left:30px;
 }
 </style>
-
+<br>
 <h1 style="text-align:center;">Gamer Profile Test</h1>
 {% if not experimental %}
 	{% if not existing_user %}
@@ -26,7 +26,7 @@ p {
 	<input type="number" step="0.001" id="Socializer" min="0" max="1"></input>
 	<input type="number" step="0.001" id="Philantropist" min="0" max="1"></input>
 	<input type="number" step="0.001" id="No Player" min="0" max="1"></input>
-	<button onclick="create_user('C')" class="btn btn-primary">Create User</button>
+	<button onclick="create_user('undefined','C', 'undefined')" class="btn btn-primary">Create User</button>
 	</div>
 	<hr>
 	{% else %}
@@ -38,12 +38,16 @@ p {
   	<br>
 {% else %}
 	<br><br>
-	<div style="text-align:center;"><button type="button" class="btn btn-primary" onclick="startExperiment()">Start Experiment</button></div>
+	<input type="text" class="form-control" style="margin:5vw;width:90%;" placeholder="Key name for the experiment..." id="key_name_input"></input>
+	<div style="text-align:center;">
+		<button type="button" class="btn btn-primary" onclick="startExperiment()">Start Experiment</button> 
+		<button type="button" id="download-results-button" class="btn btn-primary" onclick="download_results()" disabled>Download Results</button>
+	</div>
   	<br>
 {% endif %}
 
 	<div id='graph-div'></div>
-  	<div style="background:whitesmoke; overflow: scroll; height: 240px; font-size:12px;" id ="logs"></div>
+  	<div style="background:whitesmoke; overflow: scroll; height: 500px; font-size:12px;" id ="logs"></div>
 
 <script>
 
@@ -168,8 +172,189 @@ function init_statistics(){
 
 {% endif %}
 
-function create_user(exp_group){
+/*function performExperiment(){
+		args = select_experiment();
+		user = create_user(args['PT0'], args['case'], args['name']);
+		sim = start_simulation(args['name'], args['interactivity'], args['T+'], args['T-'], args['t+'], args['t-'], args['step'], args['err'])
+
+}*/
+
+constants = {
+	"PT0s" : [], //Marczewski -> [x1, x2, x3, x4, x5, x6]
+	"cases" : ['A', 'B1a', 'B2a', 'B1b', 'B2b', 'C1a', 'C2a', 'C1b', 'C2b'],
+	"interactivities" = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+	"bot_accuracies" : ["low", "high"], 
+	"T+" : (x) => (10),
+	"T-" : (x) => (-2.5*x + 3),
+	"t-" : 0,
+	"t+" : 20, //in minutes
+	"step" : 16, // in seconds
+	"err" : 0.1 
+}
+
+dot = (a, b) => a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
+
+function select_far_rpt0(pt0){
+	m = 0;
+	who = pt0;
+	constants['PT0s'].forEach(function(item,index){
+		dist = Math.sqrt(dot(item,pt0));
+		if(dist > m){
+			m = dist;
+			who = item
+		}
+	});
+	return who;
+}
+
+function initExperiment(){
+
+	experiments = [];
+	constants["PT0s"].forEach(function(pt0,pt0_idx){
+		constants["cases"].forEach(function(cs,cs_idx){
+			constants["interactivities"].forEach(function(inter,inter_idx){
+				constants["bot_accuracies"].forEach(function(acc,acc_idx){
+					if(acc == "low"){
+						rpt0 = select_far_rpt0(pt0);
+					}else{
+						rpt0 = pt0
+					}
+					experiments.push({"PT0" : pt0, "PT0_index" : pt0_idx, "RPT0" : rpt0, "case" : cs, "interactivity" : inter, "accuracy" : acc});
+				});
+			});
+		});
+	});
+	return experiments;
+}
+
+function init_parametric_statistics(pt0, username){
+  //alert(document.getElementById("uname_input").value);
+
+  for (var i = 0; i < traces.length;i++){
+    data.push({
+        x: [0], 
+        y: [pt0[i]], 
+        type: 'scatter',
+        name: traces[i],
+        line: {
+          color: colors[i],
+        },
+    });
+  }
+
+  Plotly.newPlot('graph-div', data);
+  var timer = setInterval(function() {
+    count++;
+    var new_values = [];
+    fetch('https://agmodule.herokuapp.com/api/gamers/'+ username + "/")
+    .then(response => response.json())
+    .then(function(data){
+      new_values.push(data.gamer_profile.disruptor);
+      new_values.push(data.gamer_profile.free_spirit);
+      new_values.push(data.gamer_profile.achiever);
+      new_values.push(data.gamer_profile.player);
+      new_values.push(data.gamer_profile.socializer);
+      new_values.push(data.gamer_profile.philantropist);
+      new_values.push(data.gamer_profile.no_player);
+      updateLogs("Profile data fetch :: " + username);
+      for (var i = 0; i < traces.length;i++){
+        updateLogs("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PT(t)-" + i + " :: " + (Math.round(new_values[i]*1000))/1000);
+        adjustValue(i,count,new_values[i]);
+      } 
+    });
+    
+  }, constants["step"]*1000, "JavaScript");
+}
+
+function start_parametric_bot(username, rpt0){
+	bot_window = window.open("https://agmodule.herokuapp.com/api/g_mechanics/20/preview?user=" + username +
+								"&p0=" + rpt0[0] + 
+								"&p1=" + rpt0[1] + 
+								"&p2=" + rpt0[2] + 
+								"&p3=" + rpt0[3] + 
+								"&p4=" + rpt0[4] + 
+								"&p5=" + rpt0[5] + 
+								"&p6=" + rpt0[6] + 
+								,"","width=600,height=600");
+    num_bots++;
+    updateLogs("New Bot created :: " + username + ".");
+    updateLogs("Total number of bots :: " + num_bots + ".");
+    return bot_window;
+}
+
+results = [];
+
+function startExperiment(){
+	experiments = initExperiment();
+	document.getElementById("download-results-button").disabled = false;
+	total_exps = experiments.length;
+	updateLogs("Starting Simulation.");
+	count = 0;
+	to_store = {}; 
+	bot_window = undefined;
+	experiment_timer = setInterval(function() {
+        //console.log(tmp_main_t / 100);
+        if(Object.keys(to_store).length > 0){
+        	//update store
+        	to_store["evolution"] = data;
+        	//save store
+        	results.push(to_store);
+        	//clear store and bot counter
+        	to_store = {};
+        	data = [];
+        	bot_window.close();
+        	if(num_bots > 0){
+        		num_bots--;
+        	}
+        }
+        updateLogs("Simulation Progress :: " + count + " / " + total_exps  + " experiments realized.");
+        exp = experiments.pop();
+        count++;
+        uname = "exp-" + document.getElementById("key_name_input").value + 
+        		"-" + count + 
+        		"-" + exp["PT0_index"] + 
+        		"-" + exp["case"] + 
+        		"-" + exp["interactivity"] + 
+        		"-" + exp["accuracy"];
+
+        create_user(exp["PT0"], exp['case'], uname);
+
+        bot_window = start_parametric_bot(uname, exp["RPT0"]);
+
+        init_parametric_statistics(exp["PT0"], uname);
+
+        to_store["username"] = uname;
+       	to_store["experiment"] = exp;
+        to_store["index"] = count;
+
+    }, (constants["t+"] - constants["t-"])*60*1000, "JavaScript"); // Measure in milisecond
+}
+
+
+function create_user(pt0,exp_group, username){
     // POST request using fetch() 
+
+    pt00 = pt0[0];
+    pt01 = pt0[1];
+    pt02 = pt0[2];
+	pt03 = pt0[3];
+	pt04 = pt0[4];
+	pt05 = pt0[5];
+	pt06 = pt0[6];  
+    uname = username;
+
+    if(pt0 == "undefined"){
+    	pt00 = document.getElementById("Disruptor").value;
+	    pt01 = document.getElementById("Free Spirit").value;
+	    pt02 = document.getElementById("Achiever").value;
+		pt03 = document.getElementById("Player").value;
+		pt04 = document.getElementById("Socializer").value;
+		pt05 = document.getElementById("Philantropist").value;
+		pt06 = document.getElementById("No Player").value;  
+		uname = document.getElementById("uname_input").value;
+    }
+
+
   fetch("https://agmodule.herokuapp.com/api/gamers/", { 
         
       // Adding method type 
@@ -178,7 +363,7 @@ function create_user(exp_group){
       // Adding body or contents to send 
       body: JSON.stringify({
         user: {
-            username: document.getElementById("uname_input").value,
+            username: uname,
             email: ""
         },
         social_profile: {
@@ -187,13 +372,13 @@ function create_user(exp_group){
             data: {}
         },
         gamer_profile: {
-            disruptor: document.getElementById("Disruptor").value,
-            free_spirit: document.getElementById("Free Spirit").value,
-            achiever: document.getElementById("Achiever").value,
-            player: document.getElementById("Player").value,
-            socializer: document.getElementById("Socializer").value,
-            philantropist: document.getElementById("Philantropist").value,
-            no_player: document.getElementById("No Player").value,
+            disruptor: 		pt00,
+            free_spirit: 	pt01,
+            achiever: 		pt02,
+            player: 		pt03,
+            socializer: 	pt04,
+            philantropist: 	pt05,
+            no_player: 		pt06,
             data: {
             	"level":0,
             	"score":0,
@@ -229,6 +414,20 @@ function create_user(exp_group){
  .catch(error => (console.log("Error: " + error))); 
 
 }
+
+function download_results(){
+	downloadObjectAsJson(results, "experimental-results");
+}
+
+function downloadObjectAsJson(exportObj, exportName){
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
 </script>
 
 </body>
