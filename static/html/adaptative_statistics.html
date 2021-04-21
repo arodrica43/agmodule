@@ -418,9 +418,6 @@ function create_user(pt0,exp_group, username){
     
   // Displaying results to console 
   .then(json => console.log(json))
-  .then(function(){
-    init_statistics();
-  })
  .catch(error => (console.log("Error: " + error))); 
 
 }
