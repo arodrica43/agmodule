@@ -27,7 +27,7 @@ def adaptative_statistics(request):
     #request.GET.get('id', '')
     user = ""
     existing_user = False
-    exp = "experiment" in request.GET.keys()
+    exp = "experimental" in request.GET.keys()
     if "user" in request.GET.keys():
         user = Gamer.objects.filter(user__username = request.GET['user'])
         if user:
