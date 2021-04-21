@@ -210,6 +210,7 @@ function select_far_rpt0(pt0){
 function initExperiment(){
 
 	experiments = [];
+	console.log(constants);
 	constants["PT0s"].forEach(function(pt0,pt0_idx){
 		constants["cases"].forEach(function(cs,cs_idx){
 			constants["interactivities"].forEach(function(inter,inter_idx){
