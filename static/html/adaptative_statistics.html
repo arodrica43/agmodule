@@ -305,6 +305,7 @@ function startExperiment(){
 	count = 0;
 	to_store = {}; 
 	bot_window = undefined;
+	experiment_timer = undefined;
 
 	exp_procedure = function() {
         //console.log(tmp_main_t / 100);
@@ -328,7 +329,14 @@ function startExperiment(){
         }
         updateLogs("Simulation Progress :: " + count + " / " + total_exps  + " experiments realized.");
         updateLogs("Estimated remaining time :: " + (1/60)*(total_exps - count)*(constants["t+"] - constants["t-"]) + " hours.");
-        exp = experiments.pop();
+        if(experiments.length > 0){
+        	exp = experiments.pop();
+        }else{
+        	updateLogs("Simulation finished.")
+        	download_results();
+        	clearInterval(experiment_timer);
+        	return 0
+        }
         count++;
         uname = "exp_" + document.getElementById("key_name_input").value + 
         		"_" + count + 
