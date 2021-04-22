@@ -41,7 +41,6 @@ p {
 	<input type="text" class="form-control" style="margin:5vw;width:90%;" placeholder="Key name for the experiment..." id="key_name_input"></input>
 	<div style="text-align:center;">
 		<button type="button" class="btn btn-primary" onclick="startExperiment()">Start Experiment</button> 
-		<button type="button" class="btn btn-primary" onclick="startBot()">Start Bot</button>
 		<button type="button" id="download-results-button" class="btn btn-primary" onclick="download_results()" disabled>Download Results</button>
 	</div>
   	<br>
@@ -276,7 +275,14 @@ function init_parametric_statistics(pt0, username){
 }
 
 function start_parametric_bot(username, rpt0){
-	bot_window = window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/" ,"","width=600,height=600");
+	bot_window = window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?user=" + username +
+								"&p0=" + rpt0[0] + 
+								"&p1=" + rpt0[1] + 
+								"&p2=" + rpt0[2] + 
+								"&p3=" + rpt0[3] + 
+								"&p4=" + rpt0[4] + 
+								"&p5=" + rpt0[5] + 
+								"&p6=" + rpt0[6] ,"","width=600,height=600");
     console.log(bot_window);
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
@@ -306,8 +312,8 @@ function startExperiment(){
         	to_store = {};
         	Plotly.purge("graph-div");
         	data = [];
-        	//console.log("Bot window closing :: " + bot_window);
-        	//bot_window.close();
+        	console.log("Bot window closing :: " + bot_window);
+        	bot_window.close();
         	if(num_bots > 0){
         		num_bots--;
         	}
@@ -324,10 +330,9 @@ function startExperiment(){
         global_uname = uname;
         create_user(exp["PT0"], exp['case'], uname);
 
-        startBot();
-        //bot_window = start_parametric_bot(uname, exp["RPT0"]);
+        bot_window = start_parametric_bot(uname, exp["RPT0"]);
 
-        //console.log("Bot window openening :: " + bot_window);
+        console.log("Bot window openening :: " + bot_window);
 
         init_parametric_statistics(exp["PT0"], uname);
 
