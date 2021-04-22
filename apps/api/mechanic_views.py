@@ -92,6 +92,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
         return self.abstract_retrieve(request,pk)
    
     def update(self, request,pk):
+        print("---------------------------------")
         lock.acquire()
         try:
             instance = self.queryset.get(id=pk)
