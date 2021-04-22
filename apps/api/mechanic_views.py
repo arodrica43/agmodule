@@ -161,8 +161,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     # If user experimental case = B, don't update its profile
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
+                        print("---------------------------------6")
                         #TO DELETE :: Delete if clause once the experiment is finished
                         if "B" not in current_user.gamer_profile.data['case']:
+                            print("---------------------------------7")
                             current_gstate = np.array(current_user[0].gamer_profile.vectorize())
 
                             #Statistics Without valoration
@@ -180,14 +182,15 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             current_user[0].gamer_profile.socializer = new_gstate[4]
                             current_user[0].gamer_profile.philantropist = new_gstate[5]
                             current_user[0].gamer_profile.no_player = new_gstate[6]
-                            current_user[0].gamer_profile.save()                
+                            current_user[0].gamer_profile.save()         
+                            print("---------------------------------8")       
                     #------------------------------------------------------------------------------------------------------------------------------
+                          print("---------------------------------9")
                     
-                    print("---------------------------------6")
                     serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
                     serializer.is_valid(raise_exception=True)
                     serializer.save()
-                    print("---------------------------------7")
+                  
                     lock.release()
                     return Response(serializer.data)
                 else:
