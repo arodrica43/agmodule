@@ -309,7 +309,9 @@ function startExperiment(){
         	results.push(to_store);
         	//clear store and bot counter
         	to_store = {};
+        	Plotly.purge("graph-div");
         	data = [];
+        	console.log("Bot window closing :: " + bot_window);
         	bot_window.close();
         	if(num_bots > 0){
         		num_bots--;
@@ -328,6 +330,8 @@ function startExperiment(){
         create_user(exp["PT0"], exp['case'], uname);
 
         bot_window = start_parametric_bot(uname, exp["RPT0"]);
+        
+        console.log("Bot window openening :: " + bot_window);
 
         init_parametric_statistics(exp["PT0"], uname);
 
