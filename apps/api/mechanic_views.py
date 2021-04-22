@@ -95,12 +95,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
         lock.acquire()
         try:
             instance = self.queryset.get(id=pk)
-            print("---------------------------------1")
             data = request.data
             if 'user' in data.keys():
                 if data['user'] != "dynamic_user":
-
-                    print("---------------------------------2")
                     statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                     if not statistic:
                         try:        
@@ -109,8 +106,6 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         except:
                             lock.release()
                             raise Http404
-
-                    print("---------------------------------3")
                     for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time', 'valoration']:
                         uplog = statistic[0].log
                         if arg in statistic[0].log.keys() and arg != 'valoration':
@@ -128,8 +123,6 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                                             }]
                             uplog['history'] = [x for x in uplog['history'] if x[0]['type'] != "Scroll"] + [scrolls_join]
                         statistic.update(log = uplog)
-
-                    print("---------------------------------4")
                     #Interaction index update ----------------------------------------------------------------------------------------------------
                     # for s in InteractionStatistic.objects.all():
                     #     s.log = {}
@@ -154,18 +147,13 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
                     I = I/3
                     statistic.update(interaction_index = I)
-
-                    print("---------------------------------5")
                     #------------------------------------------------------------------------------------------------------------------------------
                     # Gamer profile update --------------------------------------------------------------------------------------------------------
                     # If user experimental case = B, don't update its profile
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
-                        print("---------------------------------6")
-                        print(current_user)
                         #TO DELETE :: Delete if clause once the experiment is finished
-                        if "B" not in current_user.gamer_profile.data['case']:
-                            print("---------------------------------7")
+                        if "B" not in current_user[0].gamer_profile.data['case']:
                             current_gstate = np.array(current_user[0].gamer_profile.vectorize())
 
                             #Statistics Without valoration
@@ -183,15 +171,11 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             current_user[0].gamer_profile.socializer = new_gstate[4]
                             current_user[0].gamer_profile.philantropist = new_gstate[5]
                             current_user[0].gamer_profile.no_player = new_gstate[6]
-                            current_user[0].gamer_profile.save()         
-                            print("---------------------------------8")       
+                            current_user[0].gamer_profile.save()                
                     #------------------------------------------------------------------------------------------------------------------------------
-                        print("---------------------------------9")
-                    
                     serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
                     serializer.is_valid(raise_exception=True)
                     serializer.save()
-                  
                     lock.release()
                     return Response(serializer.data)
                 else:
