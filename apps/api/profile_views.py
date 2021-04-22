@@ -56,6 +56,7 @@ class GamerViewSet(viewsets.ModelViewSet):
         gamer_lock.acquire()
         try:
             queryset = Gamer.objects.filter(user__username=pk)
+            print("User found ::", queryset,"---------------------------------------------")
             try:     
                 pk = int(pk)
                 queryset = Gamer.objects.filter(user__id=pk)
@@ -79,8 +80,10 @@ class GamerViewSet(viewsets.ModelViewSet):
                     gamer_lock.release()
                     return Response(serializer.data)
                 else:
+                    print("Fail 2")
                     raise Http404
         except:
+            print("Fail 1")
             gamer_lock.release()
             raise Http404
 
