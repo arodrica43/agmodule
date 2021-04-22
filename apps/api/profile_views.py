@@ -53,43 +53,30 @@ class GamerViewSet(viewsets.ModelViewSet):
     filter_fields = ('user__username' )
 
     def retrieve(self, request, pk=None):
-        print("Fail 0")
-        gamer_lock.acquire()
-        try:
-            print("Prefind ::", pk, "--------------------------------")
-            queryset = Gamer.objects.filter(user__username=pk)
-            print("User found ::", queryset,"---------------------------------------------")
-            try:     
-                pk = int(pk)
-                queryset = Gamer.objects.filter(user__id=pk)
-                if len(queryset) > 0:
-                    sp_data = queryset[0].social_profile.data
-                    sp_data['followers'] = len([x for x in Gamer.objects.all() if queryset[0].user.username in x.social_profile.data['friends']])
-                    sp = SocialProfile.objects.filter(id = queryset[0].social_profile.id)
-                    sp.update(data = sp_data)
-                    serializer = GamerSerializer(queryset[0], context={'request': request})
-                    gamer_lock.release()    
-                    return Response(serializer.data)
-                else:
-                    print("Fail 1")
-                    raise Http404       
-            except ValueError as error:
-                if len(queryset) > 0:
-                    sp_data = queryset[0].social_profile.data
-                    sp_data['followers'] = len([x for x in Gamer.objects.all() if queryset[0].user.username in x.social_profile.data['friends']])
-                    sp = SocialProfile.objects.filter(id = queryset[0].social_profile.id)
-                    sp.update(data = sp_data)
-                    serializer = GamerSerializer(queryset[0], context={'request': request})
-                    gamer_lock.release()
-                    return Response(serializer.data)
-                else:
-                    print("Fail 2")
-                    raise Http404
-        except:
-            print("Fail 3")
-            gamer_lock.release()
-            raise Http404
 
+        queryset = Gamer.objects.filter(user__username=pk)
+        try:     
+            pk = int(pk)
+            queryset = Gamer.objects.filter(user__id=pk)
+            if len(queryset) > 0:
+                sp_data = queryset[0].social_profile.data
+                sp_data['followers'] = len([x for x in Gamer.objects.all() if queryset[0].user.username in x.social_profile.data['friends']])
+                sp = SocialProfile.objects.filter(id = queryset[0].social_profile.id)
+                sp.update(data = sp_data)
+                serializer = GamerSerializer(queryset[0], context={'request': request})    
+                return Response(serializer.data)
+            else:
+                raise Http404       
+        except ValueError as error:
+            if len(queryset) > 0:
+                sp_data = queryset[0].social_profile.data
+                sp_data['followers'] = len([x for x in Gamer.objects.all() if queryset[0].user.username in x.social_profile.data['friends']])
+                sp = SocialProfile.objects.filter(id = queryset[0].social_profile.id)
+                sp.update(data = sp_data)
+                serializer = GamerSerializer(queryset[0], context={'request': request})
+                return Response(serializer.data)
+            else:
+                raise Http404
 
     def update(self, request, *args, **kwargs):
         #lock7.acquire()

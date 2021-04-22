@@ -324,12 +324,12 @@ function startExperiment(){
         updateLogs("Simulation Progress :: " + count + " / " + total_exps  + " experiments realized.");
         exp = experiments.pop();
         count++;
-        uname = "exp-" + document.getElementById("key_name_input").value + 
-        		"-" + count + 
-        		"-" + exp["PT0_index"] + 
-        		"-" + exp["case"] + 
-        		"-" + exp["interactivity"] + 
-        		"-" + exp["accuracy"];
+        uname = "exp_" + document.getElementById("key_name_input").value + 
+        		"_" + count + 
+        		"_" + exp["PT0_index"] + 
+        		"_" + exp["case"] + 
+        		"_" + Math.round(10*exp["interactivity"]) + 
+        		"_" + exp["accuracy"];
         global_uname = uname;
         create_user(exp["PT0"], exp['case'], uname);
 
