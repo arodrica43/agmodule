@@ -162,7 +162,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
                         print("---------------------------------6")
-                        print(current_user.gamer_profile.data)
+                        print(current_user)
                         #TO DELETE :: Delete if clause once the experiment is finished
                         if "B" not in current_user.gamer_profile.data['case']:
                             print("---------------------------------7")
