@@ -196,7 +196,7 @@ constants = {
 	"T+" : (x) => (10),
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
-	"t+" : 0.5, //in minutes
+	"t+" : 10, //in minutes
 	"step" : 5, // in seconds
 	"err" : 0.1 
 }
@@ -265,13 +265,12 @@ function init_parametric_statistics(pt0, username){
       new_values.push(data.gamer_profile.socializer);
       new_values.push(data.gamer_profile.philantropist);
       new_values.push(data.gamer_profile.no_player);
-      updateLogs("Profile data fetch :: " + username);
       profile_str = "";
       for (var i = 0; i < traces.length;i++){
       	profile_str += " " + (Math.round(new_values[i]*1000))/1000;
         adjustValue(i,graph_count,new_values[i]);
       } 
-      updateLogs("Profile data fetch :: " + profile_str);
+      updateLogs("Profile data fetch [" + username + "] :: " + profile_str);
     });
     
   }, constants["step"]*1000, "JavaScript");
@@ -301,8 +300,8 @@ function startExperiment(){
 	document.getElementById("download-results-button").disabled = false;
 	document.getElementById("begin-exp-button").disabled = true;
 	total_exps = experiments.length;
-	updateLogs("Experimental cases created :: " + experiments.length + " cases.");
-	updateLogs("Estimated execution time :: " + (1/60)*experiments.length*(constants["t+"] - constants["t-"]) + " hours.");
+	updateLogs("Experimental cases created :: " + total_exps + " cases.");
+	updateLogs("Estimated execution time :: " + (1/60)*total_exps*(constants["t+"] - constants["t-"]) + " hours.");
 	count = 0;
 	to_store = {}; 
 	bot_window = undefined;
@@ -328,6 +327,7 @@ function startExperiment(){
         	}
         }
         updateLogs("Simulation Progress :: " + count + " / " + total_exps  + " experiments realized.");
+        updateLogs("Estimated remaining time :: " + (1/60)*(total_exps - count)*(constants["t+"] - constants["t-"]) + " hours.");
         exp = experiments.pop();
         count++;
         uname = "exp_" + document.getElementById("key_name_input").value + 
