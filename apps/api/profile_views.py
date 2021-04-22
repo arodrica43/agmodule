@@ -69,6 +69,7 @@ class GamerViewSet(viewsets.ModelViewSet):
                     gamer_lock.release()    
                     return Response(serializer.data)
                 else:
+                    print("Fail 1")
                     raise Http404       
             except ValueError as error:
                 if len(queryset) > 0:
@@ -83,7 +84,7 @@ class GamerViewSet(viewsets.ModelViewSet):
                     print("Fail 2")
                     raise Http404
         except:
-            print("Fail 1")
+            print("Fail 3")
             gamer_lock.release()
             raise Http404
 
