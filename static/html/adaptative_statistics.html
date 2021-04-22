@@ -301,6 +301,7 @@ function startExperiment(){
 	document.getElementById("begin-exp-button").disabled = true;
 	total_exps = experiments.length;
 	updateLogs("Experimental cases created :: " + experiments.length + " cases.");
+	updateLogs("Estimated execution time :: " + (1/60)*experiments.length*(constants["t+"] - constants["t-"]) + " hours.");
 	count = 0;
 	to_store = {}; 
 	bot_window = undefined;
