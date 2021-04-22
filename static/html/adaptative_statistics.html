@@ -283,6 +283,7 @@ function start_parametric_bot(username, rpt0){
 								"&p4=" + rpt0[4] + 
 								"&p5=" + rpt0[5] + 
 								"&p6=" + rpt0[6] ,"","width=600,height=600");
+    console.log(bot_window);
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
     updateLogs("Total number of bots :: " + num_bots + ".");
@@ -330,7 +331,7 @@ function startExperiment(){
         create_user(exp["PT0"], exp['case'], uname);
 
         bot_window = start_parametric_bot(uname, exp["RPT0"]);
-        
+
         console.log("Bot window openening :: " + bot_window);
 
         init_parametric_statistics(exp["PT0"], uname);
