@@ -213,7 +213,7 @@ class InteractionStatisticSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = InteractionStatistic
         fields = ['url', 'id','mechanic','user', 'log','interaction_index']
-        ordering = ['-id']
+        #ordering = ['-id']
         #read_only_fields =
              
         
