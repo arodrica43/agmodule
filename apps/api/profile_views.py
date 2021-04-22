@@ -76,7 +76,7 @@ class GamerViewSet(viewsets.ModelViewSet):
                     sp = SocialProfile.objects.filter(id = queryset[0].social_profile.id)
                     sp.update(data = sp_data)
                     serializer = GamerSerializer(queryset[0], context={'request': request})
-                     gamer_lock.release()
+                    gamer_lock.release()
                     return Response(serializer.data)
                 else:
                     raise Http404
