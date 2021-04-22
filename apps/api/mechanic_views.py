@@ -92,7 +92,6 @@ class GMechanicViewSet(viewsets.ModelViewSet):
         return self.abstract_retrieve(request,pk)
    
     def update(self, request,pk):
-        print("---------------------------------")
         lock.acquire()
         try:
             instance = self.queryset.get(id=pk)
@@ -186,6 +185,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                 lock.release()
                 return super().update(request,pk)
         except:
+
+            print("---------------------------------")
             lock.release()
             raise Http404     
            
