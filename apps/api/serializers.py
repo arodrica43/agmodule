@@ -8,6 +8,7 @@ from apps.core.models import *
 import threading
 
 lock = threading.Lock()
+gamer_lock = threading.Lock()
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -51,75 +52,81 @@ class GamerSerializer(serializers.HyperlinkedModelSerializer):
 
     def create(self, validated_data):
         #try:
-        user_data = validated_data.pop('user')
-
-       
-        #print(user_data)
+        gamer_lock.acquire()
         try:
-            individual_group = Group.objects.create(name = 'individual_' + user_data['username'])
-        #print(user_data)
-            user_data['groups'] += [individual_group]
-        except: pass
-        user = UserSerializer.create(UserSerializer(),validated_data=user_data)
-        
-        #user.set_password(validated_data.get('username'))
-        user.save()
-        #print(validated_data)
+            user_data = validated_data.pop('user')
 
-        gamer_profile_data = validated_data.pop('gamer_profile')
-        emotion_profile_data = validated_data.pop('emotion_profile')
-        social_profile_data = validated_data.pop('social_profile')
+           
+            #print(user_data)
+            try:
+                individual_group = Group.objects.create(name = 'individual_' + user_data['username'])
+            #print(user_data)
+                user_data['groups'] += [individual_group]
+            except: pass
+            user = UserSerializer.create(UserSerializer(),validated_data=user_data)
+            
+            #user.set_password(validated_data.get('username'))
+            user.save()
+            #print(validated_data)
 
-        if 'disruptor' in gamer_profile_data.keys(): disruptor_data = gamer_profile_data['disruptor']
-        else: disruptor_data = 1
-        if 'free_spirit' in gamer_profile_data.keys(): free_spirit_data = gamer_profile_data['free_spirit']
-        else: free_spirit_data = 1
-        if 'achiever' in gamer_profile_data.keys(): achiever_data = gamer_profile_data['achiever']
-        else: achiever_data = 1
-        if 'player' in gamer_profile_data.keys(): player_data = gamer_profile_data['player']
-        else: player_data = 1
-        if 'socializer' in gamer_profile_data.keys(): socializer_data = gamer_profile_data['socializer']
-        else: socializer_data = 1
-        if 'philantropist' in gamer_profile_data.keys(): philantropist_data = gamer_profile_data['philantropist']
-        else: philantropist_data = 1
-        if 'no_player' in gamer_profile_data.keys(): no_player_data = gamer_profile_data['no_player']
-        else: no_player_data = 0
-        if 'data' in gamer_profile_data.keys(): 
-            if gamer_profile_data['data']:
-                data_data = gamer_profile_data['data']
-            else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C2"}
-        else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C2" }
-        
-        gprofile = GamerProfile.objects.create(disruptor = disruptor_data,
-                                                free_spirit =  free_spirit_data,
-                                                achiever =  achiever_data,
-                                                player =  player_data,
-                                                socializer =  socializer_data,
-                                                philantropist =  philantropist_data,
-                                                no_player =  no_player_data,
-                                                data = data_data)
+            gamer_profile_data = validated_data.pop('gamer_profile')
+            emotion_profile_data = validated_data.pop('emotion_profile')
+            social_profile_data = validated_data.pop('social_profile')
 
-        if 'valence' in emotion_profile_data.keys(): valence_data = emotion_profile_data['valence']
-        else: valence_data = 0
-        if 'arousal' in emotion_profile_data.keys(): arousal_data = emotion_profile_data['arousal']
-        else: arousal_data = 1
-        
-        eprofile = EmotionProfile.objects.create(valence = valence_data,
-                                                arousal =  arousal_data)
+            if 'disruptor' in gamer_profile_data.keys(): disruptor_data = gamer_profile_data['disruptor']
+            else: disruptor_data = 1
+            if 'free_spirit' in gamer_profile_data.keys(): free_spirit_data = gamer_profile_data['free_spirit']
+            else: free_spirit_data = 1
+            if 'achiever' in gamer_profile_data.keys(): achiever_data = gamer_profile_data['achiever']
+            else: achiever_data = 1
+            if 'player' in gamer_profile_data.keys(): player_data = gamer_profile_data['player']
+            else: player_data = 1
+            if 'socializer' in gamer_profile_data.keys(): socializer_data = gamer_profile_data['socializer']
+            else: socializer_data = 1
+            if 'philantropist' in gamer_profile_data.keys(): philantropist_data = gamer_profile_data['philantropist']
+            else: philantropist_data = 1
+            if 'no_player' in gamer_profile_data.keys(): no_player_data = gamer_profile_data['no_player']
+            else: no_player_data = 0
+            if 'data' in gamer_profile_data.keys(): 
+                if gamer_profile_data['data']:
+                    data_data = gamer_profile_data['data']
+                else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C2"}
+            else: data_data = {"level":0,"score":0,"$":0,"badges":[],"unlockables":[],"challenges":[], "gifts" : [], "accessible_mechanics" : [], "case" : "C2" }
+            
+            gprofile = GamerProfile.objects.create(disruptor = disruptor_data,
+                                                    free_spirit =  free_spirit_data,
+                                                    achiever =  achiever_data,
+                                                    player =  player_data,
+                                                    socializer =  socializer_data,
+                                                    philantropist =  philantropist_data,
+                                                    no_player =  no_player_data,
+                                                    data = data_data)
+
+            if 'valence' in emotion_profile_data.keys(): valence_data = emotion_profile_data['valence']
+            else: valence_data = 0
+            if 'arousal' in emotion_profile_data.keys(): arousal_data = emotion_profile_data['arousal']
+            else: arousal_data = 1
+            
+            eprofile = EmotionProfile.objects.create(valence = valence_data,
+                                                    arousal =  arousal_data)
 
 
-        if 'image' in social_profile_data.keys():
-            image_data = social_profile_data['image']
-        else:
-            image_data = "diamond"
-        sprofile = SocialProfile.objects.create(image = image_data,data = {"friends":[],"followers":0, "views":0})
-        
-        gamer = Gamer.objects.create(user = user, 
-                                    emotion_profile = eprofile,
-                                    gamer_profile = gprofile,
-                                    social_profile = sprofile
-                                    ) 
-        return gamer
+            if 'image' in social_profile_data.keys():
+                image_data = social_profile_data['image']
+            else:
+                image_data = "diamond"
+            sprofile = SocialProfile.objects.create(image = image_data,data = {"friends":[],"followers":0, "views":0})
+            
+            gamer = Gamer.objects.create(user = user, 
+                                        emotion_profile = eprofile,
+                                        gamer_profile = gprofile,
+                                        social_profile = sprofile
+                                        ) 
+            gamer_lock.release()
+            return gamer
+        except:
+            gamer_lock.release()
+            raise Http404
    
     def update(self, instance, validated_data):
         val = validated_data.get('user')['username']
