@@ -30,7 +30,6 @@ function init_auto_interactions(interactable_elements) {
 
 //Bot definition
 var bot_timer;
-var interaction_speed = 1000;
 
 function interact(i, j) { //authomatic event firing function
 
