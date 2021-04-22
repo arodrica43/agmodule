@@ -40,7 +40,7 @@ p {
 	<br><br>
 	<input type="text" class="form-control" style="margin:5vw;width:90%;" placeholder="Key name for the experiment..." id="key_name_input"></input>
 	<div style="text-align:center;">
-		<button type="button" class="btn btn-primary" onclick="startExperiment()">Start Experiment</button> 
+		<button type="button" id="begin-exp-button" class="btn btn-primary" onclick="startExperiment()">Start Experiment</button> 
 		<button type="button" id="download-results-button" class="btn btn-primary" onclick="download_results()" disabled>Download Results</button>
 	</div>
   	<br>
@@ -195,7 +195,7 @@ constants = {
 	"T+" : (x) => (10),
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
-	"t+" : 0.1, //in minutes
+	"t+" : 0.5, //in minutes
 	"step" : 16, // in seconds
 	"err" : 0.1 
 }
@@ -286,7 +286,7 @@ function start_parametric_bot(username, rpt0){
     console.log(bot_window);
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
-    updateLogs("Total number of bots :: " + num_bots + ".");
+    updateLogs("Total number of indexed bots :: " + num_bots + ".");
     return bot_window;
 }
 
@@ -296,6 +296,7 @@ function startExperiment(){
 	updateLogs("Starting Simulation.");
 	experiments = initExperiment();
 	document.getElementById("download-results-button").disabled = false;
+	document.getElementById("begin-exp-button").disabled = true;
 	total_exps = experiments.length;
 	updateLogs("Experimental cases created.");
 	count = 0;
@@ -312,8 +313,9 @@ function startExperiment(){
         	to_store = {};
         	Plotly.purge("graph-div");
         	data = [];
-        	console.log("Bot window closing :: " + bot_window);
-        	bot_window.close();
+        	//Delegate close to the BOT :: Bot duration is hardcoded on Bot's code
+        	//console.log("Bot window closing :: " + bot_window);
+        	//bot_window.close();
         	if(num_bots > 0){
         		num_bots--;
         	}
@@ -331,6 +333,7 @@ function startExperiment(){
         create_user(exp["PT0"], exp['case'], uname);
 
         bot_window = start_parametric_bot(uname, exp["RPT0"]);
+        bot_window.close();
 
         console.log("Bot window openening :: " + bot_window);
 
@@ -358,7 +361,6 @@ function create_user(pt0,exp_group, username){
 
     console.log(pt0);
     if(pt0 == "undefined"){
-    	console.log("WHAT?");
     	pt00 = document.getElementById("Disruptor").value;
 	    pt01 = document.getElementById("Free Spirit").value;
 	    pt02 = document.getElementById("Achiever").value;
