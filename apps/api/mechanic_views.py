@@ -162,7 +162,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             current_statistics = np.array(instance.statistics_vector(data['user']))
                             #print("Here",instance.matrix().T.dot(current_statistics))
                             #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
-                            new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.matrix()[:len(current_statistics),:]).dot(current_statistics))
+                            # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
+                            new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics))
                             #print(new_gstate)
                             current_user[0].gamer_profile.disruptor = new_gstate[0]
                             current_user[0].gamer_profile.free_spirit = new_gstate[1]
