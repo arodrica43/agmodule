@@ -51,7 +51,7 @@ p {
 
 <script>
 
-var count = 0;
+var graph_count = 0;
 var colors = ['red', 'green', 'blue','purple','pink','orange','gray'];
 var traces = ['Disruptor', 'Free Spirit', 'Achiever','Player','Socializer','Philantropist', 'No Player'];
 //fun = (x ,k) => (Math.sin(k*x/(2*Math.PI)))
@@ -107,7 +107,7 @@ function init_statistics(){
   }
   Plotly.newPlot('graph-div', data);
   var timer = setInterval(function() {
-    count++;
+    graph_count++;
     var new_values = [];
     fetch('https://agmodule.herokuapp.com/api/gamers/'+ document.getElementById("uname_input").value + "/")
     .then(response => response.json())
@@ -122,7 +122,7 @@ function init_statistics(){
       updateLogs("Gamer profile graph updated");
       for (var i = 0; i < traces.length;i++){
         updateLogs("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;" + (1+i) + " :: " + (Math.round(new_values[i]*1000))/1000);
-        adjustValue(i,count,new_values[i]);
+        adjustValue(i,graph_count,new_values[i]);
       } 
     });
     
@@ -252,7 +252,7 @@ function init_parametric_statistics(pt0, username){
 
   Plotly.newPlot('graph-div', data);
   var timer = setInterval(function() {
-    count++;
+    graph_count++;
     var new_values = [];
     fetch('https://agmodule.herokuapp.com/api/gamers/'+ username + "/")
     .then(response => response.json())
@@ -267,7 +267,7 @@ function init_parametric_statistics(pt0, username){
       updateLogs("Profile data fetch :: " + username);
       for (var i = 0; i < traces.length;i++){
         updateLogs("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PT(t)-" + i + " :: " + (Math.round(new_values[i]*1000))/1000);
-        adjustValue(i,count,new_values[i]);
+        adjustValue(i,graph_count,new_values[i]);
       } 
     });
     
@@ -313,6 +313,7 @@ function startExperiment(){
         	//clear store and bot counter
         	to_store = {};
         	Plotly.purge("graph-div");
+        	graph_count = 0;
         	data = [];
         	//Delegate close to the BOT :: Bot duration is hardcoded on Bot's code
         	//console.log("Bot window closing :: " + bot_window);
