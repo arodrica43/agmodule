@@ -448,6 +448,7 @@ function create_user(pt0,exp_group, username){
 
 function download_results(){
 	downloadObjectAsJson(results, "experimental-results");
+	Plotly.toImage('graph-div', {format: 'png', width: 800, height: 600});
 }
 
 function downloadObjectAsJson(exportObj, exportName){
