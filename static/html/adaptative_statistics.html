@@ -298,11 +298,12 @@ function startExperiment(){
 	document.getElementById("download-results-button").disabled = false;
 	document.getElementById("begin-exp-button").disabled = true;
 	total_exps = experiments.length;
-	updateLogs("Experimental cases created.");
+	updateLogs("Experimental cases created :: " + experiments.length + " cases.");
 	count = 0;
 	to_store = {}; 
 	bot_window = undefined;
-	experiment_timer = setInterval(function() {
+
+	exp_procedure = function() {
         //console.log(tmp_main_t / 100);
         if(Object.keys(to_store).length > 0){
         	//update store
@@ -333,7 +334,7 @@ function startExperiment(){
         create_user(exp["PT0"], exp['case'], uname);
 
         bot_window = start_parametric_bot(uname, exp["RPT0"]);
-        bot_window.close();
+
 
         console.log("Bot window openening :: " + bot_window);
 
@@ -343,7 +344,9 @@ function startExperiment(){
        	to_store["experiment"] = exp;
         to_store["index"] = count;
 
-    }, (constants["t+"] - constants["t-"])*60*1000, "JavaScript"); // Measure in milisecond
+    }
+    exp_procedure();
+	experiment_timer = setInterval(exp_procedure, (constants["t+"] - constants["t-"])*60*1000, "JavaScript"); // Measure in milisecond
 }
 
 
