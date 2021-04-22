@@ -96,13 +96,13 @@ class GMechanic(models.Model):
         v = []
         for gm in all_mechanics:
             stat_i = InteractionStatistic.objects.filter(user = user, mechanic = gm)
-            res_i = 0
+            res_i = 0 
             if stat_i:
                 # mean between interaction index and valoration
                 if 'valoration' in stat_i[0].log.keys():
                     res_i = 0.5*(stat_i[0].interaction_index + stat_i[0].log['valoration']) 
                 else:
-                    res_i = stat_i[0].interaction_index 
+                    res_i = 0.5*(stat_i[0].interaction_index + 0.5) # CHANGED stat_i[0].interaction_index
             v += [res_i]
 
         print(v, len(v))
