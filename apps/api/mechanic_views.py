@@ -193,7 +193,7 @@ class InteractionStatisticViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    queryset = InteractionStatistic.objects.all()
+    queryset = InteractionStatistic.objects.all().order_by('-id')
     serializer_class = InteractionStatisticSerializer
 
 
