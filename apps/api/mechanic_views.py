@@ -185,7 +185,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             current_user[0].gamer_profile.save()         
                             print("---------------------------------8")       
                     #------------------------------------------------------------------------------------------------------------------------------
-                          print("---------------------------------9")
+                        print("---------------------------------9")
                     
                     serializer = self.serializer_class(instance, data=data, partial=True,context={'request': request})
                     serializer.is_valid(raise_exception=True)
