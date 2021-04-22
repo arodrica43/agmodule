@@ -57,6 +57,7 @@ var traces = ['Disruptor', 'Free Spirit', 'Achiever','Player','Socializer','Phil
 //fun = (x ,k) => (Math.sin(k*x/(2*Math.PI)))
 var global_uname;
 var data = [];
+var timer = undefined;
 
 function adjustValue(idx,value_x,value_y) {
 
@@ -251,7 +252,7 @@ function init_parametric_statistics(pt0, username){
   }
 
   Plotly.newPlot('graph-div', data);
-  var timer = setInterval(function() {
+  timer = setInterval(function() {
     graph_count++;
     var new_values = [];
     fetch('https://agmodule.herokuapp.com/api/gamers/'+ username + "/")
@@ -317,6 +318,7 @@ function startExperiment(){
         	to_store = {};
         	Plotly.purge("graph-div");
         	graph_count = 0;
+        	clearInterval(timer);
         	data = [];
         	//Delegate close to the BOT :: Bot duration is hardcoded on Bot's code
         	//console.log("Bot window closing :: " + bot_window);
