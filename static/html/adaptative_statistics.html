@@ -196,7 +196,7 @@ constants = {
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
 	"t+" : 0.5, //in minutes
-	"step" : 16, // in seconds
+	"step" : 5, // in seconds
 	"err" : 0.1 
 }
 
@@ -265,10 +265,12 @@ function init_parametric_statistics(pt0, username){
       new_values.push(data.gamer_profile.philantropist);
       new_values.push(data.gamer_profile.no_player);
       updateLogs("Profile data fetch :: " + username);
+      profile_str = "";
       for (var i = 0; i < traces.length;i++){
-        updateLogs("&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PT(t)-" + i + " :: " + (Math.round(new_values[i]*1000))/1000);
+      	profile_str += " " + (Math.round(new_values[i]*1000))/1000;
         adjustValue(i,graph_count,new_values[i]);
       } 
+      updateLogs("Profile data fetch :: " + profile_str);
     });
     
   }, constants["step"]*1000, "JavaScript");
