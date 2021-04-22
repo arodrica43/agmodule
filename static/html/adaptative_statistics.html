@@ -323,7 +323,8 @@ function startExperiment(){
         global_uname = uname;
         create_user(exp["PT0"], exp['case'], uname);
 
-        bot_window = start_parametric_bot(uname, exp["RPT0"]);
+        startBot();
+        //bot_window = start_parametric_bot(uname, exp["RPT0"]);
 
         console.log("Bot window openening :: " + bot_window);
 
