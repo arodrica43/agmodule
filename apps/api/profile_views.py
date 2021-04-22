@@ -53,8 +53,10 @@ class GamerViewSet(viewsets.ModelViewSet):
     filter_fields = ('user__username' )
 
     def retrieve(self, request, pk=None):
+        print("Fail 0")
         gamer_lock.acquire()
         try:
+            print("Prefind ::", pk, "--------------------------------")
             queryset = Gamer.objects.filter(user__username=pk)
             print("User found ::", queryset,"---------------------------------------------")
             try:     
