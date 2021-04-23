@@ -154,6 +154,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
                         #TO DELETE :: Delete if clause once the experiment is finished
+                        if 'case' not in current_user[0].gamer_profile.data.keys():
+                            current_user[0].gamer_profile.data['case'] = "C2b"
                         if "B" not in current_user[0].gamer_profile.data['case']:
                             current_gstate = np.array(current_user[0].gamer_profile.vectorize())
 
