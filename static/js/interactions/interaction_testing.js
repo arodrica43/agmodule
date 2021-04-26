@@ -68,7 +68,7 @@ function startBot(main_content_name) {
 
         var type_idx = Math.floor(Math.random() * all_interactables.length);
         var elem_idx = Math.floor(Math.random() * all_interactables[type_idx].length);
-        var refresh_p = Math.floor(Math.random() * 30);
+        var refresh_p = Math.floor(Math.random() * 1000);
 
         if (refresh_p < 1) {
             console.log("refresh!");
