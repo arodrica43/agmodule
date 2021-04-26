@@ -59,9 +59,15 @@ function log_img_click_dynamic_index(){
            // --------------------------------------------------------------------------
           };
 
+function log_txt_click_dynamic_index(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 2, message:"Title text clicked", register : log, level:1,type:"TextClick"});
+           // --------------------------------------------------------------------------
+          };
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div>Change the icon of ' + modifiable.title + '</div>' + 
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click_dynamic_index();">Change the icon of ' + modifiable.title + '</div>' + 
 																	'<div><img onclick="log_img_click_dynamic_index();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
 																	'<br><div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
