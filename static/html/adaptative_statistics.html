@@ -55,7 +55,7 @@ var graph_count = 0;
 var colors = ['red', 'green', 'blue','purple','pink','orange','gray'];
 var traces = ['Disruptor', 'Free Spirit', 'Achiever','Player','Socializer','Philantropist', 'No Player'];
 //fun = (x ,k) => (Math.sin(k*x/(2*Math.PI)))
-var global_uname;
+var global_uname = "{{user}}";
 var data = [];
 var timer = undefined;
 
@@ -73,6 +73,7 @@ function updateLogs(message){
 
 var num_bots = 0;
 function startBot(){
+    window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?user=");
     window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?dynamic_index=bot&user=" + global_uname,"","width=600,height=600");
     num_bots++;
     updateLogs("Bot number " + num_bots + " created");
