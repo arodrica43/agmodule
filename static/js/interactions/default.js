@@ -73,7 +73,7 @@ try {
     var tmp_interaction_t = 0;
 
     function increase_interaction_time(increment) {
-        tmp_interaction_t = Math.min(tmp_interaction_t + increment, tmp_focus_t/100);
+        tmp_interaction_t = Math.min(tmp_interaction_t + increment, tmp_focus_t/1000);
     }
 
     function interaction_time() {
@@ -125,13 +125,13 @@ try {
         //alert(mechanic_index);
         //alert(log_data['history']);
         //console.log(main_time() / 100);
-        log_data['main_time'] = main_time() / 100;
-        log_data['focus_time'] = Math.min(focus_time(), main_time()) / 100;
-        log_data['interaction_time'] = Math.min(interaction_time(), main_time()/100); // TO DO
+        log_data['main_time'] = main_time() / 1000;
+        log_data['focus_time'] = Math.min(focus_time(), main_time()) / 1000;
+        log_data['interaction_time'] = Math.min(interaction_time(), main_time()/1000); // TO DO
         //Interaction time could depend on focus time, and on interaction_time()
         //log_data['interaction_time'] = Math.max(Math.min(interaction_time(), Math.min(focus_time(), main_time()) / 100),  Math.min(focus_time(), main_time()) / 100);
-        log_data['hidden_content_time'] = locked_time() / 100;
-        log_data['shown_content_time'] = unlocked_time() / 100;
+        log_data['hidden_content_time'] = locked_time() / 1000;
+        log_data['shown_content_time'] = unlocked_time() / 1000;
 
         var val_cnt = 0;
         try{
