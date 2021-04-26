@@ -88,6 +88,8 @@ class GMechanic(models.Model):
             if stat_i:
                 stat_i = stat_i[0].interaction_index
                 v += [stat_i] 
+            else
+                v += [0]
         #print(v, len(v))
         return v
 
