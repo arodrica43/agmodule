@@ -1,5 +1,11 @@
-
+<head>
+<!-- Font Awesome Icon Library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
+.chl-container{
+    position: relative;
+}
 .unk-locked-content{
 	background:red;
     z-index:2;
@@ -85,11 +91,20 @@
 
 <param id = "unk-widget-handshake-dynamic_index" value=0></param> 
 <script>
-
+ //INTERACTION INIT -----------------------------------------------------------------------
+    //Dynamic property :: Log tracking functions
+    include-base-tracking
+    include-onclick-tracking
+    start_main_time();
+    start_focus_time("unk-widget-dynamic_index");
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    set_widget_defaults("#chl-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
+    // ---------------------------------------------------------------------------------------
+  
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
 
 function render_unk(unlockable){
-	document.querySelector("#unk-widget-dynamic_index").innerHTML = unlockable.html;
+	document.querySelector("#unk-widget-dynamic_index").innerHTML += unlockable.html;
     $(unlockable.html).appendTo(document.body);
 }
 
@@ -122,6 +137,10 @@ function whichTransitionEvent(el){
 
 function unlock(unlockable){
 
+   // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+    //Logging :: button-click interaction
+    log_click({itime: 10, message:"Unlockable card clicked", register : log, level:1,type:"ButtonClick"});
+     // --------------------------------------------------------------------------
 	fetch("https://agmodule.herokuapp.com/api/unlockables/" + unlockable.dataset.id + "/unlock_for/dynamic_user?index=dynamic_index")
 	.then(function(){
 		unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
@@ -146,7 +165,7 @@ function fillHTML(data){
 document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="card" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
 																	'<div class="card-inner">'+
 																	    '<div class="card-front">'+
-																	      '<img src="http://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
+																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
 																	    '</div>'+
 																	    '<div class="card-back">'+
 																	      '<div id="locked-content-div"></div> '+
