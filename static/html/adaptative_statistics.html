@@ -311,6 +311,7 @@ function startExperiment(){
         //console.log(tmp_main_t / 100);
         if(Object.keys(to_store).length > 0){
         	//update store
+          var evol = {"t" : data[data.length - 1]["x"], "pt" : data[data.length - 1]["y"]} 
         	to_store["evolution"] = data;
         	//save store
         	results.push(to_store);
