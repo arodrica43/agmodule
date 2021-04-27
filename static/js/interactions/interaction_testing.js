@@ -41,7 +41,7 @@ function interact(i, j) { //authomatic event firing function
             case 0:
             	// star-5-dynamic_index
             	if((elem.id).includes("star-")){
-            		if((elem.id).charAt(5) == "4"){
+            		if((elem.id).charAt(5) == expected_valoration){ // EXTERNAL VAR :: expected valoration 
             			elem.click();
             		}
 
@@ -86,7 +86,7 @@ function startBot(main_content_name) {
             interact(type_idx, elem_idx);
         }
 
-    }, interaction_speed, "JavaScript"); // Measure in milisecond
+    }, interaction_speed, "JavaScript"); // EXTERNAL VAR :: interaction speed
 }
 
 function stopBot() {

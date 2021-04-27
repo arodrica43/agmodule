@@ -136,7 +136,10 @@ def retrieve_adaptative_widget_id(request):
                             break
                         acc += pi
                     gmechanic = GMechanic.objects.all()[idx]
-                    _ , val = g_mechanic_cast(gmechanic.pk)
+                    qset , val = g_mechanic_cast(gmechanic.pk)
+                    clss_idx = -1
+                    if qset:
+                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type]
                     if 'accessible_mechanics' not in user.gamer_profile.data.keys():
                          user.gamer_profile.data["accessible_mechanics"] = []
                          user.gamer_profile.save()
@@ -145,7 +148,7 @@ def retrieve_adaptative_widget_id(request):
                         user.gamer_profile.data["accessible_mechanics"] += [val]
                         user.gamer_profile.save()
                     lock7.release() 
-                    return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
+                    return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx,'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
             else:
                 raise Exception("No selected user")
         else:
