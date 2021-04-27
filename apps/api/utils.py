@@ -109,6 +109,8 @@ def retrieve_adaptative_widget_id(request):
                     qset, val = g_mechanic_cast(gmechanic.pk)
                     clss_idx = -1
                     print(qset)
+                    print(qset[0].mechanic_type)
+                    print(qset[0].associated_profile)
                     if qset:
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type]
                     lock7.release() 
