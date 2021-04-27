@@ -90,9 +90,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
                             <script>
                                 console.log("{{data.url}}?{{url_query}}");
                                 console.log("{{query_keys}}");
+                                console.log("{{bot_data.pt0}}");
                                 document.querySelector("#global-args").dataset.uname = "pollete";
                                 document.querySelector("#global-args").dataset.pt0 = "{{bot_data.pt0}}";
-                                console.log(document.querySelector("#global-args").dataset.pt0);
+                                document.querySelector("#global-args").dataset.pt1 = "{{bot_data.pt1}}";
+                                document.querySelector("#global-args").dataset.pt2 = "{{bot_data.pt2}}";
+                                document.querySelector("#global-args").dataset.pt3 = "{{bot_data.pt3}}";
+                                document.querySelector("#global-args").dataset.pt4 = "{{bot_data.pt4}}";
+                                document.querySelector("#global-args").dataset.pt5 = "{{bot_data.pt5}}";
+                                document.querySelector("#global-args").dataset.pt6 = "{{bot_data.pt6}}";
                                 fetch("{{data.url}}?{{url_query}}")
                                     .then(function (response) {
                                         return response.json();
