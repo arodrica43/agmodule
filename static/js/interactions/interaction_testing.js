@@ -40,7 +40,7 @@ function interact(i, j) { //authomatic event firing function
         switch (i) {
             case 0:
             	// star-5-dynamic_index
-            	if((elem.id).includes("star-");){
+            	if((elem.id).includes("star-")){
             		if((elem.id).charAt(5) == "4"){
             			elem.click();
             		}
