@@ -25,7 +25,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
     fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + res_json.gmechanic_id + "?user=dynamic_user")
     .then(response => response.json())
     .then(function (myJson) {
-        console.log(res_json.gmechanic_class);
+        console.log(res_json.class_idx);
         //init_auto_interactions(interactable_elements);
         //startBot(main_content_name);
         document.querySelector("#incr").innerHTML = (myJson.html);
