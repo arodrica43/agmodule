@@ -39,6 +39,7 @@ function interact(i, j) { //authomatic event firing function
         //alert(i + " " + j + " :: " + all_interactables.length + " " + all_interactables[i].length);
         switch (i) {
             case 0:
+            	console.log(elem.id);
                 elem.click();
                 break;
             case 1:
