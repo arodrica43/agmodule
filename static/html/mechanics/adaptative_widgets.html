@@ -16,6 +16,9 @@ var interactable_elements = document.getElementById(main_content_name).querySele
 init_auto_interactions(interactable_elements);
 startBot(main_content_name);
 
+
+console.log("WORKS :: " + document.querySelector("#global-args-dynamic_index").dataset.uname);
+
 fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget_id?user=dynamic_user&experimental")
 .then(response => response.json())
 .then(res_json => (
