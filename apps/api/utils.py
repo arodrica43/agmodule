@@ -108,9 +108,6 @@ def retrieve_adaptative_widget_id(request):
 
                     qset, val = g_mechanic_cast(gmechanic.pk)
                     clss_idx = -1
-                    print(qset)
-                    print(qset[0].mechanic_type.value)
-                    print(qset[0].associated_profile)
                     if qset:
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
                     lock7.release() 
@@ -146,7 +143,7 @@ def retrieve_adaptative_widget_id(request):
                     qset , val = g_mechanic_cast(gmechanic.pk)
                     clss_idx = -1
                     if qset:
-                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type]
+                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
                     if 'accessible_mechanics' not in user.gamer_profile.data.keys():
                          user.gamer_profile.data["accessible_mechanics"] = []
                          user.gamer_profile.save()

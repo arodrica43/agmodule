@@ -32,7 +32,7 @@ function init_auto_interactions(interactable_elements) {
 //Bot definition
 var bot_timer;
 
-function interact(i, j) { //authomatic event firing function
+function interact(i, j, expected_valoration) { //authomatic event firing function
 
     if (all_interactables[i].length > 0) {
         var elem = all_interactables[i][j];
@@ -64,7 +64,7 @@ function interact(i, j) { //authomatic event firing function
     }
 }
 
-function startBot(main_content_name) {
+function startBot(main_content_name, interaction_speed, expected_valoration) {
     bot_timer = setInterval(function() {
         interactable_elements = document.getElementById(main_content_name).querySelectorAll("*");
         //console.log(interactable_elements);;
@@ -83,7 +83,7 @@ function startBot(main_content_name) {
             window.location.reload();
 
         } else {
-            interact(type_idx, elem_idx);
+            interact(type_idx, elem_idx, expected_valoration);
         }
 
     }, interaction_speed, "JavaScript"); // EXTERNAL VAR :: interaction speed
