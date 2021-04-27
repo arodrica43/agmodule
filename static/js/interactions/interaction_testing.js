@@ -39,8 +39,15 @@ function interact(i, j) { //authomatic event firing function
         //alert(i + " " + j + " :: " + all_interactables.length + " " + all_interactables[i].length);
         switch (i) {
             case 0:
-            	console.log(elem.id);
-                elem.click();
+            	// star-5-dynamic_index
+            	if((elem.id).includes("star-");){
+            		if((elem.id).charAt(5) == "4"){
+            			elem.click();
+            		}
+
+            	}else{
+                	elem.click();
+            	}
                 break;
             case 1:
                 var scroll_w = Math.floor((Math.random() * elem.scrollWidth) + 1);
