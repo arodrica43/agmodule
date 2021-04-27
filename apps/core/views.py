@@ -52,9 +52,17 @@ def preview_gmechanic(request, gmechanic_id):
         #print(queryset[0].html)
         #print(file.read())
         serializer = GMechanicSerializer(queryset[0], context={'request': request}) 
+        bot_data = {}
+        pts = ["pt0", "pt1", "pt2", "pt3", "pt4", "pt5", "pt6"]
+    
+        for pt in pts:
+            try:
+                bot_data[pt] = request.GET[pt]
+            except:
+                pass
         #print(serializer.data)
         lock6.release()
-        return TemplateResponse(request, 'preview_mechanic.html', {"data":serializer.data, "url_query": request.GET.urlencode(), "query_keys": request.GET.keys()})
+        return TemplateResponse(request, 'preview_mechanic.html', {"data":serializer.data, "url_query": request.GET.urlencode(), "bot_data": bot_data})
     except:
         lock6.release()
         return preview_gmechanic(request,gmechanic_id)
