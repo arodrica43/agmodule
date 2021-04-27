@@ -89,6 +89,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
                                 <div id="incrustate"><div>
                             <script>
                                 console.log("{{data.url}}?{{url_query}}");
+                                console.log("{{query_keys}}");
                                 fetch("{{data.url}}?{{url_query}}")
                                     .then(function (response) {
                                         return response.json();

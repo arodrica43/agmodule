@@ -54,7 +54,7 @@ def preview_gmechanic(request, gmechanic_id):
         serializer = GMechanicSerializer(queryset[0], context={'request': request}) 
         #print(serializer.data)
         lock6.release()
-        return TemplateResponse(request, 'preview_mechanic.html', {"data":serializer.data, "url_query": request.GET.urlencode()})
+        return TemplateResponse(request, 'preview_mechanic.html', {"data":serializer.data, "url_query": request.GET.urlencode(), "query_keys": request.GET.keys()})
     except:
         lock6.release()
         return preview_gmechanic(request,gmechanic_id)
