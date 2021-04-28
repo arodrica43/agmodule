@@ -36,9 +36,17 @@
     set_widget_defaults("#pnt-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
     
+  
+function log_txt_click_dynamic_index(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 10, message:"Main text clicked", register : log, level:1,type:"TextClick"});
+           // --------------------------------------------------------------------------
+          };
+
 document.querySelector("#pnt-widget-handshake-dynamic_index").value = 1;
 function render_pnt(point, point_by, reward){
-	document.querySelector("#pnt-widget-dynamic_index").innerHTML += '<div>Your won a reward!</div><div>+' + reward + ' ' + point_by + '</div>';
+	document.querySelector("#pnt-widget-dynamic_index").innerHTML += '<p onclick="log_txt_click_dynamic_index();"><div>Your won a reward!</div><div>+' + reward + ' ' + point_by + '</div><p>';
 }
 
 function selectPolicy(list){

@@ -128,9 +128,28 @@
     set_widget_defaults("#snt-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
 
+function log_txt_click_dynamic_index(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 10, message:"Card text clicked", register : log, level:1,type:"TextClick"});
+           // --------------------------------------------------------------------------
+          };
+
+function log_img_click_dynamic_index(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 10, message:"User profile icon clicked", register : log, level:1,type:"ImageClick"});
+           // --------------------------------------------------------------------------
+          };
+
+
 document.querySelector("#snt-widget-handshake-dynamic_index").value = 1;
 
 function followUser(uname,ids,from){
+      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+    //Logging :: button-click interaction
+    log_click({itime: 10, message:"Follow user button clicked", register : log, level:1,type:"ButtonClick"});
+     // --------------------------------------------------------------------------
 
   /*switch(from){
       case 0: //Comes from search tab
@@ -194,11 +213,12 @@ function populateSearch(item,index,follow_text){
    document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
                                                             '<div class="profilecard">'+
                                                               '<div class="profilecard" style=" height:400px; cursor: pointer;" onclick="emptyF()">'+
-                                                                  '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
+                                                                  '<div class="profilecard_image"><img onclick="log_img_click_dynamic_index();" src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
+                                                                    '<p onclick="log_txt_click_dynamic_index();">' +
                                                                     '<div class="profilecard_content">'+
                                                                         '<h2><div class="user-name">' + item.user.username + '</div></h2>' +  
                                                                       '<p class="profilecard_text">' + item.social_profile.description + '</p>' +
-                                                                    '</div>'+
+                                                                    '</div></p>'+
                                                               '</div>'+
                                                               '<button class="btn profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
                                                             '</div>'+
