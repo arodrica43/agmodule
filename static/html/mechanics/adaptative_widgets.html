@@ -33,12 +33,13 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
                     document.querySelector("#global-args").dataset.pt5,
                     document.querySelector("#global-args").dataset.pt6
                 ]
-        var s = pt[res_json.class_idx % 6] / Math.max.apply(Math, pt);
+        var s = pt[res_json.class_idx % 6];
         var itime = (-9.5)*s + 10; // interactivity = a = 1 :: (-2.5a² - 7a)s + 10 --> itime(s)
         var expectedv = Math.round(4*s + 1);
         console.log("WTF");
+        console.log(Math.max(...pt));
         console.log(s);
-        console.log(Math.round(4*s + 1))
+        console.log(Math.round(4*s + 1));
         console.log("WTF");
         startBot(main_content_name, itime, expectedv);
         document.querySelector("#incr").innerHTML = (myJson.html);
