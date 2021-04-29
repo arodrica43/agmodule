@@ -320,6 +320,7 @@ function startExperiment(){
         	to_store["evolution"] = data;
         	//save store
         	results.push(to_store);
+          Plotly.downloadImage('graph-div', {format: 'png', width: 800, height: 600, filename : 'experimental-chart'});
         	//clear store and bot counter
         	to_store = {};
         	Plotly.purge("graph-div");
