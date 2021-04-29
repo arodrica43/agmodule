@@ -101,7 +101,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                     if not statistic:
                         try:        
-                            statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 1) # CHANGED 1e-2
+                            statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 0.5) # CHANGED 1e-2
                             statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                         except:
                             lock.release()
@@ -166,7 +166,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print("Here",instance.matrix().T.dot(current_statistics))
                             #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
                             # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
-                            new_gstate = 0.5*(current_gstate + np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics))
+                            new_gstate = current_gstate + np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics)
                             #print(new_gstate)
                             current_user[0].gamer_profile.disruptor = new_gstate[0]
                             current_user[0].gamer_profile.free_spirit = new_gstate[1]
