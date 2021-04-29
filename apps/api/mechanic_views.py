@@ -158,7 +158,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             current_user[0].gamer_profile.data['case'] = "C2b"
                         if "B" not in current_user[0].gamer_profile.data['case']:
                             current_gstate = np.array(current_user[0].gamer_profile.vectorize())
-
+                            print(current_gstate)
                             #Statistics Without valoration
                             #current_statistics = np.array(instance.statistics_with_valoration_vector(data['user']))
                             #Statistics With valoration
@@ -170,7 +170,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             print(expected_gstate)
                             current_gstate = np.array([2*current_gstate[i] for i in range(7) if expected_gstate[i] == 0])
                             print(current_gstate)
-                            new_gstate = 0.5*(current_gstate + expected_gstate)
+                            new_gstate = 0.5*(current_gstate + expected_gstate[:])
                             print(new_gstate)
                             current_user[0].gamer_profile.disruptor = new_gstate[0]
                             current_user[0].gamer_profile.free_spirit = new_gstate[1]
