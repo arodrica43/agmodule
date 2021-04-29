@@ -75,6 +75,14 @@ function openGift(gift,index){
 
 <script>
 
+
+function log_txt_click_dynamic_index(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 10, message:"Text clicked", register : log, level:1,type:"TextClick"});
+           // --------------------------------------------------------------------------
+
+
     fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechanic url
         .then(function (response) {
             return response.json();
@@ -97,7 +105,7 @@ function openGift(gift,index){
          
             document.getElementById("num-gifts").value = gifts.length;
             if(gifts.length == 0){
-                document.querySelector("#gifts-content").innerHTML += "You have not recieved any gift yet"
+                document.querySelector("#gifts-content").innerHTML += "<p onclick='log_txt_click_dynamic_index();'>You have not recieved any gift yet</p>"
             }
             gifts.forEach(function(item,index){
                 document.querySelector("#gifts-content").innerHTML += '<h3><div class="row" style="background:whitesmoke; margin:10px;">'+
