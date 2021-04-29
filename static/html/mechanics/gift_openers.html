@@ -96,6 +96,9 @@ function openGift(gift,index){
             var gifts = myJson.gamer_profile.data.gifts;
          
             document.getElementById("num-gifts").value = gifts.length;
+            if(gifts.length == 0){
+                document.querySelector("#gifts-content").innerHTML += "You have not recieved any gift yet"
+            }
             gifts.forEach(function(item,index){
                 document.querySelector("#gifts-content").innerHTML += '<h3><div class="row" style="background:whitesmoke; margin:10px;">'+
                                                                         '<div class="col-md-4"><img id="gift-icon-' + index + '" style="width:60px;height:60px;" src="https://img.icons8.com/bubbles/2x/gift.png" ></div>'+
