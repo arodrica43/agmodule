@@ -167,8 +167,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
                             # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
                             expected_gstate = np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics)
+                            expected_gstate = expected_gstate/np.linalg.norm(expected_gstate)
                             print(expected_gstate)
-                            current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] == 0 else current_gstate[i] for i in range(7)])
+                            current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             print(current_gstate)
                             new_gstate = 0.5*(current_gstate + expected_gstate[:])
                             print(new_gstate)
