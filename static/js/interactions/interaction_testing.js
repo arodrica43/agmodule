@@ -76,7 +76,7 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
 
         var type_idx = Math.floor(Math.random() * all_interactables.length);
         var elem_idx = Math.floor(Math.random() * all_interactables[type_idx].length);
-        var refresh_p = Math.floor(Math.random() * 600);
+        var refresh_p = Math.floor(Math.random() * 1000);
 
         if (refresh_p < 1) {
             console.log("refresh!");
@@ -86,7 +86,7 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
             interact(type_idx, elem_idx, expected_valoration);
         }
 
-    }, interaction_speed*50, "JavaScript"); // EXTERNAL VAR :: interaction speed
+    }, interaction_speed*90, "JavaScript"); // EXTERNAL VAR :: interaction speed
 }
 
 function stopBot() {
