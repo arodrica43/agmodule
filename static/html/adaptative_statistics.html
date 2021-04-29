@@ -195,7 +195,7 @@ constants = {
         [0.21, 0.17, 0.16, 0.16, 0.14, 0.15, 0],
 
 			],
-	"cases" : ['A', 'B1', 'B2', 'C1', 'C2'],
+	"cases" : ['C1', 'C2'],
 	"interactivities" : [1],
 	"bot_accuracies" : ["low", "high"], 
 	"T+" : (x) => (10),
@@ -394,7 +394,6 @@ function create_user(pt0,exp_group, username){
   		pt06 = document.getElementById("No Player").value;  
   		uname = document.getElementById("uname_input").value;
     }
-
 
   fetch("https://agmodule.herokuapp.com/api/gamers/", { 
         
