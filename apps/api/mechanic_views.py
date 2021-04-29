@@ -101,7 +101,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                     if not statistic:
                         try:        
-                            statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 0.5) # CHANGED 1e-2
+                            statistic = InteractionStatistic.objects.create(mechanic = instance, user = data['user'], interaction_index = 1) # CHANGED 1e-2
                             statistic = InteractionStatistic.objects.filter(mechanic = instance, user = data['user'])
                         except:
                             lock.release()
