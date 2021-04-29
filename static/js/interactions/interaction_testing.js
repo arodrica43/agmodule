@@ -86,7 +86,7 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
             interact(type_idx, elem_idx, expected_valoration);
         }
 
-    }, interaction_speed*500, "JavaScript"); // EXTERNAL VAR :: interaction speed
+    }, interaction_speed*100, "JavaScript"); // EXTERNAL VAR :: interaction speed
 }
 
 function stopBot() {
