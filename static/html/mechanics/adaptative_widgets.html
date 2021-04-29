@@ -36,11 +36,6 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
         var s = pt[res_json.class_idx % 6] / Math.max(...pt);
         var itime = (-9.5)*s + 10; // interactivity = a = 1 :: (-2.5a² - 7a)s + 10 --> itime(s)
         var expectedv = Math.round(4*s + 1);
-        console.log("WTF");
-        console.log(pt);
-        console.log(s);
-        console.log(Math.round(4*s + 1))
-        console.log("WTF");
         startBot(main_content_name, itime, expectedv);
         document.querySelector("#incr").innerHTML = (myJson.html);
         $(myJson.html).appendTo(document.body);
