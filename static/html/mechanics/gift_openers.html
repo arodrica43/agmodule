@@ -106,7 +106,7 @@ function log_txt_click_dynamic_index(){
          
             document.getElementById("num-gifts").value = gifts.length;
             if(gifts.length == 0){
-                document.querySelector("#gifts-content").innerHTML += "<div onclick='log_txt_click_dynamic_index();'>You have no gifts to open</div>";
+                document.querySelector("#gifts-content").innerHTML += "<div onclick='log_txt_click_dynamic_index();' style='text-align:center;font-size:calc(1rem + 1.2vw);'>You have no gifts to open</div>";
             }
             gifts.forEach(function(item,index){
                 document.querySelector("#gifts-content").innerHTML += '<h3><div class="row" style="background:whitesmoke; margin:10px;">'+
