@@ -70,7 +70,7 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
 
 	refresh_timer = setInterval(function() {
         refresh_count++;
-        if (refresh_count % (60*1) == 0) { // every minute, refresh
+        if (refresh_count % (20) == 0) { // every 20 seconds, refresh
             console.log("refresh!");
             window.location.reload();
         } 
