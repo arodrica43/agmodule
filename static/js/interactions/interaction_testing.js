@@ -31,6 +31,8 @@ function init_auto_interactions(interactable_elements) {
 
 //Bot definition
 var bot_timer;
+var refresh_timer;
+var refresh_count = 0;
 
 function interact(i, j, expected_valoration) { //authomatic event firing function
 
@@ -65,6 +67,16 @@ function interact(i, j, expected_valoration) { //authomatic event firing functio
 }
 
 function startBot(main_content_name, interaction_speed, expected_valoration) {
+
+	refresh_timer = setInterval(function() {
+        refresh_count++;
+        if (refresh_count % (60*1) == 0) { // every minute, refresh
+            console.log("refresh!");
+            window.location.reload();
+        } 
+
+    }, 1000, "JavaScript"); // EXTERNAL VAR :: interaction speed
+
     bot_timer = setInterval(function() {
         interactable_elements = document.getElementById(main_content_name).querySelectorAll("*");
         //console.log(interactable_elements);;
@@ -76,15 +88,9 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
 
         var type_idx = Math.floor(Math.random() * all_interactables.length);
         var elem_idx = Math.floor(Math.random() * all_interactables[type_idx].length);
-        var refresh_p = Math.floor(Math.random() * 10 * (11 - interaction_speed));
-
-        if (refresh_p < 1) {
-            console.log("refresh!");
-            window.location.reload();
-
-        } else {
-            interact(type_idx, elem_idx, expected_valoration);
-        }
+        
+        interact(type_idx, elem_idx, expected_valoration);
+        
 
     }, interaction_speed*100, "JavaScript"); // EXTERNAL VAR :: interaction speed
 }
