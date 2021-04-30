@@ -144,7 +144,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     l = 4
                     I = 0
                     for t_label in ['main_time', 'focus_time', 'interaction_time']:
-                        I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
+                        I += 1 - math.exp(-l*(n/(0 + 1e-100))) #statistic[0].log[t_label] -> 0
                     I = 0.5*(I/3 + statistic[0].log['valoration'])
                     #I = I/3
                     statistic.update(interaction_index = I)
