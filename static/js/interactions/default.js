@@ -57,7 +57,7 @@ try {
                     tmp_focus_t++;
                 }
 
-            }, 10, "JavaScript"); // Measure in seconds
+            }, 1000, "JavaScript"); // Measure in seconds
         }
 
     }
@@ -74,7 +74,7 @@ try {
     var tmp_interaction_t = 0;
 
     function increase_interaction_time(increment) {
-        tmp_interaction_t = Math.min(tmp_interaction_t + increment, tmp_focus_t/100);
+        tmp_interaction_t = Math.min(tmp_interaction_t + increment, tmp_focus_t);
     }
 
     function interaction_time() {
@@ -89,7 +89,7 @@ try {
         if (control_t == 0) {
             locked_timer = setInterval(function() {
                 tmp_locked_t++;
-            }, 10, "JavaScript"); // Measure in milisecond
+            }, 1000, "JavaScript"); // Measure in milisecond
         }
     }
 
@@ -108,7 +108,7 @@ try {
     function start_unlocked_time() {
         unlocked_timer = setInterval(function() {
             tmp_unlocked_t++;
-        }, 10, "JavaScript"); // Measure in milisecond
+        }, 1000, "JavaScript"); // Measure in milisecond
     }
 
     function unlocked_time() {
@@ -126,13 +126,14 @@ try {
         //alert(mechanic_index);
         //alert(log_data['history']);
         //console.log(main_time() / 100);
-        log_data['main_time'] = main_time() ;
-        log_data['focus_time'] = Math.min(focus_time(), main_time());
-        log_data['interaction_time'] = Math.min(interaction_time(), main_time()); // TO DO
+        var scale = 60; // minutes
+        log_data['main_time'] = main_time()/scale; // send in minutes
+        log_data['focus_time'] = Math.min(focus_time(), main_time())/scale;
+        log_data['interaction_time'] = Math.min(interaction_time(), main_time()/scale); // TO DO
         //Interaction time could depend on focus time, and on interaction_time()
         //log_data['interaction_time'] = Math.max(Math.min(interaction_time(), Math.min(focus_time(), main_time()) / 100),  Math.min(focus_time(), main_time()) / 100);
-        log_data['hidden_content_time'] = locked_time() ;
-        log_data['shown_content_time'] = unlocked_time();
+        log_data['hidden_content_time'] = locked_time()/scale;
+        log_data['shown_content_time'] = unlocked_time()/scale;
         console.log("Main time to send :: " + log_data['main_time'] );
 
         var val_cnt = 0;
