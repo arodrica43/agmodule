@@ -167,7 +167,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
                             # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
                             expected_gstate = np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics)
-                            expected_gstate_norm = np.linalg.norm(expected_gstate)
+                            expected_gstate_norm = np.linalg.norm(expected_gstate) # We might take the sum of values
                             if expected_gstate_norm > 1e-100:
                                 expected_gstate = expected_gstate / expected_gstate_norm
                             print(expected_gstate)
@@ -175,6 +175,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             print(current_gstate)
                             new_gstate = 0.5*(current_gstate + expected_gstate)
                             print(new_gstate)
+                            # normalize gstate
+                            new_gstate_norm = new_gstate.sum()
+                            if new_gstate_norm > 1e-100:
+                                new_gstate = new_gstate / new_gstate_norm
                             current_user[0].gamer_profile.disruptor = new_gstate[0]
                             current_user[0].gamer_profile.free_spirit = new_gstate[1]
                             current_user[0].gamer_profile.achiever = new_gstate[2]
