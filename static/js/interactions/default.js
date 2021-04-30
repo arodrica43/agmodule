@@ -17,9 +17,10 @@ try {
             //console.log("start timer");
             main_timer = setInterval(function() {
                 //console.log(tmp_main_t / 100);
+                console.log("Main time count :: " + tmp_main_t);
                 tmp_main_t++;
                 control_t++;
-            }, 10, "JavaScript"); // Measure in milisecond
+            }, 1000, "JavaScript"); // Measure in milisecond
         }
     }
 
@@ -132,6 +133,7 @@ try {
         //log_data['interaction_time'] = Math.max(Math.min(interaction_time(), Math.min(focus_time(), main_time()) / 100),  Math.min(focus_time(), main_time()) / 100);
         log_data['hidden_content_time'] = locked_time() ;
         log_data['shown_content_time'] = unlocked_time();
+        console.log("Main time to send :: " + log_data['main_time'] );
 
         var val_cnt = 0;
         try{
