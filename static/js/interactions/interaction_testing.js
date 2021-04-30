@@ -89,7 +89,7 @@ function startBot(main_content_name, interaction_speed, expected_valoration) {
         var type_idx = Math.floor(Math.random() * all_interactables.length);
         var elem_idx = Math.floor(Math.random() * all_interactables[type_idx].length);
         
-        interact(type_idx, elem_idx, expected_valoration);
+        //interact(type_idx, elem_idx, expected_valoration);
         
 
     }, interaction_speed*100, "JavaScript"); // EXTERNAL VAR :: interaction speed
