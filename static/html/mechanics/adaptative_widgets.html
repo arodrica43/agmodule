@@ -33,7 +33,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
                     document.querySelector("#global-args").dataset.pt5,
                     document.querySelector("#global-args").dataset.pt6
                 ]
-        var s = pt[res_json.class_idx % 6] / Math.max(...pt);
+        var s = (pt[res_json.class_idx % 6] -  Math.min(...pt))/ (Math.max(...pt) - Math.min(...pt)); // normalizing in the interval of values
         var itime = (-9.5)*s + 10; // interactivity = a = 1 :: (-2.5a² - 7a)s + 10 --> itime(s)
         var expectedv = Math.round(4*s + 1);
         startBot(main_content_name, itime, expectedv);
