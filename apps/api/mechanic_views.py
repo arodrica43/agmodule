@@ -146,7 +146,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     #for t_label in ['main_time', 'focus_time', 'interaction_time']:
                      #   I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
                     #I = 1 - math.exp(-n/(statistic[0].log['main_time'])) #0.5*(I/3 + statistic[0].log['valoration'])
-                    I = statistic[0].log['valoration']
+                    I = 0.5*(statistic[0].log['valoration'] + len(statistic[0].log["history"])
                     #I = I/3
                     statistic.update(interaction_index = I)
                     #------------------------------------------------------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             print(expected_gstate)
                             #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             print(current_gstate)
-                            new_gstate = ((1 - 1e-3)*current_gstate + 1e-3*expected_gstate)
+                            new_gstate = ((1 - 1e-2)*current_gstate + 1e-2*expected_gstate)
                             print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
