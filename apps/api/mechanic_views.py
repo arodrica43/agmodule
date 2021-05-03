@@ -143,9 +143,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
                     l = 4
                     I = 0
-                    for t_label in ['main_time', 'focus_time', 'interaction_time']:
-                        I += 1 - math.exp(-l*(n/(0 + 1e-100))) #statistic[0].log[t_label] -> 0
-                    I = 0.5*(I/3 + statistic[0].log['valoration'])
+                    #for t_label in ['main_time', 'focus_time', 'interaction_time']:
+                    #    I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
+                    I = len(statistic[0].log["history"])
+                    #I = 0.5*(I/3 + statistic[0].log['valoration'])
                     #I = I/3
                     statistic.update(interaction_index = I)
                     #------------------------------------------------------------------------------------------------------------------------------
