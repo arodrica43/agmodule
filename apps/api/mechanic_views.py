@@ -174,9 +174,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             if expected_gstate_norm > 1e-100:
                                 expected_gstate = expected_gstate / expected_gstate_norm
                             print(expected_gstate)
-                            current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
+                            #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             print(current_gstate)
-                            new_gstate = (0.9*current_gstate + 0.1*expected_gstate)
+                            new_gstate = (0.99*current_gstate + 0.01*expected_gstate)
                             print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
