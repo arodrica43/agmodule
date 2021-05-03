@@ -282,14 +282,15 @@ function init_parametric_statistics(pt0, username){
 }
 
 function start_parametric_bot(username, rpt0){
+  scaled_rpt0 = (x) => ((x - min(...rpt0))/(max(...rpt0) - min(...rpt0)));
 	bot_window = window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?user=" + username +
-								"&pt0=" + rpt0[0] + 
-								"&pt1=" + rpt0[1] + 
-								"&pt2=" + rpt0[2] + 
-								"&pt3=" + rpt0[3] + 
-								"&pt4=" + rpt0[4] + 
-								"&pt5=" + rpt0[5] + 
-								"&pt6=" + rpt0[6] ,"","width=600,height=600");
+								"&pt0=" + scaled_rpt0(rpt0[0]) + 
+								"&pt1=" + scaled_rpt0(rpt0[1]) + 
+								"&pt2=" + scaled_rpt0(rpt0[2]) + 
+								"&pt3=" + scaled_rpt0(rpt0[3]) + 
+								"&pt4=" + scaled_rpt0(rpt0[4]) + 
+								"&pt5=" + scaled_rpt0(rpt0[5]) + 
+								"&pt6=" + scaled_rpt0(rpt0[6]) ,"","width=600,height=600");
     console.log(bot_window);
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
