@@ -282,7 +282,7 @@ function init_parametric_statistics(pt0, username){
 }
 
 function start_parametric_bot(username, rpt0){
-  scaled_rpt0 = (x) => ((x - min(...rpt0))/(max(...rpt0) - min(...rpt0)));
+  scaled_rpt0 = (x) => ((x - Math.min(...rpt0))/(Math.max(...rpt0) - Math.min(...rpt0)));
 	bot_window = window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?user=" + username +
 								"&pt0=" + scaled_rpt0(rpt0[0]) + 
 								"&pt1=" + scaled_rpt0(rpt0[1]) + 
