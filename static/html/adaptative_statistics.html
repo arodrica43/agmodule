@@ -255,7 +255,7 @@ function init_parametric_statistics(pt0, username){
   for (var i = 0; i < traces.length;i++){
     data.push({
         x: [0], 
-        y: [scaleI(pt0,pt0[i],i)], 
+        y: [pt0[i]], 
         type: 'scatter',
         name: traces[i],
         line: {
@@ -290,15 +290,14 @@ function init_parametric_statistics(pt0, username){
 }
 
 function start_parametric_bot(username, rpt0){
- 
 	bot_window = window.open("https://agmodule.herokuapp.com/preview/g_mechanics/20/?user=" + username +
-								"&pt0=" + scaleI(rpt0,rpt0[0],0) + 
-								"&pt1=" + scaleI(rpt0,rpt0[1],1) + 
-								"&pt2=" + scaleI(rpt0,rpt0[2],2) + 
-								"&pt3=" + scaleI(rpt0,rpt0[3],3) + 
-								"&pt4=" + scaleI(rpt0,rpt0[4],4) + 
-								"&pt5=" + scaleI(rpt0,rpt0[5],5) + 
-								"&pt6=" + scaleI(rpt0,rpt0[6],6) ,"","width=600,height=600");
+								"&pt0=" + rpt0[0] + 
+								"&pt1=" + rpt0[1] + 
+								"&pt2=" + rpt0[2] + 
+								"&pt3=" + rpt0[3] + 
+								"&pt4=" + rpt0[4] + 
+								"&pt5=" + rpt0[5] + 
+								"&pt6=" + rpt0[6] ,"","width=600,height=600");
     console.log(bot_window);
     num_bots++;
     updateLogs("New Bot created :: " + username + ".");
@@ -383,13 +382,13 @@ function startExperiment(){
 function create_user(pt0,exp_group, username){
     // POST request using fetch() 
 
-    pt00 = scaleI(pt0,pt0[0],0);
-    pt01 = scaleI(pt0,pt0[1],1);
-    pt02 = scaleI(pt0,pt0[2],2);
-  	pt03 = scaleI(pt0,pt0[3],3);
-  	pt04 = scaleI(pt0,pt0[4],4);
-  	pt05 = scaleI(pt0,pt0[5],5);
-  	pt06 = scaleI(pt0,pt0[6],6);
+    pt00 = pt0[0];
+    pt01 = pt0[1];
+    pt02 = pt0[2];
+  	pt03 = pt0[3];
+  	pt04 = pt0[4];
+  	pt05 = pt0[5];
+  	pt06 = pt0[6];  
     uname = username;
 
     console.log(pt0);

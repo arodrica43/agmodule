@@ -140,16 +140,12 @@ class GMechanicViewSet(viewsets.ModelViewSet):
 
                     import math
                     _, name = g_mechanic_cast(pk)
-                    #n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
-                    n = len(statistic[0].log["history"])
+                    n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
                     l = 4
                     I = 0
                     #for t_label in ['main_time', 'focus_time', 'interaction_time']:
-                    #    I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
-                    f = 1 - math.exp(-n)
-                    g = math.exp(-statistic[0].log['main_time'])
-                    I = n #1 - math.exp(-100*len(statistic[0].log["history"])/(statistic[0].log['main_time'] + 1e-100))
-                    #I = 0.5*(I/3 + statistic[0].log['valoration'])
+                     #   I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
+                    I = n #0.5*(I/3 + statistic[0].log['valoration'])
                     #I = I/3
                     statistic.update(interaction_index = I)
                     #------------------------------------------------------------------------------------------------------------------------------
@@ -172,8 +168,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
                             expected_gstate = np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
-                            #if expected_gstate_norm > 1e-100:
-                            #    expected_gstate = expected_gstate / expected_gstate_norm
+                            if expected_gstate_norm > 1e-100:
+                                expected_gstate = expected_gstate / expected_gstate_norm
                             print(expected_gstate)
                             current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             print(current_gstate)
@@ -181,8 +177,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
-                            #if new_gstate_norm > 1e-100:
-                            #    new_gstate = new_gstate / new_gstate_norm
+                            if new_gstate_norm > 1e-100:
+                                new_gstate = new_gstate / new_gstate_norm
                             current_user[0].gamer_profile.disruptor = new_gstate[0]
                             current_user[0].gamer_profile.free_spirit = new_gstate[1]
                             current_user[0].gamer_profile.achiever = new_gstate[2]
