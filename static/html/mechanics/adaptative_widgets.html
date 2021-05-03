@@ -34,7 +34,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/retrieve_adaptative_widget
                     document.querySelector("#global-args").dataset.pt6
                 ]
         pt_without_np = pt.slice(0,6);
-        var s = (pt[res_json.class_idx % 6] -  Math.min(...pt_without_np))/ (Math.max(...pt_without_np) - Math.min(...pt_without_np)); // normalizing in the interval of values
+        var s = pt[res_json.class_idx % 6]; // normalizing in the interval of values
         console.log("pti :: " + pt[res_json.class_idx % 6]);
         console.log("s :: " + s);
         console.log("min :: " +  Math.min(...pt))
