@@ -207,7 +207,7 @@ constants = {
 }
 
 slice = (v) => (v.slice(0, v.length - 1));
-scaleI = (v, x) => ((x - Math.min(...slice(v))/(Math.max(...slice(v)) - Math.min(...slice(v))));
+scaleI = (v, x) => ((x - Math.min(...slice(v)))/(Math.max(...slice(v)) - Math.min(...slice(v))));
 dot = (a, b) => a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
 
 function select_far_rpt0(pt0){
