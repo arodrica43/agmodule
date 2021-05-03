@@ -140,12 +140,15 @@ class GMechanicViewSet(viewsets.ModelViewSet):
 
                     import math
                     _, name = g_mechanic_cast(pk)
-                    n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
+                    #n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
+                    n = len(statistic[0].log["history"])
                     l = 4
                     I = 0
                     #for t_label in ['main_time', 'focus_time', 'interaction_time']:
                     #    I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
-                    I = 1 - math.exp(-100*len(statistic[0].log["history"])/(statistic[0].log['main_time'] + 1e-100))
+                    f = 1 - math.exp(-n)
+                    g = math.exp(-statistic[0].log['main_time'])
+                    I = 0.5*(f + g)#1 - math.exp(-100*len(statistic[0].log["history"])/(statistic[0].log['main_time'] + 1e-100))
                     #I = 0.5*(I/3 + statistic[0].log['valoration'])
                     #I = I/3
                     statistic.update(interaction_index = I)
