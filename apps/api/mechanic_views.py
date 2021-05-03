@@ -166,9 +166,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print("Here",instance.matrix().T.dot(current_statistics))
                             #print(instance.matrix()[:,:len(current_statistics)].shape,len(current_statistics))
                             # CHANGED instance.matrix :: if we're working with widgets should be widget_matrix
-                            statistics_norm = current_statistics.sum()
-                            if statistics_norm > 1e-100:
-                                current_statistics = current_statistics/statistics_norm
+                            # statistics_norm = current_statistics.sum()
+                            # if statistics_norm > 1e-100:
+                            #     current_statistics = current_statistics/statistics_norm
                             expected_gstate = np.linalg.pinv(instance.widget_matrix()[:len(current_statistics),:]).dot(current_statistics)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
                             if expected_gstate_norm > 1e-100:
@@ -176,7 +176,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             print(expected_gstate)
                             #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             print(current_gstate)
-                            new_gstate = (0.99*current_gstate + 0.01*expected_gstate)
+                            new_gstate = current_gstate#((1 - 1/1e6)*current_gstate + 1e-6*expected_gstate)
                             print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
