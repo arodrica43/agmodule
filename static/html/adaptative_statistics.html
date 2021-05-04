@@ -197,7 +197,7 @@ constants = {
 			],
 	"cases" : ['C1', 'C2'],
 	"interactivities" : [1],
-	"bot_accuracies" : ["low", "high"], 
+	"bot_accuracies" : ["low"], 
 	"T+" : (x) => (10),
 	"T-" : (x) => (-2.5*x + 3),
 	"t-" : 0,
@@ -220,14 +220,12 @@ function select_far_rpt0(pt0){
 	m = 0;
 	who = pt0;
 	constants['PT0s'].forEach(function(item,index){
-		dist = Math.sqrt(dot(item,pt0));
-    console.log(dist);
+		dist = Math.sqrt(dot(item - pt0, item - pt0));
 		if(dist > m){
 			m = dist;
 			who = item;
 		}
 	});
-  console.log(who);
 	return who;
 }
 
@@ -241,8 +239,12 @@ function initExperiment(){
 					if(acc == "low"){
 						rpt0 = select_far_rpt0(pt0);
 					}else{
-						rpt0 = pt0
+						rpt0 = pt0;
 					}
+          console.log("------------------");
+          console.log(pt0);
+          console.log(rpt0);
+          console.log("------------------");
 					experiments.push({"PT0" : pt0, "PT0_index" : pt0_idx, "RPT0" : rpt0, "case" : cs, "interactivity" : inter, "accuracy" : acc});
 				});
 			});
@@ -393,7 +395,6 @@ function create_user(pt0,exp_group, username){
   	pt06 = pt0[6];  
     uname = username;
 
-    console.log(pt0);
     if(pt0 == "undefined"){
     	pt00 = document.getElementById("Disruptor").value;
 	    pt01 = document.getElementById("Free Spirit").value;
