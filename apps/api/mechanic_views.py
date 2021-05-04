@@ -176,7 +176,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             widget_matrix = instance.widget_matrix()
                             print("A",widget_matrix)
                             widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
-                            np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
+                            widget_matrix[isnan(widget_matrix)] = 0
+                            #np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
                             print("B",widget_matrix)
                             expected_gstate = np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
                             print("C",expected_gstate)
