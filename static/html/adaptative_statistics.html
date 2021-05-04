@@ -221,11 +221,13 @@ function select_far_rpt0(pt0){
 	who = pt0;
 	constants['PT0s'].forEach(function(item,index){
 		dist = Math.sqrt(dot(item,pt0));
+    console.log(dist);
 		if(dist > m){
 			m = dist;
 			who = item;
 		}
 	});
+  console.log(who);
 	return who;
 }
 
