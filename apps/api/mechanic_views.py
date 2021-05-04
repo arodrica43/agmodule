@@ -142,27 +142,30 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     _, name = g_mechanic_cast(pk)
                     n = sum([(0.2*x[0]["level"] + 0.8) for x in statistic[0].log["history"]])/mechanic_list_total_interactions[name]
                     l = 4
-                    I = 0
-                    epsilon = 1e-2
                     #for t_label in ['main_time', 'focus_time', 'interaction_time']:
                      #   I += 1 - math.exp(-l*(n/(statistic[0].log[t_label] + 1e-100)))
                     #I = 1 - math.exp(-n/(statistic[0].log['main_time'])) #0.5*(I/3 + statistic[0].log['valoration'])
-                    n = len(statistic[0].log["history"])
-                    v_scale = 1.25*(1 - epsilon)*(statistic[0].log['valoration'] - 0.2) + epsilon
-                    I = 0.5*(v_scale + (1 - math.exp(-n))) 
-                    #I = I/3
-                    statistic.update(interaction_index = I)
+                    
                     #------------------------------------------------------------------------------------------------------------------------------
                     # Gamer profile update --------------------------------------------------------------------------------------------------------
                     # If user experimental case = B, don't update its profile
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
+                        current_gstate = np.array(current_user[0].gamer_profile.vectorize())
+                        #print(current_gstate)
+                        I = 0
+                        epsilon = 1e-2
+                        m = current_gstate.min()
+                        M = current_gstate.max()
+                        n = len(statistic[0].log["history"])
+                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(m + M - 2*epsilon) + epsilon
+                        I = 0.5*(v_scale + (1 - math.exp(-n))) 
+                        #I = I/3
+                        statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
                         if 'case' not in current_user[0].gamer_profile.data.keys():
                             current_user[0].gamer_profile.data['case'] = "C2b"
                         if "B" not in current_user[0].gamer_profile.data['case']:
-                            current_gstate = np.array(current_user[0].gamer_profile.vectorize())
-                            print(current_gstate)
                             #Statistics Without valoration
                             #current_statistics = np.array(instance.statistics_with_valoration_vector(data['user']))
                             #Statistics With valoration
@@ -174,21 +177,21 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             # if statistics_norm > 1e-100:
                             #     current_statistics = current_statistics/statistics_norm
                             widget_matrix = instance.widget_matrix()
-                            print("A",widget_matrix)
+                            #print("A",widget_matrix)
                             widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
                             widget_matrix[np.isnan(widget_matrix)] = 0
                             #np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
-                            print("B",widget_matrix)
+                            #print("B",widget_matrix)
                             expected_gstate = np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
-                            print("C",expected_gstate)
+                            #print("C",expected_gstate)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
                             #if expected_gstate_norm > 1e-100:
                                 #expected_gstate = expected_gstate / expected_gstate_norm
-                            print(expected_gstate)
+                            #print(expected_gstate)
                             #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
-                            print(current_gstate)
+                            #print(current_gstate)
                             new_gstate = ((1 - 1e-3)*current_gstate + 1e-3*expected_gstate)
-                            print(new_gstate)
+                            #print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
                             if new_gstate_norm > 1e-100:
