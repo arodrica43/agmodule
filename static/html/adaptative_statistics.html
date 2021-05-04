@@ -215,12 +215,13 @@ function scaleI(v, x, i){
   }
 }
 dot = (a, b) => a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
+substract = (u,v) => u.map((x, i) => (x - v[i]));
 
 function select_far_rpt0(pt0){
 	m = 0;
 	who = pt0;
 	constants['PT0s'].forEach(function(item,index){
-		dist = Math.sqrt(dot(item - pt0, item - pt0));
+		dist = Math.sqrt(dot(substract(item,pt0), substract(item, pt0)));
 		if(dist > m){
 			m = dist;
 			who = item;
