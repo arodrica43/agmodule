@@ -162,7 +162,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
                         t = 60*statistic[0].log['main_time']
                         x = n
-                        I = min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)),0), 1)
+                        I = min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
@@ -193,7 +193,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print(expected_gstate)
                             #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             #print(current_gstate)
-                            new_gstate = ((1 - 1e-3)*current_gstate + 1e-3*expected_gstate)
+                            new_gstate = ((1 - 1e-2)*current_gstate + 1e-2*expected_gstate)
                             #print(new_gstate)
                             # normalize gstate
                             new_gstate_norm = new_gstate.sum()
