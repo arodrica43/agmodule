@@ -160,7 +160,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         n = len(statistic[0].log["history"])
                         v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(M - m) + m
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
-                        I = v_scale
+                        t = 60*statistic[0].log['main_time']
+                        x = n
+                        I = min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)),0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
