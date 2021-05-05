@@ -83,9 +83,14 @@ def retrieve_adaptative_widget_id(request):
                         #Case C :: Dynamic Gamer Profile (Our main algorithm). Only change on Serializers.GMechanic.update                                           #
                         #Lavue cases are tagged by 'a' and 'b', while choice cases by '1' and '2'                                                                    #
                         
+                        widget_matrix = queryset[0].widget_matrix()
+                        #print("A",widget_matrix)
+                        widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
+                        widget_matrix[np.isnan(widget_matrix)] = 0
+
                         #Lavue Matrix Utilities                                                                                                                      #
                         #Lavue case -- Current matrix = 1s and 0s matrix => alg ~ choose PTi predominating and ponderate mechanics of the same type in utilities     #
-                        utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                        utilities = widget_matrix.dot(np.array(user.gamer_profile.vectorize()))
                         #Lavue case -- We can consider a refined matrix, so every mechanic has its own MPT (Mechanic PT)                                             #
                         # WIP :: Compute utilities from a refined matrix (refined_widget_matrix())                                                                  #
                         # utilities = refined_widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
