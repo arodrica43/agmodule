@@ -185,7 +185,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             widget_matrix[np.isnan(widget_matrix)] = 0
                             #np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
                             #print("B",widget_matrix)
-                            expected_gstate = np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
+                            expected_gstate = widget_matrix[:len(current_statistics),:].T.dot(current_statistics)#np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
                             #print("C",expected_gstate)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
                             #if expected_gstate_norm > 1e-100:
