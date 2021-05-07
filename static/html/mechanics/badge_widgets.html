@@ -3,25 +3,32 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
+<style>
+
+.bdg-container{
+	position: relative;
+}
+.bdg-container > div{
+    font-size: 30px;
+    padding: .5em;
+    margin: .5em;
+    text-align: center;
+    width:90%;
+    font-size:calc(1em + 1vw);
+}
+.bdg-container > div > img{
+    width: 25%;
+    height: 60%;
+    -webkit-transition: .15s;
+    transition: .15s; 
+}
+</style>
 
 <div id = "bdg-widget-dynamic_index" class="bdg-container"></div>
 <param id = "bdg-widget-handshake-dynamic_index" value=0></param> 
 
 <script>
 
-    //INTERACTION INIT -----------------------------------------------------------------------
-    //Dynamic property :: Log tracking functions
-    console.log("Exe1");
-    include-base-tracking
-    console.log("Exe2");
-    include-onclick-tracking
-    console.log("Exe3");
-    start_main_time();
-    start_focus_time("bdg-widget-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
-    set_widget_defaults("#bdg-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
-    // ---------------------------------------------------------------------------------------
-    
 document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
 function log_bdg_click_dynamic_index(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
