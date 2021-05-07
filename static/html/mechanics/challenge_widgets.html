@@ -50,7 +50,7 @@ function log_bar_click(){
            // --------------------------------------------------------------------------
           };
 
- function claimReward_dynamic_index(object){
+ function claimReward(object){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
       //Logging :: button-click interaction
       log_click({itime: 10, message:"Claim reward button clicked", register : log, level:1,type:"ButtonClick"});
@@ -68,11 +68,11 @@ function log_bar_click(){
 }
 document.querySelector("#chl-widget-handshake-dynamic_index").value = 1;
 function choose_chl(challenge){
-	var locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward_dynamic_index(this)" data-id=' + challenge[0].id + '>Claim</button>';
+	var locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
 	if(!challenge[1]){
 	    locked_style = '<progress onclick="log_bar_click();" style="float:right;margin:15px; width:50%;" value="' + challenge[2] + '" max="' + challenge[0].threshold + '"></progress>';
 	}else if(challenge[3]){
-	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward_dynamic_index(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
+	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
 	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;"><p onclick="log_txt_click();">' + challenge[0].title + '</p></h4>' +
                                                                     '<img onclick="log_img_click();" style="float:left; width:25%; padding-left:20px;margin-top:-20px" src="' + challenge[0].icon +  

@@ -56,7 +56,7 @@ function log_img_click(){
            // --------------------------------------------------------------------------
           };
 
-function log_inp_focus_dynamic_index(){
+function log_inp_focus(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Text input focused", register : log, level:1,type:"FocusIn"});
@@ -79,7 +79,7 @@ function send_tip(tip){
 }
 
 function render_ksh(){
-	document.querySelector("#ksh-widget-dynamic_index").innerHTML += "<div><p onclick='log_txt_click();'>Let's help each other</p><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.svg'><br><div style='height:10px;'></div><input onfocus='log_inp_focus_dynamic_index();' style='width:50%' type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)'>Send a tip to everyone!</button></div>";
+	document.querySelector("#ksh-widget-dynamic_index").innerHTML += "<div><p onclick='log_txt_click();'>Let's help each other</p><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.svg'><br><div style='height:10px;'></div><input onfocus='log_inp_focus();' style='width:50%' type='text' id='tip-input-dynamic_index' value=''><br><button class='btn btn-light' onclick='send_tip(this)'>Send a tip to everyone!</button></div>";
 }
 
 render_ksh();
