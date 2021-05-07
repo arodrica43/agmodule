@@ -154,6 +154,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     # If user experimental case = B, don't update its profile
                     current_user = Gamer.objects.filter(user__username = data['user'])
                     if current_user:
+                        print("Hey --------------------",0)
                         current_gstate = np.array(current_user[0].gamer_profile.vectorize())
                         #print(current_gstate)
                         I = 0
@@ -165,9 +166,13 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
                         # Use pre_logs to compute increments
                         tf = 60*statistic[0].log['main_time']
+                        print("Hey --------------------",tf)
                         t0 = 60*pre_log['main_time']
+                        print("Hey --------------------",t0)
                         xf = len(statistic[0].log["history"])
+                        print("Hey --------------------",xf)
                         x0 = len(pre_log["history"])
+                        print("Hey --------------------",x0)
                         incr_t = tf - t0
                         incr_x = xf - x0
                         print("Time increment :: ",incr_t)
