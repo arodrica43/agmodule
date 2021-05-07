@@ -52,14 +52,14 @@
 
 document.querySelector("#dvt-widget-handshake-dynamic_index").value = 1;
 
-function log_img_click_dynamic_index(){
+function log_img_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
            // --------------------------------------------------------------------------
           };
 
-function log_txt_click_dynamic_index(){
+function log_txt_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 2, message:"Title text clicked", register : log, level:1,type:"TextClick"});
@@ -67,8 +67,8 @@ function log_txt_click_dynamic_index(){
           };
 
 function render_dvt(modifiable){
-	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click_dynamic_index();">Change the icon of ' + modifiable.title + '</div>' + 
-																	'<div><img onclick="log_img_click_dynamic_index();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
+	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click();">Change the icon of ' + modifiable.title + '</div>' + 
+																	'<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
 																	'<br><div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
 																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">' +
@@ -81,7 +81,7 @@ function selectPolicy(list){
 }
 
 function changeIcon(type, id){
-    log_img_click_dynamic_index();
+    log_img_click();
     document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"
     fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + type)
 	.then(response => response.json())

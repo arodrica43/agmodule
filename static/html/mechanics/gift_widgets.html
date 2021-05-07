@@ -52,14 +52,14 @@ var rewards = [
 ]
 
   
-function log_txt_click_dynamic_index(){
+function log_txt_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Gift Text clicked", register : log, level:1,type:"TextClick"});
            // --------------------------------------------------------------------------
           };
 
-function log_img_click_dynamic_index(){
+function log_img_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Gift Icon clicked", register : log, level:1,type:"ImageClick"});
@@ -87,7 +87,7 @@ function send_gift(gift){
 
 function render_gft(){
 	var reward = choose_reward();
-	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div><p onclick='log_txt_click_dynamic_index();'>Let's help each other</p><img onclick='log_img_click_dynamic_index();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.svg'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
+	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div><p onclick='log_txt_click();'>Let's help each other</p><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.svg'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
 }
 
 render_gft();

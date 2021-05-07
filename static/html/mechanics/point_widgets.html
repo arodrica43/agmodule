@@ -37,7 +37,7 @@
     // ---------------------------------------------------------------------------------------
     
   
-function log_txt_click_dynamic_index(){
+function log_txt_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Main text clicked", register : log, level:1,type:"TextClick"});
@@ -46,8 +46,8 @@ function log_txt_click_dynamic_index(){
 
 document.querySelector("#pnt-widget-handshake-dynamic_index").value = 1;
 function render_pnt(point, point_by, reward){
-	document.querySelector("#pnt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click_dynamic_index();">Your won a reward!</div>' +
-                                                                        '<div onclick="log_txt_click_dynamic_index();">' + reward + ' ' + point_by + '</div>';
+	document.querySelector("#pnt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click();">Your won a reward!</div>' +
+                                                                        '<div onclick="log_txt_click();">' + reward + ' ' + point_by + '</div>';
 }
 
 function selectPolicy(list){
