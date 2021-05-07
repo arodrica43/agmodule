@@ -106,6 +106,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         except:
                             lock.release()
                             raise Http404
+                    #Pre variables :: Before update --------------------------------------------
+                    pre_log = statistic[0].log
+                    # --------------------------------------------------------------------------
                     for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time', 'valoration']:
                         uplog = statistic[0].log
                         if arg in statistic[0].log.keys() and arg != 'valoration':
@@ -158,11 +161,21 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         m = current_gstate.min()
                         M = current_gstate.max()
                         n = len(statistic[0].log["history"])
-                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(M - m) + m
+                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(1 - epsilon) + epsilon # M = 1, m = epsilon
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
-                        t = 60*statistic[0].log['main_time']
-                        x = n
-                        I = v_scale #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
+                        # Use pre_logs to compute increments
+                        tf = 60*statistic[0].log['main_time']
+                        t0 = 60*pre_log['main_time']
+                        xf = len(statistic[0].log["history"])
+                        x0 = len(pre_log["history"])
+                        incr_t = tf - t0
+                        incr_x = xf - x0
+                        print("Time increment :: ",incr_t)
+                        print("Logs increment :: ",incr_x)
+                        v = 0
+                        if incr_t != 0:
+                            v = incr_x / incr_t
+                        I = 0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
@@ -185,7 +198,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             widget_matrix[np.isnan(widget_matrix)] = 0
                             #np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
                             #print("B",widget_matrix)
-                            expected_gstate = widget_matrix[:len(current_statistics),:].T.dot(current_statistics)#np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
+                            # Try with transpose instead of pseudoinverse (???)
+                            expected_gstate = np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
                             #print("C",expected_gstate)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
                             #if expected_gstate_norm > 1e-100:
