@@ -107,7 +107,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             lock.release()
                             raise Http404
                     #Pre variables :: Before update --------------------------------------------
-                    pre_log = statistic[0].log.copy()
+                    import copy
+                    pre_log = copy.deepcopy(statistic[0].log)
                     # --------------------------------------------------------------------------
                     for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time', 'valoration']:
                         uplog = statistic[0].log
