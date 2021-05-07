@@ -161,7 +161,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         m = current_gstate.min()
                         M = current_gstate.max()
                         n = len(statistic[0].log["history"])
-                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(1 - epsilon) + epsilon # M = 1, m = epsilon
+                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(M - m) + m # M = 1, m = epsilon
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
                         # Use pre_logs to compute increments
                         tf = 60*statistic[0].log['main_time']
