@@ -43,13 +43,13 @@
     // ---------------------------------------------------------------------------------------
     
 document.querySelector("#bdg-widget-handshake-dynamic_index").value = 1;
-function log_bdg_click_dynamic_index(){
+function log_bdg_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
            // --------------------------------------------------------------------------
           };
-function log_txt_click_dynamic_index(){
+function log_txt_click(){
           // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
           //Logging :: button-click interaction
           log_click({itime: 10, message:"Badge Text clicked", register : log, level:1,type:"TextClick"});
@@ -63,7 +63,7 @@ function choose_bdg(badge){
     	  locked_style = 'You won a new badge: ';
     } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4><p onclick="log_txt_click_dynamic_index()">' + locked_style + badge[0].title + '</p></h4><img onclick="log_bdg_click_dynamic_index();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4><p onclick="log_txt_click()">' + locked_style + badge[0].title + '</p></h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
 }
 
 </script>
