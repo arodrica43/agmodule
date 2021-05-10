@@ -109,6 +109,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     #Pre variables :: Before update --------------------------------------------
                     import copy
                     pre_log = copy.deepcopy(statistic[0].log)
+                    print("Hey -----------------", pre_log)
+                    if not pre_log:
+                        pre_log["history"] = []
+                        pre_log["main_time"] = 0                        
                     # --------------------------------------------------------------------------
                     for arg in ['history', 'main_time', 'focus_time', 'interaction_time','hidden_content_time', 'shown_content_time', 'valoration']:
                         uplog = statistic[0].log
@@ -171,7 +175,6 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         t0 = 60*pre_log['main_time']
                         print("Hey --------------------",t0)
                         xf = len(statistic[0].log["history"])
-                        print("???", statistic[0].log)
                         print("Hey --------------------",xf)
                         x0 = len(pre_log["history"])
                         print("Hey --------------------",x0)
