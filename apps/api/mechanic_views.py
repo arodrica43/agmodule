@@ -185,7 +185,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         v = 0
                         if incr_t != 0:
                             v = incr_x / incr_t
-                        I = 0.5*(1 - math.exp(-v) + v_scale)#0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
+                        I = 1 - math.exp(-v*v_scale) #0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
