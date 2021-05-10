@@ -202,6 +202,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             #print("A",widget_matrix)
                             widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
                             widget_matrix[np.isnan(widget_matrix)] = 0
+                            widget_matrix[np.isinf(widget_matrix)] = 0
+                            
                             #np.nan_to_num(widget_matrix, copy=True, nan=0.0, posinf=None, neginf=None)
                             #print("B",widget_matrix)
                             # Try with transpose instead of pseudoinverse (???)
