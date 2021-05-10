@@ -171,6 +171,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         t0 = 60*pre_log['main_time']
                         print("Hey --------------------",t0)
                         xf = len(statistic[0].log["history"])
+                        print("???", statistic[0].log)
                         print("Hey --------------------",xf)
                         x0 = len(pre_log["history"])
                         print("Hey --------------------",x0)
