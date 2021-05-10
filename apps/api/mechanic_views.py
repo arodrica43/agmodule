@@ -163,7 +163,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         m = current_gstate.min()
                         M = current_gstate.max()
                         n = len(statistic[0].log["history"])
-                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(M - m) + m # M = 1, m = epsilon
+                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)#*(M - m) + m # M = 1, m = epsilon
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
                         # Use pre_logs to compute increments
                         tf = 60*statistic[0].log['main_time']
@@ -181,7 +181,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         v = 0
                         if incr_t != 0:
                             v = incr_x / incr_t
-                        I = 1 - math.exp(-v)#0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
+                        I = 0.5*(1 - math.exp(-v) + v_scale)#0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
                         #TO DELETE :: Delete if clause once the experiment is finished
