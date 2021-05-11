@@ -350,10 +350,10 @@ def unlock_unlockable(request,username,pk):
                 lock6.release()
                 return JsonResponse({'results':'OK'})
             else:
-                lock6.release()
+                #lock6.release()
                 raise Http404
         else:
-            lock6.release()
+            #lock6.release()
             raise Http404
     except:
         lock6.release()

@@ -167,7 +167,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         m = current_gstate.min()
                         M = current_gstate.max()
                         n = len(statistic[0].log["history"])
-                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)#*(M - m) + m # M = 1, m = epsilon
+                        v_scale = 1.25*(statistic[0].log['valoration'] - 0.2)*(0.9 - 0.1) + 0.1 # M = 1, m = epsilon
                         #I = 0.5*(v_scale + (1 - math.exp(-n))) 
                         # Use pre_logs to compute increments
                         tf = 60*statistic[0].log['main_time']
@@ -214,8 +214,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                             expected_gstate = np.linalg.pinv(widget_matrix[:len(current_statistics),:]).dot(current_statistics)
                             #print("C",expected_gstate)
                             expected_gstate_norm = expected_gstate.sum() #np.linalg.norm(expected_gstate) # We might take the sum of values
-                            #if expected_gstate_norm > 1e-100:
-                                #expected_gstate = expected_gstate / expected_gstate_norm
+                            if expected_gstate_norm > 1e-100:
+                                expected_gstate = expected_gstate / expected_gstate_norm
                             #print(expected_gstate)
                             #current_gstate = np.array([2*current_gstate[i] if expected_gstate[i] < 1e-6 else current_gstate[i] for i in range(7)])
                             #print(current_gstate)
