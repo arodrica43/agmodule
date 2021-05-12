@@ -1,7 +1,7 @@
 try {
     var a = log["history"];
 } catch (err) {
-    var log = { "history": [], "main_time": 0, "focus_time": 0, "interaction_time": 0, "hidden_content_time": 0, "shown_content_time": 0, "valoration": 0.5 };
+    var log = { "history": [], "main_time": 0, "focus_time": 0, "interaction_time": 0, "hidden_content_time": 0, "shown_content_time": 0, "valoration": 0.6 };
 
     //include_interaction_testing_tools
 
