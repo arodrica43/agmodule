@@ -239,6 +239,13 @@
 
 <script>
 
+  uname = "";
+  try{
+    uname = document.querySelector(".account-username").title;
+  }catch(error){
+    uname = document.querySelector(".username").innerHTML;
+  }
+
   mechanic_names = [
                       ['challenges', 'Challenges', 'challenge_widgets'],
                       ['easter_eggs', 'Easter Eggs', 'easter_egg_widgets'],
@@ -272,7 +279,7 @@
                       ['label', 'Philantropist', ''],
                     ]
 
-  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/user1")
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname)
   .then(response => response.json())
   .then(res_json => (res_json.results))
   .then(acc_mechanics => (
@@ -292,7 +299,7 @@
     ))
   .catch(error => (console.log("Error: " + error)))
 
-  var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=user1";
+  var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=" + uname;
   var list_data = {};
   fetch(url)
         .then(response => response.json())
@@ -310,9 +317,9 @@
   function openMechanic(mechanic){
     if(mechanic.name != "blocked"){
       document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
-      console.log(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name);
+      console.log(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name);
       document.getElementById("main-modal-title").innerHTML = "List of " + mechanic.dataset.title;
-      fetch(list_data[mechanic.name] + "?user=user1&dynamic_index=" + mechanic.name)
+      fetch(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name)
       .then(response => response.json())
       .then(function(res_json){
         document.querySelector("#main-modal-content").innerHTML = (res_json.html); 
