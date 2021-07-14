@@ -10,10 +10,10 @@
   height: 20px; /* Can be anything */
   position: relative;
   margin: 0px 0 0px 0; /* Just for demo spacing */
-  background: rgba(255,255,255,0.05);
+  background: rgba(0,0,0,0.1);
   border-radius: 25px;
   padding: 1px;
-  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.05);
 }
 .meter > span {
   display: block;
