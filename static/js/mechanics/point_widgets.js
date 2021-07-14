@@ -20,7 +20,7 @@ function log_txt_click(){
 document.querySelector("#pnt-widget-handshake-dynamic_index").value = 1;
 function render_pnt(point, point_by, reward){
 	document.querySelector("#pnt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click();">Your won a reward!</div>' +
-                                                                        '<div onclick="log_txt_click();">' + reward + ' ' + point_by + '</div>';
+                                                                        '<div onclick="log_txt_click();">+' + reward + ' ' + point_by + '</div>';
 }
 
 function selectPolicy(list){
