@@ -18,7 +18,7 @@
             document.querySelector("#header-lvl").innerHTML = myJson.title;
             document.querySelector("#value").innerHTML = "<div>You have reached " + myJson.by + " " + myJson.value +"!</div><br><div>" + percent + "</div><br>" ;
             document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
-                                                                '<div class="meter animate red">' +
+                                                                '<div class="meter red">' +
                                                                     '<span style="width: ' + percent + '"></span>' +
                                                                 '</div>' +
                                                             '</div>'; 
