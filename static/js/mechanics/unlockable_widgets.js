@@ -73,7 +73,7 @@ function fillHTML(data){
 document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="card" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
 																	'<div class="card-inner">'+
 																	    '<div class="card-front">'+
-																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar">'+
+																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
 																	    '</div>'+
 																	    '<div class="card-back">'+
 																	      '<div id="locked-content-div"></div> '+
