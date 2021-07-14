@@ -18,8 +18,8 @@
             document.querySelector("#header-lvl").innerHTML = myJson.title;
             document.querySelector("#value").innerHTML = "You have reached " + myJson.by + " " + myJson.value +"!<br><br>" ;
             document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
-                                                                '<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="'+ myJson.value +'" aria-valuemin="0" aria-valuemax="'+myJson.max_value+'" style="width:'+percent+'">' +
-                                                                     percent +
+                                                                '<div class="meter red">' +
+                                                                    '<span style="width: ' + percent + '%"></span>' +
                                                                 '</div>' +
                                                             '</div>'; 
             document.querySelector("#progress-bar-div").onclick = function(){
