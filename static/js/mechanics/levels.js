@@ -16,7 +16,7 @@
         .then(function (myJson) {
             var percent = 100*myJson.value/ myJson.max_value  + '%';
             document.querySelector("#header-lvl").innerHTML = myJson.title;
-            document.querySelector("#value").innerHTML = "<div>You have reached " + myJson.by + " " + myJson.value +"!</div><br><div>" + percent + "</div>" ;
+            document.querySelector("#value").innerHTML = "<div>You have reached " + myJson.by + " " + myJson.value +"!</div><br><div>Progress: " + percent + "</div>" ;
             document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
                                                                 '<div class="meter red">' +
                                                                     '<span style="width: ' + percent + '"></span>' +
