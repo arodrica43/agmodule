@@ -46,7 +46,7 @@ allowed_mechanics = {"easy" : [
 def ensamble_interaction_dynamic_properties(queryset, filenames = interaction_files):
     try:
         for i in range(len(filenames)):
-            file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][1],  "interactions/" + filenames[i][1]))
+            file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][2],  "interactions/" + filenames[i][1]))
             queryset.update(html = queryset[0].html.replace(filenames[i][0],file.read())) 
     except:
         raise Http404
