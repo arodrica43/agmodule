@@ -39,10 +39,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     html_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][0],  "mechanics/" + name + '.html'))
 
                     print(2)
-                    css_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][1],  "mechanics/" + name + '.html'))
+                    css_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][1],  "mechanics/" + name + '.css'))
 
                     print(3)
-                    js_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][2],  "mechanics/" + name + '.html'))
+                    js_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][2],  "mechanics/" + name + '.js'))
 
                     print(4)
                     ensamble = ensamble_file(html_file, css_file, js_file)
