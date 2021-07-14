@@ -35,10 +35,19 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                 raise Http404
             try:
                 try:
+                    print(1)
                     html_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][0],  "mechanics/" + name + '.html'))
+
+                    print(2)
                     css_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][1],  "mechanics/" + name + '.html'))
+
+                    print(3)
                     js_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][2],  "mechanics/" + name + '.html'))
+
+                    print(4)
                     ensamble = ensamble_file(html_file, css_file, js_file)
+
+                    print(5)
                     print("https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode())
                     queryset.update(html = ensamble.replace("called_mechanic_url","https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode()))
                     ensamble_interaction_dynamic_properties(queryset)
