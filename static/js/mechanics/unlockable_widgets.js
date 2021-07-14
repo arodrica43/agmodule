@@ -73,7 +73,7 @@ function fillHTML(data){
 document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="card" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
 																	'<div class="card-inner">'+
 																	    '<div class="card-front">'+
-																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
+																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar">'+
 																	    '</div>'+
 																	    '<div class="card-back">'+
 																	      '<div id="locked-content-div"></div> '+
@@ -89,5 +89,5 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((unlockables) => (console.log(unlockables),
-						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div style='height:100px;'>This widget has alredy been used</div>"))
+						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>This widget has alredy been used</div>"))
 .catch(error => (console.log("Error: " + error)))
