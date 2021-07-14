@@ -49,7 +49,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
 
                     print(5)
                     print("https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode())
+                    print(6)
                     queryset.update(html = ensamble.replace("called_mechanic_url","https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode()))
+                    print(7)
                     ensamble_interaction_dynamic_properties(queryset)
                 except:
                     print("Error while ensambling a gmechanic file!!!")
