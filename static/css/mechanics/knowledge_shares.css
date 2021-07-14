@@ -1,0 +1,58 @@
+
+.message {
+    position: relative;
+    background:whitesmoke;
+    margin:15px;
+}
+.message span {
+    position: absolute;
+    bottom: 10px;
+   
+}
+.message img.left {
+  float: left;
+  margin-right: 20px;
+  margin-left:0;
+}
+.message img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+.time-right {
+  float: right;
+  color: #aaa;
+  right:10px;
+  height:10%;
+}
+.time-left {
+  float: left;
+  color: #999;
+  left:10px;
+  height:10%;
+}
+#main-content-ksh {
+  height: 100%;
+}
+#scrollable-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 400px;
+  overflow: auto;
+  background-color: none;
+}
+#footer {
+  background-color: white;
+}
+.input-wrapper {
+  width: 300px;
+}
+.item-list {
+  display: none;
+}
+.container>div{
+    border:0;
+}
+.panel {
+    border-color:#2C2C2C;
+}

@@ -1,0 +1,20 @@
+
+.gft-container{
+    position: relative;
+    top:-12px;
+  	
+}
+.gft-container > div{
+        padding: 1.5em;
+        padding-bottom:0;
+        margin: .5em;
+        text-align: center;
+        width:100%;
+        font-size:calc(1.5rem + 1.5vw);
+}
+.gft-container > div > img{
+        width: 25%;
+        height: 25%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }

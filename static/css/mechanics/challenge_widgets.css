@@ -1,0 +1,11 @@
+.chl-container{
+    position: relative;
+}
+.chl-container > div{
+        font-size: 30px;
+        margin: .5em;
+        background: white;
+        text-align: center;
+        height:190px;
+        font-size:4vw;
+}

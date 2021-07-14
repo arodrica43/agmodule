@@ -1,0 +1,21 @@
+
+.ksh-container{
+    position: relative;
+	top:-12px;
+}
+.ksh-container > div{
+        padding: 1.5em;
+        padding-left: .5em;
+        padding-right:.5em;
+        padding-bottom:0;
+        margin: .5em;
+        text-align: center;
+        width:100%;
+        font-size:calc(1.5em + 1.5vw);
+}
+.ksh-container > div > img{
+        width: 25%;
+        height: 25%;
+        -webkit-transition: .15s;
+        transition: .15s; 
+    }

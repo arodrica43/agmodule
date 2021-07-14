@@ -2,59 +2,7 @@
 <!-- Font Awesome Icon Library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<style>
-.lot-container{
-    position: relative;
-}
-.lot-container > div{
-        font-size: 30px;
-        padding: .5em;
-        margin: .5em;
-        text-align: center;
-        width:90%;
-        font-size:2.2rem;
-}
-.lot-container > div > img{
-        width: 25%;
-        height: 60%;
-        -webkit-transition: .15s;
-        transition: .15s; 
-    }
-</style>
+
 
 <div id = "lot-widget-dynamic_index" class="lot-container"></div>
 <param id = "lot-widget-handshake-dynamic_index" value=0></param> 
-
-<script>
-    //INTERACTION INIT -----------------------------------------------------------------------
-    //Dynamic property :: Log tracking functions
-    include-base-tracking
-    include-onclick-tracking
-    start_main_time();
-    start_focus_time("lot-widget-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
-    set_widget_defaults("#lot-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
-    // ---------------------------------------------------------------------------------------
-
-document.querySelector("#lot-widget-handshake-dynamic_index").value = 1;
-function render_lot(lottery){
-	document.querySelector("#lot-widget-dynamic_index").innerHTML += lottery.html;
-    $(lottery.html).appendTo(document.body);
-}
-
-function selectPolicy(list){
-	return list[0]
-}
-
-url = "https://agmodule.herokuapp.com/api/lotteries/";
-fetch(url)
-.then(response => response.json())
-.then(res_json => (res_json.results))
-.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
-.then((lottery) => (console.log(lottery), 
-						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + lottery.id + "/?user=dynamic_user&show_title=false")
-						.then(response => response.json())
-						.then((updated_lottery) => (console.log(updated_lottery), render_lot(updated_lottery)))
-						.catch(error => (console.log("Error: " + error)))))
-.catch(error => (console.log("Error: " + error)))
-</script>
