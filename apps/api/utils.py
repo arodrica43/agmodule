@@ -51,6 +51,17 @@ def ensamble_interaction_dynamic_properties(queryset, filenames = interaction_fi
     except:
         raise Http404
 
+def ensamble_file(html, css, js):
+    result = "<style>"
+    result += css.read()
+    result += "</style>"
+    result += html.read()
+    result += "<script>"
+    result += js.read()
+    result += "</script>"
+    return result
+
+
 
 def retrieve_dashboard_mechanic(request,mechanic_class):
 

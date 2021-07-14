@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from apps.api.serializers import *
 from apps.core.models import *
-from apps.api.utils import ensamble_interaction_dynamic_properties
+from apps.api.utils import ensamble_interaction_dynamic_properties, ensamble_file
 import numpy as np
 import random as rdm
 import os
@@ -35,11 +35,15 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                 raise Http404
             try:
                 try:
-                    file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][0],  "mechanics/" + name + '.html'))
+                    html_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][0],  "mechanics/" + name + '.html'))
+                    css_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][1],  "mechanics/" + name + '.html'))
+                    js_file = open(os.path.join(settings.TEMPLATES[0]['DIRS'][2],  "mechanics/" + name + '.html'))
+                    ensamble = ensamble_file(html_file, css_file, js_file)
                     print("https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode())
-                    queryset.update(html = file.read().replace("called_mechanic_url","https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode()))
+                    queryset.update(html = ensamble.replace("called_mechanic_url","https://agmodule.herokuapp.com/api/" + name + "/" + pk + "/?" + request.GET.urlencode()))
                     ensamble_interaction_dynamic_properties(queryset)
                 except:
+                    print("Error while ensambling a gmechanic file!!!")
                     raise Http404
                 queryset.update(html = queryset[0].html.replace("dynamic_mechanic_index", pk))
                 queryset.update(html = queryset[0].html.replace("dynamic_mechanic_name", name))
