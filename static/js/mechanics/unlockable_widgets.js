@@ -95,8 +95,8 @@ fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((unlockables) => (document.getElementById("unk-widget-dynamic_index").innerHTML +=  '<div class="grid-container">', unlockables))
 .then((unlockables) => (console.log(unlockables),
-						document.getElementById("unk-widget-dynamic_index").innerHTML +=  '<div class="grid-container">',
 						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>This widget has alredy been used</div>"))
 .then((dump) => (document.getElementById("unk-widget-dynamic_index").innerHTML += '</div>'))
 .catch(error => (console.log("Error: " + error)))
