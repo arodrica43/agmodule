@@ -87,16 +87,19 @@ document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-'
 																	    '</div>'+
 																	'</div>'+*/
 																 '</div>';
+  document.getElementById('unlockables_grid_dynamic_index').appendChild(
+    document.getElementById('unk-' + data.id)
+  );
 
 }
+
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div class="grid-container" id="unlockables_grid_dynamic_index"></div>';
 
 url = "https://agmodule.herokuapp.com/api/unlockables/retrieve_for_user/dynamic_user?index=dynamic_index";
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
-.then((unlockables) => (document.getElementById("unk-widget-dynamic_index").innerHTML +=  '<div class="grid-container">', unlockables))
 .then((unlockables) => (console.log(unlockables),
 						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>This widget has alredy been used</div>"))
-.then((dump) => (document.getElementById("unk-widget-dynamic_index").innerHTML += '</div>'))
 .catch(error => (console.log("Error: " + error)))
