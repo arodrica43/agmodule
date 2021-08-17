@@ -51,9 +51,9 @@ function unlock(unlockable){
      // --------------------------------------------------------------------------
 	fetch("https://agmodule.herokuapp.com/api/unlockables/" + unlockable.dataset.id + "/unlock_for/dynamic_user?index=dynamic_index")
 	.then(function(){
-		unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
-		unlockable.querySelector(".card-inner").style.zIndex = 1;
-		var w_width = window.innerWidth ;
+		//unlockable.querySelector(".card-inner").style.transition = 'all 0.7s';
+		//unlockable.querySelector(".card-inner").style.zIndex = 1;
+		/*var w_width = window.innerWidth ;
 		var x = unlockable.querySelector(".card-inner").offsetLeft;
 		var w = unlockable.querySelector(".card-inner").offsetWidth;
 		var lambda = 4;
@@ -65,20 +65,27 @@ function unlock(unlockable){
 		    	document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
 				document.getElementById("unk-widget-dynamic_index").style.height = "300px";
 			});
+			*/
+		unlockable.getElementsByTagName('img')[0].src = "https://agmodule.herokuapp.com/media/unlockable_icons/unlocked.png";
+		setTimeout(function(){
+		    document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
+		}, 2000);
+		
+
 	})
 	.catch(error => (console.log("Error: " + error)))
 }
 
 function fillHTML(data){
 document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="card" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
-																	'<div class="card-inner">'+
-																	    '<div class="card-front">'+
+																	/*'<div class="card-inner">'+
+																	    '<div class="card-front">'+*/
 																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
-																	    '</div>'+
+																	/*    '</div>'+
 																	    '<div class="card-back">'+
 																	      '<div id="locked-content-div"></div> '+
 																	    '</div>'+
-																	'</div>'+
+																	'</div>'+*/
 																 '</div>';
 
 }
