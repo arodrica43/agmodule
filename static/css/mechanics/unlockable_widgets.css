@@ -15,83 +15,13 @@
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
-  background-color: #2196F3;
+  background-color:  rgba(255, 255, 255, 0);
   padding: 10px;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0);
+
   padding: 20px;
   font-size: 30px;
   text-align: center;
 }
-
-.card {
-  float: left;
-  margin: 12px;
-  padding: 10px 3px;
-  /*setting width for each and every card element as well as -10px for removing the margin width for 5 elements*/
-  width: calc( 100% / 5 - 20px);
-  height:120px;
-  text-align:center;
-  z-index: 0;
-  align-content: center;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.card-front {
-  background-color: whitesmoke;
-  color: black;
-}
-
-.card-back {
-  background-color: whitesmoke;
-  color: black;
-  transform: rotateY(180deg);
-}
-
-
-/*first element*/
-
- .card:first-child {
-  margin-left: 0;
-}
-
-
-/*last element of the first row*/
-
-.card:nth-child(5n) {
-  margin-right: 0;
-}
-
-
-/*first-element of the 2nd row*/
-
-.card:nth-child(5n+1) {
-  margin-left: 0;
-}
-
-
-/*last element*/
-
-.card:last-child {
-  margin-right: 0;
-}
-
