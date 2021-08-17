@@ -24,22 +24,22 @@ function selectPolicy(list){
 	return select
 }
 
-function whichTransitionEvent(el){
+// function whichTransitionEvent(el){
   
 
-  var transitions = {
-    "transition"      : "transitionend",
-    "OTransition"     : "oTransitionEnd",
-    "MozTransition"   : "transitionend",
-    "WebkitTransition": "webkitTransitionEnd"
-  }
+//   var transitions = {
+//     "transition"      : "transitionend",
+//     "OTransition"     : "oTransitionEnd",
+//     "MozTransition"   : "transitionend",
+//     "WebkitTransition": "webkitTransitionEnd"
+//   }
 
-  for (t in transitions){
-    if (el.style[t] !== undefined){
-      return transitions[t];
-    }
-  }
-}
+//   for (t in transitions){
+//     if (el.style[t] !== undefined){
+//       return transitions[t];
+//     }
+//   }
+// }
 
 
 
@@ -69,7 +69,7 @@ function unlock(unlockable){
 		unlockable.getElementsByTagName('img')[0].src = "https://agmodule.herokuapp.com/media/unlockable_icons/unlocked.png";
 		setTimeout(function(){
 		    document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
-		}, 2000);
+		}, 3000);
 		
 
 	})
@@ -77,7 +77,7 @@ function unlock(unlockable){
 }
 
 function fillHTML(data){
-document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="card" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="grid-item" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
 																	/*'<div class="card-inner">'+
 																	    '<div class="card-front">'+*/
 																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
@@ -96,5 +96,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((unlockables) => (console.log(unlockables),
-						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>This widget has alredy been used</div>"))
+						document.getElementById("unk-widget-dynamic_index").innerHTML +=  '<div class="grid-container">';
+						unlockables.length > 0 ? unlockables.forEach((item,index) => (fillHTML(item))) : document.getElementById("unk-widget-dynamic_index").innerHTML += "<div>This widget has alredy been used</div>",
+						document.getElementById("unk-widget-dynamic_index").innerHTML += '</div>'))
 .catch(error => (console.log("Error: " + error)))
