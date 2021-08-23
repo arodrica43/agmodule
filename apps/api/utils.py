@@ -172,8 +172,8 @@ def retrieve_adaptative_widget_id(request):
 						wid = '?'
 					print(wid, "--------------------------------------------------------------- WIDGET ID")
                     if 'mechanics_log' not in user.gamer_profile.data.keys():
-                         user.gamer_profile.data["mechanics_log"] = []
-                         user.gamer_profile.save()
+                        user.gamer_profile.data["mechanics_log"] = []
+                        user.gamer_profile.save()
                     mech_log = user.gamer_profile.data["mechanics_log"]
                     mech_log[len(mech_log.keys())] = {"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid}
                     user.gamer_profile.save()
