@@ -160,6 +160,25 @@ def retrieve_adaptative_widget_id(request):
                     clss_idx = -1
                     if qset:
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
+
+                    # LOG retrieved mechanic ####################################################
+                    from datetime import datetime
+					# Getting the current date and time
+					dt = datetime.now()
+					print(dt,"--------------------------------------------------------------- DATETIME")
+					if 'widget_id' in args.keys():
+						wid = args['widget_id']
+					else:
+						wid = '?'
+					print(wid, "--------------------------------------------------------------- WIDGET ID")
+                    if 'mechanics_log' not in user.gamer_profile.data.keys():
+                         user.gamer_profile.data["mechanics_log"] = []
+                         user.gamer_profile.save()
+                    mech_log = user.gamer_profile.data["mechanics_log"]
+                    mech_log[len(mech_log.keys())] = {"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid}
+                    user.gamer_profile.save()
+					print(wid, "--------------------------------------------------------------- LOG")
+                    #############################################################################
                     if 'accessible_mechanics' not in user.gamer_profile.data.keys():
                          user.gamer_profile.data["accessible_mechanics"] = []
                          user.gamer_profile.save()
@@ -485,6 +504,23 @@ def get_previous_valoration(request, username, mechanic_id):
             return JsonResponse({'results': 3})
     else:
         return JsonResponse({'results': 3})
+
+
+def get_interaction_index(request, username, mechanic_id):
+
+    user_stats = InteractionStatistic.objects.filter(user = username)
+    demand = None
+    for stat in user_stats:
+        if stat.mechanic.id == mechanic_id:
+            demand = stat
+            break
+    if demand:
+    	iidx = demand['interaction_index']
+        return JsonResponse({'interaction_index': iidx})
+    else:
+    	print("Invalid username or mechanic id.")
+        raise Http404
+
 
 def get_accessible_mechanics(request, username):
     try:
