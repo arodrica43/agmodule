@@ -513,7 +513,7 @@ def get_interaction_index(request, username, mechanic_id):
 			demand = stat
 			break
 	if demand:
-		iidx = demand['interaction_index']
+		iidx = demand.interaction_index
 		return JsonResponse({'interaction_index': iidx})
 	else:
 		print("Invalid username or mechanic id.")
