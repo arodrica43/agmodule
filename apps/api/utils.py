@@ -163,8 +163,8 @@ def retrieve_adaptative_widget_id(request):
 
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
-                    	if args['need_log']:
-                    		print(args['need_log'], "-------------------------------------------------- NEED LOG")
+                        if args['need_log']:
+                            print(args['need_log'], "-------------------------------------------------- NEED LOG")
 		                    from datetime import datetime
 		                    # Getting the current date and time
 		                    dt = datetime.now()
