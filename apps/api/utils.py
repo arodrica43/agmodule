@@ -162,22 +162,25 @@ def retrieve_adaptative_widget_id(request):
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
 
                     # LOG retrieved mechanic ####################################################
-                    from datetime import datetime
-                    # Getting the current date and time
-                    dt = datetime.now()
-                    print(dt,"--------------------------------------------------------------- DATETIME")
-                    if 'widget_id' in args.keys():
-                    	wid = args['widget_id']
-                    else:
-                    	wid = '?'
-                    print(wid, "--------------------------------------------------------------- WIDGET ID")
-                    if 'mechanics_log' not in user.gamer_profile.data.keys():
-                        user.gamer_profile.data["mechanics_log"] = []
-                        user.gamer_profile.save()
-                    mech_log = user.gamer_profile.data["mechanics_log"]
-                    mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
-                    user.gamer_profile.save()
-                    print(wid, "--------------------------------------------------------------- LOG")
+                    if 'need_log' in args.keys():
+                    	if args['need_log']:
+                    		print(args['need_log'], "-------------------------------------------------- NEED LOG")
+		                    from datetime import datetime
+		                    # Getting the current date and time
+		                    dt = datetime.now()
+		                    print(dt,"--------------------------------------------------------------- DATETIME")
+		                    if 'widget_id' in args.keys():
+		                    	wid = args['widget_id']
+		                    else:
+		                    	wid = '?'
+		                    print(wid, "--------------------------------------------------------------- WIDGET ID")
+		                    if 'mechanics_log' not in user.gamer_profile.data.keys():
+		                        user.gamer_profile.data["mechanics_log"] = []
+		                        user.gamer_profile.save()
+		                    mech_log = user.gamer_profile.data["mechanics_log"]
+		                    mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
+		                    user.gamer_profile.save()
+		                    print(wid, "--------------------------------------------------------------- LOG")
                     #############################################################################
                     if 'accessible_mechanics' not in user.gamer_profile.data.keys():
                          user.gamer_profile.data["accessible_mechanics"] = []
