@@ -27,7 +27,7 @@ function log_img_click(){
           };
 
 function render_sst(social_stat){
-	document.querySelector("#sst-widget-dynamic_index").innerHTML += "<div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/social_icons/social_status.svg'><br><br><p onclick='log_txt_click();' >You have " + social_stat[1] + " " + social_stat[0] + "!</p></div>";
+	document.querySelector("#sst-widget-dynamic_index").innerHTML += "<div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/social_icons/social_status.png'><br><br><p onclick='log_txt_click();' >You have " + social_stat[1] + " " + social_stat[0] + "!</p></div>";
 }
 
 function selectPolicy(to_select){
