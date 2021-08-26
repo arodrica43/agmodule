@@ -79,6 +79,11 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain link_url argument")
+                try:
+                    new_html = re.sub("(?!dynaic_progress=)dynamic_progress",request.GET['dynamic_progress'],queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain progress argument")
                 tmp_title = queryset[0].title
                 if 'show_title' in request.GET.keys():
                     st = request.GET['show_title']
