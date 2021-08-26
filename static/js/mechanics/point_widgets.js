@@ -39,7 +39,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((point) => (console.log(point), 
-						fetch("https://agmodule.herokuapp.com/api/points/" + point.id + "/?user=dynamic_user&show_title=false&increase=" + reward + "&dynamic_progress=dynamic_progress")
+						fetch("https://agmodule.herokuapp.com/api/points/" + point.id + "/?user=dynamic_user&show_title=false&increase=" + reward)
 						.then(response => response.json())
 						.then((updated_point) => (console.log(updated_point), render_pnt(updated_point, point.given_by, reward)))
 						.catch(error => (console.log("Error: " + error)))))
