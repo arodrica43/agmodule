@@ -86,11 +86,14 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("Query url doesn't contain progress argument")
                 try:
                     current_user = Gamer.objects.filter(user__username = data['user'])
+                    print("A -- ", current_user)
                     progress = request.GET['dynamic_progress']
+                    print("B -- ", progress)
                     prev = 0
                     if "progress" in current_user.gamer_profile.data.keys():
                         prev = current_user.gamer_profile.data["progress"]
                     current_user.gamer_profile.data["progress"] = max(progress, prev)
+                    print("C -- ", current_user.gamer_profile.data["progress"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating progress for current user.")
