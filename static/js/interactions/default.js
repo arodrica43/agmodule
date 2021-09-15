@@ -37,15 +37,19 @@ try {
     var focus_timer;
 
     function elementInViewport(myElement) {
-        var bounding = myElement.getBoundingClientRect();
-        var myElementHeight = myElement.offsetHeight;
-        var myElementWidth = myElement.offsetWidth;
-        if (bounding.top >= -myElementHeight &&
-            bounding.left >= -myElementWidth &&
-            bounding.right <= (window.innerWidth || document.documentElement.clientWidth) + myElementWidth &&
-            bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight) {
-            return true;
-        } else {
+        try{
+            var bounding = myElement.getBoundingClientRect();
+            var myElementHeight = myElement.offsetHeight;
+            var myElementWidth = myElement.offsetWidth;
+            if (bounding.top >= -myElementHeight &&
+                bounding.left >= -myElementWidth &&
+                bounding.right <= (window.innerWidth || document.documentElement.clientWidth) + myElementWidth &&
+                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + myElementHeight) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch(error){
             return false;
         }
     }
