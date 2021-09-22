@@ -526,6 +526,13 @@ def get_interaction_index(request, username, mechanic_id):
 def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
+        from datetime import datetime
+        now = datetime.now()
+        if "dashboard_views" in user.gamer_profile.data.keys():
+            user.gamer_profile.data["dashboard_views"] += [str(now)]
+        else:
+            user.gamer_profile.data["dashboard_views"] = [str(now)]
+        user.gamer_profile.save()
     except:
         print("User found")
         raise Http404
