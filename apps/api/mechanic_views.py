@@ -89,11 +89,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     progress = request.GET['dynamic_progress']
                     print("B -- ", progress)
-                    prev = 0
-                    if "progress" in current_user.gamer_profile.data.keys():
-                        prev = current_user.gamer_profile.data["progress"]
-                    print("C -- ", prev)
-                    current_user.gamer_profile.data["progress"] = max(float(progress), prev)
+                    current_user.gamer_profile.data["progress"] = float(progress)
                     print("D -- ", current_user.gamer_profile.data["progress"])
                     current_user.gamer_profile.save()
                 except:

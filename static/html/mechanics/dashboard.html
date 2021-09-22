@@ -288,12 +288,12 @@
           document.getElementById("circle-container").innerHTML += '<li style="font-size: 2vw;">' + item[1] + '</li>';  
         }else if(item[0] != '?'){
           if(acc_mechanics.includes(item[2])){
-            document.getElementById("circle-container").innerHTML += '<li><img name="' + item[0] + '" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/' + item[0] + '.png" onclick="openMechanic(this);"></li>';
+            document.getElementById("circle-container").innerHTML += '<li><img name="' + item[0] + '" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + item[0] + '.png" onclick="openMechanic(this);"></li>';
           }else{
-            document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
+            document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
           }
         }else{
-          document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="http://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
+          document.getElementById("circle-container").innerHTML += '<li><img name="blocked" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/blocked.png" onclick="openMechanic(this);"></li>';
         }
       })
     ))
