@@ -188,10 +188,9 @@ def retrieve_adaptative_widget_id(request):
                             	mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
                             	user.gamer_profile.save()
                             	print(wid, "--------------------------------------------------------------- LOG")
-                        #############################################################################
                                 if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                                     user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
-                                     user.gamer_profile.save()
+                                    user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
+                                    user.gamer_profile.save()
                                 acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
                                 if val not in acc_mechs :
                                     user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
