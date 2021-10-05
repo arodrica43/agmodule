@@ -163,6 +163,11 @@ def retrieve_adaptative_widget_id(request):
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
 
                     if 'course_id' in args.keys():
+                        if "edx_data" not in current_user.gamer_profile.data.keys():
+                            current_user.gamer_profile.data["edx_data"] = {course_id : {}}
+                        else:
+                            if course_id not in current_user.gamer_profile.data["edx_data"].keys():
+                                current_user.gamer_profile.data["edx_data"] = {course_id : {}}
                         # LOG retrieved mechanic ####################################################
                         if 'need_log' in args.keys():
                             if args['need_log'] and args['course_id']:
