@@ -189,13 +189,13 @@ def retrieve_adaptative_widget_id(request):
                             	user.gamer_profile.save()
                             	print(wid, "--------------------------------------------------------------- LOG")
                         #############################################################################
-                        if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                             user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
-                             user.gamer_profile.save()
-                        acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
-                        if val not in acc_mechs :
-                            user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
-                            user.gamer_profile.save()
+                            if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                                 user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
+                                 user.gamer_profile.save()
+                            acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
+                            if val not in acc_mechs :
+                                user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
+                                user.gamer_profile.save()
                         lock7.release() 
                         return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
                     else:
