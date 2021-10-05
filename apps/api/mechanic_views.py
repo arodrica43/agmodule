@@ -60,10 +60,13 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                 queryset.update(html = queryset[0].html.replace("dynamic_mechanic_name", name))
                 ensamble_interaction_dynamic_properties(queryset)
                 import re
-                try:             
+                try:
+                    current_user = Gamer.objects.filter(user__username = request.GET['user'])[0]
+                    if not current_user:
+                        raise Exception("Non existing user")           
                     queryset.update(html = queryset[0].html.replace("dynamic_user",request.GET['user']))
                 except:
-                    print("Query url doesn't contain username argument")
+                    print("Query url doesn't contain username argument, or the requested user doesn't exist")
                 try:
                     new_html = re.sub("(?!dynamic_index=)dynamic_index",request.GET['dynamic_index'],queryset[0].html)    #+ str(random.random())[2:]        
                     queryset.update(html = new_html)
@@ -79,21 +82,71 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain link_url argument")
+
+                # Course position
                 try:
-                    new_html = re.sub("(?!dynamic_progress=)dynamic_progress",request.GET['dynamic_progress'],queryset[0].html)    #+ str(random.random())[2:]        
+                    new_html = re.sub("(?!dynamic_position=)dynamic_position",request.GET['dynamic_progress'],queryset[0].html)    #+ str(random.random())[2:]        
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain progress argument")
                 try:
-                    current_user = Gamer.objects.filter(user__username = request.GET['user'])[0]
                     print("A -- ", current_user)
-                    progress = request.GET['dynamic_progress']
+                    position = request.GET['dynamic_progress']
+                    print("B -- ", position)
+                    current_user.gamer_profile.data["position"] = float(position)
+                    print("D -- ", current_user.gamer_profile.data["position"])
+                    current_user.gamer_profile.save()
+                except:
+                    print("Error updating progress for current user.")
+                # Activity progress
+                try:
+                    print("A -- ", current_user)
+                    progress = request.GET['activity_progress']
                     print("B -- ", progress)
-                    current_user.gamer_profile.data["progress"] = float(progress)
+                    if 'progress' in current_user.gamer_profile.data.keys():
+                        current_user.gamer_profile.data["progress"] = max(float(progress), current_user.gamer_profile.data["progress"])
+                    else:
+                        current_user.gamer_profile.data["progress"] = float(progress)
                     print("D -- ", current_user.gamer_profile.data["progress"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating progress for current user.")
+                try:
+                    new_html = re.sub("(?!dynamic_activity_progress=)dynamic_activity_progress", str(current_user.gamer_profile.data["progress"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain activity_progress argument")
+                # Last score
+                try:
+                    print("A -- ", current_user)
+                    last_score = request.GET['last_score']
+                    print("B -- ", last_score)
+                    current_user.gamer_profile.data["last_score"] = float(last_score)
+                    print("D -- ", current_user.gamer_profile.data["last_score"])
+                    current_user.gamer_profile.save()
+                except:
+                    print("Error updating last_score for current user.")
+                try:
+                    new_html = re.sub("(?!dynamic_last_score=)dynamic_last_score", str(current_user.gamer_profile.data["last_score"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain last_score argument")
+                # Last score
+                try:
+                    print("A -- ", current_user)
+                    mean_score = request.GET['mean_score']
+                    print("B -- ", mean_score)
+                    current_user.gamer_profile.data["mean_score"] = float(mean_score)
+                    print("D -- ", current_user.gamer_profile.data["mean_score"])
+                    current_user.gamer_profile.save()
+                except:
+                    print("Error updating mean_score for current user.")
+                try:
+                    new_html = re.sub("(?!dynamic_mean_score=)dynamic_mean_score", str(current_user.gamer_profile.data["mean_score"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain mean_score argument")
+                    
                 tmp_title = queryset[0].title
                 if 'show_title' in request.GET.keys():
                     st = request.GET['show_title']
@@ -161,7 +214,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                                             }]
                             uplog['history'] = [x for x in uplog['history'] if x[0]['type'] != "Scroll"] + [scrolls_join]
                         statistic.update(log = uplog)
-                    #Interaction index update ----------------------------------------------------------------------------------------------------
+                    #Interaction index reset  ----------------------------------------------------------------------------------------------------
                     # for s in InteractionStatistic.objects.all():
                     #     s.log = {}
                     #     s.interaction_index = 0
@@ -218,7 +271,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         I = 1 - math.exp(-v_scale*v) #0.5*(v_scale + (1 - math.exp(-epsilon*v))) #min(max(v_scale + epsilon*(math.exp(-epsilon*t) - math.exp(-epsilon*x)), 0), 1)
                         #I = I/3
                         statistic.update(interaction_index = I)
-                        #TO DELETE :: Delete if clause once the experiment is finished
+                        #TO DELETE :: Delete once the experiment is finished
                         if 'case' not in current_user[0].gamer_profile.data.keys():
                             current_user[0].gamer_profile.data['case'] = "C2b"
                         if "B" not in current_user[0].gamer_profile.data['case']:
