@@ -57,7 +57,7 @@ def allowed_mechanics(user):
             n += 1
         if n > 0:
             experience = experience/n
-        if experience < 0.6:
+        if experience < 0.5:
             return widgets_list[:7]
         else:
             return widgets_list
