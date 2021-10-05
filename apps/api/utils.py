@@ -170,7 +170,7 @@ def retrieve_adaptative_widget_id(request):
                                 user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
                         # LOG retrieved mechanic ####################################################
                         if 'need_log' in args.keys():
-                            if args['need_log'] and args['course_id']:
+                            if int(args['need_log']) and args['course_id']:
                             	print(args['need_log'], "-------------------------------------------------- NEED LOG")
                             	from datetime import datetime
                             	# Getting the current date and time
