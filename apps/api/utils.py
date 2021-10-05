@@ -131,7 +131,7 @@ def retrieve_adaptative_widget_id(request):
                                             'gmechanic_id': gmechanic.pk,
                                             'gmechanic_class': val, 
                                             'class_idx' : clss_idx,
-                                            'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]
+                                            'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
                                         })
                                                                                                                                                                      #                                                                                                                                    #
                 # END OF CASE ANALYSIS ###############################################################################################################################
@@ -139,13 +139,14 @@ def retrieve_adaptative_widget_id(request):
                 # This is the default adaptative_widget procedure
                 else: 
                     utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
-                    if 'difficulty' in args.keys():
+                    """if 'difficulty' in args.keys():
                         if args['difficulty'] in ['easy', 'hard']:
                             for i in range(len(utilities)):
                                 if utilities[i] > 0:
                                     _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
                                     if val not in allowed_mechanics[args['difficulty']]:
                                         utilities[i] = 0
+                    """
                     prob = utilities/utilities.sum()
                     r = rdm.random()
                     acc, idx = 0, 0
@@ -161,36 +162,39 @@ def retrieve_adaptative_widget_id(request):
                     if qset:
                         clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
 
-                    # LOG retrieved mechanic ####################################################
-                    if 'need_log' in args.keys():
-                        if args['need_log']:
-                        	print(args['need_log'], "-------------------------------------------------- NEED LOG")
-                        	from datetime import datetime
-                        	# Getting the current date and time
-                        	dt = datetime.now()
-                        	print(dt,"--------------------------------------------------------------- DATETIME")
-                        	if 'widget_id' in args.keys():
-                        		wid = args['widget_id']
-                        	else:
-                        		wid = '?'
-                        	print(wid, "--------------------------------------------------------------- WIDGET ID")
-                        	if 'mechanics_log' not in user.gamer_profile.data.keys():
-                        		user.gamer_profile.data["mechanics_log"] = []
-                        		user.gamer_profile.save()
-                        	mech_log = user.gamer_profile.data["mechanics_log"]
-                        	mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
-                        	user.gamer_profile.save()
-                        	print(wid, "--------------------------------------------------------------- LOG")
-                    #############################################################################
-                    if 'accessible_mechanics' not in user.gamer_profile.data.keys():
-                         user.gamer_profile.data["accessible_mechanics"] = []
-                         user.gamer_profile.save()
-                    acc_mechs = user.gamer_profile.data["accessible_mechanics"]
-                    if val not in acc_mechs :
-                        user.gamer_profile.data["accessible_mechanics"] += [val]
-                        user.gamer_profile.save()
-                    lock7.release() 
-                    return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["accessible_mechanics"]})
+                    if 'course_id' in args.keys():
+                        # LOG retrieved mechanic ####################################################
+                        if 'need_log' in args.keys():
+                            if args['need_log'] and args['course_id']:
+                            	print(args['need_log'], "-------------------------------------------------- NEED LOG")
+                            	from datetime import datetime
+                            	# Getting the current date and time
+                            	dt = datetime.now()
+                            	print(dt,"--------------------------------------------------------------- DATETIME")
+                            	if 'widget_id' in args.keys():
+                            		wid = args['widget_id']
+                            	else:
+                            		wid = '?'
+                            	print(wid, "--------------------------------------------------------------- WIDGET ID")
+                            	if 'mechanics_log' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                            		user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
+                            		user.gamer_profile.save()
+                            	mech_log = user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"]
+                            	mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
+                            	user.gamer_profile.save()
+                            	print(wid, "--------------------------------------------------------------- LOG")
+                        #############################################################################
+                        if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                             user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
+                             user.gamer_profile.save()
+                        acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
+                        if val not in acc_mechs :
+                            user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
+                            user.gamer_profile.save()
+                        lock7.release() 
+                        return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
+                    else:
+                        raise Exception("Missing course id")
             else:
                 raise Exception("No selected user")
         else:
@@ -526,17 +530,28 @@ def get_interaction_index(request, username, mechanic_id):
 def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
+        try:
+            course_id = request.GET['course_id']
+        except:
+            raise Exception("No course_id argument")
         from datetime import datetime
         now = datetime.now()
-        if "dashboard_views" in user.gamer_profile.data.keys():
-            user.gamer_profile.data["dashboard_views"] += [str(now)]
+
+        if "edx_data" not in user.gamer_profile.data.keys():
+            user.gamer_profile.data["edx_data"] = {course_id : {}}
         else:
-            user.gamer_profile.data["dashboard_views"] = [str(now)]
+            if course_id not in user.gamer_profile.data["edx_data"].keys():
+                user.gamer_profile.data["edx_data"] = {course_id : {}}
+
+        if "dashboard_views" in user.gamer_profile.data["edx_data"][course_id].keys():
+            user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [str(now)]
+        else:
+            user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [str(now)]
         user.gamer_profile.save()
     except:
         print("User found")
         raise Http404
-    return JsonResponse({'results': user.gamer_profile.data['accessible_mechanics']})
+    return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics']})
 
 def change_icon(request, id):
     badge = Badge.objects.filter(id = id)

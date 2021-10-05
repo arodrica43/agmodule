@@ -83,6 +83,27 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                 except:
                     print("Query url doesn't contain link_url argument")
 
+
+                # Course id
+                try:
+                    new_html = re.sub("(?!dynamic_course_id=)dynamic_course_id",request.GET['course_id'],queryset[0].html)    #+ str(random.random())[2:]        
+                    queryset.update(html = new_html)
+                except:
+                    print("Query url doesn't contain course_id argument")
+                try:
+                    print("A -- ", current_user)
+                    course_id = request.GET['course_id']
+                    print("B -- ", course_id)
+                    if "edx_data" not in current_user.gamer_profile.data.keys():
+                        current_user.gamer_profile.data["edx_data"] = {course_id : {}}
+                    else:
+                        if course_id not in current_user.gamer_profile.data["edx_data"].keys():
+                            current_user.gamer_profile.data["edx_data"] = {course_id : {}}
+                    print("D -- ", current_user.gamer_profile.data["position"])
+                    current_user.gamer_profile.save()
+                except:
+                    print("Error updating progress for current user.")
+
                 # Course position
                 try:
                     new_html = re.sub("(?!dynamic_position=)dynamic_position",request.GET['dynamic_progress'],queryset[0].html)    #+ str(random.random())[2:]        
@@ -93,8 +114,8 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     position = request.GET['dynamic_progress']
                     print("B -- ", position)
-                    current_user.gamer_profile.data["position"] = float(position)
-                    print("D -- ", current_user.gamer_profile.data["position"])
+                    current_user.gamer_profile.data["edx_data"][course_id]["position"] = float(position)
+                    print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["position"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating progress for current user.")
@@ -103,16 +124,16 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     progress = request.GET['activity_progress']
                     print("B -- ", progress)
-                    if 'progress' in current_user.gamer_profile.data.keys():
-                        current_user.gamer_profile.data["progress"] = max(float(progress), current_user.gamer_profile.data["progress"])
+                    if 'progress' in current_user.gamer_profile.data["edx_data"][course_id].keys():
+                        current_user.gamer_profile.data["edx_data"][course_id]["progress"] = max(float(progress), current_user.gamer_profile.data["edx_data"][course_id]["progress"])
                     else:
-                        current_user.gamer_profile.data["progress"] = float(progress)
-                    print("D -- ", current_user.gamer_profile.data["progress"])
+                        current_user.gamer_profile.data["edx_data"][course_id]["progress"] = float(progress)
+                    print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["progress"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating progress for current user.")
                 try:
-                    new_html = re.sub("(?!dynamic_activity_progress=)dynamic_activity_progress", str(current_user.gamer_profile.data["progress"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    new_html = re.sub("(?!dynamic_activity_progress=)dynamic_activity_progress", str(current_user.gamer_profile.data["edx_data"][course_id]["progress"]),queryset[0].html)    #+ str(random.random())[2:]        
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain activity_progress argument")
@@ -121,13 +142,13 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     last_score = request.GET['last_score']
                     print("B -- ", last_score)
-                    current_user.gamer_profile.data["last_score"] = float(last_score)
-                    print("D -- ", current_user.gamer_profile.data["last_score"])
+                    current_user.gamer_profile.data["edx_data"][course_id]["last_score"] = float(last_score)
+                    print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["last_score"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating last_score for current user.")
                 try:
-                    new_html = re.sub("(?!dynamic_last_score=)dynamic_last_score", str(current_user.gamer_profile.data["last_score"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    new_html = re.sub("(?!dynamic_last_score=)dynamic_last_score", str(current_user.gamer_profile.data["edx_data"][course_id]["last_score"]),queryset[0].html)    #+ str(random.random())[2:]        
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain last_score argument")
@@ -136,13 +157,13 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     mean_score = request.GET['mean_score']
                     print("B -- ", mean_score)
-                    current_user.gamer_profile.data["mean_score"] = float(mean_score)
-                    print("D -- ", current_user.gamer_profile.data["mean_score"])
+                    current_user.gamer_profile.data["edx_data"][course_id]["mean_score"] = float(mean_score)
+                    print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["mean_score"])
                     current_user.gamer_profile.save()
                 except:
                     print("Error updating mean_score for current user.")
                 try:
-                    new_html = re.sub("(?!dynamic_mean_score=)dynamic_mean_score", str(current_user.gamer_profile.data["mean_score"]),queryset[0].html)    #+ str(random.random())[2:]        
+                    new_html = re.sub("(?!dynamic_mean_score=)dynamic_mean_score", str(current_user.gamer_profile.data["edx_data"][course_id]["mean_score"]),queryset[0].html)    #+ str(random.random())[2:]        
                     queryset.update(html = new_html)
                 except:
                     print("Query url doesn't contain mean_score argument")

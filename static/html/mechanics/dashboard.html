@@ -246,6 +246,10 @@
     uname = document.querySelector(".username").innerHTML;
   }
 
+
+  course_id = JSON.parse(document.querySelector("#user-metadata").outerText)["course_id"];
+
+
   mechanic_names = [
                       ['challenges', 'Challenges', 'challenge_widgets'],
                       ['easter_eggs', 'Easter Eggs', 'easter_egg_widgets'],
@@ -279,7 +283,7 @@
                       ['label', 'Philantropist', ''],
                     ]
 
-  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname)
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id)
   .then(response => response.json())
   .then(res_json => (res_json.results))
   .then(acc_mechanics => (
