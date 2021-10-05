@@ -60,9 +60,9 @@ def allowed_mechanics(user):
         if experience < 0.6:
             return widgets_list[:7]
         else:
-            return widgets_list[7:]
+            return widgets_list
     else:
-        return widgets_list
+        return widgets_list[:7]
 
 
 def ensamble_interaction_dynamic_properties(queryset, filenames = interaction_files):
