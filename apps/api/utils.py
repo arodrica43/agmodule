@@ -22,25 +22,47 @@ interaction_files = [("include-onclick-tracking","onclick.js"),
                      ("include_interaction_testing_tools","interaction_testing.js")
                     ]
 
-allowed_mechanics = {"easy" : [
-                                "challenge_widgets",
-                                "easter_egg_widgets",
-                                "level_widgets",
-                                "point_widgets",
-                                "leaderboard_widgets",
-                                "social_status_widgets",
-                                "knowledge_share_widgets"
-                            ],  
-                    "hard" : [
-                                "development_tool_widgets",
-                                "unlockable_widgets",
-                                "badge_widgets",
-                                "gift_opener_widgets",
-                                "lottery_widgets",
-                                "social_network_widgets",
-                                "gift_widgets"
-                            ]
-                    }
+def allowed_mechanics(user):
+
+    widgets_list = [
+                        "challenge_widgets",
+                        "easter_egg_widgets",
+                        "level_widgets",
+                        "point_widgets",
+                        "leaderboard_widgets",
+                        "social_status_widgets",
+                        "knowledge_share_widgets",
+                        "development_tool_widgets",
+                        "unlockable_widgets",
+                        "badge_widgets",
+                        "gift_opener_widgets",
+                        "lottery_widgets",
+                        "social_network_widgets",
+                        "gift_widgets"
+                    ]
+                    
+    gdata = user.gamer_profile.data
+    if 'edx_data' in gdata.keys():
+        experience, n = 0, 0
+        for cid in gdata['edx_data'].keys():
+            if 'progress' in gdata['edx_data'][cid].keys():
+                progress = gdata['edx_data'][cid]["progress"]
+            else:
+                progress = 0
+            if 'mean_score' in gdata['edx_data'][cid].keys():
+                score = gdata['edx_data'][cid]["mean_score"]
+            else:
+                score = 0
+            experience += 0.7*progress + 0.3*score
+            n += 1
+        if n > 0:
+            experience = experience/n
+        if experience < 0.6:
+            return widgets_list[:7]
+        else:
+            return widgets_list[7:]
+    else:
+        return widgets_list
 
 
 def ensamble_interaction_dynamic_properties(queryset, filenames = interaction_files):
@@ -82,123 +104,67 @@ def retrieve_adaptative_widget_id(request):
             user = Gamer.objects.filter(user__username = args['user'])
             if user:
                 user = user[0]
-                # BEGIN CASE ANALYSIS ################################################################################################################################
-                #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data                                                 #
-                #Once the experiment is done, you should delete this code                                                                                            #                                                                                    
-                if 'experimental' in args.keys():                                                                     
-                    case = user.gamer_profile.data['case']
-                    if "A" in case: # Random mechanic                                                                                                                #
-                        gmechanic = rdm.choice(GMechanic.objects.all())
-                    elif "B" in case or "C" in case: 
-                        #Case B :: Gamer profile isn't updated at every GMechanic&User PUT request -- See at Serializers.GMechanic.update (case B don't modify PT)   #
-                        #Case C :: Dynamic Gamer Profile (Our main algorithm). Only change on Serializers.GMechanic.update                                           #
-                        #Lavue cases are tagged by 'a' and 'b', while choice cases by '1' and '2'                                                                    #
-                        
-                        widget_matrix = queryset[0].widget_matrix()
-                        #print("A",widget_matrix)
-                        widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
-                        widget_matrix[np.isnan(widget_matrix)] = 0
-
-                        #Lavue Matrix Utilities                                                                                                                      #
-                        #Lavue case -- Current matrix = 1s and 0s matrix => alg ~ choose PTi predominating and ponderate mechanics of the same type in utilities     #
-                        utilities = widget_matrix.dot(np.array(user.gamer_profile.vectorize()))
-                        #Lavue case -- We can consider a refined matrix, so every mechanic has its own MPT (Mechanic PT)                                             #
-                        # WIP :: Compute utilities from a refined matrix (refined_widget_matrix())                                                                  #
-                        # utilities = refined_widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
-                        #GMechanic Choosing                                                                                                                          #
-                        if "1" in case: #Max Random                                                                                                                  #
-                            m = max(utilities)
-                            gmechanics = GMechanic.objects.all()
-                            gmechanic = rdm.choice([gmechanics[i] for i in range(len(utilities)) if utilities[i] == m])
-                        elif "2" in case: #Weighted Random                                                                                                           #
-                            prob = utilities/utilities.sum()
-                            r = rdm.random()
-                            acc, idx = 0, 0
-                            for i in range(len(prob)):
-                                pi = prob[i]
-                                if acc < r and r < acc + pi:
-                                    idx = i
-                                    break
-                                acc += pi
-                            gmechanic = GMechanic.objects.all()[idx] 
-
-                    qset, val = g_mechanic_cast(gmechanic.pk)
-                    clss_idx = -1
-                    if qset:
-                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
-                    lock7.release() 
-                    return JsonResponse({
-                                            'gmechanic_id': gmechanic.pk,
-                                            'gmechanic_class': val, 
-                                            'class_idx' : clss_idx,
-                                            'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
-                                        })
-                                                                                                                                                                     #                                                                                                                                    #
-                # END OF CASE ANALYSIS ###############################################################################################################################
                 
                 # This is the default adaptative_widget procedure
-                else: 
-                    utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
-                    """if 'difficulty' in args.keys():
-                        if args['difficulty'] in ['easy', 'hard']:
-                            for i in range(len(utilities)):
-                                if utilities[i] > 0:
-                                    _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
-                                    if val not in allowed_mechanics[args['difficulty']]:
-                                        utilities[i] = 0
-                    """
-                    prob = utilities/utilities.sum()
-                    r = rdm.random()
-                    acc, idx = 0, 0
-                    for i in range(len(prob)):
-                        pi = prob[i]
-                        if acc < r and r < acc + pi:
-                            idx = i
-                            break
-                        acc += pi
-                    gmechanic = GMechanic.objects.all()[idx]
-                    qset , val = g_mechanic_cast(gmechanic.pk)
-                    clss_idx = -1
-                    if qset:
-                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
+                utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                for i in range(len(utilities)):
+                    if utilities[i] > 0:
+                        _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
+                        if val not in allowed_mechanics(user):
+                            utilities[i] = 0
+                
+                prob = utilities/utilities.sum()
+                r = rdm.random()
+                acc, idx = 0, 0
+                for i in range(len(prob)):
+                    pi = prob[i]
+                    if acc < r and r < acc + pi:
+                        idx = i
+                        break
+                    acc += pi
+                gmechanic = GMechanic.objects.all()[idx]
+                qset , val = g_mechanic_cast(gmechanic.pk)
+                clss_idx = -1
+                if qset:
+                    clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
 
-                    if 'course_id' in args.keys():
-                        if "edx_data" not in user.gamer_profile.data.keys():
-                            user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
-                        else:
-                            if args['course_id'] not in user.gamer_profile.data["edx_data"].keys():
-                                user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
-                        # LOG retrieved mechanic ####################################################
-                        if 'need_log' in args.keys():
-                            if int(args['need_log']) and args['course_id']:
-                                print(args['need_log'], "-------------------------------------------------- NEED LOG")
-                                from datetime import datetime
-                                # Getting the current date and time
-                                dt = datetime.now()
-                                print(dt,"--------------------------------------------------------------- DATETIME")
-                                if 'widget_id' in args.keys():
-                                    wid = args['widget_id']
-                                else:
-                                    wid = '?'
-                                print(wid, "--------------------------------------------------------------- WIDGET ID")
-                                if 'mechanics_log' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                                    user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
-                                    user.gamer_profile.save()
-                                mech_log = user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"]
-                                mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
-                                user.gamer_profile.save()
-                                print(wid, "--------------------------------------------------------------- LOG")
-                                if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                                    user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
-                                    user.gamer_profile.save()
-                                acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
-                                if val not in acc_mechs :
-                                    user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
-                                    user.gamer_profile.save()
-                        lock7.release() 
-                        return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
+                if 'course_id' in args.keys():
+                    if "edx_data" not in user.gamer_profile.data.keys():
+                        user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
                     else:
-                        raise Exception("Missing course id")
+                        if args['course_id'] not in user.gamer_profile.data["edx_data"].keys():
+                            user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
+                    # LOG retrieved mechanic ####################################################
+                    if 'need_log' in args.keys():
+                        if int(args['need_log']) and args['course_id']:
+                            print(args['need_log'], "-------------------------------------------------- NEED LOG")
+                            from datetime import datetime
+                            # Getting the current date and time
+                            dt = datetime.now()
+                            print(dt,"--------------------------------------------------------------- DATETIME")
+                            if 'widget_id' in args.keys():
+                                wid = args['widget_id']
+                            else:
+                                wid = '?'
+                            print(wid, "--------------------------------------------------------------- WIDGET ID")
+                            if 'mechanics_log' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                                user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
+                                user.gamer_profile.save()
+                            mech_log = user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"]
+                            mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
+                            user.gamer_profile.save()
+                            print(wid, "--------------------------------------------------------------- LOG")
+                            if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                                user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
+                                user.gamer_profile.save()
+                            acc_mechs = user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
+                            if val not in acc_mechs :
+                                user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
+                                user.gamer_profile.save()
+                    lock7.release() 
+                    return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
+                else:
+                    raise Exception("Missing course id")
             else:
                 raise Exception("No selected user")
         else:

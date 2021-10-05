@@ -1,0 +1,56 @@
+"""
+                # BEGIN CASE ANALYSIS ################################################################################################################################
+                #Case analysis for the experimental. The users contain an attibute <case> in user.gamer_profile.data                                                 #
+                #Once the experiment is done, you should delete this code                                                                                            #                                                                                    
+                if 'experimental' in args.keys():                                                                   
+                    case = user.gamer_profile.data['case']
+                    if "A" in case: # Random mechanic                                                                                                                #
+                        gmechanic = rdm.choice(GMechanic.objects.all())
+                    elif "B" in case or "C" in case: 
+                        #Case B :: Gamer profile isn't updated at every GMechanic&User PUT request -- See at Serializers.GMechanic.update (case B don't modify PT)   #
+                        #Case C :: Dynamic Gamer Profile (Our main algorithm). Only change on Serializers.GMechanic.update                                           #
+                        #Lavue cases are tagged by 'a' and 'b', while choice cases by '1' and '2'                                                                    #
+                        
+                        widget_matrix = queryset[0].widget_matrix()
+                        #print("A",widget_matrix)
+                        widget_matrix = widget_matrix / widget_matrix.sum(axis=0)
+                        widget_matrix[np.isnan(widget_matrix)] = 0
+
+                        #Lavue Matrix Utilities                                                                                                                      #
+                        #Lavue case -- Current matrix = 1s and 0s matrix => alg ~ choose PTi predominating and ponderate mechanics of the same type in utilities     #
+                        utilities = widget_matrix.dot(np.array(user.gamer_profile.vectorize()))
+                        #Lavue case -- We can consider a refined matrix, so every mechanic has its own MPT (Mechanic PT)                                             #
+                        # WIP :: Compute utilities from a refined matrix (refined_widget_matrix())                                                                  #
+                        # utilities = refined_widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
+                        #GMechanic Choosing                                                                                                                          #
+                        if "1" in case: #Max Random                                                                                                                  #
+                            m = max(utilities)
+                            gmechanics = GMechanic.objects.all()
+                            gmechanic = rdm.choice([gmechanics[i] for i in range(len(utilities)) if utilities[i] == m])
+                        elif "2" in case: #Weighted Random                                                                                                           #
+                            prob = utilities/utilities.sum()
+                            r = rdm.random()
+                            acc, idx = 0, 0
+                            for i in range(len(prob)):
+                                pi = prob[i]
+                                if acc < r and r < acc + pi:
+                                    idx = i
+                                    break
+                                acc += pi
+                            gmechanic = GMechanic.objects.all()[idx] 
+
+                    qset, val = g_mechanic_cast(gmechanic.pk)
+                    clss_idx = -1
+                    if qset:
+                        clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
+                    lock7.release() 
+                    return JsonResponse({
+                                            'gmechanic_id': gmechanic.pk,
+                                            'gmechanic_class': val, 
+                                            'class_idx' : clss_idx,
+                                            'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]
+                                        })
+                                                                                                                                                                     #                                                                                                                                    #
+                # END OF CASE ANALYSIS ###############################################################################################################################
+                else:
+                """
