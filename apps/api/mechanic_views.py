@@ -99,10 +99,10 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     else:
                         if course_id not in current_user.gamer_profile.data["edx_data"].keys():
                             current_user.gamer_profile.data["edx_data"] = {course_id : {}}
-                    print("D -- ", current_user.gamer_profile.data["position"])
+                    print("D -- ", current_user.gamer_profile.data["edx_data"][course_id])
                     current_user.gamer_profile.save()
                 except:
-                    print("Error updating progress for current user.")
+                    print("Error updating position for current user.")
 
                 # Course position
                 try:
