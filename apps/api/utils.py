@@ -483,19 +483,27 @@ def get_previous_valoration(request, username, mechanic_id):
         return JsonResponse({'results': 3})
 
 def get_interaction_index(request, username, mechanic_id):
-	user_stats = InteractionStatistic.objects.filter(user = username)
-	demand = None
-	for stat in user_stats:
-		if stat.mechanic.id == mechanic_id:
-			demand = stat
-			break
-	if demand:
-		iidx = demand.interaction_index
-		return JsonResponse({'interaction_index': iidx})
-	else:
-		print("Invalid username or mechanic id.")
-		return JsonResponse({'interaction_index': 0.0})
 
+    lock.acquire()
+    try:
+        gm =  GMechanic.objects.filter(id = mechanic_id)
+    	user_stats = InteractionStatistic.objects.filter(user = username, mechanic = gm)
+    	print("User Stats", user_stats)
+        try:
+            demand = user_stats[0]
+        catch:
+            demand = None
+    	if demand:
+    		iidx = demand.interaction_index
+            lock.release()
+    		return JsonResponse({'interaction_index': iidx})
+    	else:
+            print("Error : Intereaction Statistic not found for given user and mechanic_id")
+    		raise Exception
+    except:
+        print("Error : Failed to load interaction index")
+        lock.release()
+        raise Http404
 
 def get_accessible_mechanics(request, username):
     try:
