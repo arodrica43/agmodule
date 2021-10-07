@@ -498,7 +498,7 @@ def get_interaction_index(request, username, mechanic_id):
             return JsonResponse({'interaction_index': iidx})
         else:
             print("Error : Intereaction Statistic not found for given user and mechanic_id")
-            raise Exception
+            return JsonResponse({'interaction_index': 0.0})
     except:
         print("Error : Failed to load interaction index")
         lock.release()
