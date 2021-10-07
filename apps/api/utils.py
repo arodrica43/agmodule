@@ -494,7 +494,7 @@ def get_interaction_index(request, username, mechanic_id):
 		return JsonResponse({'interaction_index': iidx})
 	else:
 		print("Invalid username or mechanic id.")
-		raise Http404
+		return JsonResponse({'interaction_index': 0.0})
 
 
 def get_accessible_mechanics(request, username):
