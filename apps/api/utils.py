@@ -487,6 +487,7 @@ def get_interaction_index(request, username, mechanic_id):
     lock.acquire()
     try:
         gm =  GMechanic.objects.filter(id = mechanic_id)
+        print(gm)
         user_stats = InteractionStatistic.objects.filter(user = username, mechanic = gm)
         print("User Stats", user_stats)
         try:
