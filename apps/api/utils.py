@@ -517,6 +517,8 @@ def get_accessible_mechanics(request, username):
             user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [str(now)]
         else:
             user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [str(now)]
+        if "accessible_mechanics" not in user.gamer_profile.data["edx_data"][course_id].keys():
+            user.gamer_profile.data["edx_data"][course_id]["accessible_mechanics"] = []
         user.gamer_profile.save()
     except:
         print("User found")
