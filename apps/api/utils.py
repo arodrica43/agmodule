@@ -137,23 +137,19 @@ def retrieve_adaptative_widget_id(request):
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
-                            print(args['need_log'], "-------------------------------------------------- NEED LOG")
                             from datetime import datetime
                             # Getting the current date and time
                             dt = datetime.now()
-                            print(dt,"--------------------------------------------------------------- DATETIME")
                             if 'widget_id' in args.keys():
                                 wid = args['widget_id']
                             else:
                                 wid = '?'
-                            print(wid, "--------------------------------------------------------------- WIDGET ID")
                             if 'mechanics_log' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
                                 user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
                                 user.gamer_profile.save()
                             mech_log = user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"]
                             mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
                             user.gamer_profile.save()
-                            print(wid, "--------------------------------------------------------------- LOG")
                             if 'accessible_mechanics' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
                                 user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] = []
                                 user.gamer_profile.save()
