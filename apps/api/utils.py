@@ -518,7 +518,7 @@ def get_accessible_mechanics(request, username):
             user.gamer_profile.data["edx_data"] = {course_id : {}}
         else:
             if course_id not in user.gamer_profile.data["edx_data"].keys():
-                user.gamer_profile.data["edx_data"] = {course_id : {}}
+                user.gamer_profile.data["edx_data"][course_id] = {}
 
         if "dashboard_views" in user.gamer_profile.data["edx_data"][course_id].keys():
             user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [str(now)]
