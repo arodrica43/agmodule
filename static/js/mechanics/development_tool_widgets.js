@@ -26,6 +26,11 @@ function log_txt_click(){
           };
 
 function render_dvt(modifiable){
+
+	course_position = dynamic_position;
+	console.log(course_position);
+	console.log(course_position + 100);
+
 	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click();">Change the icon of ' + modifiable.title + '</div>' + 
 																	'<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
 																	'<br><div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
