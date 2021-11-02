@@ -28,16 +28,26 @@ function log_txt_click(){
 function render_dvt(modifiable){
 
 	course_position = dynamic_position;
-	console.log(course_position);
-	console.log(course_position + 100);
 
+	dyn_str = "";
+
+	if(course_position < 0.5){
+		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
+					'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
+					'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">';
+	}else{
+		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg" onclick="changeIcon(4,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg" onclick="changeIcon(5,' + modifiable.id + ');">';
+
+	}
+
+	
 	document.querySelector("#dvt-widget-dynamic_index").innerHTML += '<div onclick="log_txt_click();">Change the icon of ' + modifiable.title + '</div>' + 
 																	'<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
-																	'<br><div><img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg" onclick="changeIcon(4,' + modifiable.id + ');">' +
-																	'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b5.svg" onclick="changeIcon(5,' + modifiable.id + ');"></div></div>';
+																	'<br><div>' + dyn_str + '</div></div>';
 }
 
 function selectPolicy(list){
