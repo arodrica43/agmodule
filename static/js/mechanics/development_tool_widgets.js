@@ -28,6 +28,7 @@ function log_txt_click(){
 function render_dvt(modifiable){
 
 	course_position = dynamic_position;
+	console.log(dynamic_activity_progress);
 
 	dyn_str = "";
 
