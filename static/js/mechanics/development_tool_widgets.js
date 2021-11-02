@@ -31,10 +31,18 @@ function render_dvt(modifiable){
 
 	dyn_str = "";
 
-	if(course_position < 0.5){
+	if(course_position < 0.25){
 		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
-					'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
-					'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">';
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">';			
+	}else if (course_position < 0.5){
+		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">';
+	}else if (course_position < 0.75){
+		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b3.svg" onclick="changeIcon(3,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b4.svg" onclick="changeIcon(4,' + modifiable.id + ');">';
 	}else{
 		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b1.svg" onclick="changeIcon(1,' + modifiable.id + ');">' +
 			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/b2.svg" onclick="changeIcon(2,' + modifiable.id + ');">' +
