@@ -7,7 +7,7 @@ try {
 
     //Custom alerts
 
-    alert = define(function(require,msg){
+    alert = function(require,msg){
 
         //foo is now loaded.
         swal.fire({
@@ -15,8 +15,8 @@ try {
           text: msg,
           icon: 'success',
           confirmButtonText: 'Cool'
-        })
-    })
+        });
+    };
 
     //Main Time
     var tmp_main_t = 0;
