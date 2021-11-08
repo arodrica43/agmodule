@@ -41,16 +41,21 @@ function send_tip(tip){
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
 		  swal.fire({
         title: 'Error!',
-        text: 'Do you want to continue',
+        text: 'Your tip is empty',
         icon: 'error',
-        confirmButtonText: 'Cool'
+        confirmButtonText: 'Retry'
       })
 
     alert("Your tip is empty!");
 	}else{
 			fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=text&content=" + document.getElementById("tip-input-dynamic_index").value)
 		.then(response => response.json())
-		.then(res_json => (console.log(res_json), alert("Tip sent!")))
+		.then(res_json => (console.log(res_json), swal.fire({
+                                                title: 'Success!',
+                                                text: 'Tip sent!',
+                                                icon: 'success',
+                                                confirmButtonText: 'Continue'
+                                              })))
 		.catch(error => (console.log("Error: " + error)));
 		tip.disabled = true;
 	}
