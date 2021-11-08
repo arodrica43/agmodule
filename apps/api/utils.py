@@ -78,7 +78,7 @@ def ensamble_file(html, css, js):
     result += css.read()
     result += "</style>"
     result += html.read()
-    result += '<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">'
+    result += "<script>"
     result += js.read()
     result += "</script>"
     return result
