@@ -11,11 +11,24 @@
 
 <script type="text/javascript">
 
-
-	import Swal from 'https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'
-
 	  //Custom alerts
-    var swal = Swal
+    // var swal = ""
+    // require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
+    //     function (Swal) {
+    //         swal = Swal;
+    //     }
+    // ).default();
+
+    const swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js');
+
+	(async () => {
+	  swal.fire({
+                    title: 'Success!',
+                    text: myJson.message,
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                  })
+	})()
 
 	// CommonJS
 	//const Swal = require('sweetalert2')
