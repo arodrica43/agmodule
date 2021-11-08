@@ -39,7 +39,12 @@ function openGift(gift,index){
                     }
                 }
                 gift.value = "-";
-                alert(myJson.message);
+                swal.fire({
+                    title: 'Success!',
+                    text: myJson.message,
+                    icon: 'error',
+                    confirmButtonText: 'Retry'
+                  })
             }
              
         })
