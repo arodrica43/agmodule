@@ -38,7 +38,8 @@ function send_tip(tip){
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
-		swal("Your tip is empty!");
+		//swal("Your tip is empty!");
+    $("#myModal").modal("show");
 	}else{
 			fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=text&content=" + document.getElementById("tip-input-dynamic_index").value)
 		.then(response => response.json())
