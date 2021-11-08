@@ -42,8 +42,8 @@ function openGift(gift,index){
                 swal.fire({
                     title: 'Success!',
                     text: myJson.message,
-                    icon: 'error',
-                    confirmButtonText: 'Retry'
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
                   })
             }
              
