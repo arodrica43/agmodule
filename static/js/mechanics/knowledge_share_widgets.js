@@ -33,13 +33,12 @@ function log_inp_focus(){
            // --------------------------------------------------------------------------
           };
 
-function send_tip(require){
+function send_tip(tip){
      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
-		  //require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (swal) {
-      var swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js');
+		  require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (require,swal) {
       //foo is now loaded.
         swal.fire({
         title: 'Error!',
@@ -47,7 +46,7 @@ function send_tip(require){
         icon: 'error',
         confirmButtonText: 'Cool'
       })
-    //});
+    });
 
     alert("Your tip is empty!");
 	}else{
