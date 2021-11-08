@@ -7,17 +7,16 @@ try {
 
     //Custom alerts
 
-    alert = function(msg){
-        require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (swal) {
+    alert = define(function(require,msg){
+
         //foo is now loaded.
-            swal.fire({
-              title: 'Success',
-              text: msg,
-              icon: 'success',
-              confirmButtonText: 'Cool'
-            })
-        });
-    } 
+        swal.fire({
+          title: 'Success',
+          text: msg,
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        })
+    })
 
     //Main Time
     var tmp_main_t = 0;
