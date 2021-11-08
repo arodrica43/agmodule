@@ -5,21 +5,6 @@ try {
 
     //include_interaction_testing_tools
 
-    //Custom alerts
-
-    alert = function(require,msg){
-        var swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'); 
-        require([], function (swal) {
-        //foo is now loaded.
-            swal.fire({
-              title: 'Success',
-              text: msg,
-              icon: 'success',
-              confirmButtonText: 'Cool'
-            })
-        });
-    }
-
     //Main Time
     var tmp_main_t = 0;
     var main_timer;
