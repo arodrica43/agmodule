@@ -12,13 +12,15 @@
 <script type="text/javascript">
 
 	  //Custom alerts
-    var swal = ""
-    console.log(typeof require)
-    require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
-        function (Swal) {
-            swal = Swal;
-        }
-    ).default();
+    // var swal = ""
+    // console.log(typeof require)
+    // require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
+    //     function (Swal) {
+    //         swal = Swal;
+    //     }
+    // );
+
+    var swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
 
 	// CommonJS
 	//const Swal = require('sweetalert2')
