@@ -33,7 +33,7 @@ function log_inp_focus(){
            // --------------------------------------------------------------------------
           };
 
-function send_tip(require,tip){
+function send_tip(require){
      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
