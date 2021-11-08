@@ -9,12 +9,6 @@
     set_widget_defaults("#ksh-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
 
-swal = ""
-
-require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (Swal) {
-      //foo is now loaded.
-        swal = Swal;
-    });
 
 document.querySelector("#ksh-widget-handshake-dynamic_index").value = 1;
 
