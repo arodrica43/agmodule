@@ -12,23 +12,13 @@
 <script type="text/javascript">
 
 	  //Custom alerts
-    // var swal = ""
-    // require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
-    //     function (Swal) {
-    //         swal = Swal;
-    //     }
-    // ).default();
-
-    const swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js');
-
-	(async () => {
-	  swal.fire({
-                    title: 'Success!',
-                    text: myJson.message,
-                    icon: 'success',
-                    confirmButtonText: 'Continue'
-                  })
-	})()
+    var swal = ""
+    console.log(typeof require)
+    require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
+        function (Swal) {
+            swal = Swal;
+        }
+    ).default();
 
 	// CommonJS
 	//const Swal = require('sweetalert2')
