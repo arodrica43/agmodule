@@ -5,14 +5,6 @@ try {
 
     //include_interaction_testing_tools
 
-    //Custom alerts
-    var swal = ""
-    require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
-        function (Swal) {
-            swal = Swal;
-        }
-    );
-
     //Main Time
     var tmp_main_t = 0;
     var main_timer;
