@@ -38,12 +38,12 @@ function send_tip(tip){
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
-		//swal("Your tip is empty!");
+		alert("Your tip is empty!");
     document.querySelector("#myModal").style.visibility = 'visible';
 	}else{
 			fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=text&content=" + document.getElementById("tip-input-dynamic_index").value)
 		.then(response => response.json())
-		.then(res_json => (console.log(res_json), swal("Tip sent!")))
+		.then(res_json => (console.log(res_json), alert("Tip sent!")))
 		.catch(error => (console.log("Error: " + error)));
 		tip.disabled = true;
 	}
