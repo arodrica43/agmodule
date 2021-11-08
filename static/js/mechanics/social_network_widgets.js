@@ -171,6 +171,8 @@ function loadPopulateSearch(url){
 
 
 document.getElementById("snt-widget-dynamic_index").innerHTML += '<div id="Search">'+ // class="mytabcontent"
+                                                              '<div class="grid" id="search-grid">'+
+                                                              '</div>'+
                                                               '<div id="search-scrollable-content">'+
                                                                 '<ul class="profilecards" id="search-users-grid">'+
                                                                 '</ul>'+
