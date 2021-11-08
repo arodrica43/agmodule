@@ -33,14 +33,15 @@ function log_inp_focus(){
            // --------------------------------------------------------------------------
           };
 
-function send_tip(tip){
+function send_tip(require,tip){
      // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
 		  //require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (swal) {
+      var swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js');
       //foo is now loaded.
-        Swal.fire({
+        swal.fire({
         title: 'Error!',
         text: 'Do you want to continue',
         icon: 'error',
@@ -48,7 +49,7 @@ function send_tip(tip){
       })
     //});
 
-    //alert("Your tip is empty!");
+    alert("Your tip is empty!");
 	}else{
 			fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=text&content=" + document.getElementById("tip-input-dynamic_index").value)
 		.then(response => response.json())
