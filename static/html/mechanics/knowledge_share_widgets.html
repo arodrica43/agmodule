@@ -9,3 +9,20 @@
 <div id = "ksh-widget-dynamic_index" class="ksh-container"></div>
 <param id = "ksh-widget-handshake-dynamic_index" value=0></param> 
 
+<script type="text/javascript">
+
+
+	// CommonJS
+	//const Swal = require('sweetalert2')
+
+	require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (swal) {
+	    //foo is now loaded.
+	    swal.fire({
+		  title: 'Error!',
+		  text: 'Do you want to continue',
+		  icon: 'error',
+		  confirmButtonText: 'Cool'
+		})
+	});
+	
+</script>
