@@ -38,10 +38,9 @@ function send_tip(tip){
     //Logging :: button-click interaction
     log_click({itime: 10, message:"Send tip button clicked", register : log, level:1,type:"ButtonClick"});
 	if(document.getElementById("tip-input-dynamic_index").value == ""){
-      const Swal = require('https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js');
 		  //require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], function (swal) {
       //foo is now loaded.
-      Swal.fire({
+        Swal.fire({
         title: 'Error!',
         text: 'Do you want to continue',
         icon: 'error',
