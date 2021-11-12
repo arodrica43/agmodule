@@ -347,7 +347,7 @@ def unlock_unlockable(request,username,pk):
             print("Unlockable not found by id", pk)
             raise Http404
         if "index" in request.GET.keys():
-            if request.GET["index"] not in user.gamer_profile.data['unlockables']:
+            if request.GET["index"] not in user.gamer_profile.data['unlockables'] and unlk.id not in user.gamer_profile.data['unlockables']:
                 user.gamer_profile.data['unlockables'] += [unlk.id, request.GET["index"]]
                 user.gamer_profile.save()
                 lock6.release()
@@ -381,9 +381,9 @@ def view_unlockable_set(request, username):
 
         unlocks_set = []
         for unlk in all_unlocks:
-            if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['unlockables']):
-                user.gamer_profile.data['unlockables'] += [unlk.id]
-                user.gamer_profile.save()
+            # if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['unlockables']):
+            #     user.gamer_profile.data['unlockables'] += [unlk.id]
+            #     user.gamer_profile.save()
             if 'index' in request.GET.keys():
                 if unlk.id not in user.gamer_profile.data['unlockables'] and request.GET['index'] not in user.gamer_profile.data['unlockables']:
                     unlocks_set += [UnlockableSerializer(unlk, context={'request': request}).data]
@@ -431,12 +431,10 @@ def view_challenge_set(request, username):
         except:
             print("User not found")
             raise Http404
-        print("This works! -- 1")
         unlock_ids = []
         if 'challenges' in user.gamer_profile.data.keys():
             unlock_ids = user.gamer_profile.data['challenges']
-        
-        print("This works! -- 2")
+    
         all_unlocks = Challenge.objects.all()
 
         unlocks_set = []
