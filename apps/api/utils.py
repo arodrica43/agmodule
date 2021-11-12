@@ -422,24 +422,37 @@ def view_challenge_set(request, username):
    
     lock8.acquire()
     try:
-        print("This works!")
+        try:
+            course_id = request.GET["course_id"]
+        except Exception as e:
+            course_id = None
         try:
             user = Gamer.objects.filter(user__username = username)[0]
         except:
             print("User not found")
             raise Http404
-
+        print("This works! -- 1")
         unlock_ids = []
         if 'challenges' in user.gamer_profile.data.keys():
             unlock_ids = user.gamer_profile.data['challenges']
-      
+        
+        print("This works! -- 1")
         all_unlocks = Challenge.objects.all()
 
         unlocks_set = []
         for unlk in all_unlocks:
-            if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
-                user.gamer_profile.data['challenges'] += [unlk.id]
-                user.gamer_profile.save()
+            if course_id:
+                if "edx_data" in user.gamer_profile.data.keys():
+                    if unlk.by in user.gamer_profile.data["edx_data"][course_id].keys():
+                        fdata = user.gamer_profile.data["edx_data"][course_id]
+                        if fdata[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
+                            user.gamer_profile.data['challenges'] += [unlk.id]
+                            user.gamer_profile.save()
+            else:
+                if unlk.by in user.gamer_profile.data.keys():
+                    if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
+                        user.gamer_profile.data['challenges'] += [unlk.id]
+                        user.gamer_profile.save()
             unlocks_set += [[ChallengeSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids, user.gamer_profile.data[unlk.by], "C" + str(unlk.id) in unlock_ids]]
         lock8.release()
         return JsonResponse({'results':unlocks_set})

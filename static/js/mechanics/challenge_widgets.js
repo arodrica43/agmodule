@@ -61,7 +61,7 @@ function choose_chl(challenge){
                                                                     '<h4 style="position:absolute;bottom: 0; right: 20px;"><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
                                                                 ' </div>';
 }
-url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_user";
+url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
