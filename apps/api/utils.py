@@ -436,14 +436,16 @@ def view_challenge_set(request, username):
         if 'challenges' in user.gamer_profile.data.keys():
             unlock_ids = user.gamer_profile.data['challenges']
         
-        print("This works! -- 1")
+        print("This works! -- 2")
         all_unlocks = Challenge.objects.all()
 
         unlocks_set = []
         for unlk in all_unlocks:
             if course_id:
                 if "edx_data" in user.gamer_profile.data.keys():
+                    print("This works! -- 3")
                     if unlk.by in user.gamer_profile.data["edx_data"][course_id].keys():
+                        print("This works! -- 4")
                         fdata = user.gamer_profile.data["edx_data"][course_id]
                         if fdata[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
                             user.gamer_profile.data['challenges'] += [unlk.id]
