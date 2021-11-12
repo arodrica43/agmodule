@@ -440,22 +440,24 @@ def view_challenge_set(request, username):
         all_unlocks = Challenge.objects.all()
 
         unlocks_set = []
+        current_by = 0
         for unlk in all_unlocks:
             if course_id:
                 if "edx_data" in user.gamer_profile.data.keys():
                     print("This works! -- 3")
                     if unlk.by in user.gamer_profile.data["edx_data"][course_id].keys():
-                        print("This works! -- 4")
                         fdata = user.gamer_profile.data["edx_data"][course_id]
                         if fdata[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
                             user.gamer_profile.data['challenges'] += [unlk.id]
                             user.gamer_profile.save()
+                            current_by = fdata[unlk.by]
             else:
                 if unlk.by in user.gamer_profile.data.keys():
                     if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
                         user.gamer_profile.data['challenges'] += [unlk.id]
                         user.gamer_profile.save()
-            unlocks_set += [[ChallengeSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids, user.gamer_profile.data[unlk.by], "C" + str(unlk.id) in unlock_ids]]
+                        current_by = user.gamer_profile.data[unlk.by]
+            unlocks_set += [[ChallengeSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids, current_by, "C" + str(unlk.id) in unlock_ids]]
         lock8.release()
         return JsonResponse({'results':unlocks_set})
     except:
