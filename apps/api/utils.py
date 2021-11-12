@@ -422,6 +422,7 @@ def view_challenge_set(request, username):
    
     lock8.acquire()
     try:
+        print("This works!")
         try:
             user = Gamer.objects.filter(user__username = username)[0]
         except:
