@@ -57,7 +57,7 @@ def refined_widget_matrix(last_mechanic = None):
         idx = all_mechanics[i].associated_profile[all_mechanics[i].mechanic_type.value]
         _ , val = g_mechanic_cast(all_mechanics[i].pk)
 
-        if val == "badge_widgets" and non_repeat(val):
+        if val == "badge_widgets" and val != last_mechanic:
             M[i,2] = 1
             # case = 0 by default
         elif val == "challenge_widgets" and val != last_mechanic: # The second condition avoid repeating mechanic
