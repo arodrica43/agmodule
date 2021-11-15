@@ -98,13 +98,14 @@ def retrieve_adaptative_widget_id(request):
 
     lock7.acquire()
     try:
+        print("*****")
         queryset = AdaptativeWidget.objects.all()
         args = request.GET
         if 'user' in args.keys():
             user = Gamer.objects.filter(user__username = args['user'])
             if user:
                 user = user[0]
-
+                print("*****")
                 if 'course_id' in args.keys():
                     if "edx_data" not in user.gamer_profile.data.keys():
                         user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
@@ -119,13 +120,17 @@ def retrieve_adaptative_widget_id(request):
                                 user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
                                 user.gamer_profile.save()
                                 M = queryset[0].refined_widget_matrix()
+                                print("*****")
                             else:
                                 if len(course_data['mechanics_log']) > 0:
+                                    print("*****")
                                     M = queryset[0].refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
+                                    print("*****")
                                 else:
                                     M = queryset[0].refined_widget_matrix()   
                             #####################################################################################
                             # This is the default adaptative_widget procedure
+                            print("*****")
                             utilities = M.dot(np.array(user.gamer_profile.vectorize()))
                             for i in range(len(utilities)):
                                 if utilities[i] > 0:
@@ -149,6 +154,7 @@ def retrieve_adaptative_widget_id(request):
                                 clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
                             # End default adaptive widget procedure
                             #####################################################################################
+                            print("*****")
                             from datetime import datetime
                             # Getting the current date and time
                             dt = datetime.now()
@@ -167,6 +173,7 @@ def retrieve_adaptative_widget_id(request):
                             if val not in acc_mechs :
                                 user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
                                 user.gamer_profile.save()
+                            print("*****")
                     lock7.release() 
                     return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
                 else:
