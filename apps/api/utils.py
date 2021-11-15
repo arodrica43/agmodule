@@ -118,9 +118,10 @@ def retrieve_adaptative_widget_id(request):
                         if int(args['need_log']) and args['course_id']:
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
                             if 'mechanics_log' not in course_data.keys():
+                                print("*****")
                                 user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
                                 user.gamer_profile.save()
-                                print("*****")
+
                                 M = refined_widget_matrix()
                                 print("*****")
                             else:
