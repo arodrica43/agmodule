@@ -104,39 +104,51 @@ def retrieve_adaptative_widget_id(request):
             user = Gamer.objects.filter(user__username = args['user'])
             if user:
                 user = user[0]
-                
-                # This is the default adaptative_widget procedure
-                utilities = queryset[0].widget_matrix().dot(np.array(user.gamer_profile.vectorize()))
-                for i in range(len(utilities)):
-                    if utilities[i] > 0:
-                        _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
-                        if val not in allowed_mechanics(user):
-                            utilities[i] = 0
-                
-                prob = utilities/utilities.sum()
-                r = rdm.random()
-                acc, idx = 0, 0
-                for i in range(len(prob)):
-                    pi = prob[i]
-                    if acc < r and r < acc + pi:
-                        idx = i
-                        break
-                    acc += pi
-                gmechanic = GMechanic.objects.all()[idx]
-                qset , val = g_mechanic_cast(gmechanic.pk)
-                clss_idx = -1
-                if qset:
-                    clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
 
                 if 'course_id' in args.keys():
                     if "edx_data" not in user.gamer_profile.data.keys():
                         user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
                     else:
                         if args['course_id'] not in user.gamer_profile.data["edx_data"].keys():
-                            user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
+                            user.gamer_profile.data["edx_data"][args['course_id']] = {}
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
+                            course_data = user.gamer_profile.data["edx_data"][args['course_id']]
+                            if 'mechanics_log' not in course_data.keys():
+                                user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
+                                user.gamer_profile.save()
+                                M = queryset[0].refined_widget_matrix()
+                            else:
+                                if len(course_data['mechanics_log']) > 0:
+                                    M = queryset[0].refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
+                                else:
+                                    M = queryset[0].refined_widget_matrix()   
+                            #####################################################################################
+                            # This is the default adaptative_widget procedure
+                            utilities = M.dot(np.array(user.gamer_profile.vectorize()))
+                            for i in range(len(utilities)):
+                                if utilities[i] > 0:
+                                    _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
+                                    if val not in allowed_mechanics(user):
+                                        utilities[i] = 0
+                            
+                            prob = utilities/utilities.sum()
+                            r = rdm.random()
+                            acc, idx = 0, 0
+                            for i in range(len(prob)):
+                                pi = prob[i]
+                                if acc < r and r < acc + pi:
+                                    idx = i
+                                    break
+                                acc += pi
+                            gmechanic = GMechanic.objects.all()[idx]
+                            qset , val = g_mechanic_cast(gmechanic.pk)
+                            clss_idx = -1
+                            if qset:
+                                clss_idx = qset[0].associated_profile[qset[0].mechanic_type.value]
+                            # End default adaptive widget procedure
+                            #####################################################################################
                             from datetime import datetime
                             # Getting the current date and time
                             dt = datetime.now()
@@ -144,9 +156,7 @@ def retrieve_adaptative_widget_id(request):
                                 wid = args['widget_id']
                             else:
                                 wid = '?'
-                            if 'mechanics_log' not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                                user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
-                                user.gamer_profile.save()
+                           
                             mech_log = user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"]
                             mech_log.append({"timestamp" : dt, "shown_mechanic" : val, "widget_id": wid})
                             user.gamer_profile.save()

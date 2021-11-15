@@ -48,7 +48,7 @@ def g_mechanic_cast(gmechanic_id):
     
     return queryset, 'g_mechanics'
 
-def refined_widget_matrix():
+def refined_widget_matrix(last_mechanic = None):
     #Refine row values, so every mechanic has its own static PT.
     import numpy as np
     all_mechanics =  GMechanic.objects.all()
@@ -56,35 +56,41 @@ def refined_widget_matrix():
     for i in range(len(all_mechanics)):
         idx = all_mechanics[i].associated_profile[all_mechanics[i].mechanic_type.value]
         _ , val = g_mechanic_cast(all_mechanics[i].pk)
-        if val == "badge_widgets":
-            M[i,2] = 0.8
-            M[i,3] = 0.2
+
+        if val == "badge_widgets" and non_repeat(val):
+            M[i,2] = 1
             # case = 0 by default
-        elif val == "challenge_widgets":
-            pass
-        elif val == 'development_tool_widgets':
-            pass
-        elif val == 'easter_egg_widgets':
-            pass
-        elif val == 'gift_widgets':
-            pass
-        elif val == 'gift_opener_widgets':
-            pass
-        elif val == 'knowledge_share_widgets':
-            pass
-        elif val == 'level_widgets':
-            pass
-        elif val == 'lottery_widgets':
-            pass
-        elif val == 'point_widgets':
-            pass
-        elif val == 'social_network_widgets':
-            pass
-        elif val == 'social_status_widgets':
-            pass
-        elif val == 'unlockable_widgets':
-            pass
-        elif val == 'leaderboard_widgets':
-            pass
-    #print(M)
+        elif val == "challenge_widgets" and val != last_mechanic: # The second condition avoid repeating mechanic
+            M[i,0] = 1
+        elif val == 'development_tool_widgets' and val != last_mechanic:
+            M[i,0] = 1
+        elif val == 'easter_egg_widgets' and val != last_mechanic:
+            M[i,1] = 1
+        elif val == 'gift_widgets' and val != last_mechanic:
+            M[i,5] = 1
+        elif val == 'gift_opener_widgets' and val != last_mechanic:
+            M[i,3] = 1
+        elif val == 'knowledge_share_widgets' and val != last_mechanic:
+            M[i,5] = 1
+        elif val == 'level_widgets' and val != last_mechanic:
+            M[i,2] = 1
+        elif val == 'lottery_widgets' and val != last_mechanic:
+            M[i,3] = 1
+        elif val == 'point_widgets' and val != last_mechanic: # This mechanic is transversal
+            M[i,0] = 1./6
+            M[i,1] = 1./6
+            M[i,2] = 1./6
+            M[i,3] = 1./6
+            M[i,4] = 1./6
+            M[i,5] = 1./6
+        elif val == 'social_network_widgets' and val != last_mechanic :
+            M[i,4] = 1
+        elif val == 'social_status_widgets' and val != last_mechanic:
+            M[i,4] = 1
+        elif val == 'unlockable_widgets' and val != last_mechanic:
+            M[i,1] = 1
+        elif val == 'leaderboard_widgets' and val != last_mechanic:
+            M[i,3] = 1
+            
+    print(M)
     return M
