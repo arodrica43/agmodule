@@ -116,7 +116,7 @@ def retrieve_adaptative_widget_id(request):
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
-                            print("*****",args['need_log'])
+
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
                             if 'mechanics_log' not in course_data.keys():
                                 print("*****")
@@ -126,6 +126,7 @@ def retrieve_adaptative_widget_id(request):
                                 M = refined_widget_matrix()
                                 print("*****")
                             else:
+                                print("***333")
                                 if len(course_data['mechanics_log']) > 0:
                                     print("*****")
                                     M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
