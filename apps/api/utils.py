@@ -105,13 +105,14 @@ def retrieve_adaptative_widget_id(request):
             user = Gamer.objects.filter(user__username = args['user'])
             if user:
                 user = user[0]
-                print("*****")
+                
                 if 'course_id' in args.keys():
                     if "edx_data" not in user.gamer_profile.data.keys():
                         user.gamer_profile.data["edx_data"] = {args['course_id'] : {}}
                     else:
                         if args['course_id'] not in user.gamer_profile.data["edx_data"].keys():
                             user.gamer_profile.data["edx_data"][args['course_id']] = {}
+                    print("*****")
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
