@@ -179,11 +179,13 @@ def retrieve_adaptative_widget_id(request):
                                 user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
                                 user.gamer_profile.save()
                             print("*****")
+                            response = JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
                         else:
                             print("*****2")
+                            response = JsonResponse({})
                     lock7.release() 
                     print("*****f")
-                    return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
+                    return response
                 else:
                     raise Exception("Missing course id")
             else:
