@@ -119,15 +119,15 @@ def retrieve_adaptative_widget_id(request):
                             if 'mechanics_log' not in course_data.keys():
                                 user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
                                 user.gamer_profile.save()
-                                M = queryset[0].refined_widget_matrix()
+                                M = refined_widget_matrix()
                                 print("*****")
                             else:
                                 if len(course_data['mechanics_log']) > 0:
                                     print("*****")
-                                    M = queryset[0].refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
+                                    M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
                                     print("*****")
                                 else:
-                                    M = queryset[0].refined_widget_matrix()   
+                                    M = refined_widget_matrix()   
                             #####################################################################################
                             # This is the default adaptative_widget procedure
                             print("*****")
