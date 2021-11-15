@@ -115,6 +115,7 @@ def retrieve_adaptative_widget_id(request):
 
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
+                        print("*****2")
                         if int(args['need_log']) and args['course_id']:
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
                             if 'mechanics_log' not in course_data.keys():
