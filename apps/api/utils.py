@@ -115,7 +115,6 @@ def retrieve_adaptative_widget_id(request):
 
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
-                        print("*****2")
                         if int(args['need_log']) and args['course_id']:
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
                             if 'mechanics_log' not in course_data.keys():
@@ -178,8 +177,10 @@ def retrieve_adaptative_widget_id(request):
                                 user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"] += [val]
                                 user.gamer_profile.save()
                             print("*****")
+                        else:
+                            print("*****2")
                     lock7.release() 
-                    print("*****2")
+                    print("*****f")
                     return JsonResponse({'gmechanic_id': gmechanic.pk, 'gmechanic_class': val, 'class_idx':  clss_idx, 'accessible_mechanics' : user.gamer_profile.data["edx_data"][args['course_id']]["accessible_mechanics"]})
                 else:
                     raise Exception("Missing course id")
