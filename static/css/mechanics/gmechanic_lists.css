@@ -40,7 +40,7 @@
   /* The Modal (background) */
     .modal {
         display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
+        position: relative; /* Stay in place */
         z-index: 3; /* Sit on top */
         padding-top: 100px; /* Location of the box */
         left: 0;
