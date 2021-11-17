@@ -136,7 +136,7 @@ def retrieve_adaptative_widget_id(request):
                                 if len(course_data['mechanics_log']) > 0:
                                     print("*****")
                                     try:
-                                        M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'], extra_cond = (progress < newbie_th))
+                                        M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'], extra_cond = course_prog < newbie_th)
                                     except Exception as e:
                                         print("---2---->",e)
                                     print("*****")
