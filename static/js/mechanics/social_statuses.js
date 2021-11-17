@@ -90,74 +90,80 @@ document.querySelector("#scrollable-content-coin").onscroll = function(){
             log_click({itime: 2,message:"Scrolling 'TopCoins' leaderboard", register : log, level:1,type:"Scroll"});
             // --------------------------------------------------------------------------
         }
+ocument.querySelector("#incr-top-friendly").innerHTML = "En manteniment"
+ocument.querySelector("#incr-top-followed").innerHTML = "En manteniment"
+ocument.querySelector("#incr-top-views").innerHTML = "En manteniment"
+ocument.querySelector("#incr-top-score").innerHTML = "En manteniment"
+ocument.querySelector("#incr-top-level").innerHTML = "En manteniment"
+ocument.querySelector("#incr-top-coin").innerHTML = "En manteniment"
 
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/14/?user=dynaimic_user&show_title=false&dynamic_index=friendly")
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (myJson) {
-        document.querySelector("#incr-top-friendly").innerHTML = (myJson.html);
-        $(myJson.html).appendTo(document.body);    
-    })
-    .catch(function (error) {
-        console.log("Error: " + error);
-    });
+// fetch("https://agmodule.herokuapp.com/api/g_mechanics/14/?user=dynaimic_user&show_title=false&dynamic_index=friendly")
+//     .then(function (response) {
+//         return response.json();
+//     })
+//     .then(function (myJson) {
+//         document.querySelector("#incr-top-friendly").innerHTML = (myJson.html);
+//         $(myJson.html).appendTo(document.body);    
+//     })
+//     .catch(function (error) {
+//         console.log("Error: " + error);
+//     });
 
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/15/?user=dynaimic_user&show_title=false&dynamic_index=followed")
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (myJson) {
-                    document.querySelector("#incr-top-followed").innerHTML = (myJson.html);
-                    $(myJson.html).appendTo(document.body);    
-                })
-                .catch(function (error) {
-                    console.log("Error: " + error);
-                });
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/16/?user=dynaimic_user&show_title=false&dynamic_index=views")
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (myJson) {
-                            document.querySelector("#incr-top-views").innerHTML = (myJson.html);
-                            $(myJson.html).appendTo(document.body);    
-                        })
-                        .catch(function (error) {
-                            console.log("Error: " + error);
-                        });
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/11/?user=dynaimic_user&show_title=false&dynamic_index=score")
-                            .then(function (response) {
-                                return response.json();
-                            })
-                            .then(function (myJson) {
-                                document.querySelector("#incr-top-score").innerHTML = (myJson.html);
-                                $(myJson.html).appendTo(document.body);    
-                            })
-                            .catch(function (error) {
-                                console.log("Error: " + error);
-                            });
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/12/?user=dynaimic_user&show_title=false&dynamic_index=level")
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (myJson) {
-                            document.querySelector("#incr-top-level").innerHTML = (myJson.html);
-                            $(myJson.html).appendTo(document.body);    
-                        })
-                        .catch(function (error) {
-                            console.log("Error: " + error);
-                        });
- fetch("https://agmodule.herokuapp.com/api/g_mechanics/13/?user=dynaimic_user&show_title=false&dynamic_index=coin")
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (myJson) {
-                            document.querySelector("#incr-top-coin").innerHTML = (myJson.html);
-                            $(myJson.html).appendTo(document.body);    
-                        })
-                        .catch(function (error) {
-                            console.log("Error: " + error);
-                        });
+// fetch("https://agmodule.herokuapp.com/api/g_mechanics/15/?user=dynaimic_user&show_title=false&dynamic_index=followed")
+//                 .then(function (response) {
+//                     return response.json();
+//                 })
+//                 .then(function (myJson) {
+//                     document.querySelector("#incr-top-followed").innerHTML = (myJson.html);
+//                     $(myJson.html).appendTo(document.body);    
+//                 })
+//                 .catch(function (error) {
+//                     console.log("Error: " + error);
+//                 });
+// fetch("https://agmodule.herokuapp.com/api/g_mechanics/16/?user=dynaimic_user&show_title=false&dynamic_index=views")
+//                         .then(function (response) {
+//                             return response.json();
+//                         })
+//                         .then(function (myJson) {
+//                             document.querySelector("#incr-top-views").innerHTML = (myJson.html);
+//                             $(myJson.html).appendTo(document.body);    
+//                         })
+//                         .catch(function (error) {
+//                             console.log("Error: " + error);
+//                         });
+// fetch("https://agmodule.herokuapp.com/api/g_mechanics/11/?user=dynaimic_user&show_title=false&dynamic_index=score")
+//                             .then(function (response) {
+//                                 return response.json();
+//                             })
+//                             .then(function (myJson) {
+//                                 document.querySelector("#incr-top-score").innerHTML = (myJson.html);
+//                                 $(myJson.html).appendTo(document.body);    
+//                             })
+//                             .catch(function (error) {
+//                                 console.log("Error: " + error);
+//                             });
+// fetch("https://agmodule.herokuapp.com/api/g_mechanics/12/?user=dynaimic_user&show_title=false&dynamic_index=level")
+//                         .then(function (response) {
+//                             return response.json();
+//                         })
+//                         .then(function (myJson) {
+//                             document.querySelector("#incr-top-level").innerHTML = (myJson.html);
+//                             $(myJson.html).appendTo(document.body);    
+//                         })
+//                         .catch(function (error) {
+//                             console.log("Error: " + error);
+//                         });
+//  fetch("https://agmodule.herokuapp.com/api/g_mechanics/13/?user=dynaimic_user&show_title=false&dynamic_index=coin")
+//                         .then(function (response) {
+//                             return response.json();
+//                         })
+//                         .then(function (myJson) {
+//                             document.querySelector("#incr-top-coin").innerHTML = (myJson.html);
+//                             $(myJson.html).appendTo(document.body);    
+//                         })
+//                         .catch(function (error) {
+//                             console.log("Error: " + error);
+//                         });
 
     fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/")
         .then(function (response) {
