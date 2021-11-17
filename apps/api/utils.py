@@ -23,6 +23,7 @@ interaction_files = [("include-onclick-tracking","onclick.js"),
                     ]
 
 newbie_th = 0.1
+med_th = 0.5
 
 def allowed_mechanics(user, course = None):
 

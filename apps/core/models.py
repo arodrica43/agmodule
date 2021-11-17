@@ -77,7 +77,7 @@ def refined_widget_matrix(last_mechanic = None, extra_cond = False):
                 M[i,2] = 1
             elif val == 'lottery_widgets' and val != last_mechanic:
                 M[i,3] = 1
-            elif val == 'point_widgets' and (val != last_mechanic): # This mechanic is transversal
+            elif val == 'point_widgets' and (val != last_mechanic or extra_cond): # This mechanic is transversal
                 M[i,0] = 1./6
                 M[i,1] = 1./6
                 M[i,2] = 1./6
