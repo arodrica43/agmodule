@@ -132,7 +132,7 @@ def retrieve_adaptative_widget_id(request):
                                 M = refined_widget_matrix()
                                 print("*****")
                             else:
-                                print(course_data['mechanics_log'])
+                                #print(course_data['mechanics_log'])
                                 if len(course_data['mechanics_log']) > 0:
                                     print("*****")
                                     M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'], extra_cond = progress < newbie_th)
