@@ -90,12 +90,12 @@ document.querySelector("#scrollable-content-coin").onscroll = function(){
             log_click({itime: 2,message:"Scrolling 'TopCoins' leaderboard", register : log, level:1,type:"Scroll"});
             // --------------------------------------------------------------------------
         }
-ocument.querySelector("#incr-top-friendly").innerHTML = "En manteniment"
-ocument.querySelector("#incr-top-followed").innerHTML = "En manteniment"
-ocument.querySelector("#incr-top-views").innerHTML = "En manteniment"
-ocument.querySelector("#incr-top-score").innerHTML = "En manteniment"
-ocument.querySelector("#incr-top-level").innerHTML = "En manteniment"
-ocument.querySelector("#incr-top-coin").innerHTML = "En manteniment"
+document.querySelector("#incr-top-friendly").innerHTML = "En manteniment"
+document.querySelector("#incr-top-followed").innerHTML = "En manteniment"
+document.querySelector("#incr-top-views").innerHTML = "En manteniment"
+document.querySelector("#incr-top-score").innerHTML = "En manteniment"
+document.querySelector("#incr-top-level").innerHTML = "En manteniment"
+document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
 
 // fetch("https://agmodule.herokuapp.com/api/g_mechanics/14/?user=dynaimic_user&show_title=false&dynamic_index=friendly")
 //     .then(function (response) {
