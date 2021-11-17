@@ -49,7 +49,7 @@
 
 function loadMechanic(mechanic){
 
-	fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + mechanic.dataset.id + "/")
+	fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + mechanic.dataset.id + "/?user=dynamic_user")
 	    .then((response)  => (response.json()))
 	    .then(function (myJson) {
 	        document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
