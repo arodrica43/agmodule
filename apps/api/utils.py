@@ -31,13 +31,13 @@ def allowed_mechanics(user):
                         "point_widgets",
                         "leaderboard_widgets",
                         "social_status_widgets",
-                        "knowledge_share_widgets",
+                        "social_network_widgets",
                         "development_tool_widgets",
                         "unlockable_widgets",
                         "badge_widgets",
                         "gift_opener_widgets",
                         "lottery_widgets",
-                        "social_network_widgets",
+                        "knowledge_share_widgets",
                         "gift_widgets"
                     ]
                     
@@ -57,7 +57,9 @@ def allowed_mechanics(user):
             n += 1
         if n > 0:
             experience = experience/n
-        if experience < 0.5:
+        if experience < 0.05: #First 5% of the course
+            return ['point_widgets']
+        elif experience < 0.5: # First 50% of the course
             return widgets_list[:7]
         else:
             return widgets_list

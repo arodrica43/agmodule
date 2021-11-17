@@ -92,5 +92,5 @@ def refined_widget_matrix(last_mechanic = None):
         elif val == 'leaderboard_widgets' and val != last_mechanic:
             M[i,3] = 1
             
-    print(M)
+    #print(M)
     return M
