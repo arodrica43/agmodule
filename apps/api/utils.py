@@ -547,7 +547,7 @@ def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
         points = user.gamer_profile.data['$']
-        avatar = user.social_profile.image
+        avatar = str(user.social_profile.image)
         try:
             course_id = request.GET['course_id']
         except:
