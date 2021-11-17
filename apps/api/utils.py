@@ -546,6 +546,8 @@ def get_interaction_index(request, username, mechanic_id):
 def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
+        points = user.gamer_profile.data['$']
+        avatar = user.social_profile.image
         try:
             course_id = request.GET['course_id']
         except:
@@ -569,7 +571,8 @@ def get_accessible_mechanics(request, username):
     except:
         print("User found")
         raise Http404
-    return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics']})
+    return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics'], 
+                        'points' : points, 'avatar' : avatar})
 
 def change_icon(request, id):
     badge = Badge.objects.filter(id = id)
