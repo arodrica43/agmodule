@@ -130,6 +130,9 @@ def retrieve_adaptative_widget_id(request):
                     else:
                         if args['course_id'] not in user.gamer_profile.data["edx_data"].keys():
                             user.gamer_profile.data["edx_data"][args['course_id']] = {}
+                    for key in ["position", "progress", "last_score", "mean_score"]:
+                        if key not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
+                            user.gamer_profile.data["edx_data"][course_id][key] = 0.0
                     print("*****0")
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
@@ -590,6 +593,9 @@ def get_accessible_mechanics(request, username):
             user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [str(now)]
         if "accessible_mechanics" not in user.gamer_profile.data["edx_data"][course_id].keys():
             user.gamer_profile.data["edx_data"][course_id]["accessible_mechanics"] = []
+        for key in ["position", "progress", "last_score", "mean_score"]:
+            if key not in user.gamer_profile.data["edx_data"][course_id].keys():
+                user.gamer_profile.data["edx_data"][course_id][key] = 0.0
         user.gamer_profile.save()
     except:
         print("User found")
