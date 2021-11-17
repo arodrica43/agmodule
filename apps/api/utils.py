@@ -132,7 +132,7 @@ def retrieve_adaptative_widget_id(request):
                             user.gamer_profile.data["edx_data"][args['course_id']] = {}
                     for key in ["position", "progress", "last_score", "mean_score"]:
                         if key not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
-                            user.gamer_profile.data["edx_data"][course_id][key] = 0.0
+                            user.gamer_profile.data["edx_data"][args['course_id']][key] = 0.0
                     print("*****0")
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
