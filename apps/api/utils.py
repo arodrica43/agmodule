@@ -572,7 +572,7 @@ def get_interaction_index(request, username, mechanic_id):
 def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
-        points = user.gamer_profile.data['$']
+        points = user.gamer_profile.data['score']
         avatar = str(user.social_profile.image)
         try:
             course_id = request.GET['course_id']
