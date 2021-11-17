@@ -24,7 +24,7 @@ interaction_files = [("include-onclick-tracking","onclick.js"),
 
 newbie_th = 0.1
 
-def allowed_mechanics(user):
+def allowed_mechanics(user, course = None):
 
     widgets_list = [
                         "challenge_widgets",
@@ -45,26 +45,39 @@ def allowed_mechanics(user):
                     
     gdata = user.gamer_profile.data
     if 'edx_data' in gdata.keys():
-        experience, n = 0, 0
-        for cid in gdata['edx_data'].keys():
-            if 'progress' in gdata['edx_data'][cid].keys():
-                progress = gdata['edx_data'][cid]["progress"]
+        if course:
+            if course in gdata["edx_data"].keys():
+                cdata = gdata["edx_data"][course]
+                cp = cdata["progress"]
+                if cp < newbie_th:
+                    return ['point_widgets']
+                elif cp < med_th:
+                    return widgets_list[:7]
+                else:
+                    return widgets_list
             else:
-                progress = 0
-            if 'mean_score' in gdata['edx_data'][cid].keys():
-                score = gdata['edx_data'][cid]["mean_score"]
-            else:
-                score = 0
-            experience += 0.7*progress + 0.3*score
-            n += 1
-        if n > 0:
-            experience = experience/n
-        if progress < newbie_th: #First 5% of the course
-            return ['point_widgets']
-        elif experience < 0.5: # First 50% of the course
-            return widgets_list[:7]
+                return ['point_widgets']
         else:
-            return widgets_list
+            experience, n = 0, 0
+            for cid in gdata['edx_data'].keys():
+                if 'progress' in gdata['edx_data'][cid].keys():
+                    progress = gdata['edx_data'][cid]["progress"]
+                else:
+                    progress = 0
+                if 'mean_score' in gdata['edx_data'][cid].keys():
+                    score = gdata['edx_data'][cid]["mean_score"]
+                else:
+                    score = 0
+                experience += 0.7*progress + 0.3*score
+                n += 1
+            if n > 0:
+                experience = experience/n
+            if experience < newbie_th: #First 5% of the course
+                return ['point_widgets']
+            elif experience < 0.5: # First 50% of the course
+                return widgets_list[:7]
+            else:
+                return widgets_list
     else:
         return widgets_list[:7]
 
