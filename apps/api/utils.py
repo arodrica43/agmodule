@@ -22,6 +22,8 @@ interaction_files = [("include-onclick-tracking","onclick.js"),
                      ("include_interaction_testing_tools","interaction_testing.js")
                     ]
 
+newbie_th = 0.1
+
 def allowed_mechanics(user):
 
     widgets_list = [
@@ -57,7 +59,7 @@ def allowed_mechanics(user):
             n += 1
         if n > 0:
             experience = experience/n
-        if experience < 0.05: #First 5% of the course
+        if progress < newbie_th: #First 5% of the course
             return ['point_widgets']
         elif experience < 0.5: # First 50% of the course
             return widgets_list[:7]
@@ -118,8 +120,8 @@ def retrieve_adaptative_widget_id(request):
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
-
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
+                            course_prog = course_data["progress"] 
                             if 'mechanics_log' not in course_data.keys():
                                 print("*****")
                                 user.gamer_profile.data["edx_data"][args['course_id']]["mechanics_log"] = []
@@ -131,7 +133,7 @@ def retrieve_adaptative_widget_id(request):
                                 print(course_data['mechanics_log'])
                                 if len(course_data['mechanics_log']) > 0:
                                     print("*****")
-                                    M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'])
+                                    M = refined_widget_matrix(last_mechanic = course_data['mechanics_log'][-1]['shown_mechanic'], extra_cond = progress < newbie_th)
                                     print("*****")
                                 else:
                                     M = refined_widget_matrix()   

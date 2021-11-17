@@ -48,7 +48,7 @@ def g_mechanic_cast(gmechanic_id):
     
     return queryset, 'g_mechanics'
 
-def refined_widget_matrix(last_mechanic = None):
+def refined_widget_matrix(last_mechanic = None, extra_cond = False):
     #Refine row values, so every mechanic has its own static PT.
     import numpy as np
     all_mechanics =  GMechanic.objects.all()
@@ -76,7 +76,7 @@ def refined_widget_matrix(last_mechanic = None):
             M[i,2] = 1
         elif val == 'lottery_widgets' and val != last_mechanic:
             M[i,3] = 1
-        elif val == 'point_widgets' and val != last_mechanic: # This mechanic is transversal
+        elif val == 'point_widgets' and (val != last_mechanic or extra_cond): # This mechanic is transversal
             M[i,0] = 1./6
             M[i,1] = 1./6
             M[i,2] = 1./6
