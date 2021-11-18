@@ -168,7 +168,7 @@ def retrieve_adaptative_widget_id(request):
                             for i in range(len(utilities)):
                                 if utilities[i] > 0:
                                     _ , val = g_mechanic_cast(GMechanic.objects.all()[i].pk)
-                                    if val not in allowed_mechanics(user):
+                                    if val not in allowed_mechanics(user, course = args['course_id']):
                                         utilities[i] = 0
                             
                             prob = utilities/utilities.sum()
