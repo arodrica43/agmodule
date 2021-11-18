@@ -5,7 +5,7 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("main-lb-content-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
     document.querySelector("#waiting-div-dynamic_index").innerHTML = '<img id="waiting-dynamic_index" src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>'; 
     fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechanic url

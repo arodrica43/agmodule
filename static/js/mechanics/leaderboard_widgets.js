@@ -5,7 +5,7 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("ldb-widget-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     set_widget_defaults("#ldb-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
 

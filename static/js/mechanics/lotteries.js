@@ -50,7 +50,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     include-onclick-tracking
     start_main_time();
     start_focus_time("main-content-lot");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15);
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
   document.querySelector("#button_div").innerHTML = '<input class="btn btn-light" type="button" value="spin" id="spin" />';
