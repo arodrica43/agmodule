@@ -59,7 +59,7 @@ function choose_chl(challenge){
                                                                     '" >' + locked_style +
                                                                     '<h4 style="position:absolute;bottom: 25px; right: 20px;"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
                                                                     '<h4 style="position:absolute;bottom: 0; right: 20px;"><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
-                                                                ' <br><br><br><br><br><br></div>';
+                                                                ' <br><br><br><br><br><br><br><br><br><br><br><br></div>';
 }
 url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
 fetch(url)
