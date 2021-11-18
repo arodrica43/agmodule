@@ -4,7 +4,7 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("gft-widget-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",16);
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     set_widget_defaults("#gft-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
 var rewards = [
