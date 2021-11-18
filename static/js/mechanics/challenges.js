@@ -6,7 +6,7 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("main-content-chl");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15)
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
     fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechanic url

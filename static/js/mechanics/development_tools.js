@@ -5,7 +5,7 @@
     include-onclick-tracking
     start_main_time();
     start_focus_time("main-content-development_tools-dynamic_index");
-    start_logs(log,"dynamic_user", "dynamic_mechanic_index",15)
+    start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
     document.querySelector("#main-content-development_tools-dynamic_index").innerHTML = '<div style="text-align:center">'+

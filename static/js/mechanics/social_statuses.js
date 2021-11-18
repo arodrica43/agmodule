@@ -5,7 +5,7 @@
   include-onclick-tracking
   start_main_time();
   start_focus_time("main-content-sstat");
-  start_logs(log,"dynamic_user", "dynamic_mechanic_index",15)
+  start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
   // ---------------------------------------------------------------------------------------
 
 // LEADERBOARDS EMBEDDING
