@@ -49,7 +49,7 @@ def allowed_mechanics(user, course = None):
         if course:
             if course in gdata["edx_data"].keys():
                 cdata = gdata["edx_data"][course]
-                cp = cdata["progress"]
+                cp = cdata["position"]
                 if cp < newbie_th:
                     return ['point_widgets']
                 elif cp < med_th:
@@ -133,13 +133,15 @@ def retrieve_adaptative_widget_id(request):
                     for key in ["position", "progress", "last_score", "mean_score"]:
                         if key not in user.gamer_profile.data["edx_data"][args['course_id']].keys():
                             user.gamer_profile.data["edx_data"][args['course_id']][key] = 0.0
+                    if "dynamic_progress" in args.keys():
+                        user.gamer_profile.data["edx_data"][args['course_id']]["position"] = args["dynamic_progress"]
                     print("*****0")
                     # LOG retrieved mechanic ####################################################
                     if 'need_log' in args.keys():
                         if int(args['need_log']) and args['course_id']:
                             course_data = user.gamer_profile.data["edx_data"][args['course_id']]
                             print("*****1")
-                            course_prog = course_data["progress"] 
+                            course_prog = course_data["position"] 
                             print("*****2")
                             if 'mechanics_log' not in course_data.keys():
                                 print("*****")
