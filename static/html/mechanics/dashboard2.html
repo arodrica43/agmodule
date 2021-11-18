@@ -254,7 +254,7 @@
 
 <!-- Chart -->
 <div style="width:100%; text-align:center;"> <!-- background:blue; .-->
-  <div style="z-index:2;position:relative;float:right; padding-top: 2vw; padding-right:13vw ; font-size:2vw;"><h2 id="points-label">Els teus punts: --</h2></div>
+  <div style="z-index:1;position:relative;float:right; padding-top: 2vw; padding-right:13vw ; font-size:2vw;"><h2 id="points-label">Els teus punts: --</h2></div>
   <div id="circle-container" class='circle-container'>
     
     <li class="center-img"><img name="avatar" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/3/3B2.png"></li>
@@ -281,7 +281,6 @@
   }catch(error){
     uname = document.querySelector(".username").innerHTML;
   }
-
 
   course_id = JSON.parse(document.querySelector("#user-metadata").text)["course_id"];
 
@@ -338,7 +337,7 @@
     ))
   .catch(error => (console.log("Error: " + error)))
 
-  var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=" + uname;
+  var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=" + uname + "&course_id=" + course_id;
   var list_data = {};
   fetch(url)
         .then(response => response.json())
@@ -358,7 +357,7 @@
       document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
       console.log(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name);
       document.getElementById("main-modal-title").innerHTML = "List of " + mechanic.dataset.title;
-      fetch(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name)
+      fetch(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name + "&course_id=" + course_id)
       .then(response => response.json())
       .then(function(res_json){
         document.querySelector("#main-modal-content").innerHTML = (res_json.html); 

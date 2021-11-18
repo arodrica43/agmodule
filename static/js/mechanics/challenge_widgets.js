@@ -54,9 +54,8 @@ function choose_chl(challenge){
 	}else if(challenge[3]){
 	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
-	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;"><p onclick="log_txt_click();">' + challenge[0].title + '</p><br><br></h4>' +
-                                                                    '<img onclick="log_img_click();" style="float:right; width:25%; padding-right:20px;margin-top:-20px" src="' + challenge[0].icon +  
-                                                                    '" >' + locked_style +
+	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;"><p onclick="log_txt_click();">' + challenge[0].title + '</p><br><br>' +
+                                                                    '<img onclick="log_img_click();" style="float:right; width:25%; padding-right:20px;margin-top:-20px" src="' + challenge[0].icon + '>' + locked_style + '</h4>' +
                                                                     '<h4 style="position:absolute;bottom: 25px; right: 20px;"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
                                                                     '<h4 style="position:absolute;bottom: 0; right: 20px;"><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
                                                                 ' </div></div>';
