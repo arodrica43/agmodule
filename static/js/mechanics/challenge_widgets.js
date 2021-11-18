@@ -56,8 +56,8 @@ function choose_chl(challenge){
 	}
 	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="height:calc(125 + 15vw);"><h4 style=""><p onclick="log_txt_click();">Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum' + challenge[0].title + '</p>' +
                                                                     '<img width=100 height=100 onclick="log_img_click();" style="width:20vw;height:20vw;margin-top:-3vw" src="' + challenge[0].icon + '"">' + locked_style + '</h4>' +
-                                                                    '<h4 style="float:right;margin:15px; width:50%;"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
-                                                                    '<h4 style="float:right;margin:15px; width:50%;"><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
+                                                                    '<h4 style=""><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
+                                                                    '<h4 style=""><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
                                                                 ' </div></div>';
 }
 url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
