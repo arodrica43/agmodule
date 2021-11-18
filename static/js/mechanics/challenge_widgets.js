@@ -54,8 +54,8 @@ function choose_chl(challenge){
 	}else if(challenge[3]){
 	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
-	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="height:calc(250px + 10vw);"><h4 style=""><p onclick="log_txt_click();">' + challenge[0].title + '</p><br><br>' +
-                                                                    '<img width=100 height=100 onclick="log_img_click();" style="" src="' + challenge[0].icon + '"">' + locked_style + '</h4>' +
+	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="height:calc(250px + 10vw);"><h4 style=""><p onclick="log_txt_click();">' + challenge[0].title + '</p>' +
+                                                                    '<img width=100 height=100 onclick="log_img_click();" style="width:20vw;height:20vw;margin-top:-3vw" src="' + challenge[0].icon + '"">' + locked_style + '</h4>' +
                                                                     '<h4 style=""><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
                                                                     '<h4 style=""><p onclick="log_txt_click();"> Reward : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
                                                                 ' </div></div>';
