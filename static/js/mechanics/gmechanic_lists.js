@@ -134,7 +134,7 @@ fetch("called_mechanic_url")
         var url = "";
         var populate_grid = "";
         if(myJson.mechanic == "badges" || myJson.mechanic == "unlockables" || myJson.mechanic == "challenges"){
-            url = "https://agmodule.herokuapp.com/api/" + myJson.mechanic + "/retrieve_for_user/dynamic_user";
+            url = "https://agmodule.herokuapp.com/api/" + myJson.mechanic + "/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
             if(myJson.mechanic == "badges") {
                 populate_grid = populateBadgesGrid;
             }else if(myJson.mechanic == "unlockables") {
