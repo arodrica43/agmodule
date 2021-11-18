@@ -9,3 +9,18 @@
         height:190px;
         font-size:2vw;
 }
+
+/* For Firefox */
+progress::-moz-progress-bar {
+    background: green;
+}
+
+/* For Chrome or Safari */
+progress::-webkit-progress-value {
+    background: green;
+}
+
+/* For IE10 */
+progress {
+    background: green;
+}
