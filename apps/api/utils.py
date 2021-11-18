@@ -496,12 +496,15 @@ def view_challenge_set(request, username):
             if course_id:
                 if "edx_data" in user.gamer_profile.data.keys():
                     print("This works! -- 3")
-                    if unlk.by in user.gamer_profile.data["edx_data"][course_id].keys():
-                        fdata = user.gamer_profile.data["edx_data"][course_id]
-                        if fdata[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
-                            user.gamer_profile.data['challenges'] += [unlk.id]
-                            user.gamer_profile.save()
-                            current_by = fdata[unlk.by]
+                    try:
+                        if unlk.by in user.gamer_profile.data["edx_data"][course_id].keys():
+                            fdata = user.gamer_profile.data["edx_data"][course_id]
+                            if fdata[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
+                                user.gamer_profile.data['challenges'] += [unlk.id]
+                                user.gamer_profile.save()
+                                current_by = fdata[unlk.by]
+                    except Exception as e:
+                        print(e)
                     print("This works! -- 4")
             else:
                 if unlk.by in user.gamer_profile.data.keys():
