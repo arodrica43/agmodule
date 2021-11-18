@@ -29,7 +29,7 @@ try {
             //console.log("start timer");
             main_timer = setInterval(function() {
                 //console.log(tmp_main_t / 100);
-                console.log("Main time count :: " + tmp_main_t);
+                //console.log("Main time count :: " + tmp_main_t);
                 tmp_main_t++;
                 control_t++;
             }, 1000, "JavaScript"); // Measure in milisecond
