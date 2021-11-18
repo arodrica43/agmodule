@@ -2,8 +2,8 @@
 #search-scrollable-content {
   padding-left: 20px;
   padding-right: 20px;
-  height: 320px;
-  overflow: hidden;
+  height: calc(350px + 5vw);
+  overflow: scroll;
   background-color: white;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .profilecards_item {
-  height:270px;
+  height:calc(100px + 15vw);;
   display: flex;
   padding: 1rem;
 }

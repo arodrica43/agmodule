@@ -86,7 +86,7 @@ function emptyF(){
 function populateSearch(item,index,follow_text){
    document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
                                                             '<div class="profilecard">'+
-                                                              '<div class="profilecard" style=" height:450px;" onclick="log_img_click();">'+
+                                                              '<div class="profilecard" style=" height:400px;" onclick="log_img_click();">'+
                                                                   '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
                                                                     '<div class="profilecard_content">'+
                                                                         '<h2><div class="user-name">' + item.user.username + '</div></h2>' +  
