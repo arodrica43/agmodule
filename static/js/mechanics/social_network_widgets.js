@@ -170,14 +170,14 @@ function loadPopulateSearch(url){
 }
 
 
-document.getElementById("snt-widget-dynamic_index").innerHTML += '<div id="Search">'+ // class="mytabcontent"
+document.getElementById("snt-widget-dynamic_index").innerHTML += '<div><div id="Search">'+ // class="mytabcontent"
                                                               '<div class="grid" id="search-grid">'+
                                                               '</div>'+
                                                               '<div id="search-scrollable-content">'+
                                                                 '<ul class="profilecards" id="search-users-grid">'+
                                                                 '</ul>'+
                                                               '</div>'+
-                                                            '</div>';
+                                                            '</div></div>';
 loadPopulateSearch("https://agmodule.herokuapp.com/api/retrieve_users_search?uname_contains=");
 
 
