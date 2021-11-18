@@ -503,8 +503,9 @@ def view_challenge_set(request, username):
                             user.gamer_profile.save()
                             current_by = fdata[unlk.by]
                     elif unlk.by in user.gamer_profile.data.keys():
-                        print("Enteeeeeeeeeeeeeeeeeerrrrrrr")
+                        print(user.gamer_profile.data[unlk.by], unlk.threshold)
                         if user.gamer_profile.data[unlk.by] >= unlk.threshold and (unlk.id not in user.gamer_profile.data['challenges']) :
+                            print("Enteer")
                             user.gamer_profile.data['challenges'] += [unlk.id]
                             user.gamer_profile.save()
                             current_by = user.gamer_profile.data[unlk.by]

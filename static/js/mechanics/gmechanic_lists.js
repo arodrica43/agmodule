@@ -119,6 +119,7 @@ function populateChallengesGrid(item,index){
         locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + ' disabled>Claimed!</button>';
     }
     console.log(item[0].name);
+    console.log(item);
     document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h3 style="position:relative;top:0;">Title</h3>' +
                                                                     '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="' + item[0].icon +  
                                                                     '" >' + locked_style +
