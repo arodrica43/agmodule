@@ -170,7 +170,7 @@ function loadPopulateSearch(url){
 }
 
 
-document.getElementById("snt-widget-dynamic_index").innerHTML += '<div><div id="Search">'+ // class="mytabcontent"
+document.getElementById("snt-widget-dynamic_index").innerHTML += '<div><div id="Search" style="width:80%;">'+ // class="mytabcontent"
                                                               '<div class="grid" id="search-grid">'+
                                                               '</div>'+
                                                               '<div id="search-scrollable-content">'+
