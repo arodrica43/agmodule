@@ -11,16 +11,16 @@
 }
 
 /* For Firefox */
-progress::-moz-progress-bar {
-    background: green;
+/*progress::-moz-progress-bar {
+    background-color: #fffff;
 }
-
+*/
 /* For Chrome or Safari */
-progress::-webkit-progress-value {
+/*progress::-webkit-progress-value {
     background: green;
 }
-
+*/
 /* For IE10 */
-progress {
+/*progress {
     background: green;
-}
+}*/
