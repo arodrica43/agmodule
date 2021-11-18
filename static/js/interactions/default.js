@@ -228,13 +228,13 @@ try {
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
-        .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">Valora\'m! '+
+        .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<p style="position: absolute; top: 0; right: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-2-dynamic_index" onclick="valorate(2);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-3-dynamic_index" onclick="valorate(3);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-4-dynamic_index" onclick="valorate(4);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-5-dynamic_index" onclick="valorate(5);" class="fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span><br>'+
-                                                '</p>' + 
+                                                '</p><p>Valora\'m!</p>' + 
                                                  '<br><a href="' + link_url.replace(/\s/g, "+") + '" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>',
                                                   valorate(res_json['results'])))
         .catch(error => (console.log("Error: " + error)))
