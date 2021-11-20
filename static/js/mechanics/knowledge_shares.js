@@ -14,7 +14,7 @@
                                                                       '</div>'+
                                                             '</div>';
   
-  document.getElementById("chat-input-fields").innerHTML = ' <textarea style="max-height:200px; height: 40px;width:80%;padding-top:5px; padding-left:5px; resize: none;float:left; overflow:auto;" id="chat-input" oninput="this.style.height = this.scrollHeight + \'px\'"></textarea>'+
+  document.getElementById("chat-input-fields").innerHTML = ' <textarea style="max-height:100px; height: 40px;width:70%;padding-top:5px; padding-left:5px; resize: none;float:left; overflow:auto;" id="chat-input" oninput="this.style.height = this.scrollHeight + \'px\'"></textarea>'+
                         '<button style="float:right;padding-top:5px;width:18%; height:40px;" onclick="sendMessage()"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/4355275011579605523-512.png" style="width:100%; min-width:15px; min-height:15px; max-height:30px; max-width:30px;"/> </button>';
  
 (function() {

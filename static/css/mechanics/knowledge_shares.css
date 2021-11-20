@@ -40,12 +40,13 @@
   height: 400px;
   overflow: auto;
   background-color: none;
+  font-size: 1vw;
 }
 #footer {
   background-color: white;
 }
 .input-wrapper {
-  width: 200px;
+  width: 300px;
 }
 .item-list {
   display: none;
