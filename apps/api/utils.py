@@ -614,7 +614,7 @@ def get_accessible_mechanics(request, username):
         print("Error:",e)
         raise Http404
     return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics'], 
-                        'points' : points, 'avatar' : avatar, 'predominant_type' : pred_type})
+                        'points' : points, 'avatar' : avatar, 'predominant_type' : int(pred_type)})
 
 def change_icon(request, id):
     badge = Badge.objects.filter(id = id)
