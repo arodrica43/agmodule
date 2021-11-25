@@ -318,6 +318,7 @@
     .then(function(res_json){
       document.getElementById("points-label").innerHTML = "Els teus punts: " + res_json.points;
       console.log(res_json.avatar);
+      console.log(res_json.predominant_type);
       return res_json.results;
     })
   .then(acc_mechanics => (
