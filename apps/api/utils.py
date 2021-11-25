@@ -609,12 +609,18 @@ def get_accessible_mechanics(request, username):
         for key in ["position", "progress", "last_score", "mean_score"]:
             if key not in user.gamer_profile.data["edx_data"][course_id].keys():
                 user.gamer_profile.data["edx_data"][course_id][key] = 0.0
+        if user.gamer_profile.data["edx_data"][course_id]['position'] < 0.33:
+            experience = 'X'
+        elif user.gamer_profile.data["edx_data"][course_id]['position'] < 0.66:
+            experience = 'Y'
+        else:
+            experience = 'Z'   
         user.gamer_profile.save()
     except Exception as e:
         print("Error:",e)
         raise Http404
     return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics'], 
-                        'points' : points, 'avatar' : avatar, 'predominant_type' : int(pred_type)})
+                        'points' : points, 'avatar' : avatar, "experience" : experience , 'predominant_type' : int(pred_type)})
 
 def change_icon(request, id):
     badge = Badge.objects.filter(id = id)

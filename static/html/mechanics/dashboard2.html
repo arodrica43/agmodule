@@ -184,7 +184,11 @@
   border: solid 5px none;
   -webkit-transition: .15s;*/
   transition: .15s;  
-  /*cursor: pointer;*/
+  cursor: pointer;
+}
+.center-img img:hover {
+  -webkit-transform: scale(2.8);
+          transform: scale(2.8);    
 }
   
 .dashboard-item img {
@@ -248,6 +252,29 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+
+.avatar-row {
+  display: flex;
+}
+
+/* Create three equal avatar-columns that sits next to each other */
+.avatar-column {
+  display:fluid;
+  flex: 10%;
+  margin: 10px;
+  text-align:center;
+}
+
+.avatar-image-select {
+    opacity: 0.5;
+     cursor: pointer;
+     width:65%;
+}
+
+.avatar-image-select:hover {
+    opacity: 1;
+}
 </style>
 
 
@@ -264,7 +291,7 @@
 <!-- Modal -->
 <div id="main-modal" class="main-modal">
   <div class="modal-content" style = " width: 60%;">
-        <!-- Control the column width, and how they should appear on different devices -->
+        <!-- Control the avatar-column width, and how they should appear on different devices -->
           <div><span class="main-close">&times;</span></div>
           <br>
           <div><h2 id="main-modal-title"></h2></div> 
@@ -274,6 +301,42 @@
 </div>
 
 <script>
+
+function SelectMyAvatar(name){
+  console.log("Selected avatar");
+}
+
+function OpenChangeAvatar(exp){
+  console.log("OpenChangeAvatar");
+  document.querySelector("#main-modal-content").innerHTML = '<h2>Escull el teu avatar</h2>';
+
+  document.querySelector("#main-modal-content").innerHTML += '' +
+  '<div><div class="avatar-row">' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'A1" name="' + exp + 'A1" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A1.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+    '</div>' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'A2" name="' + exp + 'A2" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A2.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+    '</div>' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'A3" name="' + exp + 'A3" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A3.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+    '</div></div>' + 
+  '<div class="avatar-row">' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'B1" name="' + exp + 'B1" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B1.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+    '</div>' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'B2" name="' + exp + 'B2" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B2.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+    '</div>' + 
+    '<div class="avatar-column">' + 
+    '<img id = "avatar-' + exp + 'B3" name="' + exp + 'B3" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B3.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
+  '</div></div>' +
+    '<div class="avatar-row">' +
+      '<div class="avatar-column">Button' +
+      '</div></div>' +
+'</div>';
+  container.show();
+}
 
   uname = "";
   try{
@@ -321,9 +384,9 @@
       // for (var i = 0; i < 100000; i++) {
       //   console.log(i);
       // }
-      
+      main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length)
       document.getElementById("circle-container").style.backgroundImage = "url('https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/" + res_json.predominant_type +".png'";//'white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/1.png") no-repeat center;';
-      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/XA2.png"></li>';
+      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + main_avatar + '.png" onclick="OpenChangeAvatar(' + res_json.experience + ');"></li>';
       return res_json.results;
     })
   .then(acc_mechanics => (
