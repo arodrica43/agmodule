@@ -78,7 +78,7 @@ function selectAvatar(name){
     document.getElementById("avatar-" + avatars[i].name).style = "width:80%;";
   }
   document.getElementById("avatar-" + name).style = "width:100%; opacity:1;";
-  document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/social_icons/" + name + ".png";
+  document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/avatars/" + name + ".png";
   document.querySelector("#profile-img").name = name;
 }
 
@@ -148,7 +148,7 @@ function populateFriendsOfFriends(item,index,follow_text){
   document.getElementById("friend-friends-grid").innerHTML += '<button class="card shadow-1" style="" onclick="showProfileModal(\'' + item[1].username + '\',\'' + item[0].image + '\',\'' + item[0].description + '\',\'' + follow_text + '\',2)">'+
                                                               '<div class="container-fluid" style="width:100%;">'+    
                                                                 '<div class="row">'+
-                                                                  '<div class="col-sm-3" ><img src="https://agmodule.herokuapp.com/media/social_icons/' + item[0].image + '.png" id="profile-img" style="min-width:69px;width:70px;height:69px;" /></div>'+
+                                                                  '<div class="col-sm-3" ><img src="https://agmodule.herokuapp.com/media/avatars/' + item[0].image + '.png" id="profile-img" style="min-width:69px;width:70px;height:69px;" /></div>'+
                                                                   '<div class="col-sm-9 " style="text-align:center;font-size: calc(2rem + 1vw);padding-top:10px; padding-right:30px;">' + item[1].username + '</div>'+
                                                                 '</div>'+
                                                               '</div>'+       
@@ -159,7 +159,7 @@ function populateSearch(item,index,follow_text){
    document.getElementById("search-users-grid").innerHTML += '<li class="profilecards_item">'+
                                                             '<div class="profilecard">'+
                                                               '<div class="profilecard" style=" height:500px; cursor: pointer;" onclick="showProfileModal(\'' + item.user.username + '\',\'' + item.social_profile.image + '\',\'' + item.social_profile.description + '\',\'dynamic_follow\',1)">'+
-                                                                  '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/social_icons/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
+                                                                  '<div class="profilecard_image"><img src="https://agmodule.herokuapp.com/media/avatars/' + item.social_profile.image + '.png"  style="width:100%;"></div>'+
                                                                     '<div class="profilecard_content">'+
                                                                         '<h2><div class="user-name">' + item.user.username + '</div></h2>' +  
                                                                       '<p class="profilecard_text">' + item.social_profile.description + '</p>' +
@@ -174,7 +174,7 @@ function populateFriends(item,index){
   document.getElementById("friends-grid").innerHTML += '<button class="card shadow-1" style="" onclick="showProfileModal(\'' + item[1].username + '\',\'' + item[0].image + '\',\'' + item[0].description + '\',\'Following\',0)">'+
                                                       '<div class="container-fluid" style="width:100%;">'+    
                                                         '<div class="row">'+
-                                                          '<div class="col-sm-3" ><img src="https://agmodule.herokuapp.com/media/social_icons/' + item[0].image + '.png" id="profile-img" style="min-width:69px;width:70px;height:69px;" /></div>'+
+                                                          '<div class="col-sm-3" ><img src="https://agmodule.herokuapp.com/media/avatars/' + item[0].image + '.png" id="profile-img" style="min-width:69px;width:70px;height:69px;" /></div>'+
                                                           '<div class="col-sm-9 " style="text-align:center;font-size: calc(2rem + 1vw);padding-top:10px; padding-right:30px;">' + item[1].username + '</div>'+
                                                         '</div>'+
                                                       '</div>'+       
@@ -225,7 +225,7 @@ function loadPopulateSearch(url){
       return response.json();
   })
   .then(function (myJson1) {
-    document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/social_icons/" + myJson1.social_profile.image + ".png";
+    document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/avatars/" + myJson1.social_profile.image + ".png";
     document.querySelector("#profile-img").name = myJson1.social_profile.image;
     document.querySelector("#username").innerHTML = myJson1.user.username ;
     document.querySelector("#mydescr").innerHTML = myJson1.social_profile.description ;
@@ -356,7 +356,7 @@ function showSettingsModal() {
     }
     document.getElementById("friend-friends-grid").innerHTML = "";
     document.querySelector("#friend-username").innerHTML = uname;
-    document.querySelector("#friend-profile-img").src = "https://agmodule.herokuapp.com/media/social_icons/" + image + ".png";
+    document.querySelector("#friend-profile-img").src = "https://agmodule.herokuapp.com/media/avatars/" + image + ".png";
     document.querySelector("#friend-descr").innerHTML = descr;
     if(follow_text == 'dynamic_follow'){
       follow_text =  document.getElementById("follow-" + uname).innerHTML;
