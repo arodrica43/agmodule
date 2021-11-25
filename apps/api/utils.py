@@ -584,7 +584,7 @@ def get_interaction_index(request, username, mechanic_id):
 def get_accessible_mechanics(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
-        pred_type = np.argmax([user.gamer_profile[x] for x in PLAYER_TYPES])
+        pred_type = np.argmax(user.gamer_profile.vectorize())
         points = user.gamer_profile.data['score']
         avatar = str(user.social_profile.image)
         try:
@@ -612,7 +612,6 @@ def get_accessible_mechanics(request, username):
         user.gamer_profile.save()
     except Exception as e:
         print("Error:",e)
-        print("User found")
         raise Http404
     return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics'], 
                         'points' : points, 'avatar' : avatar, 'predominant_type' : pred_type})
