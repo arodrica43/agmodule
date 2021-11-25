@@ -47,6 +47,16 @@ class SocialProfile(models.Model):
 
     class AvatarType(Enum): 
         art = "art"
+        diamond = "diamond"
+        games = "games"
+        money = "money"
+        music = "music"
+        photo = "photo"
+        science = "science"
+        tech = "tech" 
+        user = "user"
+        Unknown = "Unknown"
+        
         XA1 = "XA1"
         XA2 = "XA2"
         XA3 = "XA3"
