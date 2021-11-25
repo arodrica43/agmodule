@@ -74,9 +74,11 @@ function selectAvatar(name){
   log_click({itime: 1, message:"Select avatar " + name + " button (settings modal) clicked", register : log, level:2,type:"ButtonClick"});
   // --------------------------------------------------------------------------
   avatars = document.querySelectorAll("img[id*='avatar']")
+  console.log(avatars);
   for(var i = 0; i < avatars.length; i++){
     document.getElementById("avatar-" + avatars[i].name).style = "width:80%;";
   }
+  console.log(name);
   document.getElementById("avatar-" + name).style = "width:100%; opacity:1;";
   document.querySelector("#profile-img").src = "https://agmodule.herokuapp.com/media/avatars/" + name + ".png";
   document.querySelector("#profile-img").name = name;
