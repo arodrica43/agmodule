@@ -302,21 +302,6 @@ function showSettingsModal() {
       log_click({itime: 1, message:"Settings modal close (Click x button)", register : log, level:2,type:"ModalClose"});
       // --------------------------------------------------------------------------
       
-      swal.fire({
-        title: 'Vols desar els canvis?',
-        showDenyButton: true,
-        confirmButtonText: 'Desa',
-        denyButtonText: 'Cancel·la',
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          saveProfile();
-          swal.fire('Canvis desats!', '', 'success')
-        } else if (result.isDenied) {
-          swal.fire('Els canvis no s\'han desat', '', 'info')
-        }
-      })
-
       modal.style.display = "none";
     }
     // When the user clicks anywhere outside of the modal, close it
@@ -326,21 +311,7 @@ function showSettingsModal() {
         //Logging :: modal-close interaction
         log_click({itime: 1,message:"Settings modal close (Click outside modal)", register : log, level:2,type:"ModalClose"});
         // --------------------------------------------------------------------------
-          swal.fire({
-            title: 'Vols desar els canvis?',
-            showDenyButton: true,
-            confirmButtonText: 'Desa',
-            denyButtonText: 'Cancel·la',
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              saveProfile();
-              swal.fire('Canvis desats!', '', 'success')
-            } else if (result.isDenied) {
-              swal.fire('Els canvis no s\'han desat', '', 'info')
-            }
-          })
-
+        modal.style.display = "none";
       }
     }
     modal.style.display = "block";
