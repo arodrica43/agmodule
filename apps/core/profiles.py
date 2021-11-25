@@ -46,6 +46,7 @@ class GamerProfile(models.Model):
 class SocialProfile(models.Model):
 
     class AvatarType(Enum): 
+        art = "art"
         XA1 = "XA1"
         XA2 = "XA2"
         XA3 = "XA3"
