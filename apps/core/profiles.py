@@ -9,8 +9,6 @@ from jsonfield import JSONField
 
 # User-related models
 
-PLAYER_TYPES = ['disruptor', 'free_spirit', 'achiever', 'player', 'socializer', 'philantropist', 'no_player']
-
 class EmotionProfile(models.Model):
     valence =  models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)],default=0)
     arousal =  models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(1)],default=0)

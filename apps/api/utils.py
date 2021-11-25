@@ -17,6 +17,9 @@ lock7 = threading.Lock()
 lock8 = threading.Lock()
 lock9 = threading.Lock()
 
+
+PLAYER_TYPES = ['disruptor', 'free_spirit', 'achiever', 'player', 'socializer', 'philantropist', 'no_player']
+
 interaction_files = [("include-onclick-tracking","onclick.js"), 
                      ("include-base-tracking","default.js"), 
                      ("include_interaction_testing_tools","interaction_testing.js")
@@ -607,7 +610,8 @@ def get_accessible_mechanics(request, username):
             if key not in user.gamer_profile.data["edx_data"][course_id].keys():
                 user.gamer_profile.data["edx_data"][course_id][key] = 0.0
         user.gamer_profile.save()
-    except:
+    except Exception as e:
+        print("Error:",e)
         print("User found")
         raise Http404
     return JsonResponse({'results': user.gamer_profile.data["edx_data"][course_id]['accessible_mechanics'], 
