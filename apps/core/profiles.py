@@ -46,18 +46,39 @@ class GamerProfile(models.Model):
 class SocialProfile(models.Model):
 
     class AvatarType(Enum): 
-        art = "art"
-        diamond = "diamond"
-        games = "games"
-        money = "money"
-        music = "music"
-        photo = "photo"
-        science = "science"
-        tech = "tech" 
-        user = "user"
-        Unknown = "Unknown"
+        XA1 = "XA1"
+        XA2 = "XA2"
+        XA3 = "XA3"
+        XB1 = "XB1"
+        XB2 = "XB2"
+        XB3 = "XB3"
+
+        YA1 = "YA1"
+        YA2 = "YA2"
+        YA3 = "YA3"
+        YB1 = "YB1"
+        YB2 = "YB2"
+        YB3 = "YB3"
+
+        ZA1 = "ZA1"
+        ZA2 = "ZA2"
+        ZA3 = "ZA3"
+        ZB1 = "ZB1"
+        ZB2 = "ZB2"
+        ZB3 = "ZB3"
+        # art = "art"
+        # diamond = "diamond"
+        # games = "games"
+        # money = "money"
+        # music = "music"
+        # photo = "photo"
+        # science = "science"
+        # tech = "tech" 
+        # user = "user"
+        # Unknown = "Unknown"
+
     
-    image = EnumField(AvatarType,max_length=11,default = AvatarType.diamond)
+    image = EnumField(AvatarType,max_length=11,default = AvatarType.XA1)
     description = models.TextField(default="")
     data = JSONField(default = list)       
 
