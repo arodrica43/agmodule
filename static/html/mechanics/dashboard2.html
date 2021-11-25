@@ -301,42 +301,9 @@
 </div>
 
 <script>
-
-function SelectMyAvatar(name){
-  console.log("Selected avatar");
-}
-
-function OpenChangeAvatar(exp){
-  console.log("OpenChangeAvatar");
-  document.querySelector("#main-modal-content").innerHTML = '<h2>Escull el teu avatar</h2>';
-
-  document.querySelector("#main-modal-content").innerHTML += '' +
-  '<div><div class="avatar-row">' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'A1" name="' + exp + 'A1" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A1.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-    '</div>' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'A2" name="' + exp + 'A2" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A2.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-    '</div>' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'A3" name="' + exp + 'A3" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'A3.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-    '</div></div>' + 
-  '<div class="avatar-row">' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'B1" name="' + exp + 'B1" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B1.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-    '</div>' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'B2" name="' + exp + 'B2" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B2.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-    '</div>' + 
-    '<div class="avatar-column">' + 
-    '<img id = "avatar-' + exp + 'B3" name="' + exp + 'B3" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + 'B3.png" alt="Snow" onclick="SelectMyAvatar(this.name)">' + 
-  '</div></div>' +
-    '<div class="avatar-row">' +
-      '<div class="avatar-column">Button' +
-      '</div></div>' +
-'</div>';
-  container.show();
-}
+ options1 = ["A1", "A2", "A3"];
+ options2 = ["B1", "B2", "B3"];
+ global_avatar = "";
 
   uname = "";
   try{
@@ -376,6 +343,72 @@ function OpenChangeAvatar(exp){
                       //['?', 'Valoration Tools', '?'],
                     ]
 
+  //Helper functions for changing the Avatar ----------------
+
+function SaveProfile(){
+  fetch("https://agmodule.herokuapp.com/api/gamers/" + uname + "/edit_social_profile?new_image=" + global_avatar)
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function (myJson) {
+    document.querySelector("#avatar-image").src = "https://agmodule.herokuapp.com/media/avatars/" + global_avatar + ".png"; 
+  })
+  .catch(function (error) {
+      console.log("Error: " + error);
+  });
+  var container = $("#main-modal");
+  container.hide();
+}
+
+function SelectMyAvatar(name){
+  global_avatar = name;
+  console.log("Selected avatar");
+  console.log(name);
+  options2.forEach(function(item,index){
+     if(item[0] == name[1] && item[1] == name[2]){
+       document.querySelector("#avatar-" + name[0] + item).style = "width:80%; opacity:1;";
+    }else{
+       document.querySelector("#avatar-" + name[0] + item).style = "";
+    }
+  });
+  options1.forEach(function(item,index){
+     if(item[0] == name[1] && item[1] == name[2]){
+       document.querySelector("#avatar-" + name[0] + item).style = "width:80%; opacity:1;";
+    }else{
+       document.querySelector("#avatar-" + name[0] + item).style = "";
+    }
+  });
+ 
+}
+
+function OpenChangeAvatar(exp,current){
+  console.log("OpenChangeAvatar");
+ 
+  document.querySelector("#main-modal-title").innerHTML = '<h2>Escull el teu avatar</h2>';
+
+  document.querySelector("#main-modal-content").innerHTML = '<div><div id="first-row" class="avatar-row"></div><div id="second-row" class="avatar-row"></div></div>';
+  options2.forEach(function(item,index){
+    special_style = "";
+    if(item[0] == current[1] && item[1] == current[2]){
+      special_style = "width:80%; opacity:1;";
+    }
+    document.querySelector("#first-row").innerHTML += '<dic class="avatar-column"><img id = "avatar-' + exp + item + '" name="' + exp + item + '" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + item + '.png" alt="Snow" onclick="SelectMyAvatar(this.name)" style="' + special_style + '"></div>';
+  });
+
+  options1.forEach(function(item,index){
+    special_style = "";
+    if(item[0] == current[1] && item[1] == current[2]){
+      special_style = "width:70%; opacity:1;";
+    }
+    document.querySelector("#second-row").innerHTML += '<dic class="avatar-column"><img id = "avatar-' + exp + item + '" name="' + exp + item + '" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + item + '.png" alt="Snow" onclick="SelectMyAvatar(this.name)" style="' + special_style + '"></div>';
+  });
+
+  document.querySelector("#main-modal-content").innerHTML += '<br><br><div class="avatar-row"><button class="submit btn btn-primary" type="submit" style="width:100%;" onclick="SaveProfile()" >Desa</button></div>';
+  container.show();
+}
+
+  //---------------------------------------------------------
+
   fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id)
   .then(response => response.json())
     .then(function(res_json){
@@ -384,9 +417,10 @@ function OpenChangeAvatar(exp){
       // for (var i = 0; i < 100000; i++) {
       //   console.log(i);
       // }
-      main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length)
+      main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length);
+      global_avatar = main_avatar;
       document.getElementById("circle-container").style.backgroundImage = "url('https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/" + res_json.predominant_type +".png'";//'white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/1.png") no-repeat center;';
-      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + main_avatar + '.png" onclick="OpenChangeAvatar(' + res_json.experience + ');"></li>';
+      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + main_avatar + '.png" onclick="OpenChangeAvatar(\'' + res_json.experience + '\', \'' + main_avatar + '\');"></li>';
       return res_json.results;
     })
   .then(acc_mechanics => (

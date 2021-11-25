@@ -328,8 +328,10 @@ def edit_social_profile(request,username):
 
     print("Uploading new social profile...")
     user = Gamer.objects.filter(user__username = username)[0]
-    user.social_profile.image = request.GET['new_image']
-    user.social_profile.description = request.GET['new_description']
+    if 'new_image' in request.GET.keys():
+        user.social_profile.image = request.GET['new_image']
+    if 'new_description' in request.GET.keys():
+        user.social_profile.description = request.GET['new_description']
     user.social_profile.save()
     return JsonResponse({'results':'OK'})
 
