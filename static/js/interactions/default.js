@@ -228,10 +228,44 @@ try {
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
-        .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
-																								 '.grow:hover { transform: scale(1.1); }</style>' + 
-        										'<p style="position: absolute; top: 0; right: 0;">'+
-                                                    '<span id="star-1-dynamic_index" onclick="valorate(1);" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+        .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>' +  // .grow { transition: all .2s ease-in-out; }
+        																						'.grow:before,' +
+																								'.grow:after {' +
+																								  'position: absolute;' +
+																								  'content: "" ;'+
+																								  'opacity: 0;' +
+																								  'transition: all 0.4s ease;}' +
+																								 '.grow:hover { transform: scale(1.2); }' + 
+																								 '.grow:after {' +
+																								  'content: attr(data-grow);' +
+																								  'background: $pink;' +
+																								  'width: 160px;' +
+																								  'height: 40px;' +
+																								  'font-size: 13px;' +
+																								  'font-weight: 300;' +
+																								  'top: -75px;' +
+																								  'left: -10px;' +
+																								  'padding: 10px;' +
+																								  'border-radius: 5px;' +
+																								  'letter-spacing: 1px;' +
+																								  'transform: translateY(20px);' +
+																								  '.grow:hover::before,' +
+																								'.grow:hover::after {' +
+																								  'opacity: 1;' +
+																								  'transform: translateY(-2px);}' +
+																								'@keyframes shake {' +
+																								  '0% {' + 
+																								    'transform: rotate(2deg);}' +
+																								  '50% {' +
+																								   'transform: rotate(-3deg);}' +
+																								  '70% {' +
+																								    'transform: rotate(3deg);}' +
+																								  '100% {' +
+																								    'transform: rotate(0deg);}}' +
+																								'#anim:hover {' +
+																								  'animation: shake 500ms ease-in-out forwards;' +
+        										'</style><p id="anim" style="position: absolute; top: 0; right: 0;">'+
+                                                    '<span id="star-1-dynamic_index" onclick="valorate(1);" class="grow fa fa-star" data-grow="No m\'agrada." style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-2-dynamic_index" onclick="valorate(2);" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-3-dynamic_index" onclick="valorate(3);" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-4-dynamic_index" onclick="valorate(4);" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
