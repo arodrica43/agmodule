@@ -246,7 +246,7 @@ try {
 						      $(this).find("em").text(hoverText);
 						    }, function() {
 						      $(this).find("em").animate({opacity: "hide", top: "-85"}, "fast");
-						    });))
+						    })))
         .catch(error => (console.log("Error: " + error)))
                 
        
