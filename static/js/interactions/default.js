@@ -231,17 +231,17 @@ try {
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>' +  // .grow { transition: all .2s ease-in-out; }
         																						'.grow:before,' +
 																								'.grow:after {' +
-																								  'position: absolute;' +
+																								  //'position: absolute;' +
 																								  'content: "" ;'+
 																								  'opacity: 0;' +
 																								  'transition: all 0.4s ease;}' +
 																								 '.grow:hover { transform: scale(1.2); }' + 
 																								 '.grow:after {' +
 																								  'content: attr(data-grow);' +
-																								  'background: $pink;' +
+																								  //'background: $pink;' +
 																								  'width: 160px;' +
 																								  'height: 40px;' +
-																								  'font-size: 13px;' +
+																								  //'font-size: 13px;' +
 																								  'font-weight: 300;' +
 																								  'top: -75px;' +
 																								  'left: -10px;' +
