@@ -239,14 +239,6 @@ try {
                                                 '</p><br><p style="position: absolute; top: calc(20px + 1vw); right: 0;">Valora\'m!</p>' + 
                                                  '<br><a href="' + link_url.replace(/\s/g, "+") + '" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>',
                                                   valorate(res_json['results'])))
-        .then(dump => (  $("#star-1-dynamic_index").append("<em></em>");
-						 $("#star-1-dynamic_index").hover(function() {
-						      $(this).find("em").animate({opacity: "show", top: "-75"}, "slow");
-						      var hoverText = $(this).attr("title");
-						      $(this).find("em").text(hoverText);
-						    }, function() {
-						      $(this).find("em").animate({opacity: "hide", top: "-85"}, "fast");
-						    })))
         .catch(error => (console.log("Error: " + error)))
                 
        
