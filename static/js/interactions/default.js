@@ -232,22 +232,22 @@ try {
         																						'.grow:before,' +
 																								'.grow:after {' +
 																								  //'position: absolute;' +
-																								  'content: "" ;'+
+																								  //'content: "" ;'+
 																								  'opacity: 0;' +
 																								  'transition: all 0.4s ease;}' +
-																								 '.grow:hover { transform: scale(1.2); }' + 
+																								 //'.grow:hover { transform: scale(1.2); }' + 
 																								 '.grow:after {' +
 																								  'content: attr(data-grow);' +
 																								  //'background: $pink;' +
-																								  'width: 160px;' +
-																								  'height: 40px;' +
+																								  //'width: 160px;' +
+																								  //'height: 40px;' +
 																								  //'font-size: 13px;' +
-																								  'font-weight: 300;' +
-																								  'top: -75px;' +
-																								  'left: -10px;' +
-																								  'padding: 10px;' +
-																								  'border-radius: 5px;' +
-																								  'letter-spacing: 1px;' +
+																								  //'font-weight: 300;' +
+																								  //'top: -75px;' +
+																								  //'left: -10px;' +
+																								  //'padding: 10px;' +
+																								  //'border-radius: 5px;' +
+																								  //'letter-spacing: 1px;' +
 																								  'transform: translateY(20px);' +
 																								  '.grow:hover::before,' +
 																								'.grow:hover::after {' +
