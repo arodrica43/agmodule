@@ -234,7 +234,7 @@
   border: 1px solid #888;
   width: 80%;
   overflow: auto; /* Enable scroll if needed */
-  height: 60vh;
+  height: calc(22vh + 23vw);
   text-align: center;
 }
 
@@ -269,7 +269,7 @@
 .avatar-image-select {
     opacity: 0.5;
      cursor: pointer;
-     width:65%;
+     width:48%;
 }
 
 .avatar-image-select:hover {
@@ -384,7 +384,7 @@ function SelectMyAvatar(name){
 function OpenChangeAvatar(exp,current){
   console.log("OpenChangeAvatar");
  
-  document.querySelector("#main-modal-title").innerHTML = '<h2>Escull el teu avatar</h2>';
+  document.querySelector("#main-modal-title").innerHTML = '<h2 style="text-align:center;">Escull el teu avatar</h2>';
 
   document.querySelector("#main-modal-content").innerHTML = '<div><div id="first-row" class="avatar-row"></div><div id="second-row" class="avatar-row"></div></div>';
   options2.forEach(function(item,index){
@@ -403,7 +403,7 @@ function OpenChangeAvatar(exp,current){
     document.querySelector("#second-row").innerHTML += '<dic class="avatar-column"><img id = "avatar-' + exp + item + '" name="' + exp + item + '" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + item + '.png" alt="Snow" onclick="SelectMyAvatar(this.name)" style="' + special_style + '"></div>';
   });
 
-  document.querySelector("#main-modal-content").innerHTML += '<br><br><div class="avatar-row"><button class="submit btn btn-primary" type="submit" style="width:100%;" onclick="SaveProfile()" >Desa</button></div>';
+  document.querySelector("#main-modal-content").innerHTML += '<br><br><div style="bottom:0;" class="avatar-row"><button class="submit btn btn-primary" type="submit" style="width:100%;" onclick="SaveProfile()" >Desa</button></div>';
   container.show();
 }
 
@@ -417,10 +417,13 @@ function OpenChangeAvatar(exp,current){
       // for (var i = 0; i < 100000; i++) {
       //   console.log(i);
       // }
+      console.log(res_json.experience);
       main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length);
-      global_avatar = main_avatar;
+      global_avatar = res_json.experience + main_avatar[1] + main_avatar[2];
+      console.log(global_avatar);
+      SaveProfile();
       document.getElementById("circle-container").style.backgroundImage = "url('https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/" + res_json.predominant_type +".png'";//'white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/1.png") no-repeat center;';
-      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + main_avatar + '.png" onclick="OpenChangeAvatar(\'' + res_json.experience + '\', \'' + main_avatar + '\');"></li>';
+      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + global_avatar + '.png" onclick="OpenChangeAvatar(\'' + res_json.experience + '\', \'' + main_avatar + '\');"></li>';
       return res_json.results;
     })
   .then(acc_mechanics => (
