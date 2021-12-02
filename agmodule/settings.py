@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'rest_framework',
     'corsheaders',
     'apps.core',
@@ -69,6 +70,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',  
 ]
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = (“HTTP_X_FORWARDED_PROTO”, “https”)
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8080",

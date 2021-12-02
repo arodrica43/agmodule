@@ -419,7 +419,12 @@ function OpenChangeAvatar(exp,current){
       // }
       console.log(res_json.experience);
       main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length);
-      global_avatar = res_json.experience + main_avatar[1] + main_avatar[2];
+      if(main_avatar[0] == 'O'){
+        global_avatar = main_avatar;
+      }else{
+        global_avatar = res_json.experience + main_avatar[1] + main_avatar[2];
+      }
+      
       console.log(global_avatar);
       SaveProfile();
       document.getElementById("circle-container").style.backgroundImage = "url('https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/" + res_json.predominant_type +".png'";//'white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/1.png") no-repeat center;';
