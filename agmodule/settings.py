@@ -58,7 +58,7 @@ LOGGING = {
         }
     }
 }
-ALLOWED_HOSTS = ['.agmodule.herokuapp.com/api', 'agmodule.herokuapp.com/api']
+ALLOWED_HOSTS = ['.agmodule.herokuapp.com', 'agmodule.herokuapp.com', '174.129.128.48']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
