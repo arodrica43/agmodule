@@ -134,7 +134,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agmodule.wsgi.application'
 WHITENOISE_USE_FINDERS = True
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 # Database
