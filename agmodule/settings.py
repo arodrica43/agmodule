@@ -106,7 +106,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
-    ".agmodule.herokuapp.com",
+  #  ".agmodule.herokuapp.com",
 ]
 
 ROOT_URLCONF = 'agmodule.urls'
