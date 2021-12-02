@@ -57,6 +57,10 @@ class SocialProfile(models.Model):
         # user = "user"
         # Unknown = "Unknown"
 
+        O1 = "O1"
+        O2 = "O2"
+        O3 = "O3"
+
         XA1 = "XA1"
         XA2 = "XA2"
         XA3 = "XA3"
