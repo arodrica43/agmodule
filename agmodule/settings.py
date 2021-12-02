@@ -58,7 +58,7 @@ LOGGING = {
         }
     }
 }
-ALLOWED_HOSTS = ['.agmodule.herokuapp.com']
+ALLOWED_HOSTS = ['.agmodule.herokuapp.com/api', 'agmodule.herokuapp.com/api']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -106,7 +106,7 @@ SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:8080",
+    ".agmodule.herokuapp.com",
 ]
 
 ROOT_URLCONF = 'agmodule.urls'
@@ -135,6 +135,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'agmodule.wsgi.application'
 WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
