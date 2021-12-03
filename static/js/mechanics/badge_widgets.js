@@ -23,7 +23,7 @@ function log_txt_click(){
            // --------------------------------------------------------------------------
           };
 function choose_bdg(badge){
-	var locked_style = "hellou";
+	var locked_style = "";
     // if(badge[1]){
     //     locked_style = 'The last badge you won: ' + badge[0].title; 
     // }else{

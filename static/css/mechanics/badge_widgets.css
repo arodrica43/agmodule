@@ -3,8 +3,6 @@
 }
 .bdg-container > div{
     font-size: 30px;
-    padding: .5em;
-    margin: .5em;
     text-align: center;
     width:90%;
     font-size:calc(1em + 1vw);
