@@ -252,7 +252,7 @@ try {
         											//'<img style="width:7%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/badges.png">' +
         											//'Has obtingut un premi: ' + GMLabels[res_json.gmtype] + '</p>' +
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
-        											'<img style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/badges.png"></p>' +
+        											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/badges.png"></a></p>' +
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(10% + 1vw);"> ' + 
         											'Has obtingut un premi del tipus \"' + GMLabels[res_json.gmtype] + '\"</p>' +
         										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
