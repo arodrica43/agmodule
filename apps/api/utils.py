@@ -534,7 +534,7 @@ def social_status_widget(request, username):
     try:
         user = Gamer.objects.filter(user__username = username)[0]
     except:
-        print("User found")
+        print("User not found")
         raise Http404
 
     data = user.social_profile.data
@@ -545,6 +545,18 @@ def get_previous_valoration(request, username, mechanic_id):
 
     import math as ma
 
+    try:
+        user = Gamer.objects.filter(user__username = username)[0]
+        avatar = str(user.social_profile.image)
+    except:
+        print("User not found")
+        raise Http404
+    try:
+        _ , gmtype = g_mechanic_cast(mechanic_id)
+        avatar = str(user.social_profile.image)
+    except:
+        print("Mechanic not found")
+        raise Http404
     user_stats = InteractionStatistic.objects.filter(user = username)
     demand = None
     for stat in user_stats:
@@ -555,11 +567,11 @@ def get_previous_valoration(request, username, mechanic_id):
         if 'valoration' in demand.log.keys():
             val = demand.log['valoration']
             new_val = ma.floor(4*val + 1)
-            return JsonResponse({'results': new_val, 'float_result':val})
+            return JsonResponse({'results': new_val, 'float_result':val, 'avatar': avatar, 'gmtype' : gmtype})
         else: 
-            return JsonResponse({'results': 3})
+            return JsonResponse({'results': 3, 'float_result':0.5, 'avatar': avatar, 'gmtype' : gmtype})
     else:
-        return JsonResponse({'results': 3})
+        return JsonResponse({'results': 3, 'float_result':0.5, 'avatar': avatar, 'gmtype' : gmtype})
 
 def get_interaction_index(request, username, mechanic_id):
 
