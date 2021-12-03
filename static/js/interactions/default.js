@@ -255,7 +255,7 @@ try {
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(10% + 1vw);"> ' + 
         											'Has obtingut un premi del tipus \"' + GMLabels[res_json.gmtype] + '\"</p>' +
         										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
-        										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;">'+
+        										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;z-index:2">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" title="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-2-dynamic_index" onclick="valorate(2);" title="No m\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
