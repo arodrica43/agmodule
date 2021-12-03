@@ -215,6 +215,7 @@ try {
     }
 
     function valorate(stars){
+    	console.log("Clicked!");
         for(var i = 1; i <= 5; i++){
             if(i <= stars){
                 document.querySelector("#star-" + i + "-dynamic_index").style.color = "orange"; 
