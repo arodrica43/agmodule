@@ -1,6 +1,7 @@
 
 .pnt-container{
     position: relative;
+    padding:calc(30px + 4vw);
 }
 .pnt-container > div{
         font-size: 30px;
