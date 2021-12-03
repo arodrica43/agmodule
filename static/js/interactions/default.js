@@ -235,13 +235,13 @@ try {
     		'gift_opener_widgets' : "Obre Regals", 
     		'knowledge_share_widgets' : "Dona Ajuda", 
     		'level_widgets' : "Progrés", 
-    		'lottery_widgets', "Loteria", 
+    		'lottery_widgets': "Loteria", 
     		'point_widgets' : "Punts", 
     		'social_network_widgets' : "Xarxa Social", 
     		'social_status_widgets' : "Estatus Social", 
     		'unlockable_widgets' : "Desbloquejable", 
     		'leaderboard_widgets' : "Competició"
-    	}
+    	};
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
