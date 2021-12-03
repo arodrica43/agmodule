@@ -25,12 +25,12 @@ function log_txt_click(){
 function choose_bdg(badge){
 	var locked_style = "";
     // if(badge[1]){
-    //     locked_style = 'The last badge you won: '; 
+    //     locked_style = 'The last badge you won: ' + badge[0].title; 
     // }else{
-    // 	  locked_style = 'You won a new badge: ';
+    // 	  locked_style = 'You won a new badge: ' + badge[0].title;
     // } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4><p onclick="log_txt_click()">' + locked_style + badge[0].title + '</p></h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><h4><p onclick="log_txt_click()">' + locked_style  + '</p></h4><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/></div>';
 }
 url = "https://agmodule.herokuapp.com/api/badges/retrieve_for_user/dynamic_user?unlock=true&widget_id=dynamic_index";
 fetch(url)
