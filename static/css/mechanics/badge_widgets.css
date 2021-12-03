@@ -11,7 +11,7 @@
 }
 .bdg-container > div > img{
     width: 25%;
-    height: 60%;
+    
     -webkit-transition: .15s;
     transition: .15s; 
     padding-top:calc(30px + 6vw);
