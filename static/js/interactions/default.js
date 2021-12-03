@@ -231,9 +231,9 @@ try {
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
 																								 '.grow:hover { transform: scale(1.3); }</style>' + 
         										'<p style="position: relative; top: 0; left: 0;"> ' + 
-        											'<img src="https://agmodule.herokuapp.com/media/avatars/">  Has obtingut un premi:  </p>' +
-        										'<p style="position: absolute; bottom: calc(-70px + 0vw); left: 0;font-size:calc(1.5px + 1.5vw);">T\'ha agradat el premi?</p>' +
-        										'<br><br><p style="position: absolute; bottom: calc(-70px + 0vw); left: 0;">'+
+        											'<img src="https://agmodule.herokuapp.com/media/avatars/' + res_json + '">  Has obtingut un premi:  </p>' +
+        										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +
+        										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" title="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-2-dynamic_index" onclick="valorate(2);" title="No m\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                     '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
