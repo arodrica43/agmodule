@@ -232,7 +232,8 @@ try {
 																								 '.grow:hover { transform: scale(1.3); }</style>' + 
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
         											'<img style="width:10%;float:right; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png">' +
-        											'<img style="width:8%;" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png">  </p>' +
+        											'<p style="font-size:calc(10px + 1vw);padding:10px;">Has obtingut un premi: ' + res_json.gmtype + '</p>' +
+        											'<img style="width:7%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/badges.png">  </p>' +
         										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
         										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" title="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
