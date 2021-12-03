@@ -230,7 +230,7 @@ try {
         .then(response => response.json())
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
 																								 '.grow:hover { transform: scale(1.3); }</style>' + 
-        										'<p style="position: relative; top: 0; left: 0;"> ' + 
+        										'<p style="position: absolute; top: 0; left: 0;font-size:calc(10px + 1vw);"> ' + 
         											'<img src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png">  Has obtingut un premi:  </p>' +
         										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +
         										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;">'+
