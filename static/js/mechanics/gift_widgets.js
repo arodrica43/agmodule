@@ -56,7 +56,7 @@ function send_gift(gift){
 
 function render_gft(){
 	var reward = choose_reward();
-	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div style='height:calc(5vw);'></div><div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.png'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Send " + reward['message'] + " to everyone!</button></div>";
+	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div style='height:calc(5vw);'></div><div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.png'><br><br><button class='btn btn-light' onclick='send_gift(this)' data-value=" + reward['value'] + " data-by='" + reward['by'] + "' >Envia " + reward['message'] + " a tothom!</button></div>";
 }
 
 render_gft();
