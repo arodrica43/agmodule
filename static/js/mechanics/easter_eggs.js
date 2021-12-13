@@ -33,7 +33,7 @@
         .then(function (myJson) {
             document.querySelector("#egg-html").value = myJson.egg_html;
             document.querySelector("#header-egg").innerHTML = myJson.title;
-            document.querySelector("#egg-content").innerHTML = '<a onclick="javascript:approachEgg()">' +
+            document.querySelector("#egg-content").innerHTML = '<div style="height:calc(5vw);"></div><a onclick="javascript:approachEgg()">' +
                                                                           '<img class="card-img-top" src="' + myJson.feedback + '" alt="Card image" style="width:300px; height:300px;"></a>';
              
         })
