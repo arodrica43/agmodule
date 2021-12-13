@@ -10,7 +10,7 @@
 
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
-    document.querySelector("#gop-widget-dynamic_index").innerHTML += '<div style="height:calc(5vw);"></div>';
+    document.querySelector("#gop-widget-dynamic_index").innerHTML += '<div style="height:calc(6vw);"></div>';
 	document.querySelector("#gop-widget-dynamic_index").innerHTML += opener.html +  "<br>";
     $(opener.html).appendTo(document.body);
 }
