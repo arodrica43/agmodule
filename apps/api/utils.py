@@ -579,6 +579,7 @@ def get_interaction_index(request, username, mechanic_id):
     try:
         gm =  GMechanic.objects.filter(id = mechanic_id)
         user_stats = InteractionStatistic.objects.filter(user = username, mechanic = gm[0])
+        _, gmech_type = g_mechanic_cast(mechanic_id)
         try:
             demand = user_stats[0]
         except:
@@ -586,10 +587,10 @@ def get_interaction_index(request, username, mechanic_id):
         if demand:
             iidx = demand.interaction_index
             lock.release()
-            return JsonResponse({'interaction_index': iidx})
+            return JsonResponse({'interaction_index': iidx, 'gmtype' : gmech_type})
         else:
             print("Error : Intereaction Statistic not found for given user and mechanic_id")
-            return JsonResponse({'interaction_index': 0.0})
+            return JsonResponse({'interaction_index': 0.0, 'gmtype' : gmech_type})
     except:
         print("Error : Failed to load interaction index")
         lock.release()
