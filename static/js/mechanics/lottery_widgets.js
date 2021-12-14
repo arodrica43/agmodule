@@ -11,6 +11,7 @@
 
 document.querySelector("#lot-widget-handshake-dynamic_index").value = 1;
 function render_lot(lottery){
+    document.querySelector("#lot-widget-dynamic_index").innerHTML += '<div style="height:calc(4vw);"></div>';
 	document.querySelector("#lot-widget-dynamic_index").innerHTML += lottery.html;
     $(lottery.html).appendTo(document.body);
 }
