@@ -35,6 +35,7 @@ function unlock(unlockable){
 	.then(function(){
 		unlockable.getElementsByTagName('img')[0].src = "https://agmodule.herokuapp.com/media/unlockable_icons/unlocked.png";
 		setTimeout(function(){
+			document.getElementById("unk-widget-dynamic_index").style += "height:300px";
 		    document.getElementById("unk-widget-dynamic_index").innerHTML = unlockable.dataset.locked_content;
 		}, 1500);
 		
