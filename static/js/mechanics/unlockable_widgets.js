@@ -10,7 +10,7 @@
     // ---------------------------------------------------------------------------------------
   
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
-
+document.querySelector("#unk-widget-dynamic_index").innerHTML += "<div></div>";
 function render_unk(unlockable){
 	document.querySelector("#unk-widget-dynamic_index").innerHTML += unlockable.html;
     $(unlockable.html).appendTo(document.body);
@@ -44,7 +44,7 @@ function unlock(unlockable){
 }
 
 function fillHTML(data){
-document.getElementById("unk-widget-dynamic_index").innerHTML += '<div></div><div id="unk-' + data.id + '" class="grid-item" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
+document.getElementById("unk-widget-dynamic_index").innerHTML += '<div id="unk-' + data.id + '" class="grid-item" onclick="unlock(this)" data-id=' + data.id + ' data-locked_content=\'' + data.locked_html + '\' >'+
 																	      '<img src="https://agmodule.herokuapp.com/media/unlockable_icons/locked.png" alt="Avatar" style="width:100%;height:100%;">'+
 																 '</div>';
   document.getElementById('unlockables_grid_dynamic_index').appendChild(
