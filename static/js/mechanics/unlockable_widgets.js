@@ -10,7 +10,7 @@
     // ---------------------------------------------------------------------------------------
   
 document.querySelector("#unk-widget-handshake-dynamic_index").value = 1;
-document.querySelector("#unk-widget-dynamic_index").innerHTML += "<div></div>";
+document.querySelector("#unk-widget-dynamic_index").innerHTML += "<div style='height:calc(4vw);'></div>";
 function render_unk(unlockable){
 	document.querySelector("#unk-widget-dynamic_index").innerHTML += unlockable.html;
     $(unlockable.html).appendTo(document.body);
