@@ -11,7 +11,7 @@
 
 document.querySelector("#ldb-widget-handshake-dynamic_index").value = 1;
 function render_ldb(leadboard){
-	document.querySelector("#ldb-widget-dynamic_index").innerHTML += '<div style="height:calc(0vw);"></div>'
+	document.querySelector("#ldb-widget-dynamic_index").innerHTML += '<div style="height:calc(4vw);"></div>'
 	document.querySelector("#ldb-widget-dynamic_index").innerHTML += leadboard.html;
     $(leadboard.html).appendTo(document.body);
 }

@@ -228,20 +228,20 @@ try {
     function set_widget_defaults(id, mechanic_id, link_url){
 
     	GMLabels = {
-    		'badge_widgets' : "Medalla", 
-    		'challenge_widgets' : "Repte", 
-    		'development_tool_widgets' : "Modificació", 
-    		'easter_egg_widgets' : "Easter Egg", 
-    		'gift_widgets' : "Envia Regals", 
-    		'gift_opener_widgets' : "Obre Regals", 
-    		'knowledge_share_widgets' : "Dona Ajuda", 
-    		'level_widgets' : "Progrés", 
-    		'lottery_widgets': "Loteria", 
-    		'point_widgets' : "Punts", 
-    		'social_network_widgets' : "Xarxa Social", 
-    		'social_status_widgets' : "Estatus Social", 
-    		'unlockable_widgets' : "Desbloquejable", 
-    		'leaderboard_widgets' : "Competició"
+    		'badge_widgets' : ["Medalla","badges"], 
+    		'challenge_widgets' : ["Repte", "challenges"], 
+    		'development_tool_widgets' : ["Modificació","development_tools"], 
+    		'easter_egg_widgets' : ["Easter Egg", "easter_eggs"], 
+    		'gift_widgets' : ["Envia Regals", "gifts"], 
+    		'gift_opener_widgets' : ["Obre Regals", "gift_openers"], 
+    		'knowledge_share_widgets' : ["Dona Ajuda", "knowledge_shares"], 
+    		'level_widgets' : ["Progrés", "levels"], 
+    		'lottery_widgets': ["Loteria", "lotteries"], 
+    		'point_widgets' : ["Punts", "points"], 
+    		'social_network_widgets' : ["Xarxa Social", "social_networks"], 
+    		'social_status_widgets' : ["Estatus Social", "social_statuses"], 
+    		'unlockable_widgets' : ["Desbloquejable", "unlockables"], 
+    		'leaderboard_widgets' : ["Competició", "leaderboards"]
     	};
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
@@ -251,9 +251,9 @@ try {
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
         											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
-        											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/badges.png"></a></p>' +
+        											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(10% + 1vw);"> ' + 
-        											'Has obtingut un premi del tipus \"' + GMLabels[res_json.gmtype] + '\"</p>' +
+        											'Has obtingut un premi del tipus \"' + GMLabels[res_json.gmtype][0] + '\"</p>' +
         										'<p style="position: absolute; bottom: calc(-60px + 0vw); left: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
         										'<p style="position: absolute; bottom: calc(-90px + 0vw); left: 0;z-index:2">'+
                                                     '<span id="star-1-dynamic_index" onclick="valorate(1);" title="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
