@@ -95,8 +95,8 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var frequency = Math.PI*2/(maxitem);
     
     red   = Math.sin(frequency*item+2+phase) * width + center;
-    green = Math.sin(frequency*item+0+phase) * width + center;
-    blue  = Math.sin(frequency*item+4+phase) * width + center;
+    green = 0;//Math.sin(frequency*item+0+phase) * width + center;
+    blue  = 0;//Math.sin(frequency*item+4+phase) * width + center;
     
     return RGB2Color(red,green,blue);
   }
