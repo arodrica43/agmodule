@@ -172,11 +172,29 @@ function sendGifts(){
 
 
   if(count == 0){
-    alert("You haven't selected any user!");
+    //alert("You haven't selected any user!");
+    swal.fire({
+        title: 'Oops!',
+        text: "No has seleccionat cap usuari",
+        icon: 'error',
+        confirmButtonText: 'Continua'
+      })
   }else if(count == 1){
-    alert("You have sent a gift!");
+    //alert("You have sent a gift!");
+    swal.fire({
+        title: 'Enviat!',
+        text: "Has enviat un regal a l'usuari seleccionat",
+        icon: 'success',
+        confirmButtonText: 'Continua'
+      })
   }else if(count > 1){
-    alert("You have sent a gift to every selected user!");
+    //alert("You have sent a gift to every selected user!");
+    swal.fire({
+        title: 'Enviat!',
+        text: "Has enviat un regal a cada usuari seleccionat",
+        icon: 'success',
+        confirmButtonText: 'Continua'
+      })
   }
    
  
