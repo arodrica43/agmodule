@@ -138,7 +138,7 @@ fetch("called_mechanic_url")
     .then(function (myJson) {
         var url = "";
         var populate_grid = "";
-        if(myJson.mechanic == "badges" || myJson.mechanic == "unlockables" || myJson.mechanic == "challenges"){
+        if(myJson.mechanic == "badges" || myJson.mechanic == "unlockables" || myJson.mechanic == "challenges" || myJson.mechanic == "easter_eggs"){
             url = "https://agmodule.herokuapp.com/api/" + myJson.mechanic + "/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
             if(myJson.mechanic == "badges") {
                 populate_grid = populateBadgesGrid;
@@ -146,6 +146,9 @@ fetch("called_mechanic_url")
                 populate_grid = populateUnlockablesGrid;
             }else if(myJson.mechanic == "challenges") {
                 populate_grid = populateChallengesGrid;
+            }
+            else if(myJson.mechanic == "easter_eggs") {
+                populate_grid = populateEEggGrid;
             }
         }else{
             url = "https://agmodule.herokuapp.com/api/" + myJson.mechanic + "/" 
