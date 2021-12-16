@@ -23,7 +23,7 @@ document.getElementById("main-content-gifting").innerHTML = '<div class="contain
                                                           '</div>'+
                                                         '</div>';
 
-document.getElementById("item3").innerHTML = '<a href="#" onclick="openMyGifts()"><img src="https://img.icons8.com/bubbles/2x/gift.png" style="width:50px; height:50px;">&nbsp; My Gifts <br><br></a>';
+document.getElementById("item3").innerHTML = '<div><img style="width:70px;height:70px;" src="https://agmodule.herokuapp.com/media/dashboard_icons/gifts.png" ></div>'//'<a href="#" onclick="openMyGifts()"><img src="https://img.icons8.com/bubbles/2x/gift.png" style="width:50px; height:50px;">&nbsp; My Gifts <br><br></a>';
 document.getElementById("label1").innerHTML = '<label for="gift-options">Type of gift: &nbsp; </label>';
 document.getElementById("item1").innerHTML = '<select name="gift-options" id="gift-options" style="width:93%; font-size:15px;" onchange="updateInput()">'+
                                                 '<option value="score" style=" ">Points</option>'+
@@ -38,7 +38,7 @@ document.getElementById("scrollable-users").innerHTML = ' <div id="scrollable-co
                                                 '<div style="font-size:1.5rem; text-align:center;">All users</div>'+
                                                   '<hr>'+
                                               '</div><div style="text-align:center" id ="loading-gif"><img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/></div></div>';
-document.getElementById("item5").innerHTML = '<button class="block-submit" onclick="sendGifts()">Send Gifts</button>';
+document.getElementById("item5").innerHTML = '<button class="btn btn-primary" onclick="sendGifts()">Envia regals</button>';
 document.getElementById("gift-input-instance").onfocus = function(){
    // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: input-in interaction
