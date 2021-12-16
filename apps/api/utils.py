@@ -642,11 +642,11 @@ def change_icon(request, id):
     result = 'ERROR'
     if badge:
         if 'option' in request.GET.keys():
-            img = 'reward.png'
+            img = 'Medalla_1.png'
             option = request.GET['option']
-            for i in ['1','2','3','4','5']:
+            for i in ['27','28','29','30','31']:
                 if option == i:
-                    img = 'b' + i + ".svg"
+                    img = 'Medalla_0' + i + ".png"
             badge.update(icon = "badge_icons/" + img)
             result = "OK"
     return JsonResponse({'results': result})

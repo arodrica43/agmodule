@@ -65,8 +65,9 @@ function selectPolicy(list){
 
 function changeIcon(type, id){
     log_img_click();
-    document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/b" + type + ".svg"
-    fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + type)
+    tp = 26 + type;
+    document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/Medalla_0" + tp + ".svg"
+    fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + tp)
 	.then(response => response.json())
 	.then(res_json => (alert("Badge icon changed!")))
 	.catch(error => (console.log("Error: " + error)))
