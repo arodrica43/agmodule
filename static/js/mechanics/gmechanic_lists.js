@@ -73,7 +73,7 @@ function populateEEggGrid(item,index){
     r = (index % 15) + 1;
     icon = "https://agmodule.herokuapp.com/media/easter_egg_icons/EasterEggs_" + r + ".png";
     
-    document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><button onclick="loadMechanic(this);" data-id=' + item.id + '><img src="' + icon + '""></button></div>';
+    document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><img onclick="loadMechanic(this);" data-id=' + item.id + ' src="' + icon + '"></div>';
 }
 
 function populateLevelsGrid(item,index){
