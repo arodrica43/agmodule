@@ -99,7 +99,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     //blue  = 0;//Math.sin(frequency*item+4+phase) * width + center;
     
     var color_idx = item % 2;
-    colors = [[255,102,102],[153,153,102]];
+    colors = [[255,102,102],[221,221,221]];
     red = colors[color_idx][0];
     green = colors[color_idx][1];
     blue = colors[color_idx][2];
