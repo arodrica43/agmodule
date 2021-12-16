@@ -61,7 +61,7 @@ function loadMechanic(mechanic){
 }
 
 function populateNaiveGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button</p>';
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button></p>';
 }
 
 function populateDevToolsGrid(item,index){
@@ -69,7 +69,11 @@ function populateDevToolsGrid(item,index){
 }
 
 function populateEEggGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="alert(1);">' + item.title + '</button</p>';
+
+    r = (index % 15) + 1;
+    icon = "https://agmodule.herokuapp.com/media/easter_egg_icons/EasterEggs_" + r + ".png";
+    
+    document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><button onclick="loadMechanic(this);" data-id=' + item.id + '><img src="' + icon + '""></button></div>';
 }
 
 function populateLevelsGrid(item,index){
