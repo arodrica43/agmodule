@@ -170,7 +170,7 @@ document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
             return response.json();
         })
         .then(function (myJson) {
-            document.querySelector("#prof-image-stat").innerHTML = '<hr><img id = "profile-image-stat" src="https://agmodule.herokuapp.com/media/social_icons/' + myJson.social_profile.image + '.png" id="friend-profile-img" />'+
+            document.querySelector("#prof-image-stat").innerHTML = '<hr><img id = "profile-image-stat" src="https://agmodule.herokuapp.com/media/avatars/' + myJson.social_profile.image + '.png" id="friend-profile-img" />'+
                                                                 '<h2 id="uname-stat" style="margin-top:30px; text-align:center;"></h2><hr>';
             document.querySelector("#following-label").innerHTML = "<b>Following</b>";
             document.querySelector("#followers-label").innerHTML = "<b>Followers</b>";
@@ -180,7 +180,7 @@ document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
             document.querySelector("#coin-label").innerHTML = "<b>$</b>";
 
             document.querySelector("#uname-stat").innerHTML = myJson.user.username;
-            document.querySelector("#profile-image-stat").src = "https://agmodule.herokuapp.com/media/social_icons/" + myJson.social_profile.image + ".png";
+            document.querySelector("#profile-image-stat").src = "https://agmodule.herokuapp.com/media/avatars/" + myJson.social_profile.image + ".png";
             document.querySelector("#following").innerHTML = myJson.social_profile.data.friends.length;
             document.querySelector("#followers").innerHTML = myJson.social_profile.data.followers;
             document.querySelector("#views").innerHTML = myJson.social_profile.data.views;
