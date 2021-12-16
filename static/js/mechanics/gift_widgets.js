@@ -58,7 +58,7 @@ function render_gft(){
 	var reward = choose_reward();
 	document.querySelector("#gft-widget-dynamic_index").innerHTML += "<div style='height:calc(0vw);'></div><div>" + 
                                                                 + "<img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_gift.png'>" + 
-                                                                + "<br><br><button class='btn btn-primary' onclick='send_gift(this)' data-value=" + reward['value'] 
+                                                                + "<br><br><button class='btn btn-primary' onclick='send_gift(this)' data-value=" + reward['value'] +
                                                                 + " data-by='" + reward['by'] + "' >Envia " + reward['message'] + " a tothom!</button></div>";
 }
 
