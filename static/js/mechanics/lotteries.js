@@ -53,7 +53,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
-  document.querySelector("#button_div").innerHTML = '<button class="btn btn-light" type="button" id="spin"> Prova sort </button>';
+  document.querySelector("#button_div").innerHTML = '<button class="btn btn-primary" type="button" id="spin"> Prova sort </button>';
   document.querySelector("#roulette_div").innerHTML = ' <canvas id="canvas" width="' + (window.innerWidth/2) + '" height="' + (window.innerHeight/2) + '"></canvas>';
   document.querySelector("#roulette_div").onclick = function(){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
