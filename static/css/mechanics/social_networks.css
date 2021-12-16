@@ -2,8 +2,8 @@
   /* Style the mytab */
 .mytab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  border: 1px solid #dddddd;
+  background-color: #dddddd;
 }
 
 /* Style the buttons inside the mytab */
@@ -20,12 +20,12 @@
 
 /* Change background color of buttons on hover */
 .mytab button:hover {
-  background-color: #ddd;
+  background-color: #ffcc66;
 }
 
 /* Create an active/current mytablink class */
 .mytab button.active {
-  background-color: #ccc;
+  background-color: #ffcc66;
 }
 
 /* Style the mytab content */
@@ -192,7 +192,7 @@
 .profilecard_btn{
   position:absolute;
   bottom:0;
-  background: gray;
+  background: #666666;
   border: 0;
   color: white;
   width: 100%;
@@ -200,7 +200,7 @@
 }
 
 .profilecard_btn:hover{
-   background-color: black;
+   background-color: #ffcc66;
    color:white;
 }
 .profilecard_content {
