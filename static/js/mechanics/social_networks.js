@@ -433,7 +433,7 @@ document.getElementById("main-content-snet").innerHTML =  '<div style="text-alig
                                                                 '<hr>'+
                                                                   '<div id="mydescr"></div>'+
                                                                 '<hr>'+
-                                                                  '<button id="show-friends-list-dropdown-button" data-toggle="collapse" data-target="#friends" class="btn btn-primary" style="text-align:center; width:100%; background: #cc6666; border-color:#2C2C2C;">Friends List</button>'+
+                                                                  '<div id="show-friends-list-dropdown-button" data-toggle="collapse" data-target="#friends" class="btn btn-primary" style="text-align:center; width:100%; background: #cc6666; border-color:#2C2C2C;">Friends List</div>'+
                                                                   '<div id="friends" class="collapse" style="text-align:center;">'+
                                                                     '<br>'+
                                                                     '<div id="scrollable-content">'+
@@ -456,6 +456,7 @@ document.getElementById("main-content-snet").innerHTML =  '<div style="text-alig
                                                               '</div>'+
                                                             '</div>'+
                                                           '</div>';
+
 document.querySelector("#show-friends-list-dropdown-button").onclick = function(){
       // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
         //Logging :: button-click interaction
