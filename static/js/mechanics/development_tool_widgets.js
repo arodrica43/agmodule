@@ -43,7 +43,7 @@ function render_dvt(modifiable){
 		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
 			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
 			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">' +
-			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' +
+			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' ;
 	}else{
 		dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
 			'<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
