@@ -20,12 +20,12 @@
 
 /* Change background color of buttons on hover */
 .mytab button:hover {
-  background-color: #ffcc66;
+  background-color: #dddddd;
 }
 
 /* Create an active/current mytablink class */
 .mytab button.active {
-  background-color: #ffcc66;
+  background-color: #dddddd;
 }
 
 /* Style the mytab content */
