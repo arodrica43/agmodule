@@ -94,10 +94,16 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     var width = 127;
     var frequency = Math.PI*2/(maxitem);
     
-    red   = Math.sin(frequency*item+2+phase) * width + center;
-    green = 0;//Math.sin(frequency*item+0+phase) * width + center;
-    blue  = 0;//Math.sin(frequency*item+4+phase) * width + center;
+    //red   = Math.sin(frequency*item+2+phase) * width + center;
+    //green = 0;//Math.sin(frequency*item+0+phase) * width + center;
+    //blue  = 0;//Math.sin(frequency*item+4+phase) * width + center;
     
+    var color_idx = item % 2;
+    colors = [[255,255,255],[150,0,0]];
+    red = colors[color_idx][0];
+    green = colors[color_idx][0];
+    blue = colors[color_idx][0];
+
     return RGB2Color(red,green,blue);
   }
 
