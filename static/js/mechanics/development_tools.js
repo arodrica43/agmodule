@@ -66,7 +66,7 @@
                                                             '<div class="row">'+
                                                                 '<div class="col-sm-7" style="background-color:white;"></div>'+
                                                                 '<div class="col-sm-3" style="background-color:white;">'+
-                                                                    '<input class="submit" value="Create" type="submit" target="hiddenFrame" id="submit-btn-dynamic_index">'+
+                                                                    '<button class="btn btn-primary" type="submit" target="hiddenFrame" id="submit-btn-dynamic_index">Crear Medalla</button>'+
                                                                 '</div>'+
                                                             '</div>'+ 
                                                             '<br>'+
