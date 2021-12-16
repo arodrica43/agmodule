@@ -172,7 +172,7 @@ function populateSearch(item,index,follow_text){
                                                                       '<p class="profilecard_text">' + item.social_profile.description + '</p>' +
                                                                     '</div>'+
                                                               '</div>'+
-                                                              '<button class="btn profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
+                                                              '<button class="btn btn-primary profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
                                                             '</div>'+
                                                           '</li>';  
 }
@@ -417,9 +417,9 @@ document.getElementById("main-content-snet").innerHTML =  '<div style="text-alig
                                                               '<h2 id = "header-net"></h2>'+
                                                           '</div>'+
                                                           '<div class="mytab">'+
-                                                                '<button class="mytablinks" onclick="openTab(event, \'Profile\')" id="defaultOpen" style="width:50%; max-height:100px; min-width:50px;"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/19339625881548233621-512.png" style="width:20%;min-width:20px;min-height:20px;max-width:80px;"/></button>'+
+                                                                '<button class="btn btn-primary mytablinks" onclick="openTab(event, \'Profile\')" id="defaultOpen" style="width:50%; max-height:100px; min-width:50px;"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/19339625881548233621-512.png" style="width:20%;min-width:20px;min-height:20px;max-width:80px;"/></button>'+
                                                                 '<!-- <button class="mytablinks" onclick="openCity(event, \'Paris\')" style="width:33.333%;max-height:100px; min-width:50px;"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/16908487151582799501-512.png" style="width:20%;min-width:20px;min-height:20px;"/></button> -->'+
-                                                                '<button class="mytablinks" onclick="openTab(event, \'Search\')" style="width:50%;max-height:100px; min-width:50px;"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/13416400251535694869-512.png" style="width:20%;min-width:20px;min-height:20px;max-width:80px;"/></button>'+
+                                                                '<button class="btn btn-primary mytablinks" onclick="openTab(event, \'Search\')" style="width:50%;max-height:100px; min-width:50px;"><img src="https://upload-icon.s3.us-east-2.amazonaws.com/uploads/icons/png/13416400251535694869-512.png" style="width:20%;min-width:20px;min-height:20px;max-width:80px;"/></button>'+
                                                             '</div>'+
                                                             '<div id="Profile" class="mytabcontent" style="text-align:center;">'+
                                                                 '<div style="width:100%; text-align:right;padding-top:20px;padding-right:20px;">'+ 
@@ -433,7 +433,7 @@ document.getElementById("main-content-snet").innerHTML =  '<div style="text-alig
                                                                 '<hr>'+
                                                                   '<div id="mydescr"></div>'+
                                                                 '<hr>'+
-                                                                  '<button id="show-friends-list-dropdown-button" data-toggle="collapse" data-target="#friends" class="btn btn-primary" style="text-align:center; width:100%; background: #2C2C2C; border-color:#2C2C2C;">Friends List</button>'+
+                                                                  '<button id="show-friends-list-dropdown-button" data-toggle="collapse" data-target="#friends" class="btn btn-primary" style="text-align:center; width:100%; background: #ffcc66; border-color:#2C2C2C;">Friends List</button>'+
                                                                   '<div id="friends" class="collapse" style="text-align:center;">'+
                                                                     '<br>'+
                                                                     '<div id="scrollable-content">'+

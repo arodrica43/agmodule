@@ -2,8 +2,8 @@
   /* Style the mytab */
 .mytab {
   overflow: hidden;
-  border: 1px solid #dddddd;
-  background-color: #dddddd;
+  border: 1px solid #cc6666;
+  background-color: #cc6666;
 }
 
 /* Style the buttons inside the mytab */
@@ -192,7 +192,7 @@
 .profilecard_btn{
   position:absolute;
   bottom:0;
-  background: #666666;
+  background: #cc6666;
   border: 0;
   color: white;
   width: 100%;
