@@ -16,7 +16,7 @@
             document.querySelector("#header-lb-dynamic_index").innerHTML = '<h2>' + myJson.title + '</h2>';
             var users = Object.keys(myJson.leadders);
             var scores = Object.values(myJson.leadders);
-            document.querySelector("#tablehead-lb-dynamic_index").innerHTML +=   '<thead id="tablehead-lb-dynamic_index" style="background:whitesmoke;"><tr>'+
+            document.querySelector("#tablehead-lb-dynamic_index").innerHTML +=   '<thead id="tablehead-lb-dynamic_index" style="background:#dddddd;"><tr>'+
                                                                                     '<th id="head-col0-dynamic_index" style="text-align:center">Position</th>'+
                                                                                     '<th id="head-col1-dynamic_index" style="text-align:center">Username</th>'+
                                                                                     '<th id="score-type-dynamic_index" style="text-align:center">' + myJson.sort_by + '</th>'+
@@ -30,7 +30,7 @@
                 if("only_me" == "yes"){
                     if(item == "dynamic_user"){
                         document.querySelector("#t-incr-dynamic_index").innerHTML += 
-                            "<tr id='row-element-dynamic_index-" + index + "' style='background:#FFEBCD;'>" + 
+                            "<tr id='row-element-dynamic_index-" + index + "' style='background:#ffcc66;'>" + 
                                 "<td>#" + (index + 1) + "</td>" +
                                 "<td>" + item + "</td>" + 
                                 "<td>" + scores[index] + "</td>" + 
@@ -41,7 +41,7 @@
                 }else{
                     var hidden_html = "";
                     if(item == "dynamic_user"){
-                        hidden_html = "style='background:#FFEBCD;'";
+                        hidden_html = "style='background:#ffcc66;'";
                     }
                     document.querySelector("#t-incr-dynamic_index").innerHTML += 
                     "<tr id='row-element-dynamic_index-" + index + "' " + hidden_html + ">" + 
