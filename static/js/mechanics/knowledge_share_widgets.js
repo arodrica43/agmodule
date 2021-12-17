@@ -62,7 +62,7 @@ function send_tip(tip){
 }
 
 function render_ksh(){
-	document.querySelector("#ksh-widget-dynamic_index").innerHTML += "<div style='height:calc(0vw);'></div><div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.png'><br><div style='height:10px;'></div><input onfocus='log_inp_focus();' style='width:50%' type='text' id='tip-input-dynamic_index' value=''><br><br><button class='btn btn-light' onclick='send_tip(this)'>Send a tip to everyone!</button></div>";
+	document.querySelector("#ksh-widget-dynamic_index").innerHTML += "<div style='height:calc(0vw);'></div><div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/philantropy_icons/send_tip.png'><br><div style='height:10px;'></div><input onfocus='log_inp_focus();' style='width:50%' type='text' id='tip-input-dynamic_index' value=''><br><br><button class='btn btn-primary' onclick='send_tip(this)'>Send a tip to everyone!</button></div>";
 }
 
 render_ksh();
