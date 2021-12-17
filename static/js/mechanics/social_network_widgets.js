@@ -93,7 +93,7 @@ function populateSearch(item,index,follow_text){
                                                                       '<p class="profilecard_text">' + item.social_profile.description + '</p>' +
                                                                     '</div>'+
                                                               '</div>'+
-                                                              '<button class="btn profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
+                                                              '<button class="btn btn-primary profilecard_btn" onClick="followUser(\'' + item.user.username + '\',\'follow-' +  item.user.username + '\',0)" id = "follow-' + item.user.username  + '">' + follow_text + '</button>'+
                                                             '</div>'+
                                                           '</li>';  
 }
