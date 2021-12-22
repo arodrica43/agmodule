@@ -252,7 +252,7 @@ try {
         											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
         										'<p style="position: absolute; font-size:calc(10px + 1vw);width:100%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
         											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +
-        										'<p style="position: absolute; right: 0;font-size:calc(10px + 1vw);width:100%;top:calc(2.5vw);"> ' + 
+        										'<p style="position: absolute; bottom: calc(-90px + 0vw); right: 0;z-index:2"> ' + 
                                                     '<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></a></p>' +
                                                 '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(10% + 1vw);"> ' + 
         											'Has obtingut un premi del tipus \"' + GMLabels[res_json.gmtype][0] + '\"</p>' +
