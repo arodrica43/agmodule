@@ -248,8 +248,8 @@ try {
         .then(response => response.json())
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
 																								'.grow:hover { transform: scale(1.3); }' + 
-                                                                                                '.help-msg {display: none;}'+ 
-                                                                                                '.help-btn:hover + .help-msg {display: block;}' +
+                                                                                                '.help-msg {transition: visibility 0s, opacity 0.5s linear; visibility: hidden; opacity:0;}'+ 
+                                                                                                '.help-btn:hover + .help-msg {visibility: visible;opacity:1}' +
                                                                                             '</style>' + 
         										//'<p style="width:100%; position: absolute; top: 0; left: 0;font-size:calc(10px + 1vw);"><img style="width:10%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></p>' +
                                                 '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
