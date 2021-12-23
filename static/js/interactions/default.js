@@ -252,7 +252,7 @@ try {
                                                                                                 '.help-btn:hover + .help-msg {display: block;}' +
                                                                                             '</style>' + 
         										//'<p style="width:100%; position: absolute; top: 0; left: 0;font-size:calc(10px + 1vw);"><img style="width:10%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></p>' +
-                                                '<div class="help-msg">Help</div>' +
+                                                '<span style="background:red; height:100px;" class="help-msg">Help</span>' +
                                                 '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
         											'<a href="#"><img class="grow help-btn" style="width:8%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></a>' + 
                                                     '<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
