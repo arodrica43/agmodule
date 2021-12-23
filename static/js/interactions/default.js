@@ -248,9 +248,9 @@ try {
         .then(response => response.json())
         .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
 																								 '.grow:hover { transform: scale(1.3); }</style>' + 
-        										'<p style="width:10%; position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);"><img  src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></p>' +
                                                 '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
-        											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
+        											'<p style="width:10%; position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);"><img  src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></p>' +
+                                                    '<a href="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
         										'<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
         											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:5%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +   
                                                 '<p style="position: absolute; bottom: calc(-60px + 0vw); right: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
