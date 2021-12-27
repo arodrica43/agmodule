@@ -408,7 +408,7 @@ function OpenChangeAvatar(exp,current){
 
   //---------------------------------------------------------
 
-  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id)
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=None")
   .then(response => response.json())
     .then(function(res_json){
       document.getElementById("points-label").innerHTML = "Els teus punts: " + res_json.points;
@@ -463,6 +463,10 @@ function OpenChangeAvatar(exp,current){
     container.hide();
   }
   function openMechanic(mechanic){
+    fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=" + mechanic.name)
+    .then(response => response.json())
+    .then(res => console.log(res))
+    .catch(error => (console.log("Error: " + error)))
     if(mechanic.name != "blocked"){
       document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
       console.log(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name);

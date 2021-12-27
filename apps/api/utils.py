@@ -606,6 +606,10 @@ def get_accessible_mechanics(request, username):
             course_id = request.GET['course_id']
         except:
             raise Exception("No course_id argument")
+        try:
+            spec = request.GET['spec']
+        except:
+            raise Exception("No spec argument")
         from datetime import datetime
         now = datetime.now()
 
@@ -614,11 +618,16 @@ def get_accessible_mechanics(request, username):
         else:
             if course_id not in user.gamer_profile.data["edx_data"].keys():
                 user.gamer_profile.data["edx_data"][course_id] = {}
-
-        if "dashboard_views" in user.gamer_profile.data["edx_data"][course_id].keys():
-            user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [str(now)]
+        if spec == "None":
+            if "dashboard_views" in user.gamer_profile.data["edx_data"][course_id].keys():
+                user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [str(now)]
+            else:
+                user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [str(now)]
         else:
-            user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [str(now)]
+            if "dashboard_views" in user.gamer_profile.data["edx_data"][course_id].keys():
+                user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] += [[spec,str(now)]]
+            else:
+                user.gamer_profile.data["edx_data"][course_id]["dashboard_views"] = [[spec,str(now)]]
         if "accessible_mechanics" not in user.gamer_profile.data["edx_data"][course_id].keys():
             user.gamer_profile.data["edx_data"][course_id]["accessible_mechanics"] = []
         for key in ["position", "progress", "last_score", "mean_score"]:
