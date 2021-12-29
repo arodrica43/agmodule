@@ -66,7 +66,8 @@ function populateNaiveGrid(item,index){
         .then(function (myJson) {
             document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
             $(myJson.html).appendTo(document.body);
-            modal.style.display = "none";
+            modal.style.display = "block";
+            document.getElementById("main-modal").style.display="none";
             
         })
         .catch((error) => console.log("Error: " + error));
