@@ -64,7 +64,7 @@ function populateNaiveGrid(item,index){
     fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + item.id + "/?user=dynamic_user")
         .then((response)  => (response.json()))
         .then(function (myJson) {
-            document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
+            document.querySelector("#links-dynamic_index").innerHTML = myJson.html;
             $(myJson.html).appendTo(document.body);
             modal.style.display = "block";
             
