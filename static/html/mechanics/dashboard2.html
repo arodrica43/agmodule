@@ -382,7 +382,10 @@ function SelectMyAvatar(name){
 
 function OpenChangeAvatar(exp,current){
   console.log("OpenChangeAvatar");
- 
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=avatar")
+    .then(response => response.json())
+    .then(res => console.log(res))
+    .catch(error => (console.log("Error: " + error)))
   document.querySelector("#main-modal-title").innerHTML = '<h2 style="text-align:center;">Escull el teu avatar</h2>';
 
   document.querySelector("#main-modal-content").innerHTML = '<div><div id="first-row" class="avatar-row"></div><div id="second-row" class="avatar-row"></div></div>';

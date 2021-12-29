@@ -61,7 +61,17 @@ function loadMechanic(mechanic){
 }
 
 function populateNaiveGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button></p>';
+    fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + item.id + "/?user=dynamic_user")
+        .then((response)  => (response.json()))
+        .then(function (myJson) {
+            document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
+            $(myJson.html).appendTo(document.body);
+            modal.style.display = "block";
+            
+        })
+        .catch((error) => console.log("Error: " + error));
+
+    //document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button></p>';
 }
 
 function populateDevToolsGrid(item,index){
