@@ -473,7 +473,11 @@ function OpenChangeAvatar(exp,current){
     if(mechanic.name != "blocked"){
       document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
       console.log(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name);
-      document.getElementById("main-modal-title").innerHTML = "List of " + mechanic.dataset.title;
+      title_text = "Carregant ";
+      if(mechanic.dataset.title == "Badges" || mechanic.dataset.title == "Challenges" || mechanic.dataset.title == "Easter Eggs" || mechanic.dataset.title == "Unlockables"){
+        title_text = "Llista de ";
+      }
+      document.getElementById("main-modal-title").innerHTML = title_text + mechanic.dataset.title;
       fetch(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name + "&course_id=" + course_id)
       .then(response => response.json())
       .then(function(res_json){
