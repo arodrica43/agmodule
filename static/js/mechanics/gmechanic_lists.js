@@ -4,10 +4,12 @@
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
       modal.style.display = "none";
+      document.getElementById("main-modal").style.display="none";
     }
     window.onclick = function(event) {
       if (event.target == modal) {
         modal.style.display = "none";
+        document.getElementById("main-modal").style.display="none";
       }
     }
     function showBadgeDetails(object){
@@ -66,9 +68,7 @@ function populateNaiveGrid(item,index){
         .then(function (myJson) {
             document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
             $(myJson.html).appendTo(document.body);
-            modal.style.display = "block";
-            document.getElementById("main-modal").style.display="none";
-            
+            modal.style.display = "block";            
         })
         .catch((error) => console.log("Error: " + error));
 
