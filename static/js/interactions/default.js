@@ -228,20 +228,20 @@ try {
     function set_widget_defaults(id, mechanic_id, link_url){
 
     	GMLabels = {
-    		'badge_widgets' : ["Medalla","badges","message","help"], 
-    		'challenge_widgets' : ["Repte", "challenges","message","help"], 
-    		'development_tool_widgets' : ["Modificació","development_tools","message","help"], 
-    		'easter_egg_widgets' : ["Easter Egg", "easter_eggs","message","help"], 
-    		'gift_widgets' : ["Envia Regals", "gifts","message","help"], 
-    		'gift_opener_widgets' : ["Obre Regals", "gift_openers","message","help"], 
-    		'knowledge_share_widgets' : ["Dona Ajuda", "knowledge_shares","message","help"], 
-    		'level_widgets' : ["Progrés", "levels","message","help"], 
-    		'lottery_widgets': ["Loteria", "lotteries","message","help"], 
-    		'point_widgets' : ["Punts", "points","message","help"], 
-    		'social_network_widgets' : ["Xarxa Social", "social_networks","message","help"], 
-    		'social_status_widgets' : ["Estatus Social", "social_statuses","message","help"], 
-    		'unlockable_widgets' : ["Desbloquejable", "unlockables","message","help"], 
-    		'leaderboard_widgets' : ["Competició", "leaderboards","message","help"]
+    		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
+    		'challenge_widgets' : ["Repte", "challenges","tria quin tipus de repte vols fer!","Tria quin tipus de repte vols fer, per punts o per progres en el curs."], 
+    		'development_tool_widgets' : ["Modificació","development_tools","pots canviar l’aspecte d’una medalla!","Vols canviar l'aspecte d'aquesta medalla? Tria'n un de la llista i a partir d'ara els demés podran veure-la."], 
+    		'easter_egg_widgets' : ["Easter Egg", "easter_eggs","tens un nou easter egg!"," Has de descobrir com interaccionar amb l’easter egg per veure el que oculta. Utilitza la Dashboard per a descobrir-ne més."], 
+    		'gift_widgets' : ["Envia Regals", "gifts","pots enviar regals!","Des aquí podràs enviar un regal a tothom. Podràs enviar-ne més a qui vulguis des de la Dashboard."], 
+    		'gift_opener_widgets' : ["Obre Regals", "gift_openers","pots obrir regals!","Pots obrir regals, i a partir d’ara a la Dashboard en podràs trobar-ne  més, quan algú t'envïi un. Un regal pot contenir punts o missatges. Descobreix-los!"], 
+    		'knowledge_share_widgets' : ["Dona Ajuda", "knowledge_shares","pots enviar un missatge d’ajuda","Ja pots enviar un missatge d’ajuda a tothom pel xat."], 
+    		'level_widgets' : ["Progrés", "levels","Ja ets " + dynamic_position,"Pots consultar el teu progrés a la Dashboard sempre que vulguis."], 
+    		'lottery_widgets': ["Loteria", "lotteries"," pots jugar a la ruleta per obtenir més punts"," Pots jugar a la ruleta per obtenir més punts. Dona-li a la roda per a obtenir els punts."], 
+    		'point_widgets' : ["Punts", "points","punts!","Amb els punts podràs interactuar amb més elements de jocs. Aconsegueix-ne més!"], 
+    		'social_network_widgets' : ["Xarxa Social", "social_networks","ja pots afegir nous contactes a la teva xarxa social!","Pots afegir nous contactes a la teva xarxa social seleccionant-los de la llista d’usuaris. Segueix-los per saber què fan en el curs!"], 
+    		'social_status_widgets' : ["Estatus Social", "social_statuses","ja pots veure el ranking social!","Pots veure el ranking dels usuaris amb més seguidors, i explorar la teva posició."], 
+    		'unlockable_widgets' : ["Desbloquejable", "unlockables"," pots desbloquejar un contingut ocult!"," pots desbloquejar un contingut ocult que pot ser un acudit, un meme,  un mini-joc, etc. Tria’n un a l’atzar a veure què et surt!"], 
+    		'leaderboard_widgets' : ["Competició", "leaderboards","pots veure el teu ranking!","Pots veure el ranking dels que tenen més punts, pots veure on estàs tu! Pots veure les classificacions completes a la Dashboard."]
     	};
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
