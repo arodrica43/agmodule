@@ -26,7 +26,7 @@ fetch(url)
 .then(res_json => (res_json.results))
 .then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
 .then((level) => (console.log(level), 
-						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + level.id + "/?user=dynamic_user&show_title=false")
+						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + level.id + "/?user=dynamic_user&show_title=false&dynamic_progress=dynamic_position")
 						.then(response => response.json())
 						.then((updated_level) => (console.log(updated_level), render_lvl(updated_level)))
 						.catch(error => (console.log("Error: " + error)))))
