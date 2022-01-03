@@ -83,7 +83,7 @@ function populateNaiveGrid(item,index){
 }
 
 function populateDevToolsGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + 'data-title=' + item.title + '>' + item.title + '</button</p>';
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + ' data-title=\"' + item.title + '\">' + item.title + '</button</p>';
 }
 
 function populateEEggGrid(item,index){
