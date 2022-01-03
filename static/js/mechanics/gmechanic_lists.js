@@ -2,6 +2,7 @@
     // TO DO :: Serve as a mechanic and log interactions
     var modal = document.getElementById("details-modal-dynamic_index");
     var span = document.getElementsByClassName("close")[0];
+    var global_vars = {};
     span.onclick = function() {
       modal.style.display = "none";
       document.getElementById("main-modal").style.display="none";
@@ -50,10 +51,16 @@
     }
 
 function loadMechanic(mechanic){
-
+    try{
+         global_vars["mech_title"] = mechanic.dataset.title; 
+    }catch{
+        global_vars["mech_title"] = 0;   
+    }
+   
 	fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + mechanic.dataset.id + "/?user=dynamic_user")
 	    .then((response)  => (response.json()))
 	    .then(function (myJson) {
+
 	        document.querySelector("#modal-content-body-dynamic_index").innerHTML = myJson.html;
 	        $(myJson.html).appendTo(document.body);
         	modal.style.display = "block";
@@ -76,7 +83,7 @@ function populateNaiveGrid(item,index){
 }
 
 function populateDevToolsGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button</p>';
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + 'data-title=' + item.title + '>' + item.title + '</button</p>';
 }
 
 function populateEEggGrid(item,index){

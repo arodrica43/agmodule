@@ -60,6 +60,7 @@ function render_dvt(modifiable){
 }
 
 function selectPolicy(list){
+    console.log("MechTitle :: " + global_vars["mech_title"]);
     return list[Math.floor(Math.random() * list.length)];
 }
 
