@@ -83,7 +83,17 @@ function populateNaiveGrid(item,index){
 }
 
 function populateDevToolsGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + ' data-title=\"' + item.title + '\">' + item.title + '</button</p>';
+    disable = "";
+    if(global_avatar[0] == 'X' || global_avatar[0] == 'O'){ // needs global_avatar
+        if(index > 0){
+            disable = "disabled";
+        }
+    } else if(global_avatar[0] == 'Y'){ // needs global_avatar
+        if(index > 1){
+            disable = "disabled";
+        }
+    } 
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + ' data-title=\"' + item.title + '\" ' + disable + '>' + item.title + '</button</p>';
 }
 
 function populateEEggGrid(item,index){
