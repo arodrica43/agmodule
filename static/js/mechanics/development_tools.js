@@ -54,7 +54,8 @@ function render_dvt(modifiable){
     }
 
     
-    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML += '<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
+    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML += '<div style="height:calc(1vw);"></div>' + 
+                                                                    '<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
                                                                     '<br><div>' + dyn_str + '</div></div>';
 }
 
