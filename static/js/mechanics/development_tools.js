@@ -61,6 +61,7 @@ function render_dvt(modifiable){
 
 function selectPolicy(list){
     console.log(list);
+    list.sort((a, b) => a.id - b.id);
     if(global_vars["mech_title"] == "Newbie"){
         return list[Math.floor(Math.random() * 3)];
     }else if(global_vars["mech_title"] == "Medium"){
