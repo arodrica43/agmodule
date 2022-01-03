@@ -27,30 +27,30 @@ function log_txt_click(){
 
 function render_dvt(modifiable){
 
-    course_position = dynamic_position;
-    console.log(dynamic_activity_progress);
+    course_position = global_avatar; // this works if there's a global variable called global_avatar, encoding the current avatar (such as dashboard2.html)
+    console.log(course_position);
 
     dyn_str = "";
 
-    if(course_position <= 0.25){
-        dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
-            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">';         
-    }else if (course_position <= 0.5){
+    if (course_position[0] == 'X'){
         dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">';
-    }else if (course_position <= 0.75){
+    }else if (course_position[0] == 'Y'){
         dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' ;
-    }else{
+    }else if (course_position[0] == 'Z'){
         dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' +
             '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_031.png" onclick="changeIcon(5,' + modifiable.id + ');">';
 
+    }else{
+         dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">';         
     }
 
     
