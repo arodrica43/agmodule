@@ -8,7 +8,83 @@
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
-    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML = 'Hurry!';
+    //document.querySelector("#main-content-development_tools-dynamic_index").innerHTML = 'Hurry!';
+
+
+function log_img_click(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 2, message:"Badge icon clicked", register : log, level:1,type:"ImageClick"});
+           // --------------------------------------------------------------------------
+          };
+
+function log_txt_click(){
+          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+          //Logging :: button-click interaction
+          log_click({itime: 2, message:"Title text clicked", register : log, level:1,type:"TextClick"});
+           // --------------------------------------------------------------------------
+          };
+
+function render_dvt(modifiable){
+
+    course_position = dynamic_position;
+    console.log(dynamic_activity_progress);
+
+    dyn_str = "";
+
+    if(course_position <= 0.25){
+        dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">';         
+    }else if (course_position <= 0.5){
+        dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">';
+    }else if (course_position <= 0.75){
+        dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' ;
+    }else{
+        dyn_str = '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_027.png" onclick="changeIcon(1,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_028.png" onclick="changeIcon(2,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_029.png" onclick="changeIcon(3,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_030.png" onclick="changeIcon(4,' + modifiable.id + ');">' +
+            '<img class="selectable-image" src="https://agmodule.herokuapp.com/media/badge_icons/Medalla_031.png" onclick="changeIcon(5,' + modifiable.id + ');">';
+
+    }
+
+    
+    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML += '<div style="height:calc(5vw);"></div>' + 
+                                                                    '<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
+                                                                    '<br><div>' + dyn_str + '</div></div>';
+}
+
+function selectPolicy(list){
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+function changeIcon(type, id){
+    log_img_click();
+    tp = 26 + type;
+    document.querySelector("#main-badge-dynamic_index").src = "https://agmodule.herokuapp.com/media/badge_icons/Medalla_0" + tp + ".png"
+    fetch("https://agmodule.herokuapp.com/api/badges/" + id + "/change_icon?option=" + tp)
+    .then(response => response.json())
+    .then(res_json => (alert("Badge icon changed!")))
+    .catch(error => (console.log("Error: " + error)))
+
+}
+
+modifiables = ["badges"]
+mod_type =  modifiables[Math.floor(Math.random() * modifiables.length)];
+
+url = "https://agmodule.herokuapp.com/api/" + mod_type + "/";
+fetch(url)
+.then(response => response.json())
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list)))
+.then((modifiable) => ( console.log(modifiable), render_dvt(modifiable)))
+.catch(error => (console.log("Error: " + error)))
+
 
     // document.querySelector("#form-container-dynamic_index").innerHTML =   '<form action="#" method="POST" name="myForm" id="formid-dynamic_index" enctype="application/json">'+
     //                                                         '<div class="row">'+
