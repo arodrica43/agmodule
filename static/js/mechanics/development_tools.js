@@ -10,8 +10,8 @@ fetch(url)
  .then(res_json => (res_json.results))
  .then((list) => (selectPolicy(list)))
  .then((modifiable) => (console.log(modifiable),  
-                        document.querySelector("#main-content-development_tools-dynamic_index").innerHTML = modifiable.html;
-                        $(modifiable.html).appendTo(document.body);))
+                        document.querySelector("#main-content-development_tools-dynamic_index").innerHTML = modifiable.html,
+                        $(modifiable.html).appendTo(document.body)))
 .catch(error => (console.log("Error: " + error)))
 
 
