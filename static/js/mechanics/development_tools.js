@@ -28,7 +28,7 @@ function log_txt_click(){
 function render_dvt(modifiable){
 
     course_position = global_avatar; // this works if there's a global variable called global_avatar, encoding the current avatar (such as dashboard2.html)
-    console.log(course_position);
+    console.log(modifiable.id);
 
     dyn_str = "";
 
@@ -54,13 +54,20 @@ function render_dvt(modifiable){
     }
 
     
-    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML += '<div style="height:calc(1vw);"></div>' + 
+    document.querySelector("#main-content-development_tools-dynamic_index").innerHTML += '<div style="height:calc(1.5vw);"><h2>Modifica una medalla ' + global_vars["mech_title"] + '</h2></div>' + 
                                                                     '<div><img onclick="log_img_click();" id="main-badge-dynamic_index" src="' + modifiable.icon + '"><br>' +
                                                                     '<br><div>' + dyn_str + '</div></div>';
 }
 
 function selectPolicy(list){
-    console.log("MechTitle :: " + global_vars["mech_title"]);
+    console.log(list);
+    if(global_vars["mech_title"] == "Newbie"){
+        return list[Math.floor(Math.random() * 3)];
+    }else if(global_vars["mech_title"] == "Medium"){
+        return list[3 + Math.floor(Math.random() * 2];
+    }else if(global_vars["mech_title"] == "Pro"){
+        return list[5 + Math.floor(Math.random() * 2)];
+    }
     return list[Math.floor(Math.random() * list.length)];
 }
 
