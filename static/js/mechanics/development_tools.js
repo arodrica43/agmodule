@@ -64,7 +64,7 @@ function selectPolicy(list){
     if(global_vars["mech_title"] == "Newbie"){
         return list[Math.floor(Math.random() * 3)];
     }else if(global_vars["mech_title"] == "Medium"){
-        return list[3 + Math.floor(Math.random() * 2];
+        return list[3 + Math.floor(Math.random() * 2)];
     }else if(global_vars["mech_title"] == "Pro"){
         return list[5 + Math.floor(Math.random() * 2)];
     }
