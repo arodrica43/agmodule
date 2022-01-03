@@ -76,7 +76,7 @@ function populateNaiveGrid(item,index){
 }
 
 function populateDevToolsGrid(item,index){
-    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="alert(1);">' + item.title + '</button</p>';
+    document.querySelector("#links-dynamic_index").innerHTML += '<p style="text-align:center;"><button onclick="loadMechanic(this);" data-id=' + item.id + '>' + item.title + '</button</p>';
 }
 
 function populateEEggGrid(item,index){
@@ -162,6 +162,8 @@ fetch("called_mechanic_url")
             populate_grid = populateNaiveGrid;
              if(myJson.mechanic == "easter_eggs") {
                 populate_grid = populateEEggGrid;
+            } else if(myJson.mechanic == "development_tools"){
+                populate_grid = populateDevToolsGrid;
             }
         }
         console.log(url);
