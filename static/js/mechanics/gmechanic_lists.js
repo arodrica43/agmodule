@@ -156,7 +156,7 @@ function populateChallengesGrid(item,index){
     if(item[0].by == "progress"){
         mult = 100;
     }
-    document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h3 style="position:relative;top:0;">Repte ' + item[0].title + '</h3>' +
+    document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;">Repte ' + item[0].title + '</h4>' +
                                                                     '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_01.gif">' +  
                                                                     '<div style="position:absolute;bottom: 90px; right: 20px;"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </div> ' +
                                                                     '<div style="position:absolute;bottom: 50px; right: 20px;"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </div> ' + locked_style +
