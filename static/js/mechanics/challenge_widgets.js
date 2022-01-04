@@ -73,7 +73,7 @@ function select_ch_type(select){
   }else{
     ch_selection = "score";
   }
-
+  console.log(ch_selection);
   selectPolicy(ch_list);
 }
 
@@ -93,8 +93,8 @@ function selectPolicy(list){
   .then(res_json => (console.log(res_json.results)))
   .catch(error => (console.log("Error: " + error)))
   filtered_list = []
-  list.forEach((item,index) => (item.by == ch_selection ? filtered_list.push(item) : console.log("...")));
-  filtered_list.sort((a, b) => a.id - b.id);
+  list.forEach((item,index) => (item[0].by == ch_selection ? filtered_list.push(item) : console.log("...")));
+  filtered_list.sort((a, b) => a[0].id - b[0].id);
   console.log(filtered_list);
   if(ch_selection == "progress"){
     if(num_progr < 5){
