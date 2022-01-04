@@ -87,7 +87,7 @@ function selectPolicy(list){
  
   //list[Math.floor(Math.random() * list.length)]
 
-  console.log(list);
+  
   fetch("https://agmodule.herokuapp.com/api/challenges/choose_challenge_type/" + ch_selection + "/dynamic_user")
   .then(response => response.json())
   .then(res_json => (console.log(res_json.results)))
@@ -95,6 +95,7 @@ function selectPolicy(list){
   filtered_list = []
   list.forEach((item,index) => (item.by == ch_selection ? filtered_list.push(item) : console.log("...")));
   filtered_list.sort((a, b) => a.id - b.id);
+  console.log(filtered_list);
   if(ch_selection == "progress"){
     if(num_progr < 5){
       choose_chl(filtered_list[num_progr]);
