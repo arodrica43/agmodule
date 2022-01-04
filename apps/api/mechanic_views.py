@@ -115,6 +115,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     position = request.GET['dynamic_progress']
                     print("B -- ", position)
                     current_user.gamer_profile.data["edx_data"][course_id]["position"] = float(position)
+                    current_user.gamer_profile.data["edx_data"][course_id]["progress"] = float(position)
                     print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["position"])
                     current_user.gamer_profile.save()
                 except:
@@ -125,7 +126,7 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     progress = request.GET['activity_progress']
                     print("B -- ", progress)
                     if 'progress' in current_user.gamer_profile.data["edx_data"][course_id].keys():
-                        current_user.gamer_profile.data["edx_data"][course_id]["progress"] = max(float(progress), current_user.gamer_profile.data["edx_data"][course_id]["progress"])
+                        pass #current_user.gamer_profile.data["edx_data"][course_id]["progress"] = max(float(progress), current_user.gamer_profile.data["edx_data"][course_id]["progress"])
                     else:
                         current_user.gamer_profile.data["edx_data"][course_id]["progress"] = float(progress)
                     print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["progress"])

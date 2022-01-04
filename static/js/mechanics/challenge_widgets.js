@@ -47,6 +47,7 @@ function log_bar_click(){
     .catch(error => (console.log("Error: " + error)))
 }
 document.querySelector("#chl-widget-handshake-dynamic_index").value = 1;
+
 function choose_chl(challenge){
 	var locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
 	if(!challenge[1]){
@@ -54,16 +55,57 @@ function choose_chl(challenge){
 	}else if(challenge[3]){
 	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
-	document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div style="height:calc(30vw);"><h4 style=""><div style="height:calc(30px + 10vw);"></div>' +
+	document.querySelector("#tmp-container-dynamic_index").innerHTML += '<div style="height:calc(30vw);"><h4 style=""><div style="height:calc(30px + 10vw);"></div>' +
                                                                     '<img width=100 height=100 onclick="log_img_click();" style="width:20vw;height:20vw;margin-top:-3vw" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_01.gif">' + locked_style + '</h4>' +
                                                                     '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-12vw);;"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2] + ' / ' + challenge[0].threshold + ' </p></h4> ' +
                                                                     '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-9vw);"><p onclick="log_txt_click();"> Recompensa : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p></h4> ' +
                                                                 ' </div></div>';
 }
+
+var ch_selection = "";
+
+function select_ch_type(select){
+  if(select == 0){
+    ch_selection = "progress";
+  }else{
+    ch_selection = "score";
+  }
+}
+
+
+
+function selectPolicy(list){
+  document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index"><div style="height:calc(30vw);"><h4 style=""><div style="height:calc(30px + 10vw);"></div>' +
+                                                                    '<button class="btn btn-primary" onclick="select_ch_type(0)">Repte per progrés</button>' +
+                                                                    '<button class="btn btn-primary" onclick="select_ch_type(1)">Repte per score</button>' +
+                                                                ' </div></div></div>';
+  //list[Math.floor(Math.random() * list.length)]
+
+  while(ch_selection == ""){
+    console.log("Waiting selection...");
+  }
+  filtered_list = []
+  list.forEach((item,index) => (item.by == ch_selection ? filtered_list.push(item) : console.log("...")));
+  filtered_list.sort((a, b) => a.id - b.id);
+  var v = dynamic_position;
+  if(v < 0.28){
+    return filtered_list[0];
+  } else if(v < 0.46){
+    return filtered_list[1];
+  } else if(v < 0.64){
+    return filtered_list[2];
+  } else if(v < 0.82){
+    return filtered_list[3];
+  } else{
+    return filtered_list[4];
+  } 
+
+}
+
 url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_user?course_id=dynamic_course_id";
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
-.then((list) => (list[Math.floor(Math.random() * list.length)]))
+.then((list) => (selectPolicy(list)))
 .then((random_element) => (choose_chl(random_element)))
 .catch(error => (console.log("Error: " + error)))
