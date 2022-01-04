@@ -53,11 +53,11 @@ var num_score;
 var mult = 1;
 
 function choose_chl(challenge){
-	var locked_style = '<button  style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
+	var locked_style = '<button  style="float:right;margin:15px; width:90%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
 	if(!challenge[1]){
-	    locked_style = '<progress onclick="log_bar_click();" style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" value="' + challenge[2] + '" max="' + challenge[0].threshold + '"></progress>';
+	    locked_style = '<progress onclick="log_bar_click();" style="float:right;margin:15px; width:90%;margin-top:calc(-2vw);" value="' + challenge[2] + '" max="' + challenge[0].threshold + '"></progress>';
 	}else if(challenge[3]){
-	    locked_style = '<button  style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
+	    locked_style = '<button  style="float:right;margin:15px; width:90%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
 	document.querySelector("#tmp-container-dynamic_index").innerHTML = '<div style="position:absolute; height:200px;"></div><div style="height:calc(30vw);"><h4><div style="height:calc(30px + 10vw);"></div>' +
                                                                     '<img width=100 height=100 onclick="log_img_click();" style="width:20vw;height:20vw;margin-top:-3vw" src="' + challenge[0].icon + '"></h4>' +
