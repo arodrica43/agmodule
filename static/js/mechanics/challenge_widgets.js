@@ -80,9 +80,9 @@ function select_ch_type(select){
 }
 
 
- document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index" style="height:30vw;"><div style="height:calc(30vw);"><h4 style="text-align:center;"><div style="height:calc(50px + 3vw);"></div>' +
-                                                                    '<button class="btn btn-primary" style="margin:2vw;" onclick="select_ch_type(0)">Repte per progrés</button>' +
-                                                                    '<button class="btn btn-primary" style="margin:2vw;" onclick="select_ch_type(1)">Repte per score</button>' +
+ document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index" style="height:25vw;"><div style="height:calc(30vw);"><h4 style="text-align:center;"><div style="height:calc(50px + 3vw);"></div>' +
+                                                                    '<button class="btn btn-primary" style="height:10vw;margin:2vw;" onclick="select_ch_type(0)">Repte per progrés</button>' +
+                                                                    '<button class="btn btn-primary" style="height:10vw;margin:2vw;" onclick="select_ch_type(1)">Repte per score</button>' +
                                                                 ' </div></div></div>';
 
 function selectPolicy(list){
