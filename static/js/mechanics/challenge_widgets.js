@@ -66,28 +66,28 @@ function choose_chl(challenge){
 }
 
 var ch_selection = "";
-
+var ch_list;
 function select_ch_type(select){
   if(select == 0){
     ch_selection = "progress";
   }else{
     ch_selection = "score";
   }
+
+  selectPolicy(ch_list);
 }
 
 
-
-function selectPolicy(list){
-  document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index"><div style="height:calc(30vw);"><h4 style=""><div style="height:calc(30px + 10vw);"></div>' +
+ document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index"><div style="height:calc(30vw);"><h4 style=""><div style="height:calc(30px + 10vw);"></div>' +
                                                                     '<button class="btn btn-primary" onclick="select_ch_type(0)">Repte per progrés</button>' +
                                                                     '<button class="btn btn-primary" onclick="select_ch_type(1)">Repte per score</button>' +
                                                                 ' </div></div></div>';
+
+function selectPolicy(list){
+ 
   //list[Math.floor(Math.random() * list.length)]
 
-  while(ch_selection == ""){
-    console.log("Waiting selection...");
-  }
-  
+ 
   fetch("https://agmodule.herokuapp.com/api/challenges/choose_challenge_type/" + ch_selection + "/dynamic_user")
   .then(response => response.json())
   .then(res_json => (console.log(res_json.results)))
@@ -97,13 +97,13 @@ function selectPolicy(list){
   filtered_list.sort((a, b) => a.id - b.id);
   if(ch_selection == "progress"){
     if(num_progr < 5){
-      return filtered_list[num_progr];
+      choose_chl(filtered_list[num_progr]);
     }else{
       document.querySelector("#tmp-container-dynamic_index").innerHTML = "Ja has descovert tots els reptes d'aquest tipus, felicitats!";
     }
   } else if(ch_selection == "score"){
     if(num_score < 5){
-      return filtered_list[num_score];
+      choose_chl(filtered_list[num_score]);
     }else{
       document.querySelector("#tmp-container-dynamic_index").innerHTML = "Ja has descovert tots els reptes d'aquest tipus, felicitats!";
     }
@@ -116,6 +116,5 @@ url = "https://agmodule.herokuapp.com/api/challenges/retrieve_for_user/dynamic_u
 fetch(url)
 .then(response => response.json())
 .then(res_json => (num_progr = res_json.num_progress, num_score = res_json.num_score,res_json.results))
-.then((list) => (selectPolicy(list)))
-.then((random_element) => (choose_chl(random_element)))
+.then((list) => (ch_list = list))
 .catch(error => (console.log("Error: " + error)))
