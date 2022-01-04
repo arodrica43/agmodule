@@ -48,6 +48,7 @@ urlpatterns = [
     path('api/unlockables/retrieve_for_user/<str:username>', api.view_unlockable_set),
     path('api/unlockables/<int:pk>/unlock_for/<str:username>', api.unlock_unlockable),
     path('api/challenges/retrieve_for_user/<str:username>', api.view_challenge_set),
+    path('api/challenges/choose_challenge_type/<str:challenge_type>/<str:username>', api.choose_challenge_type),
     path('api/g_mechanics/retrieve_adaptative_widget_id', api.retrieve_adaptative_widget_id),
     path('api/challenges/claim_reward/<int:challenge_id>/<str:username>', api.claim_challenge_reward),
     path('api/<str:mechanic_class>/retrieve_dashboard_mechanic', api.retrieve_dashboard_mechanic),

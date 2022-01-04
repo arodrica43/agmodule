@@ -477,6 +477,28 @@ def claim_challenge_reward(request, challenge_id, username):
         lock8.release()
         raise Http404
 
+def choose_challenge_type(request, challenge_type, username):
+    lock8.acquire()
+    try:
+        try:
+            user = Gamer.objects.filter(user__username = username)[0]
+        except:
+            print("User not found")
+            raise Http404
+
+        if(challenge_type == "score" or challenge_type == "progress"):
+            if len([x for x in user.gamer_profile.data['challenges'] if x == "S" + challenge_type]) < 5:
+                user.gamer_profile.data['challenges'] += ["S" + challenge_type]
+                user.gamer_profile.save()
+        else:
+            raise Exception("Unknown challenge_type")
+        
+        lock8.release()
+        return JsonResponse({'results': 'OK'})
+    except:
+        lock8.release()
+        raise Http404
+
 
 def view_challenge_set(request, username):
    
@@ -524,7 +546,10 @@ def view_challenge_set(request, username):
                     current_by = user.gamer_profile.data[unlk.by]
             unlocks_set += [[ChallengeSerializer(unlk, context={'request': request}).data, unlk.id in unlock_ids, current_by, "C" + str(unlk.id) in unlock_ids]]
         lock8.release()
-        return JsonResponse({'results':unlocks_set})
+        return JsonResponse({'results':unlocks_set, 
+                                'num_progress' : len([x for x in user.gamer_profile.data['challenges'] if x == "Sprogress"]),
+                                'num_score' :  len([x for x in user.gamer_profile.data['challenges'] if x == "Sscore"])
+                                })
     except:
         lock8.release()
         raise Http404
