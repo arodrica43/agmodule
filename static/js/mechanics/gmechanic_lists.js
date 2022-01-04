@@ -142,31 +142,39 @@ function populateUnlockablesGrid(item,index){
                                                                 ' ></div>';
 }
 
+var num_progr;
+var num_score;
+
 function populateChallengesGrid(item,index){
+
     var ch_icon = 1;
     if(item[0].by == "progress"){
         ch_icon = parseInt(5*item[0].threshold);
+        render = ch_icon <= num_progr;
     }else{
         ch_icon = parseInt(item[0].threshold/80);
     }
-    console.log("Unlocked :: " + item[1]);
-    var locked_style = '<button  style="position:absolute; bottom:10px; right:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + '>Claim</button>';
-    if(!item[1]){
-        locked_style = '<progress style="position:absolute; bottom:10px; right:10px; width:50%;" value="' + item[2] + '" max="' + item[0].threshold + '"></progress>';
-    }else if(item[3]){
-        locked_style = '<button  style="position:absolute; bottom:10px; right:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + ' disabled>Claimed!</button>';
+    var render = ch_icon <= num_progr;
+    if(render){
+        console.log("Unlocked :: " + item[1]);
+        var locked_style = '<button  style="position:absolute; bottom:10px; right:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + '>Claim</button>';
+        if(!item[1]){
+            locked_style = '<progress style="position:absolute; bottom:10px; right:10px; width:50%;" value="' + item[2] + '" max="' + item[0].threshold + '"></progress>';
+        }else if(item[3]){
+            locked_style = '<button  style="position:absolute; bottom:10px; right:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + ' disabled>Claimed!</button>';
+        }
+        console.log(item[0].name);
+        console.log(item);
+        var mult = 1;
+        if(item[0].by == "progress"){
+            mult = 100;
+        }
+        document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;">Repte ' + item[0].title + '</h4>' +
+                                                                        '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_0' + ch_icon + '.gif">' +  
+                                                                        '<div style="position:absolute;bottom: 100px; right: 10px;font-size:calc(1vw + 10px);"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </div> ' +
+                                                                        '<div style="position:absolute;bottom: 60px; right: 10px;font-size:calc(1vw + 10px);"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </div> ' + locked_style +
+                                                                    ' </div>';
     }
-    console.log(item[0].name);
-    console.log(item);
-    var mult = 1;
-    if(item[0].by == "progress"){
-        mult = 100;
-    }
-    document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;">Repte ' + item[0].title + '</h4>' +
-                                                                    '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_0' + ch_icon + '.gif">' +  
-                                                                    '<div style="position:absolute;bottom: 100px; right: 10px;font-size:calc(1vw + 10px);"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </div> ' +
-                                                                    '<div style="position:absolute;bottom: 60px; right: 10px;font-size:calc(1vw + 10px);"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </div> ' + locked_style +
-                                                                ' </div>';
 }
 fetch("called_mechanic_url")
     .then(function (response) {
@@ -196,7 +204,7 @@ fetch("called_mechanic_url")
         console.log(url);
         fetch(url)
             .then(response => response.json())
-            .then(res_json => (res_json.results))
+            .then(res_json => (num_progr = res_json.num_progress, num_score = res_json.num_score, res_json.results))
             .then((list) => (list.forEach(populate_grid)))
             .catch(error => (console.log("Error: " + error)))
     })
