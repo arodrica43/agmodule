@@ -87,7 +87,7 @@ function selectPolicy(list){
  
   //list[Math.floor(Math.random() * list.length)]
 
- 
+  console.log(list);
   fetch("https://agmodule.herokuapp.com/api/challenges/choose_challenge_type/" + ch_selection + "/dynamic_user")
   .then(response => response.json())
   .then(res_json => (console.log(res_json.results)))
