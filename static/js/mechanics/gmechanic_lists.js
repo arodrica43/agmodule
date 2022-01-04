@@ -144,11 +144,11 @@ function populateUnlockablesGrid(item,index){
 
 function populateChallengesGrid(item,index){
     console.log("Unlocked :: " + item[1]);
-    var locked_style = '<button  style="position:absolute; bottom:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + '>Claim</button>';
+    var locked_style = '<button  style="position:absolute; bottom:10px; right:0; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + '>Claim</button>';
     if(!item[1]){
-        locked_style = '<progress style="position:absolute; bottom:10px; width:50%;" value="' + item[2] + '" max="' + item[0].threshold + '"></progress>';
+        locked_style = '<progress style="position:absolute; bottom:10px; right:0; width:50%;" value="' + item[2] + '" max="' + item[0].threshold + '"></progress>';
     }else if(item[3]){
-        locked_style = '<button  style="position:absolute; bottom:10px width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + ' disabled>Claimed!</button>';
+        locked_style = '<button  style="position:absolute; bottom:10px; right:0; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + ' disabled>Claimed!</button>';
     }
     console.log(item[0].name);
     console.log(item);
@@ -158,8 +158,8 @@ function populateChallengesGrid(item,index){
     }
     document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h3 style="position:relative;top:0;">Repte ' + item[0].title + '</h3>' +
                                                                     '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_01.gif">' +  
-                                                                    '<h4 style="position:absolute;bottom: 90px; right: 20px;"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </h4> ' +
-                                                                    '<h4 style="position:absolute;bottom: 50px; right: 20px;"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </h4> ' + locked_style +
+                                                                    '<div style="position:absolute;bottom: 90px; right: 20px;"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </div> ' +
+                                                                    '<div style="position:absolute;bottom: 50px; right: 20px;"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </div> ' + locked_style +
                                                                 ' </div>';
 }
 fetch("called_mechanic_url")
