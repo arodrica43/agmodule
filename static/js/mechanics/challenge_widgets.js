@@ -53,16 +53,16 @@ var num_score;
 var mult = 1;
 
 function choose_chl(challenge){
-	var locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
+	var locked_style = '<button  style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + '>Claim</button>';
 	if(!challenge[1]){
-	    locked_style = '<progress onclick="log_bar_click();" style="float:right;margin:15px; width:50%;" value="' + challenge[2] + '" max="' + challenge[0].threshold + '"></progress>';
+	    locked_style = '<progress onclick="log_bar_click();" style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" value="' + challenge[2] + '" max="' + challenge[0].threshold + '"></progress>';
 	}else if(challenge[3]){
-	    locked_style = '<button  style="float:right;margin:15px; width:50%;" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
+	    locked_style = '<button  style="float:right;margin:15px; width:50%;margin-top:calc(-2vw);" onclick="claimReward(this)" data-id=' + challenge[0].id + ' disabled>Claimed!</button>';
 	}
 	document.querySelector("#tmp-container-dynamic_index").innerHTML = '<div style="position:absolute; height:200px;"></div><div style="height:calc(30vw);"><h4><div style="height:calc(30px + 10vw);"></div>' +
                                                                     '<img width=100 height=100 onclick="log_img_click();" style="width:20vw;height:20vw;margin-top:-3vw" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_01.gif"></h4>' +
-                                                                    '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-12vw);"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2].toFixed(2)*mult + ' / ' + challenge[0].threshold*mult + ' </p></h4> ' +
-                                                                    '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-9vw);"><p onclick="log_txt_click();"> Recompensa : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p>' + locked_style + '</h4> ' +
+                                                                    '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-15vw);"><p onclick="log_txt_click();"> ' + challenge[0].by + ' : ' + challenge[2].toFixed(2)*mult + ' / ' + challenge[0].threshold*mult + ' </p></h4> ' +
+                                                                    '<h4 style="float:right;margin:15px; width:50%;margin-top:calc(-11vw);"><p onclick="log_txt_click();"> Recompensa : +' + challenge[0].reward_value + ' ' + challenge[0].reward_by + ' </p>' + locked_style + '</h4> ' +
                                                                 ' </div></div>';
 }
 
@@ -80,7 +80,7 @@ function select_ch_type(select){
 }
 
 
- document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index" style="height:25vw;"><div style="height:calc(30vw);"><h4 style="text-align:center;"><div style="height:calc(50px + 3vw);"></div>' +
+ document.querySelector("#chl-widget-dynamic_index").innerHTML += '<div id="tmp-container-dynamic_index" style="height:30vw;"><div style="height:calc(30vw);"><h4 style="text-align:center;"><div style="height:calc(50px + 3vw);"></div>' +
                                                                     '<button class="btn btn-primary" style="height:10vw;margin:2vw;" onclick="select_ch_type(0)">Repte per progrés</button>' +
                                                                     '<button class="btn btn-primary" style="height:10vw;margin:2vw;" onclick="select_ch_type(1)">Repte per score</button>' +
                                                                 ' </div></div></div>';
