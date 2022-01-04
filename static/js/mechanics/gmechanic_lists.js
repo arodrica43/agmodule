@@ -154,7 +154,7 @@ function populateChallengesGrid(item,index){
     console.log(item);
     document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h3 style="position:relative;top:0;">Repte ' + index + '</h3>' +
                                                                     '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_01.gif">' + locked_style +  
-                                                                    '<h4 style="position:absolute;bottom: 25px; right: 20px;"> ' + item[0].by + ' : ' + item[2] + ' / ' + item[0].threshold + ' </h4> ' +
+                                                                    '<h4 style="position:absolute;bottom: 25px; right: 20px;"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*100) + ' / ' + (item[0].threshold*100) + ' </h4> ' +
                                                                     '<h4 style="position:absolute;bottom: 0; right: 20px;"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </h4> ' +
                                                                 ' </div>';
 }
