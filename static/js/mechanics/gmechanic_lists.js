@@ -116,7 +116,7 @@ function populateBadgesGrid(item,index){
     var locked_style = "";
     if(!item[1]){
         locked_style = 'style="-webkit-filter: brightness(1%);filter: brightness(1%);"';
-        document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><img ' + locked_style + ' src="' + item[0].icon + 
+        document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><img ' + locked_style + ' src="' + item[0].icon + '"' +
                                                                 ' ></div>';
     }else{
         document.querySelector("#h-grid-dynamic_index").innerHTML += '<div><img src="' + item[0].icon + 
