@@ -29,7 +29,7 @@
             function populateTable(item, index) {
                 //alert(myJson.user.email );
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user" || count < 1){
+                    if(item == "dynamic_user" || count < 4){
                         var color = "whitesmoke";
                         if(item=="dynamic_user"){
                             color = "#ffcc66";
@@ -60,7 +60,7 @@
             }
             users.forEach(function(item,index){
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user" || count < 1){
+                    if(item == "dynamic_user" || count < 4){
                         document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){
                             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
                             //Logging :: button-click interaction
