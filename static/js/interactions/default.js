@@ -227,6 +227,22 @@ try {
 
     function set_widget_defaults(id, mechanic_id, link_url){
 
+
+        var lvl_msg = "Newbie";
+        if(dynamic_position > 0.33 && dynamic_position <= 0.66){
+            lvl_msg = "Medium";
+        }else if (dynamic_position > 0.66){
+            lvl_msg = "Pro";
+        }
+        if(dynamic_has_evolved == "True"){
+            swal.fire({
+                title: 'Enhorabona!',
+                text: 'Has assolit el nivell ' + lvl_msg,
+                icon: 'success',
+                confirmButtonText: 'Continua'
+              })
+        }
+
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
     		'challenge_widgets' : ["Repte", "challenges","tria quin tipus de repte vols fer!","Tria quin tipus de repte vols fer, per punts o per progres en el curs."], 
@@ -235,7 +251,7 @@ try {
     		'gift_widgets' : ["Envia Regals", "gifts","pots enviar regals!","Des aquí podràs enviar un regal a tothom. Podràs enviar-ne més a qui vulguis des de la Dashboard."], 
     		'gift_opener_widgets' : ["Obre Regals", "gift_openers","pots obrir regals!","Pots obrir regals, i a partir d’ara a la Dashboard en podràs trobar-ne  més, quan algú t'envïi un. Un regal pot contenir punts o missatges. Descobreix-los!"], 
     		'knowledge_share_widgets' : ["Dona Ajuda", "knowledge_shares","pots enviar un missatge d’ajuda","Ja pots enviar un missatge d’ajuda a tothom pel xat."], 
-    		'level_widgets' : ["Progrés", "levels","Ja ets " + dynamic_position,"Pots consultar el teu progrés a la Dashboard sempre que vulguis."], 
+    		'level_widgets' : ["Progrés", "levels","Ja ets " + lvl_msg,"Pots consultar el teu progrés a la Dashboard sempre que vulguis."], 
     		'lottery_widgets': ["Loteria", "lotteries"," pots jugar a la ruleta per obtenir més punts"," Pots jugar a la ruleta per obtenir més punts. Dona-li a la roda per a obtenir els punts."], 
     		'point_widgets' : ["Punts", "points","punts!","Amb els punts podràs interactuar amb més elements de jocs. Aconsegueix-ne més!"], 
     		'social_network_widgets' : ["Xarxa Social", "social_networks","ja pots afegir nous contactes a la teva xarxa social!","Pots afegir nous contactes a la teva xarxa social seleccionant-los de la llista d’usuaris. Segueix-los per saber què fan en el curs!"], 

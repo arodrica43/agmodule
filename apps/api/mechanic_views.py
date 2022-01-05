@@ -114,6 +114,14 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                     print("A -- ", current_user)
                     position = request.GET['dynamic_progress']
                     print("B -- ", position)
+                    try:
+                        prev_pos = current_user.gamer_profile.data["edx_data"][course_id]["position"]
+                        evol_cond = prev_pos <= 0.33 and position > 0.33
+                        evol_cond = evol_cond or (prev_pos <= 0.66 and position > 0.66)
+                        new_html = re.sub("(?!dynamic_has_evolved=)dynamic_has_evolved", str(evol_cond), queryset[0].html)    #+ str(random.random())[2:]        
+                        queryset.update(html = new_html)
+                    except:
+                        pass
                     current_user.gamer_profile.data["edx_data"][course_id]["position"] = float(position)
                     current_user.gamer_profile.data["edx_data"][course_id]["progress"] = float(position)
                     print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["position"])
