@@ -18,7 +18,7 @@
             fetch(url)
             .then(response => response.json())
             .then(function(res_json){
-                console.log(course_id.replace("+", " "));
+                console.log(course_id.replace(/+/g, " "));
                 console.log(res_json.gamer_profile.data)
                 console.log(res_json.gamer_profile.data['edx_data'])
                 val = res_json.gamer_profile.data['edx_data'][course_id.replace("+", " ")].progress;
