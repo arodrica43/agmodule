@@ -47,8 +47,8 @@ document.querySelector("#tab-container-content").innerHTML = '<div class="row">'
                                                                     '</div>'+
                                                                 '</div>';
 
-document.querySelector("#tabbuttons").innerHTML =  '<button class="mytablinks" onclick="openTab(event, \'TopFollowed\')"  style="width:16.666%; height:100px; ">Top Socializer</button>'+
-                                                    '<button class="mytablinks" onclick="openTab(event, \'TopViews\')" style="width:16.666%;height:100px;">Top Popular</button>';
+document.querySelector("#tabbuttons").innerHTML =  '<button class="mytablinks" onclick="openTab(event, \'TopFollowed\')"  style="width:50%; height:100px; ">Top Socializer</button>'+
+                                                    '<button class="mytablinks" onclick="openTab(event, \'TopViews\')" style="width:50%;height:100px;">Top Popular</button>';
 
 // document.querySelector("#scrollable-content-friendly").onscroll = function(){
 //             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
@@ -105,7 +105,7 @@ document.querySelector("#incr-top-views").innerHTML = "En manteniment"
 //         console.log("Error: " + error);
 //     });
 
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynaimic_user&show_title=false&dynamic_index=followed")
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/133/?user=dynaimic_user&show_title=false&dynamic_index=followed")
                 .then(function (response) {
                     return response.json();
                 })
@@ -116,7 +116,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynaimic_user&sh
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
-fetch("https://agmodule.herokuapp.com/api/g_mechanics/133/?user=dynaimic_user&show_title=false&dynamic_index=following")
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynaimic_user&show_title=false&dynamic_index=following")
                         .then(function (response) {
                             return response.json();
                         })
