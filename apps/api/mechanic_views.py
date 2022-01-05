@@ -120,8 +120,9 @@ class GMechanicViewSet(viewsets.ModelViewSet):
                         evol_cond = evol_cond or (prev_pos <= 0.66 and position > 0.66)
                         new_html = re.sub("(?!dynamic_has_evolved=)dynamic_has_evolved", str(evol_cond), queryset[0].html)    #+ str(random.random())[2:]        
                         queryset.update(html = new_html)
+                        print("Working!!!")
                     except:
-                        pass
+                        print("Broken!!!")
                     current_user.gamer_profile.data["edx_data"][course_id]["position"] = float(position)
                     current_user.gamer_profile.data["edx_data"][course_id]["progress"] = float(position)
                     print("D -- ", current_user.gamer_profile.data["edx_data"][course_id]["position"])
