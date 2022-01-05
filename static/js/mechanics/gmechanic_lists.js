@@ -21,8 +21,8 @@
         }
         document.querySelector("#modal-content-body-dynamic_index").innerHTML = '<div>' + 
                                                                                      '<img ' + locked_style + ' src="' + object.src + '">' +
-                                                                                     '<div><h2>' + object.dataset.name + '</h2></div>' +
-                                                                                     '<div style="margin:20px;"><h3>Increase ' + object.dataset.by + ' over ' + object.dataset.threshold + '</h3></div>' +
+                                                                                     '<div><h2>' + object.dataset.title + '</h2></div>' +
+                                                                                     '<div style="margin:20px;"><h3 style="text-align:center;">Has obtinut aquesta medalla per haver superat la classificació ' + object.dataset.name + '</h3></div>' +
                                                                                     '</div>';
         modal.style.display = "block";
     }
@@ -124,6 +124,7 @@ function populateBadgesGrid(item,index){
                                                                     ' data-id=' + item[0].id +
                                                                     ' data-by=' + item[0].by +
                                                                     ' data-threshold=' + item[0].threshold +
+                                                                    ' data-title=' + item[0].title +
                                                                     ' data-name="' + item[0].name + '"' +
                                                                 ' ></div>';   
     }
