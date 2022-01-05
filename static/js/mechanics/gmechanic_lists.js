@@ -129,10 +129,8 @@ function populateBadgesGrid(item,index){
 function populateUnlockablesGrid(item,index){
     console.log("Unlocked :: " + item[1]);
     var icon = "";
-    var extra_img = "";
     if(item[1]){
-        icon = item[0].icon;
-        extra_img = "<img src='https://agmodule.herokuapp.com/media/unlockable_icons/" + item[0].name + ".png'>";
+        icon = "https://agmodule.herokuapp.com/media/unlockable_icons/reward_" + item[0].name + ".png";
     }else{
         icon = "https://agmodule.herokuapp.com/media/badge_icons/locked.png";
     }
@@ -144,7 +142,7 @@ function populateUnlockablesGrid(item,index){
                                                                     ' data-threshold=' + item[0].threshold +
                                                                     ' data-name="' + item[0].name + '"' +
                                                                     ' data-locked_content=\'' + item[0].locked_html.replace(/\'/g," ") + '\'' +
-                                                                ' >' + extra_img + '</div>';
+                                                                ' ></div>';
 }
 
 var num_progr;
