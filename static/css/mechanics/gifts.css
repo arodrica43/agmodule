@@ -40,7 +40,7 @@
 #scrollable-content {
   padding-left: 20px;
   padding-right: 20px;
-  height: 30vw;
+  height: calc(25vw + 100px);
   overflow: auto;
   background-color: white;
   margin:10px;
@@ -84,7 +84,7 @@ input.largeCheckbox {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 61%;
 }
 
 /* The Close Button */
