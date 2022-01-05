@@ -7,6 +7,7 @@ try {
 
     //Custom alerts
     var swal = "";
+    var = has_evolved;
     try{
         require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
             function (Swal) {
@@ -234,6 +235,7 @@ try {
         }else if (dynamic_position > 0.66){
             lvl_msg = "Pro";
         }
+        has_evolved = "dynamic_has_evolved";
 
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
