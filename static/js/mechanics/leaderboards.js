@@ -26,13 +26,16 @@
             document.querySelector("#waiting-dynamic_index").src = "";
             var count = 0; 
             users.forEach(populateTable);
-            console.log("dynamic_user");
             function populateTable(item, index) {
                 //alert(myJson.user.email );
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user" || count < 3){
+                    if(item == "dynamic_user" || count < 5){
+                        var color = "whitesmoke";
+                        if(item=="dynamic_user"){
+                            color = "#ffcc66";
+                        }
                         document.querySelector("#t-incr-dynamic_index").innerHTML += 
-                            "<tr id='row-element-dynamic_index-" + index + "' style='background:#ffcc66;'>" + 
+                            "<tr id='row-element-dynamic_index-" + index + "' style='background:" + color + ";'>" + 
                                 "<td>#" + (index + 1) + "</td>" +
                                 "<td>" + item + "</td>" + 
                                 "<td>" + scores[index] + "</td>" + 
