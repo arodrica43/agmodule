@@ -44,8 +44,8 @@
 }
 
 input.largeCheckbox { 
-  width: 22px; 
-  height: 22px; 
+  width: 3vw; 
+  height: 3vw; 
   float:left;
   text-align:center;
 } 
