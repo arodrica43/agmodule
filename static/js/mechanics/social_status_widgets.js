@@ -18,6 +18,7 @@ function render_ldb(leadboard){
 
 function selectPolicy(list){
   // Select non social leaderboard
+  console.log(list);
   var new_list = [];
   for(var i = 0; i < list.length; i++){
     if(list[i].sort_by == "following" && list[i].sort_by == "followers"){
