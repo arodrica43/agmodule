@@ -17,10 +17,10 @@
         console.log(object.dataset);
         var locked_style = "";
         if(object.dataset.unlocked == "false"){
-            locked_style = 'style="-webkit-filter: brightness(1%);filter: brightness(1%);"';
+            locked_style = '-webkit-filter: brightness(1%);filter: brightness(1%);';
         }
         document.querySelector("#modal-content-body-dynamic_index").innerHTML = '<div>' + 
-                                                                                     '<img ' + locked_style + ' src="' + object.src + '">' +
+                                                                                     '<img style="' + locked_style + ' width:20vw;" src="' + object.src + '">' +
                                                                                      '<div><h2>' + object.dataset.title + '</h2></div>' +
                                                                                      '<div style="margin:20px;"><h3 style="text-align:center;">Has obtinut aquesta medalla per haver superat la classificació ' + object.dataset.name + '</h3></div>' +
                                                                                     '</div>';
