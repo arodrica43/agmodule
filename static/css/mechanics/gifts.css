@@ -6,15 +6,13 @@
 .item2 { grid-area: menu; }
 .item3 {grid-area: item3; text-align:left;}
 .void { grid-area: void; }
-.item5 { grid-area: footer; padding-left:40px;width:100%;}
+.item5 { grid-area: footer; width:100%;}
 
 .grid-container {
   display: grid;
   grid-template-areas:
     'item3 item3 item3 users users users '
     'label1 header header users users users'
-    'label2 menu menu users users users'
-    'label2 menu menu users users users'
     'label2 menu menu users users users'
     'label2 menu menu users users users'
     'footer footer footer users users users'
