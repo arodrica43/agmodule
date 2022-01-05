@@ -27,7 +27,6 @@ document.getElementById("item3").innerHTML = '<div><img style="width:70px;height
 document.getElementById("label1").innerHTML = '<label for="gift-options" style="font-size:2vw;">Type of gift: &nbsp; </label>';
 document.getElementById("item1").innerHTML = '<select name="gift-options" id="gift-options" style="width:93%; font-size:2vw;" onchange="updateInput()">'+
                                                 '<option value="score" style=" ">Points</option>'+
-                                                '<option value="$">$</option>'+
                                                 '<option value="text">Text</option>'+
                                               '</select>';
 document.getElementById("label2").innerHTML = '<label for="gift-input-instance" id="gift-input-instance-label" style="font-size:2vw;">Amount: &nbsp; </label>';
