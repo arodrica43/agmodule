@@ -10,36 +10,31 @@
     // ---------------------------------------------------------------------------------------
 
 document.querySelector("#sst-widget-handshake-dynamic_index").value = 1;
-
-  
-function log_txt_click(){
-          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-          //Logging :: button-click interaction
-          log_click({itime: 10, message:"Title text clicked", register : log, level:1,type:"TextClick"});
-           // --------------------------------------------------------------------------
-          };
-
-function log_img_click(){
-          // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-          //Logging :: button-click interaction
-          log_click({itime: 10, message:"Main icon clicked", register : log, level:1,type:"ImageClick"});
-           // --------------------------------------------------------------------------
-          };
-
-function render_sst(social_stat){
-	document.querySelector("#sst-widget-dynamic_index").innerHTML += "<div></div><div><img onclick='log_img_click();' src='https://agmodule.herokuapp.com/media/social_icons/social_status.png'><br><br><p onclick='log_txt_click();' style='text-align:center;'>You have " + social_stat[1] + " " + social_stat[0] + "!</p></div>";
+function render_ldb(leadboard){
+  document.querySelector("#sst-widget-dynamic_index").innerHTML += '<div style="height:calc(4vw);"></div>'
+  document.querySelector("#sst-widget-dynamic_index").innerHTML += leadboard.html;
+    $(leadboard.html).appendTo(document.body);
 }
 
-function selectPolicy(to_select){
-	// Select non social leaderboard
-	var r = Math.floor(Math.random() * to_select.length);
-	return to_select[r];
-	
+function selectPolicy(list){
+  // Select non social leaderboard
+  var new_list = [];
+  for(var i = 0; i < list.length; i++){
+    if(list[i].sort_by == "following" && list[i].sort_by == "followers"){
+      new_list.push(list[i]);
+    }
+  }
+  return new_list[Math.floor(Math.random() * new_list.length)];
 }
 
-url = "https://agmodule.herokuapp.com/api/social_statuses/widget/dynamic_user";
+url = "https://agmodule.herokuapp.com/api/leaderboards/";
 fetch(url)
 .then(response => response.json())
-.then(res_json => (console.log(res_json),selectPolicy(res_json.results)))
-.then((selected) => render_sst(selected))
+.then(res_json => (res_json.results))
+.then((list) => (selectPolicy(list))) // Select Policy: select the first (could be random, or other policy)
+.then((leadboard) => (console.log(leadboard), 
+            fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + leadboard.id + "/?user=dynamic_user&show_title=false&dynamic_index=dynamic_index&only_me=yes")
+            .then(response => response.json())
+            .then((updated_leadboard) => (console.log(updated_leadboard), render_ldb(updated_leadboard)))
+            .catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
