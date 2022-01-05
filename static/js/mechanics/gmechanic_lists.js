@@ -70,7 +70,7 @@ function loadMechanic(mechanic){
 }
 
 function populateNaiveGrid(item,index){
-    if(item == 0){
+    if(index == 0){
         fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + item.id + "/?user=dynamic_user")
         .then((response)  => (response.json()))
         .then(function (myJson) {
