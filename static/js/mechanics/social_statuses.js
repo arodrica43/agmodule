@@ -47,19 +47,15 @@ document.querySelector("#tab-container-content").innerHTML = '<div class="row">'
                                                                     '</div>'+
                                                                 '</div>';
 
-document.querySelector("#tabbuttons").innerHTML = '<button class="mytablinks" onclick="openTab(event, \'TopFriendly\')" id="defaultOpen" style="width:16.666%;height:100px;">Top Friendly</button>'+
-                                                        '<button class="mytablinks" onclick="openTab(event, \'TopFollowed\')"  style="width:16.666%; height:100px; ">Top Socializer</button>'+
-                                                        '<button class="mytablinks" onclick="openTab(event, \'TopViews\')" style="width:16.666%;height:100px;">Top Popular</button>'+
-                                                        '<button class="mytablinks" onclick="openTab(event, \'TopScore\')"  style="width:16.666%; height:100px; ">Top Scores</button>'+
-                                                        '<button class="mytablinks" onclick="openTab(event, \'TopLevel\')" style="width:16.666%;height:100px; ">Top Levels</button>'+
-                                                        '<button class="mytablinks" onclick="openTab(event, \'TopCoin\')" style="width:16.666%;height:100px; ">Top $</button>';
+document.querySelector("#tabbuttons").innerHTML =  '<button class="mytablinks" onclick="openTab(event, \'TopFollowed\')"  style="width:16.666%; height:100px; ">Top Socializer</button>'+
+                                                    '<button class="mytablinks" onclick="openTab(event, \'TopViews\')" style="width:16.666%;height:100px;">Top Popular</button>';
 
-document.querySelector("#scrollable-content-friendly").onscroll = function(){
-            // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-            //Logging :: button-click interaction
-            log_click({itime: 2,message:"Scrolling 'TopFriendly' leaderboard", register : log, level:1,type:"Scroll"});
-            // --------------------------------------------------------------------------
-        }
+// document.querySelector("#scrollable-content-friendly").onscroll = function(){
+//             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+//             //Logging :: button-click interaction
+//             log_click({itime: 2,message:"Scrolling 'TopFriendly' leaderboard", register : log, level:1,type:"Scroll"});
+//             // --------------------------------------------------------------------------
+//         }
 document.querySelector("#scrollable-content-followed").onscroll = function(){
             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
             //Logging :: button-click interaction
@@ -72,30 +68,30 @@ document.querySelector("#scrollable-content-views").onscroll = function(){
             log_click({itime: 2,message:"Scrolling 'TopViewed' leaderboard", register : log, level:1,type:"Scroll"});
             // --------------------------------------------------------------------------
         }
-document.querySelector("#scrollable-content-score").onscroll = function(){
-            // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-            //Logging :: button-click interaction
-            log_click({itime: 2,message:"Scrolling 'TopScore' leaderboard", register : log, level:1,type:"Scroll"});
-            // --------------------------------------------------------------------------
-        }
-document.querySelector("#scrollable-content-level").onscroll = function(){
-            // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-            //Logging :: button-click interaction
-            log_click({itime: 2,message:"Scrolling 'TopLevel' leaderboard", register : log, level:1,type:"Scroll"});
-            // --------------------------------------------------------------------------
-        }
-document.querySelector("#scrollable-content-coin").onscroll = function(){
-            // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-            //Logging :: button-click interaction
-            log_click({itime: 2,message:"Scrolling 'TopCoins' leaderboard", register : log, level:1,type:"Scroll"});
-            // --------------------------------------------------------------------------
-        }
-document.querySelector("#incr-top-friendly").innerHTML = "En manteniment"
+// document.querySelector("#scrollable-content-score").onscroll = function(){
+//             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+//             //Logging :: button-click interaction
+//             log_click({itime: 2,message:"Scrolling 'TopScore' leaderboard", register : log, level:1,type:"Scroll"});
+//             // --------------------------------------------------------------------------
+//         }
+// document.querySelector("#scrollable-content-level").onscroll = function(){
+//             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+//             //Logging :: button-click interaction
+//             log_click({itime: 2,message:"Scrolling 'TopLevel' leaderboard", register : log, level:1,type:"Scroll"});
+//             // --------------------------------------------------------------------------
+//         }
+// document.querySelector("#scrollable-content-coin").onscroll = function(){
+//             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+//             //Logging :: button-click interaction
+//             log_click({itime: 2,message:"Scrolling 'TopCoins' leaderboard", register : log, level:1,type:"Scroll"});
+//             // --------------------------------------------------------------------------
+//         }
+//document.querySelector("#incr-top-friendly").innerHTML = "En manteniment"
 document.querySelector("#incr-top-followed").innerHTML = "En manteniment"
 document.querySelector("#incr-top-views").innerHTML = "En manteniment"
-document.querySelector("#incr-top-score").innerHTML = "En manteniment"
-document.querySelector("#incr-top-level").innerHTML = "En manteniment"
-document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
+// document.querySelector("#incr-top-score").innerHTML = "En manteniment"
+// document.querySelector("#incr-top-level").innerHTML = "En manteniment"
+// document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
 
 // fetch("https://agmodule.herokuapp.com/api/g_mechanics/14/?user=dynaimic_user&show_title=false&dynamic_index=friendly")
 //     .then(function (response) {
@@ -109,28 +105,28 @@ document.querySelector("#incr-top-coin").innerHTML = "En manteniment"
 //         console.log("Error: " + error);
 //     });
 
-// fetch("https://agmodule.herokuapp.com/api/g_mechanics/15/?user=dynaimic_user&show_title=false&dynamic_index=followed")
-//                 .then(function (response) {
-//                     return response.json();
-//                 })
-//                 .then(function (myJson) {
-//                     document.querySelector("#incr-top-followed").innerHTML = (myJson.html);
-//                     $(myJson.html).appendTo(document.body);    
-//                 })
-//                 .catch(function (error) {
-//                     console.log("Error: " + error);
-//                 });
-// fetch("https://agmodule.herokuapp.com/api/g_mechanics/16/?user=dynaimic_user&show_title=false&dynamic_index=views")
-//                         .then(function (response) {
-//                             return response.json();
-//                         })
-//                         .then(function (myJson) {
-//                             document.querySelector("#incr-top-views").innerHTML = (myJson.html);
-//                             $(myJson.html).appendTo(document.body);    
-//                         })
-//                         .catch(function (error) {
-//                             console.log("Error: " + error);
-//                         });
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynaimic_user&show_title=false&dynamic_index=followed")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    document.querySelector("#incr-top-followed").innerHTML = (myJson.html);
+                    $(myJson.html).appendTo(document.body);    
+                })
+                .catch(function (error) {
+                    console.log("Error: " + error);
+                });
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/133/?user=dynaimic_user&show_title=false&dynamic_index=following")
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (myJson) {
+                            document.querySelector("#incr-top-views").innerHTML = (myJson.html);
+                            $(myJson.html).appendTo(document.body);    
+                        })
+                        .catch(function (error) {
+                            console.log("Error: " + error);
+                        });
 // fetch("https://agmodule.herokuapp.com/api/g_mechanics/11/?user=dynaimic_user&show_title=false&dynamic_index=score")
 //                             .then(function (response) {
 //                                 return response.json();
