@@ -7,7 +7,7 @@ try {
 
     //Custom alerts
     var swal = "";
-    var = has_evolved;
+    var has_evolved;
     try{
         require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
             function (Swal) {
