@@ -33,6 +33,8 @@
                         var color = "whitesmoke";
                         if(item=="dynamic_user"){
                             color = "#ffcc66";
+                        }else{
+                            count++;
                         }
                         document.querySelector("#t-incr-dynamic_index").innerHTML += 
                             "<tr id='row-element-dynamic_index-" + index + "' style='background:" + color + ";'>" + 
@@ -40,7 +42,6 @@
                                 "<td>" + item + "</td>" + 
                                 "<td>" + scores[index] + "</td>" + 
                             "</tr>";
-                        count++;
                     }else{
 
                     }
