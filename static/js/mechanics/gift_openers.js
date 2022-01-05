@@ -7,22 +7,6 @@
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     // ---------------------------------------------------------------------------------------
 
-   var lvl_msg = "Newbie";
-        if(dynamic_position > 0.33 && dynamic_position <= 0.66){
-            lvl_msg = "Medium";
-        }else if (dynamic_position > 0.66){
-            lvl_msg = "Pro";
-        }
-        console.log(has_evolved);
-        if(has_evolved == "True"){
-            // swal.fire({
-            //     title: 'Enhorabona!',
-            //     text: 'Has assolit el nivell ' + lvl_msg,
-            //     icon: 'success',
-            //     confirmButtonText: 'Continua'
-            //   });
-        }
-
 
 document.getElementById("body-gifts-content").innerHTML = '<div class="scrollable-content-gifts" id = "gifts-content"></div>';
 document.getElementById("gifts-content").onscroll = function(){
@@ -84,6 +68,22 @@ function log_txt_click(){
         })
         .then(function (myJson) {
             document.querySelector("#header-gift-opener").innerHTML = myJson.title;
+            var lvl_msg = "Newbie";
+                if(dynamic_position > 0.33 && dynamic_position <= 0.66){
+                    lvl_msg = "Medium";
+                }else if (dynamic_position > 0.66){
+                    lvl_msg = "Pro";
+                }
+                console.log(has_evolved);
+                if(has_evolved == "True"){
+                    swal.fire({
+                        title: 'Success!',
+                        text: myJson.message,
+                        icon: 'success',
+                        confirmButtonText: 'Continue'
+                      })
+                }
+
              
         })
         .catch(function (error) {
