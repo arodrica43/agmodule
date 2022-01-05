@@ -30,7 +30,7 @@ function choose_bdg(badge){
     // 	  locked_style = 'You won a new badge: ' + badge[0].title;
     // } 
     
-   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"/>Medalla de superació de la classificació ' + badge[0].name + '</div>';
+   	document.querySelector("#bdg-widget-dynamic_index").innerHTML += '<div><div><img onclick="log_bdg_click();" id="bdg-icon-dynamic_index" src="' + badge[0].icon + '"></div><div>Medalla de superació de la classificació ' + badge[0].name + '</div></div>';
 }
 url = "https://agmodule.herokuapp.com/api/badges/retrieve_for_user/dynamic_user?unlock=true&widget_id=dynamic_index";
 fetch(url)
