@@ -234,7 +234,7 @@ try {
         }else if (dynamic_position > 0.66){
             lvl_msg = "Pro";
         }
-        if(dynamic_has_evolved == "True"){
+        if("dynamic_has_evolved" == "True"){
             swal.fire({
                 title: 'Enhorabona!',
                 text: 'Has assolit el nivell ' + lvl_msg,
