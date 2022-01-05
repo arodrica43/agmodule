@@ -234,15 +234,6 @@ try {
         }else if (dynamic_position > 0.66){
             lvl_msg = "Pro";
         }
-        console.log("dynamic_has_evolved");
-        if("dynamic_has_evolved" == "True"){
-            swal.fire({
-                title: 'Enhorabona!',
-                text: 'Has assolit el nivell ' + lvl_msg,
-                icon: 'success',
-                confirmButtonText: 'Continua'
-              });
-        }
 
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
