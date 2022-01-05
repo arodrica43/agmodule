@@ -148,13 +148,14 @@ var num_score;
 function populateChallengesGrid(item,index){
 
     var ch_icon = 1;
+    var render = true;
     if(item[0].by == "progress"){
         ch_icon = parseInt(5*item[0].threshold);
         render = ch_icon <= num_progr;
     }else{
         ch_icon = parseInt(item[0].threshold/80);
+        render = ch_icon <= num_score;
     }
-    var render = ch_icon <= num_progr;
     if(render){
         console.log("Unlocked :: " + item[1]);
         var locked_style = '<button  style="position:absolute; bottom:10px; right:10px; width:50%;" onclick="claimReward(this)" data-id=' + item[0].id + '>Claim</button>';
