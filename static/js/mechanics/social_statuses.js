@@ -105,7 +105,6 @@ document.querySelector("#incr-top-views").innerHTML = "En manteniment"
 //         console.log("Error: " + error);
 //     });
 
-console.log("dynamic_user");
 fetch("https://agmodule.herokuapp.com/api/g_mechanics/133/?user=dynaimic_user&show_title=false&dynamic_index=followed")
                 .then(function (response) {
                     return response.json();

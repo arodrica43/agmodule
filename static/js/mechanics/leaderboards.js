@@ -25,6 +25,7 @@
             //document.querySelector("#extra").innerHTML = "Length = " + myJson.length + ", Type = " + myJson.mechanic_type; 
             document.querySelector("#waiting-dynamic_index").src = "";
             users.forEach(populateTable);
+            console.log("dynamic_user");
             function populateTable(item, index) {
                 //alert(myJson.user.email );
                 if("only_me" == "yes"){
