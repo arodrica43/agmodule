@@ -36,6 +36,6 @@ url = "https://agmodule.herokuapp.com/api/badges/retrieve_for_user/dynamic_user?
 fetch(url)
 .then(response => response.json())
 .then(res_json => (res_json.results))
-.then((list) => (list[0]))
+.then((list) => (list.sort((a, b) => a[0].id - b[0].id),list[0]))
 .then((badge) => (choose_bdg(badge)))
 .catch(error => (console.log("Error: " + error)))
