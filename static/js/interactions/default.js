@@ -229,7 +229,7 @@ try {
 
 
         var lvl_msg = "Newbie";
-        if(dynamic_position > 0.33 && dynamic_position <= 0.66){
+        if(dynamic_position <= 0.66){
             lvl_msg = "Medium";
         }else if (dynamic_position > 0.66){
             lvl_msg = "Pro";
