@@ -1,6 +1,6 @@
 
 .item1 { grid-area: header; }
-.users { grid-area: users;   width: 250px;}
+.users { grid-area: users; }
 .label1 {grid-area: label1; text-align:center;}
 .label2 {grid-area: label2;text-align:center;}
 .item2 { grid-area: menu; }
