@@ -24,18 +24,20 @@
             
             //document.querySelector("#extra").innerHTML = "Length = " + myJson.length + ", Type = " + myJson.mechanic_type; 
             document.querySelector("#waiting-dynamic_index").src = "";
+            var count = 0; 
             users.forEach(populateTable);
             console.log("dynamic_user");
             function populateTable(item, index) {
                 //alert(myJson.user.email );
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user"){
+                    if(item == "dynamic_user" || count < 3){
                         document.querySelector("#t-incr-dynamic_index").innerHTML += 
                             "<tr id='row-element-dynamic_index-" + index + "' style='background:#ffcc66;'>" + 
                                 "<td>#" + (index + 1) + "</td>" +
                                 "<td>" + item + "</td>" + 
                                 "<td>" + scores[index] + "</td>" + 
                             "</tr>";
+                        count++;
                     }else{
 
                     }
@@ -55,7 +57,7 @@
             }
             users.forEach(function(item,index){
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user"){
+                    if(item == "dynamic_user" || count < 3){
                         document.querySelector("#row-element-dynamic_index-" + index).onclick = function(){
                             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
                             //Logging :: button-click interaction
