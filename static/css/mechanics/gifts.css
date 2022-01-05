@@ -3,7 +3,7 @@
 .users { grid-area: users; }
 .label1 {grid-area: label1; text-align:center;}
 .label2 {grid-area: label2;text-align:center;}
-.item2 { grid-area: menu; }
+.item2 { grid-area: menu; font-size: 2vw;}
 .item3 {grid-area: item3; text-align:left;}
 .void { grid-area: void; }
 .item5 { grid-area: footer; width:100%;}

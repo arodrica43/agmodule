@@ -24,14 +24,14 @@ document.getElementById("main-content-gifting").innerHTML = '<div class="contain
                                                         '</div>';
 
 document.getElementById("item3").innerHTML = '<div><img style="width:70px;height:70px;" src="https://agmodule.herokuapp.com/media/dashboard_icons/gifts.png" ></div>'//'<a href="#" onclick="openMyGifts()"><img src="https://img.icons8.com/bubbles/2x/gift.png" style="width:50px; height:50px;">&nbsp; My Gifts <br><br></a>';
-document.getElementById("label1").innerHTML = '<label for="gift-options">Type of gift: &nbsp; </label>';
-document.getElementById("item1").innerHTML = '<select name="gift-options" id="gift-options" style="width:93%; font-size:15px;" onchange="updateInput()">'+
+document.getElementById("label1").innerHTML = '<label for="gift-options" style="font-size:2vw;">Type of gift: &nbsp; </label>';
+document.getElementById("item1").innerHTML = '<select name="gift-options" id="gift-options" style="width:93%; font-size:2vw;" onchange="updateInput()">'+
                                                 '<option value="score" style=" ">Points</option>'+
                                                 '<option value="$">$</option>'+
                                                 '<option value="text">Text</option>'+
                                               '</select>';
-document.getElementById("label2").innerHTML = '<label for="gift-input-instance" id="gift-input-instance-label">Amount: &nbsp; </label>';
-document.getElementById("gift-input").innerHTML = '<input id="gift-input-instance" type="number" value="10" style="width:93%; text-align:center;">';
+document.getElementById("label2").innerHTML = '<label for="gift-input-instance" id="gift-input-instance-label" style="font-size:2vw;">Amount: &nbsp; </label>';
+document.getElementById("gift-input").innerHTML = '<input id="gift-input-instance" type="number" value="10" style="width:93%; text-align:center; font-size:2vw;">';
 document.getElementById("label3").innerHTML = '<b>Send gift to: </b>';
 document.getElementById("scrollable-users").innerHTML = ' <div id="scrollable-content" style="border-style:groove; border-width:1px;"><div style="border-x:groove; border-width:1px;margin:10px;">'+
                                                 '<input type="checkbox" id="select-all" class="largeCheckbox" name="vehicle1" value="Bike" style="" onclick="selectAll(this);">'+
@@ -121,7 +121,7 @@ function updateInput() {
        
   }else{
        document.getElementById("gift-input-instance-label").innerHTML = "Text: &nbsp; ";
-       document.getElementById("gift-input").innerHTML = '<textarea class="gift-textarea" id="gift-input-instance" placeholder="Hi! That\'s my text-like gift!"></textarea>';
+       document.getElementById("gift-input").innerHTML = '<textarea style="height:5vw;width:80%;" class="gift-textarea" id="gift-input-instance" placeholder="Hi! That\'s my text-like gift!"></textarea>';
   }
 }
 
