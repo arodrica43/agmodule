@@ -14,7 +14,7 @@
             return response.json();
         })
         .then(function (myJson) {
-            val = dynamic_position;
+            val = myJson.value;
             var percent = Math.min(100,100*val.toFixed(3))  + '%';
             document.querySelector("#header-lvl").innerHTML = myJson.title;
             document.querySelector("#value").innerHTML = "<div></div><br><div>Progress: " + percent + "</div>" ;
