@@ -1,6 +1,6 @@
 
 .item1 { grid-area: header; }
-.users { grid-area: users; }
+.users { grid-area: users;   width: 250px;}
 .label1 {grid-area: label1; text-align:center;}
 .label2 {grid-area: label2;text-align:center;}
 .item2 { grid-area: menu; }
@@ -40,7 +40,7 @@
 #scrollable-content {
   padding-left: 20px;
   padding-right: 20px;
-  height: 300px;
+  height: 30vw;
   overflow: auto;
   background-color: white;
   margin:10px;

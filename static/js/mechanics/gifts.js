@@ -71,17 +71,17 @@ document.querySelector("#scrollable-content").onscroll = function(){
         }
 
 
-        fetch("https://agmodule.herokuapp.com/api/g_mechanics/20/?user=dynamic_user&show_title=false")
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                document.querySelector("#mygifts-body-incr").innerHTML = (myJson.html);
-                $(myJson.html).appendTo(document.body);    
-            })
-            .catch(function (error) {
-                console.log("Error: " + error);
-            });
+        // fetch("https://agmodule.herokuapp.com/api/g_mechanics/20/?user=dynamic_user&show_title=false")
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (myJson) {
+        //         document.querySelector("#mygifts-body-incr").innerHTML = (myJson.html);
+        //         $(myJson.html).appendTo(document.body);    
+        //     })
+        //     .catch(function (error) {
+        //         console.log("Error: " + error);
+        //     });
 
 function openMyGifts(){
   // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
