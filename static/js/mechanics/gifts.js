@@ -35,7 +35,7 @@ document.getElementById("gift-input").innerHTML = '<input id="gift-input-instanc
 document.getElementById("label3").innerHTML = '<b>Send gift to: </b>';
 document.getElementById("scrollable-users").innerHTML = ' <div id="scrollable-content" style="border-style:groove; border-width:1px;"><div style="border-x:groove; border-width:1px;margin:10px;">'+
                                                 '<input type="checkbox" id="select-all" class="largeCheckbox" name="vehicle1" value="Bike" style="" onclick="selectAll(this);">'+
-                                                '<div style="font-size:1.5rem; text-align:center;">All users</div>'+
+                                                '<div style="font-size:1.5rem; text-align:center; font-size:2vw;">All users</div>'+
                                                   '<hr>'+
                                               '</div><div style="text-align:center" id ="loading-gif"><img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/></div></div>';
 document.getElementById("item5").innerHTML = '<button class="btn btn-primary" style="font-size:2vw;width:80%;height:80%;" onclick="sendGifts()">Envia regals</button>';
@@ -227,7 +227,7 @@ function sendGifts(){
                 usernames.push('"' + myJson[i].user.username + '"');
                 document.getElementById("scrollable-content").innerHTML +=  '<div style="border-x:groove; border-width:1px;margin:10px;">'+
                                                                             '<input type="checkbox" id="checkbox-' + myJson[i].user.username  + '" class="largeCheckbox" name="' + myJson[i].user.username  + '" value="'+ myJson[i].user.username  + '">'+
-                                                                            '<div style="font-size:1.2rem; text-align:center;font-size:2vw;">' + myJson[i].user.username  + '</div>'+
+                                                                            '<div style="text-align:left;font-size:2vw; margin-left:5vw;">' + myJson[i].user.username  + '</div>'+
                                                                           '</div>';
               }
             });

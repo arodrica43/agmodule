@@ -48,6 +48,7 @@ input.largeCheckbox {
   height: 3vw; 
   float:left;
   text-align:center;
+  margin-left: 4vw;
 } 
   
 .block-submit {
