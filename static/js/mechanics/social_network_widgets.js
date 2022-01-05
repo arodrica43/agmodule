@@ -98,6 +98,17 @@ function populateSearch(item,index,follow_text){
                                                           '</li>';  
 }
 
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 function loadPopulateSearch(url){
   fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/")
   .then(function (response) {
@@ -147,17 +158,23 @@ function loadPopulateSearch(url){
         }else if(w/16 < 56){
         	fw = 5;
         }
-        var top = Math.min( myJson.results.length, fw);
-        for(var i = 0; i < top; i++){
+        var top = myJson.results.length;
+        var count = 0;
+        var gamers = shuffle(myJson.results);
+        for(var i = 0; i < top && count < fw; i++){
             var follow_text = "";
-            if(friends.includes(myJson.results[i].user.username)){
+            if(friends.includes(gamers[i].user.username)){
               follow_text = "Following";
             }else{
               follow_text = "Follow";
+              if( gamers[i].user.username != 'dynamic_user' ){
+                populateSearch(gamers[i],i,follow_text);
+                count++;
+              } 
             }
-            if( myJson.results[i].user.username != 'dynamic_user' ){
-              populateSearch(myJson.results[i],i,follow_text);
-            } 
+        }
+        if(count == 0){
+          document.getElementById("search-users-grid").innerHTML = "Ja segueixes a tots els possibles usuaris, felicitats!"; 
         }
     })
     .catch(function (error) {
