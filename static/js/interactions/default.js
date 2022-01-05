@@ -5,9 +5,6 @@ try {
 
     //include_interaction_testing_tools
 
-    var swal_head = '<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> ' +
-                    '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js" integrity="sha256-EQtsX9S1OVXguoTG+N488HS0oZ1+s80IbOEbE3wzJig=" crossorigin="anonymous"></script>';
-    $(swal_head).appendTo(document.head);
     //Custom alerts
     var swal = "";
     try{
