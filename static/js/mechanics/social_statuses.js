@@ -47,8 +47,8 @@ document.querySelector("#tab-container-content").innerHTML = '<div class="row">'
                                                                     '</div>'+
                                                                 '</div>';
 
-document.querySelector("#tabbuttons").innerHTML =  '<button class="mytablinks" onclick="openTab(event, \'TopFollowed\')" id="defaultOpen" style="width:50%; height:100px; ">Top Socializer</button>'+
-                                                    '<button class="mytablinks" onclick="openTab(event, \'TopViews\')" style="width:50%;height:100px;">Top Popular</button>';
+document.querySelector("#tabbuttons").innerHTML =  '<button class="mytablinks bt btn-primary" onclick="openTab(event, \'TopFollowed\')" id="defaultOpen" style="width:50%; height:100px; ">Top Socializer</button>'+
+                                                    '<button class="mytablinks bt btn-primary" onclick="openTab(event, \'TopViews\')" style="width:50%;height:100px;">Top Popular</button>';
 
 // document.querySelector("#scrollable-content-friendly").onscroll = function(){
 //             // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
