@@ -14,28 +14,35 @@
             return response.json();
         })
         .then(function (myJson) {
-            val = myJson.value;
-            console.log(val);
-            var percent = Math.min(100,100*val.toFixed(3))  + '%';
-            document.querySelector("#header-lvl").innerHTML = myJson.title;
-            document.querySelector("#value").innerHTML = "<div></div><br><div>Progress: " + percent + "</div>" ;
-            document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
-                                                                '<div class="meter red">' +
-                                                                    '<span style="width: ' + percent + '"></span>' +
-                                                                '</div>' +
-                                                            '</div><br>'; 
-            document.querySelector("#progress-bar-div").onclick = function(){
-                // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-                //Logging :: button-click interaction
-                log_click({itime: 2, message:"Progress bar clicked", register : log, level:1,type:"ImageClick"});
-                // --------------------------------------------------------------------------
-            }   
-            document.querySelector("#value").onclick = function(){
-                // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-                //Logging :: button-click interaction
-                log_click({itime: 2, message:"Current level text clicked", register : log, level:1,type:"TextClick"});
-                // --------------------------------------------------------------------------
-            }          
+            url = "https://agmodule.herokuapp.com/api/gamers/dynamic_user/";
+            fetch(url)
+            .then(response => response.json())
+            .then(function(res_json){
+                val = res_json.gamer_profile.data.edx_data[course_id].progress;
+                console.log(val);
+                var percent = Math.min(100,100*val.toFixed(3))  + '%';
+                document.querySelector("#header-lvl").innerHTML = myJson.title;
+                document.querySelector("#value").innerHTML = "<div></div><br><div>Progress: " + percent + "</div>" ;
+                document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
+                                                                    '<div class="meter red">' +
+                                                                        '<span style="width: ' + percent + '"></span>' +
+                                                                    '</div>' +
+                                                                '</div><br>'; 
+                document.querySelector("#progress-bar-div").onclick = function(){
+                    // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+                    //Logging :: button-click interaction
+                    log_click({itime: 2, message:"Progress bar clicked", register : log, level:1,type:"ImageClick"});
+                    // --------------------------------------------------------------------------
+                }   
+                document.querySelector("#value").onclick = function(){
+                    // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+                    //Logging :: button-click interaction
+                    log_click({itime: 2, message:"Current level text clicked", register : log, level:1,type:"TextClick"});
+                    // --------------------------------------------------------------------------
+                }  
+            })
+            .then((list) => (ch_list = list))
+            .catch(error => (console.log("Error: " + error)))       
         })
         .catch(function (error) {
             console.log("Error: " + error);
