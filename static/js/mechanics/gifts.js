@@ -227,7 +227,7 @@ function sendGifts(){
                 usernames.push('"' + myJson[i].user.username + '"');
                 document.getElementById("scrollable-content").innerHTML +=  '<div style="border-x:groove; border-width:1px;margin:10px;">'+
                                                                             '<input type="checkbox" id="checkbox-' + myJson[i].user.username  + '" class="largeCheckbox" name="' + myJson[i].user.username  + '" value="'+ myJson[i].user.username  + '">'+
-                                                                            '<div style="text-align:left;font-size:2vw; margin-left:5vw;">' + myJson[i].user.username  + '</div>'+
+                                                                            '<div style="text-align:center;font-size:2vw; margin-left:4vw;">' + myJson[i].user.username  + '</div>'+
                                                                           '</div>';
               }
             });
