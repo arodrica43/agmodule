@@ -15,12 +15,12 @@
         }
         console.log(has_evolved);
         if(has_evolved == "True"){
-            swal.fire({
-                title: 'Enhorabona!',
-                text: 'Has assolit el nivell ' + lvl_msg,
-                icon: 'success',
-                confirmButtonText: 'Continua'
-              });
+            // swal.fire({
+            //     title: 'Enhorabona!',
+            //     text: 'Has assolit el nivell ' + lvl_msg,
+            //     icon: 'success',
+            //     confirmButtonText: 'Continua'
+            //   });
         }
 
 
