@@ -21,7 +21,7 @@ function selectPolicy(list){
   console.log(list);
   var new_list = [];
   for(var i = 0; i < list.length; i++){
-    if(list[i].sort_by == "following" && list[i].sort_by == "followers"){
+    if(list[i].sort_by == "following" || list[i].sort_by == "followers"){
       new_list.push(list[i]);
     }
   }
