@@ -18,7 +18,10 @@
             fetch(url)
             .then(response => response.json())
             .then(function(res_json){
-                val = res_json.gamer_profile.data.edx_data[course_id].progress;
+                console.log(course_id);
+                console.log(res_json.gamer_profile.data)
+                console.log(res_json.gamer_profile.data['edx_data'])
+                val = res_json.gamer_profile.data['edx_data'][course_id].progress;
                 console.log(val);
                 var percent = Math.min(100,100*val.toFixed(3))  + '%';
                 document.querySelector("#header-lvl").innerHTML = myJson.title;
