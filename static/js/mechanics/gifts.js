@@ -38,7 +38,7 @@ document.getElementById("scrollable-users").innerHTML = ' <div id="scrollable-co
                                                 '<div style="font-size:1.5rem; text-align:center;">All users</div>'+
                                                   '<hr>'+
                                               '</div><div style="text-align:center" id ="loading-gif"><img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/></div></div>';
-document.getElementById("item5").innerHTML = '<button class="btn btn-primary" onclick="sendGifts()">Envia regals</button>';
+document.getElementById("item5").innerHTML = '<button class="btn btn-primary" style="width:80%;height:80%;" onclick="sendGifts()">Envia regals</button>';
 document.getElementById("gift-input-instance").onfocus = function(){
    // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: input-in interaction

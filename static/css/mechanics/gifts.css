@@ -14,10 +14,8 @@
     'item3 item3 item3 users users users '
     'label1 header header users users users'
     'label2 menu menu users users users'
-    'label2 menu menu users users users'
     'footer footer footer users users users'
-    'footer footer footer users users users'
-    'footer footer footer users users users';
+
   grid-gap: 5px;
   padding: 10px;
 }
