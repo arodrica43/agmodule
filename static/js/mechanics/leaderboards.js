@@ -29,7 +29,7 @@
             function populateTable(item, index) {
                 //alert(myJson.user.email );
                 if("only_me" == "yes"){
-                    if(item == "dynamic_user" || count < 5){
+                    if(item == "dynamic_user" || count < 2){
                         var color = "whitesmoke";
                         if(item=="dynamic_user"){
                             color = "#ffcc66";
