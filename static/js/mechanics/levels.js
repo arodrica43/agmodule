@@ -21,7 +21,7 @@
                 console.log(course_id.replace(/\+/g, " "));
                 console.log(res_json.gamer_profile.data)
                 console.log(res_json.gamer_profile.data['edx_data'])
-                val = res_json.gamer_profile.data['edx_data'][course_id.replace("+", " ")].progress;
+                val = res_json.gamer_profile.data['edx_data'][course_id.replace(/\+/g, " ")].progress;
                 console.log(val);
                 var percent = Math.min(100,100*val.toFixed(3))  + '%';
                 document.querySelector("#header-lvl").innerHTML = myJson.title;
