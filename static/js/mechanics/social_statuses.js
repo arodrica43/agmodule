@@ -105,7 +105,7 @@ document.querySelector("#incr-top-views").innerHTML = "En manteniment"
 //         console.log("Error: " + error);
 //     });
 
-fetch("https://agmodule.herokuapp.com/api/leaderboards/133/?user=dynaimic_user&show_title=false&dynamic_index=followed")
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/133/?user=dynamic_user&show_title=false&dynamic_index=followed")
                 .then(function (response) {
                     return response.json();
                 })
@@ -116,7 +116,7 @@ fetch("https://agmodule.herokuapp.com/api/leaderboards/133/?user=dynaimic_user&s
                 .catch(function (error) {
                     console.log("Error: " + error);
                 });
-fetch("https://agmodule.herokuapp.com/api/leaderboards/132/?user=dynaimic_user&show_title=false&dynamic_index=following")
+fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynamic_user&show_title=false&dynamic_index=following")
                         .then(function (response) {
                             return response.json();
                         })
