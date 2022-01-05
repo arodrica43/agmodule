@@ -171,7 +171,7 @@ function populateChallengesGrid(item,index){
             mult = 100;
         }
         document.querySelector("#v-grid-dynamic_index").innerHTML += '<div style="text-align:center; position:relative;"><h4 style="position:relative;top:0;">Repte ' + item[0].title + '</h4>' +
-                                                                        '<img style="float:left; width:30%; padding-left:20px;margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_0' + ch_icon + '.gif">' +  
+                                                                        '<img style="float:left; width:30%; padding-left:20px;padding-top:10px; margin-top:-20px" src="https://agmodule.herokuapp.com/media/challenge_icons/Challenge_0' + ch_icon + '.gif">' +  
                                                                         '<div style="position:absolute;bottom: 100px; right: 10px;font-size:calc(1vw + 10px);"> ' + item[0].by + ' : ' + (item[2].toFixed(3)*mult) + ' / ' + (item[0].threshold*mult) + ' </div> ' +
                                                                         '<div style="position:absolute;bottom: 60px; right: 10px;font-size:calc(1vw + 10px);"> Reward : +' + item[0].reward_value + ' ' + item[0].reward_by + ' </div> ' + locked_style +
                                                                     ' </div>';
