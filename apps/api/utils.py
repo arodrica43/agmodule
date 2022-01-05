@@ -383,6 +383,7 @@ def view_badge_set(request, username):
                             break
             else:
                 if user.gamer_profile.data[badge.by] >= badge.threshold and (badge.id not in user.gamer_profile.data['badges']):
+                    pass
                     #user.gamer_profile.data['badges'] += [badge.id]
                     #user.gamer_profile.save()
                 badge_set += [[BadgeSerializer(badge, context={'request': request}).data, badge.id in badge_ids]]
