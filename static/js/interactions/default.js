@@ -241,22 +241,24 @@ try {
             if("True" == "True"){
                 swal.fire({
                     title: 'Enhorabona!',
-                    text: 'Has assolit el nivell ' + lvl_msg,
+                    text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
                     icon: 'success',
                     button: 'Continua'
                   });
             }
         })
         .catch((error) => console.log(error))
-
-        fetch("")
-        .then((dump) => (
+        .finally(function(){
             fetch("")
-            .then((dump) => (dump))
-            .catch((error) => (console.log(error)))
-            .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
+            .then((dump) => (
+                fetch("")
+                .then((dump) => (dump))
+                .catch((error) => (console.log(error)))
+                .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
+                )
             )
-        )
+
+        })
 
         
     	GMLabels = {
