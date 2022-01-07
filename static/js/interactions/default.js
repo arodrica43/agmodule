@@ -235,7 +235,7 @@ try {
         }
         has_evolved = "dynamic_has_evolved";
 
-        var s = new swal("Hi");
+        console.log(swal);
         if(has_evolved == "True"){
             swal.fire({
                 title: 'Enhorabona!',
