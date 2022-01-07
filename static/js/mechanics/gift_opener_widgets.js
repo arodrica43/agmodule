@@ -7,19 +7,6 @@
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     set_widget_defaults("#gop-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
-    //Custom alerts
-    var swal = "";
-    var has_evolved;
-    try{
-        require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
-            function (Swal) {
-                swal = Swal;
-            }
-        );
-    }catch (cmserr){
-        swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
-    }
-    swal.fire("Hi");
 
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
@@ -43,3 +30,15 @@ fetch(url)
 						.then((updated_opener) => (console.log(updated_opener), render_gop(updated_opener)))
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
+
+fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechanic url
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (myJson) {
+            swal.fire("Hi");
+             
+        })
+        .catch(function (error) {
+            console.log("Error: " + error);
+        });
