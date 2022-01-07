@@ -249,6 +249,15 @@ try {
         })
         .catch((error) => console.log(error))
 
+        fetch("")
+        .then((dump) => (
+            fetch("")
+            .then((dump) => (dump))
+            .catch((error) => (console.log(error)))
+            .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
+            )
+        )
+
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
