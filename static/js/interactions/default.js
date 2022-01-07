@@ -239,7 +239,13 @@ try {
         fetch("")
         .then(function(dump){
             if("True" == "True"){
-               
+                swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         })
         .catch((error) => console.log(error))
