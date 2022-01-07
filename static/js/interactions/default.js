@@ -243,7 +243,8 @@ try {
                     title: 'Enhorabona!',
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
-                    confirmButtonText: 'Continua'
+                    confirmButtonText: 'Continua',
+                    heightAuto: false,
                   });
             }
         })
