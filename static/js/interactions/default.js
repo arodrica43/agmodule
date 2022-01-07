@@ -240,11 +240,11 @@ try {
         .then(function(dump){
             if("True" == "True"){
                 swal.fire({
+                    heightAuto: false,
                     title: 'Enhorabona!',
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
-                    confirmButtonText: 'Continua',
-                    heightAuto: false,
+                    confirmButtonText: 'Continua'
                   });
             }
         })
