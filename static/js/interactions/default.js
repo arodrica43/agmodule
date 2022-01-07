@@ -236,9 +236,8 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        fetch("")
+        fetch("https://duckduckgo.com/")
         .then(function(dump){
-
             if("True" == "True"){
                 swal.fire({
                     heightAuto: false,
@@ -246,7 +245,7 @@ try {
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
                     confirmButtonText: 'Continua'
-                  }).then((value) => (window.scrollTo(0,document.body.scrollHeight)));
+                  });
             }
         })
         .catch((error) => console.log(error))
