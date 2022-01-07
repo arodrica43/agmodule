@@ -237,6 +237,21 @@ try {
         }
         has_evolved = "dynamic_has_evolved";
 
+        swal.fire({
+                title: 'Enhorabona!',
+                text: '(tmp) Has assolit el nivell ' + lvl_msg,
+                icon: 'success',
+                confirmButtonText: 'Continua'
+              });
+        if(has_evolved == "True"){
+            swal.fire({
+                title: 'Enhorabona!',
+                text: 'Has assolit el nivell ' + lvl_msg,
+                icon: 'success',
+                confirmButtonText: 'Continua'
+              });
+        }
+
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
     		'challenge_widgets' : ["Repte", "challenges","tria quin tipus de repte vols fer!","Tria quin tipus de repte vols fer, per punts o per progres en el curs."], 
