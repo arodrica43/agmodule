@@ -244,21 +244,22 @@ try {
                     text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
                     icon: 'success',
                     button: 'Continua'
-                  });
+                  })  
+                .finally(function(){
+                    fetch("")
+                    .then((dump) => (
+                        fetch("")
+                        .then((dump) => (dump))
+                        .catch((error) => (console.log(error)))
+                        .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
+                        )
+                    )
+
+                });
             }
         })
         .catch((error) => console.log(error))
-        .finally(function(){
-            fetch("")
-            .then((dump) => (
-                fetch("")
-                .then((dump) => (dump))
-                .catch((error) => (console.log(error)))
-                .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
-                )
-            )
-
-        })
+      
 
         
     	GMLabels = {
