@@ -17,7 +17,6 @@ try {
     }catch (cmserr){
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
-    $('body').style += "body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) { overflow-y: visible !important; }";
 
     //Main Time
     var tmp_main_t = 0;
@@ -239,6 +238,7 @@ try {
 
         fetch("")
         .then(function(dump){
+
             if("True" == "True"){
                 swal.fire({
                     heightAuto: false,
@@ -246,7 +246,7 @@ try {
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
                     confirmButtonText: 'Continua'
-                  });
+                  }).then((value) => (window.scrollTo(0,document.body.scrollHeight)));
             }
         })
         .catch((error) => console.log(error))
