@@ -236,9 +236,9 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        fetch("")
-        .then((dump) => (swal.fire("Hi")))
-        .catch((error) => console.log(error))
+        // fetch("")
+        // .then((dump) => (swal.fire("Hi")))
+        // .catch((error) => console.log(error))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
