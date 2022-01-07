@@ -247,13 +247,9 @@ try {
                   })  
                 .finally(function(){
                     fetch("")
-                    .then((dump) => (
-                        fetch("")
-                        .then((dump) => (dump))
-                        .catch((error) => (console.log(error)))
-                        .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
-                        )
-                    )
+                    .then((dump) => (dump))
+                    .catch((error) => (console.log(error)))
+                    .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
 
                 });
             }
