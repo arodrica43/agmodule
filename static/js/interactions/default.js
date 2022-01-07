@@ -17,7 +17,7 @@ try {
     }catch (cmserr){
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
-    $('head').append('<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>'+
+    $('body').append('<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>'+
                     '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js" integrity="sha256-EQtsX9S1OVXguoTG+N488HS0oZ1+s80IbOEbE3wzJig=" crossorigin="anonymous"></script>');
 
     //Main Time
