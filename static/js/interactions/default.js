@@ -237,8 +237,8 @@ try {
 
 
         fetch("None")
-        .then((dump) => (dump))
-        .catch((error) => (
+        .then((dump)=>(dump))
+        .catch(function(error){
             if("True" == "True"){
                 swal.fire({
                     heightAuto: false,
@@ -247,7 +247,8 @@ try {
                     icon: 'success',
                     confirmButtonText: 'Continua'
                   });
-            }))
+            }
+        })
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
