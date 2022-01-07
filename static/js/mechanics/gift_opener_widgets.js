@@ -31,4 +31,7 @@ fetch(url)
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
 
-swal.fire("Hi");
+
+fetch("called_mechanic_url")
+.then((dump) => (swal.fire("Hi")))
+.catch((error) => console.log(error))
