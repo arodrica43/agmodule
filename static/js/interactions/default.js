@@ -17,6 +17,8 @@ try {
     }catch (cmserr){
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
+    $('head').append('<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>'+
+                    '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js" integrity="sha256-EQtsX9S1OVXguoTG+N488HS0oZ1+s80IbOEbE3wzJig=" crossorigin="anonymous"></script>');
 
     //Main Time
     var tmp_main_t = 0;
@@ -235,8 +237,7 @@ try {
         }
         has_evolved = "dynamic_has_evolved";
 
-        swal.then((res) => (console.log(res)))
-            .catch(err=>console.log(err));
+        console.log(swal.fire);
         if(has_evolved == "True"){
             swal.fire({
                 title: 'Enhorabona!',
