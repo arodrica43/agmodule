@@ -18,7 +18,7 @@ try {
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
 
-    $('head').innerHTML += "<script type=\'application/javascript\' src=\'//cdn.jsdelivr.net/npm/sweetalert2@11\'>";
+    $('head').innerHTML += '<script type="application/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js" integrity="sha256-EQtsX9S1OVXguoTG+N488HS0oZ1+s80IbOEbE3wzJig=" crossorigin="anonymous">';
 
     //Main Time
     var tmp_main_t = 0;
