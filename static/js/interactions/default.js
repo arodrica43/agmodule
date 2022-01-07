@@ -236,8 +236,9 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        fetch("https://duckduckgo.com/")
-        .then(function(dump){
+        fetch("None")
+        .then((dump) => (dump))
+        .catch((error) => (
             if("True" == "True"){
                 swal.fire({
                     heightAuto: false,
@@ -246,9 +247,7 @@ try {
                     icon: 'success',
                     confirmButtonText: 'Continua'
                   });
-            }
-        })
-        .catch((error) => console.log(error))
+            }))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
