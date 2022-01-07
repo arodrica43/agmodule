@@ -30,8 +30,3 @@ fetch(url)
 						.then((updated_opener) => (console.log(updated_opener), render_gop(updated_opener)))
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
-
-
-fetch("called_mechanic_url")
-.then((dump) => (swal.fire("Hi")))
-.catch((error) => console.log(error))

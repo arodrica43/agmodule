@@ -234,6 +234,11 @@ try {
             lvl_msg = "Pro";
         }
         has_evolved = "dynamic_has_evolved";
+
+        
+        fetch("called_mechanic_url")
+        .then((dump) => (swal.fire("Hi")))
+        .catch((error) => console.log(error))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
