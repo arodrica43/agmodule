@@ -236,6 +236,8 @@ try {
             lvl_msg = "Pro";
         }
         has_evolved = "dynamic_has_evolved";
+
+        console.log(swal.fire);
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
