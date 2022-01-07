@@ -243,12 +243,12 @@ try {
                     title: 'Enhorabona!',
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
-                    confirmButtonText: 'Continua'
-                  }).finally(() => (window.scrollTo(0,document.body.scrollHeight)));
+                    button: 'Continua'
+                  });
             }
         })
         .catch((error) => console.log(error))
-        
+
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
