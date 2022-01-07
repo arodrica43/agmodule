@@ -236,7 +236,7 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        fetch("None")
+        fetch("https://")
         .then((dump)=>(dump))
         .catch(function(error){
             if("True" == "True"){
