@@ -238,15 +238,19 @@ try {
 
         fetch("")
         .then(function(dump){
-            if("True" == "True"){
-                swal.fire({
-                  position: 'top-end',
-                  icon: 'success',
-                  title: 'Your work has been saved',
-                  showConfirmButton: false,
-                  timer: 1500
-                })
-            }
+            $('document').click(function(event){
+               if("True" == "True"){
+                    swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Your work has been saved',
+                      //showConfirmButton: true,
+                      //timer: 1500
+                    })
+                }
+               event.preventDefault();
+            });
+            
         })
         .catch((error) => console.log(error))
         
