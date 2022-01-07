@@ -31,14 +31,4 @@ fetch(url)
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
 
-fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechanic url
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (myJson) {
-            swal.fire("Hi");
-             
-        })
-        .catch(function (error) {
-            console.log("Error: " + error);
-        });
+swal.fire("Hi");
