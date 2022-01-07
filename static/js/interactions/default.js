@@ -235,8 +235,8 @@ try {
         }
         has_evolved = "dynamic_has_evolved";
 
-        
-        fetch("called_mechanic_url")
+
+        fetch("")
         .then((dump) => (swal.fire("Hi")))
         .catch((error) => console.log(error))
         
