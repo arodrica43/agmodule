@@ -8,6 +8,8 @@
     set_widget_defaults("#gop-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
 
+    swal.fire("Hi")
+
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
     document.querySelector("#gop-widget-dynamic_index").innerHTML += '<div style="height:calc(6vw);"></div>';
@@ -28,6 +30,5 @@ fetch(url)
 						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + opener.id + "/?user=dynamic_user&show_title=false&dynamic_progress=dynamic_position")
 						.then(response => response.json())
 						.then((updated_opener) => (console.log(updated_opener), render_gop(updated_opener)))
-                        .then((dump) => (swal.fire("Hi")))
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
