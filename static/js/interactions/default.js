@@ -227,8 +227,6 @@ try {
     }
 
     function set_widget_defaults(id, mechanic_id, link_url){
-
-
         var lvl_msg = "Newbie";
         if(dynamic_position > 0.33 && dynamic_position <= 0.66){
             lvl_msg = "Medium";
@@ -237,12 +235,7 @@ try {
         }
         has_evolved = "dynamic_has_evolved";
 
-        swal.fire({
-                title: 'Enhorabona!',
-                text: '(tmp) Has assolit el nivell ' + lvl_msg,
-                icon: 'success',
-                confirmButtonText: 'Continua'
-              });
+        var s = new swal("Hi");
         if(has_evolved == "True"){
             swal.fire({
                 title: 'Enhorabona!',
@@ -271,31 +264,27 @@ try {
 
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
-        .then(res_json => (console.log(res_json), document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
-																								'.grow:hover { transform: scale(1.3); }' + 
-                                                                                                '.help-msg {transition: visibility 0s, opacity 0.3s linear; visibility: hidden; opacity:0;}'+ 
-                                                                                                '.help-btn:hover + .help-msg {visibility: visible;opacity:1}' +
-                                                                                            '</style>' + 
-        										//'<p style="width:100%; position: absolute; top: 0; left: 0;font-size:calc(10px + 1vw);"><img style="width:10%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"></p>' +
-                                                '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
-        											'<a href="#"><img class="grow help-btn" style="width:8%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"><span style="background-color:whitesmoke;  color:black;width:40%; z-index:5; position:absolute;right:calc(-30px - 3vw);margin-top:calc(7vw); font-size:calc(6px + 1vw); text-align:center;padding:1vw;" class="help-msg">' + GMLabels[res_json.gmtype][3] + '</span></a>' + 
-                                                    '<a href; font-size="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
-                                                '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:80%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
-        											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:6%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +
-                                                '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:78%;left:calc(10% + 1vw);"> ' + 
-                                                    'Has obtingut un premi: ' + GMLabels[res_json.gmtype][2] + '</p>' +   
-                                                '<p style="position: absolute; bottom: calc(-60px + 0vw); right: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
-        										'<p style="position: absolute; bottom: calc(-90px + 0vw); right: 0;z-index:2">'+
-                                                    '<span id="star-1-dynamic_index" onclick="valorate(1);" titxle="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-2-dynamic_index" onclick="valorate(2);" title="No m\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-4-dynamic_index" onclick="valorate(4);" title="M\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
-                                                    '<span id="star-5-dynamic_index" onclick="valorate(5);" title="M\'encanta!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span></p>',
-                                                //'</p><br><p style="font-size:calc(1.5px + 1.5vw); position: absolute; top: calc(20px + 1vw); right: 0;">Valora\'m!</p>' + 
-                                                // '<br><a href="' + link_url.replace(/\s/g, "+") + '" style="position: absolute;bottom: -20px;right: 0;cursor:pointer; font-size: calc(0.7em + 0.8vw);">Discover more \>  <br> </a>',
-                                                  valorate(res_json['results'])))
-        .catch(error => (console.log("Error: " + error)))
-                
-       
+        .then(res_json => (console.log(res_json), 
+            document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
+        												'.grow:hover { transform: scale(1.3); }' + 
+                                                        '.help-msg {transition: visibility 0s, opacity 0.3s linear; visibility: hidden; opacity:0;}'+ 
+                                                        '.help-btn:hover + .help-msg {visibility: visible;opacity:1}' +
+                                                    '</style>' + 
+                                                    '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:100%;"> ' + 
+            											'<a href="#"><img class="grow help-btn" style="width:8%;float:right; margin-right:0;" src="https://agmodule.herokuapp.com/media/dashboard_icons/help.png"><span style="background-color:whitesmoke;  color:black;width:40%; z-index:5; position:absolute;right:calc(-30px - 3vw);margin-top:calc(7vw); font-size:calc(6px + 1vw); text-align:center;padding:1vw;" class="help-msg">' + GMLabels[res_json.gmtype][3] + '</span></a>' + 
+                                                        '<a href; font-size="' + link_url.replace(/\s/g, "+") + '" ><img style="width:10%;float:left; margin-right:calc(50px + 6vw);" src="https://agmodule.herokuapp.com/media/avatars/' + res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length) + '.png"></a></p>' +
+                                                    '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:80%;left:calc(5% + 1vw);top:calc(2.5vw);"> ' + 
+            											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:6%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +
+                                                    '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:78%;left:calc(10% + 1vw);"> ' + 
+                                                        'Has obtingut un premi: ' + GMLabels[res_json.gmtype][2] + '</p>' +   
+                                                    '<p style="position: absolute; bottom: calc(-60px + 0vw); right: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
+            										'<p style="position: absolute; bottom: calc(-90px + 0vw); right: 0;z-index:2">'+
+                                                        '<span id="star-1-dynamic_index" onclick="valorate(1);" titxle="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                        '<span id="star-2-dynamic_index" onclick="valorate(2);" title="No m\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                        '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                        '<span id="star-4-dynamic_index" onclick="valorate(4);" title="M\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
+                                                        '<span id="star-5-dynamic_index" onclick="valorate(5);" title="M\'encanta!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span></p>',
+                                                      valorate(res_json['results'])))
+        .catch(error => (console.log("Error: " + error)))       
     }
 }
