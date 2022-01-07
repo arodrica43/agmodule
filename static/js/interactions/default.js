@@ -236,9 +236,8 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        fetch("https://")
-        .then((dump)=>(dump))
-        .catch(function(error){
+        fetch("")
+        .then(function(dump){
             if("True" == "True"){
                 swal.fire({
                     heightAuto: false,
@@ -249,6 +248,8 @@ try {
                   });
             }
         })
+        .then((dump) => (window.scrollTo(0,document.body.scrollHeight)))
+        .catch((error) => console.log(error))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
