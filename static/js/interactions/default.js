@@ -236,9 +236,18 @@ try {
         has_evolved = "dynamic_has_evolved";
 
 
-        // fetch("")
-        // .then((dump) => (swal.fire("Hi")))
-        // .catch((error) => console.log(error))
+        fetch("")
+        .then(function(dump){
+            if("True" == "True"){
+                swal.fire({
+                    title: 'Enhorabona!',
+                    text: 'Has assolit el nivell ' + lvl_msg,
+                    icon: 'success',
+                    confirmButtonText: 'Continua'
+                  });
+            }
+        })
+        .catch((error) => console.log(error))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
