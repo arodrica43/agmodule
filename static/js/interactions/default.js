@@ -240,7 +240,6 @@ try {
         .then(function(dump){
             if("True" == "True"){
                 swal.fire({
-                    heightAuto: false,
                     title: 'Enhorabona!',
                     text: 'Has assolit el nivell ' + lvl_msg,
                     icon: 'success',
@@ -248,8 +247,8 @@ try {
                   });
             }
         })
-        .then((dump) => (window.scrollTo(0,document.body.scrollHeight)))
         .catch((error) => console.log(error))
+        .finally(() => (window.scrollTo(0,document.body.scrollHeight)))
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
