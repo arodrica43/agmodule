@@ -238,18 +238,15 @@ try {
 
         fetch("")
         .then(function(dump){
-            $('document').click(function(event){
-               if("True" == "True"){
-                    swal.fire({
-                      position: 'top-end',
-                      icon: 'success',
-                      title: 'Your work has been saved',
-                      confirmButtonText: 'Save'
-                    })
-                }
-               event.preventDefault();
-            });
-            
+            if("True" == "True"){
+                swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Has assolit el nivell ' + lvl_msg + '. Visita la Dasboard per a veure els canvis!',
+                  showConfirmButton: false,
+                  timer: 3000
+                })
+            }
         })
         .catch((error) => console.log(error))
         
