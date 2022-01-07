@@ -18,7 +18,7 @@ try {
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
 
-    $('head').append('<link />');
+    $('head').append('<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>');
 
     //Main Time
     var tmp_main_t = 0;
