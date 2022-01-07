@@ -240,13 +240,12 @@ try {
         .then(function(dump){
             if("True" == "True"){
                 swal.fire({
-                    title: 'Enhorabona!',
-                    text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
-                    icon: 'success',
-                    showCancelButton: true, // There won't be any cancel button
-                    showConfirmButton: false,
-                    cancelButtonText: 'Continua'
-                  });
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         })
         .catch((error) => console.log(error))
