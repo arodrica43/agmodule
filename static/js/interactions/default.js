@@ -5,18 +5,7 @@ try {
 
     //include_interaction_testing_tools
 
-    //Custom alerts
-    var swal = "";
-    var has_evolved;
-    try{
-        require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
-            function (Swal) {
-                swal = Swal;
-            }
-        );
-    }catch (cmserr){
-        swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
-    }
+    
 
     //Main Time
     var tmp_main_t = 0;

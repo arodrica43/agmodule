@@ -7,8 +7,19 @@
     start_logs(log,"dynamic_user", "dynamic_mechanic_index",30);
     set_widget_defaults("#gop-widget-dynamic_index", "dynamic_mechanic_index", "dynamic_link_url");
     // ---------------------------------------------------------------------------------------
-
-    swal.fire("Hi")
+    //Custom alerts
+    var swal = "";
+    var has_evolved;
+    try{
+        require(['https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js'], 
+            function (Swal) {
+                swal = Swal;
+            }
+        );
+    }catch (cmserr){
+        swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
+    }
+    swal.fire("Hi");
 
 document.querySelector("#gop-widget-handshake-dynamic_index").value = 1;
 function render_gop(opener){
