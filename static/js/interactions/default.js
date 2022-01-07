@@ -18,8 +18,6 @@ try {
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
 
-    $('head').innerHTML += '<script type="application/javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js" integrity="sha256-EQtsX9S1OVXguoTG+N488HS0oZ1+s80IbOEbE3wzJig=" crossorigin="anonymous">';
-
     //Main Time
     var tmp_main_t = 0;
     var main_timer;
@@ -236,8 +234,6 @@ try {
             lvl_msg = "Pro";
         }
         has_evolved = "dynamic_has_evolved";
-
-        console.log(swal.fire);
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
