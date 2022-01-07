@@ -240,15 +240,15 @@ try {
         .then(function(dump){
             if("True" == "True"){
                 swal.fire({
-                  position: 'top-end',
-                  icon: 'success',
-                  title: 'Has assolit el nivell ' + lvl_msg + '. Visita la Dasboard per a veure els canvis!',
-                  showConfirmButton: false,
-                  timer: 3000
-                })
+                    title: 'Enhorabona!',
+                    text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
+                    icon: 'success',
+                    confirmButtonText: 'Continua'
+                  });
             }
         })
         .catch((error) => console.log(error))
+
         
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
