@@ -18,6 +18,8 @@ try {
         swal = import("https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.js");
     }
 
+    $('head').append('<link />');
+
     //Main Time
     var tmp_main_t = 0;
     var main_timer;
@@ -234,17 +236,7 @@ try {
             lvl_msg = "Pro";
         }
         has_evolved = "dynamic_has_evolved";
-
-        console.log(swal.fire);
-        if(has_evolved == "True"){
-            swal.fire({
-                title: 'Enhorabona!',
-                text: 'Has assolit el nivell ' + lvl_msg,
-                icon: 'success',
-                confirmButtonText: 'Continua'
-              });
-        }
-
+        
     	GMLabels = {
     		'badge_widgets' : ["Medalla","badges"," és una medalla!","Has obtingut una medalla, tens totes les teves medalles al Dashboard!"], 
     		'challenge_widgets' : ["Repte", "challenges","tria quin tipus de repte vols fer!","Tria quin tipus de repte vols fer, per punts o per progres en el curs."], 
