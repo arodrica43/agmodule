@@ -243,7 +243,7 @@ try {
                     title: 'Enhorabona!',
                     text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
                     icon: 'success',
-                    button: 'Continua'
+                    cancelButtonText: 'Continua'
                   });
             }
         })
