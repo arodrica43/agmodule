@@ -244,7 +244,7 @@ try {
                     text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
                     icon: 'success',
                     showCancelButton: true, // There won't be any cancel button
-                    showConfirmButton: false 
+                    showConfirmButton: false,
                     cancelButtonText: 'Continua'
                   });
             }
