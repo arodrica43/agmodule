@@ -63,7 +63,7 @@ function sendMessage(){
     document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
-                                                                    '<div class="col-lg-12" style=""> <b>dynamic_user says: </b>' + document.getElementById("chat-input").value + '</div>'+
+                                                                    '<div class="col-lg-12" style=""> <b>dynamic_user diu: </b>' + document.getElementById("chat-input").value + '</div>'+
                                                                     '</div>'+
                                                                 '</h3>'+
                                                                 '</div>';
@@ -83,7 +83,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
               document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
                                                                             '<h3>'+
                                                                                 '<div class="row">'+
-                                                                                '<div class="col-lg-12" style="text-align:left;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' says: </b>' + messages.content[i][1] + '</div>'+
+                                                                                '<div class="col-lg-12" style="text-align:left;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' diu: </b>' + messages.content[i][1] + '</div>'+
                                                                                 '</div>'+
                                                                             '</h3>'+
                                                                             '</div>'; 
