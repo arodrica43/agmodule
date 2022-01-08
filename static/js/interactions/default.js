@@ -238,10 +238,10 @@ try {
 
         fetch("")
         .then(function(dump){
-            if("True" == "True"){
+            if(has_evolved == "True"){
                 swal.fire({
                     title: 'Enhorabona!',
-                    text: 'Has assolit el nivell ' + lvl_msg + '. Visita la dashboard per a veure les novetats.',
+                    text: 'Has assolit el nivell ' + lvl_msg + '. Visita la Dashboard per a veure les novetats.',
                     icon: 'success',
                     confirmButtonText: 'Continua'
                   });
