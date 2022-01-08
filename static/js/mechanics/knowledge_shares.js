@@ -63,8 +63,7 @@ function sendMessage(){
     document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
-                                                                    '<div class="col-lg-3" style="text-align:center;"><b>dynamic_user says: </b></div>'+
-                                                                    '<div class="col-lg-9" style="">' + document.getElementById("chat-input").value + '</div>'+
+                                                                    '<div class="col-lg-12" style=""><b>dynamic_user says: </b>' + document.getElementById("chat-input").value + '</div>'+
                                                                     '</div>'+
                                                                 '</h3>'+
                                                                 '</div>';
