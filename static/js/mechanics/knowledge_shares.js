@@ -45,6 +45,15 @@ function scrollChat(){
     }
 }
 
+colors = [
+            [255,102,102],
+            [204, 204, 102],
+            [255,204,102],
+            [221,221,221],
+            [204,153,102],
+            [153,153,102]
+        ]
+
 function sendMessage(){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
     //Logging :: button-click interaction
@@ -60,7 +69,8 @@ function sendMessage(){
         .catch(function (error) {
             console.log("Error: " + error);
         });
-    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(111,111,222)">'+
+    color = colors[Math.floor(Math.random()*colors.length)];
+    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
                                                                     '<div class="col-lg-12" style=""> <b>dynamic_user diu: </b>' + document.getElementById("chat-input").value + '</div>'+
@@ -80,7 +90,9 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
             document.querySelector("#header-kshare").innerHTML = myJson.title;
             var messages = myJson.messages;
             messages.content.forEach(function(item,i){
-              document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
+
+            color = colors[Math.floor(Math.random()*colors.length)];
+            document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message"  style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
                                                                             '<h3>'+
                                                                                 '<div class="row">'+
                                                                                 '<div class="col-lg-12" style="text-align:left;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' diu: </b>' + messages.content[i][1] + '</div>'+
