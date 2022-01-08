@@ -53,7 +53,6 @@ colors = [
             [204,153,102],
             [153,153,102]
         ]
-var count = 0;
 
 function sendMessage(){
     // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
@@ -70,8 +69,7 @@ function sendMessage(){
         .catch(function (error) {
             console.log("Error: " + error);
         });
-    color = colors[count % colors.length];
-    count++;
+    color = colors['dynamic_user'.split('').reduce((sum, char) => sum + char.codePointAt(0), 0) % colors.length];
     document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
@@ -93,8 +91,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
             var messages = myJson.messages;
             messages.content.forEach(function(item,i){
 
-            color = colors[count % colors.length];
-            count++;
+            color = colors['dynamic_user'.split('').reduce((sum, char) => sum + char.codePointAt(0), 0) % colors.length];
             document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message"  style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
                                                                             '<h3>'+
                                                                                 '<div class="row">'+
