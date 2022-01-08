@@ -60,7 +60,7 @@ function sendMessage(){
         .catch(function (error) {
             console.log("Error: " + error);
         });
-    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
+    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(111,111,222)">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
                                                                     '<div class="col-lg-12" style=""> <b>dynamic_user diu: </b>' + document.getElementById("chat-input").value + '</div>'+
