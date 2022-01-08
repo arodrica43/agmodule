@@ -208,6 +208,8 @@ fetch("called_mechanic_url")
                 populate_grid = populateEEggGrid;
             } else if(myJson.mechanic == "development_tools"){
                 populate_grid = populateDevToolsGrid;
+            } else if (myJson.mechanic == "lotteries"){
+                swal.fire("Ja has fet una tirada. Podràs tornar a jugar quan trobis una altra ruleta.");
             }
         }
         console.log(url);
