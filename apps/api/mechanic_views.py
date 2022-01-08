@@ -759,8 +759,12 @@ class KnowledgeShareViewSet(GMechanicViewSet):
                 if 'message' in request.GET.keys():
                     old_messages = queryset[0].messages
                     if 'length' in old_messages.keys():
-                        old_messages['content'] += [[request.GET['from'],request.GET['message']]]
-                        old_messages['length'] += 1
+                        if old_messages['length'] < 4:
+                            old_messages['content'] += [[request.GET['from'],request.GET['message']]]
+                            old_messages['length'] += 1
+                        else:
+                            del old_mesages[0]
+                            old_messages['content'] += [[request.GET['from'],request.GET['message']]]
                     else:
                         old_messages['length'] = 1
                         old_messages['content'] = [[request.GET['from'],request.GET['message']]]
