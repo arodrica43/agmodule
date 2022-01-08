@@ -14,6 +14,7 @@ function render_lot(lottery){
     document.querySelector("#lot-widget-dynamic_index").innerHTML += '<div style="height:calc(0vw);"></div>';
 	document.querySelector("#lot-widget-dynamic_index").innerHTML += lottery.html;
     $(lottery.html).appendTo(document.body);
+    document.getElementById("spin").disabled = true;
 }
 
 function selectPolicy(list){

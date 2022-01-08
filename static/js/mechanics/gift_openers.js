@@ -89,7 +89,7 @@ function log_txt_click(){
             gifts.forEach(function(item,index){
                 document.querySelector("#gifts-content").innerHTML += '<h3><div class="row" style="background:whitesmoke; margin:10px;">'+
                                                                         '<div class="col-md-4"><img id="gift-icon-' + index + '" style="width:60px;height:60px;" src="https://agmodule.herokuapp.com/media/dashboard_icons/gift_openers.png" ></div>'+
-                                                                        '<div id="gift-text-' + index + '" class="col-md-4" style="margin-top:15px;">Gift from ' + item[0] + '</div>'+
+                                                                        '<div id="gift-text-' + index + '" class="col-md-4" style="margin-top:15px;">Tens un regal de ' + item[0] + '</div>'+
                                                                         '<div class="col-md-4" style="text-align:right;"><button style="margin-top:10px;" class="btn btn-primary" name="' + item[0] + '" value="' + index + '" onclick="openGift(this,' + index + ')" id="open-button-' + index + '"> Open </button> </div>'+
                                                                       '</div></h3>';
             });

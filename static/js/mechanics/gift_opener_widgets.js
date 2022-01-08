@@ -19,7 +19,7 @@ function selectPolicy(list){
 	return list[0]
 }
 
- fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/add_gift?from=system&type=score&content=20") 
+ fetch("https://agmodule.herokuapp.com/api/gamers/dynamic_user/add_gift?from=sistema&type=score&content=20") 
     .then(function (response) {
         return response.json();
     })

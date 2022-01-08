@@ -177,6 +177,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
     spinTime = 0;
     spinTimeTotal = Math.random() * 3 + 4 * 1000;
     rotateWheel();
+    document.getElementById("spin").disabled = true;
   }
 
   function rotateWheel() {
