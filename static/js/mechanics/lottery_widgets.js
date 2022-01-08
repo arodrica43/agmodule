@@ -14,6 +14,7 @@ function render_lot(lottery){
     document.querySelector("#lot-widget-dynamic_index").innerHTML += '<div style="height:calc(0vw);"></div>';
 	document.querySelector("#lot-widget-dynamic_index").innerHTML += lottery.html;
     $(lottery.html).appendTo(document.body);
+    document.getElementById("spin").disabled = false;
 }
 
 function selectPolicy(list){
@@ -29,6 +30,5 @@ fetch(url)
 						fetch("https://agmodule.herokuapp.com/api/g_mechanics/" + lottery.id + "/?user=dynamic_user&show_title=false")
 						.then(response => response.json())
 						.then((updated_lottery) => (console.log(updated_lottery), render_lot(updated_lottery)))
-                        .then((dump) => (document.getElementById("spin").disabled = true))
 						.catch(error => (console.log("Error: " + error)))))
 .catch(error => (console.log("Error: " + error)))
