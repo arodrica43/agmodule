@@ -14,7 +14,7 @@
                                                                       '</div>'+
                                                             '</div>';
   
-  document.getElementById("chat-input-fields").innerHTML = ' <textarea style="max-height:100px; height: 30px;width:70%;padding-top:5px; padding-left:5px; resize: none;float:left; overflow:auto;" id="chat-input" oninput="this.style.height = this.scrollHeight + \'px\'"></textarea>'+
+  document.getElementById("chat-input-fields").innerHTML = ' <textarea style="max-height:100px; height: 30px;width:70%;padding-top:5px; padding-left:5px; resize: none;float:left; overflow:auto;" id="chat-input"></textarea>'+
                         '<button class="btn btn-primary" style="background-color:#ff6666;float:right;padding-top:5px;width:18%; height:40px;" onclick="sendMessage()"><img src="https://agmodule.herokuapp.com/media/philantropy_icons/send.png" style="width:100%; min-width:15px; min-height:15px; max-height:30px; max-width:30px;"/> </button>';
  
 (function() {
