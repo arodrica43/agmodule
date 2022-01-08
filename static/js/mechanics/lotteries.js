@@ -211,7 +211,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
             return response.json();
         })
         .then(function (myJson) {
-            alert("You win " + text + " " + myJson.by);
+            swal.fire("You win " + text + " " + myJson.by);
         })
         .catch(function (error) {
             console.log("Error: " + error);
