@@ -38,7 +38,7 @@
 #scrollable-content {
   padding-left: 20px;
   padding-right: 20px;
-  height:calc(60px + 22vw);
+  height:calc(60px + 20vw);
   overflow: auto;
   background-color: none;
   font-size: 1vw;
