@@ -71,6 +71,7 @@ function sendMessage(){
             console.log("Error: " + error);
         });
     color = colors[count % colors.length];
+    count++;
     document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
