@@ -763,7 +763,9 @@ class KnowledgeShareViewSet(GMechanicViewSet):
                             old_messages['content'] += [[request.GET['from'],request.GET['message']]]
                             old_messages['length'] += 1
                         else:
+                            print("Pre deleting")
                             del old_mesages[0]
+                            print("Post deleting")
                             old_messages['content'] += [[request.GET['from'],request.GET['message']]]
                     else:
                         old_messages['length'] = 1
