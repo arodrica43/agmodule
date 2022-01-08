@@ -63,7 +63,7 @@ function sendMessage(){
     document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
-                                                                    '<div class="col-lg-12" style=""><b>dynamic_user says: </b>' + document.getElementById("chat-input").value + '</div>'+
+                                                                    '<div class="col-lg-12" style=""> <b>dynamic_user says: </b>' + document.getElementById("chat-input").value + '</div>'+
                                                                     '</div>'+
                                                                 '</h3>'+
                                                                 '</div>';
@@ -83,8 +83,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
               document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message">'+
                                                                             '<h3>'+
                                                                                 '<div class="row">'+
-                                                                                '<div class="col-lg-3" style="text-align:center;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' says: </b></div>'+
-                                                                                '<div class="col-lg-9" style="" id="message-text-' + i + '">' +  messages.content[i][1] + '</div>'+
+                                                                                '<div class="col-lg-12" style="text-align:left;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' says: ' + messages.content[i][1] + ' </b></div>'+
                                                                                 '</div>'+
                                                                             '</h3>'+
                                                                             '</div>'; 
