@@ -70,7 +70,7 @@ function sendMessage(){
             console.log("Error: " + error);
         });
     color = colors['dynamic_user'.split('').reduce((sum, char) => sum + char.codePointAt(0), 0) % colors.length];
-    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
+    document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message" style="background:rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ', 0.5);">'+
                                                                 '<h3>'+
                                                                     '<div class="row">'+
                                                                     '<div class="col-lg-12" style=""> <b>dynamic_user diu: </b>' + document.getElementById("chat-input").value + '</div>'+
@@ -92,7 +92,7 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
             messages.content.forEach(function(item,i){
 
             color = colors['dynamic_user'.split('').reduce((sum, char) => sum + char.codePointAt(0), 0) % colors.length];
-            document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message"  style="background:rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ');">'+
+            document.getElementById("scrollable-content").innerHTML += '<div class="container-fluid message"  style="background:rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ', 0.5);">'+
                                                                             '<h3>'+
                                                                                 '<div class="row">'+
                                                                                 '<div class="col-lg-12" style="text-align:left;" id="message-uname-' + i + '"><b>' + messages.content[i][0] + ' diu: </b>' + messages.content[i][1] + '</div>'+
@@ -109,13 +109,13 @@ fetch("called_mechanic_url") // WARNING: should be replaced by a concrete mechan
                 //console.log("Message uname (at position " + i + ") clicked");
                 // --------------------------------------------------------------------------
               };
-              document.getElementById('message-text-' + i).onclick = function(){
-                // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
-                //Logging :: button-click interaction
-                log_click({itime: 2,message:"Message text (at position " + i + ") clicked", register : log, level:1,type:"TextClick"});
-                //console.log("Message text (at position " + i + ") clicked");
-                // --------------------------------------------------------------------------
-              };
+              // document.getElementById('message-text-' + i).onclick = function(){
+              //   // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
+              //   //Logging :: button-click interaction
+              //   log_click({itime: 2,message:"Message text (at position " + i + ") clicked", register : log, level:1,type:"TextClick"});
+              //   //console.log("Message text (at position " + i + ") clicked");
+              //   // --------------------------------------------------------------------------
+              // };
             });
 
             scrollChat();             
