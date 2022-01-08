@@ -238,6 +238,7 @@ try {
 
         fetch("")
         .then(function(dump){
+            console.log(has_evolved);
             if(has_evolved == "True"){
                 swal.fire({
                     title: 'Enhorabona!',
