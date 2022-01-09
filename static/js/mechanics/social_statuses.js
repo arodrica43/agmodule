@@ -170,7 +170,7 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynamic_user&sho
                                                                 '<h2 id="uname-stat" style="margin-top:30px; text-align:center;"></h2><hr>';
             document.querySelector("#following-label").innerHTML = "<b>Following</b>";
             document.querySelector("#followers-label").innerHTML = "<b>Followers</b>";
-            document.querySelector("#views-label").innerHTML = "<b>Views</b>";
+            document.querySelector("#views-label").innerHTML = "<b></b>";
             document.querySelector("#score-label").innerHTML = "<b>Score</b>";
             document.querySelector("#level-label").innerHTML = "<b></b>";
             document.querySelector("#coin-label").innerHTML = "<b></b>";
@@ -179,10 +179,10 @@ fetch("https://agmodule.herokuapp.com/api/g_mechanics/132/?user=dynamic_user&sho
             document.querySelector("#profile-image-stat").src = "https://agmodule.herokuapp.com/media/avatars/" + myJson.social_profile.image + ".png";
             document.querySelector("#following").innerHTML = myJson.social_profile.data.friends.length;
             document.querySelector("#followers").innerHTML = myJson.social_profile.data.followers;
-            document.querySelector("#views").innerHTML = myJson.social_profile.data.views;
+            document.querySelector("#views").innerHTML = "";//myJson.social_profile.data.views;
             document.querySelector("#score").innerHTML = myJson.gamer_profile.data.score;
-            document.querySelector("#level").innerHTML = ""//myJson.gamer_profile.data.level;
-            document.querySelector("#coin").innerHTML = ""//myJson.gamer_profile.data.$;
+            document.querySelector("#level").innerHTML = "";//myJson.gamer_profile.data.level;
+            document.querySelector("#coin").innerHTML = "";//myJson.gamer_profile.data.$;
 
             document.querySelector("#following-label").onclick = function(){
               // INTERACTION OCCURRENCE REGISTRATION --------------------------------------
