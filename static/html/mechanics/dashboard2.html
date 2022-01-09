@@ -102,73 +102,7 @@
   -webkit-transform: rotate(16deg) translate(calc(32.5vw)) rotate(-16deg);
           transform: rotate(16deg) translate(calc(32.5vw)) rotate(-16deg);
 }
-/*.circle-container > *:nth-of-type(16) { 
-  -webkit-transform: rotate(25deg) translate(calc(36vw)) rotate(-25deg);
-          transform: rotate(25deg) translate(calc(36vw)) rotate(-25deg);
-}
-.circle-container > *:nth-of-type(17) {
-  -webkit-transform: rotate(32deg) translate(calc(40vw)) rotate(-32deg);
-          transform: rotate(32deg) translate(calc(40vw)) rotate(-32deg);
-}
-.circle-container > *:nth-of-type(18) {
-  -webkit-transform: rotate(240deg) translate(calc(24vw)) rotate(-240deg);
-          transform: rotate(240deg) translate(calc(24vw)) rotate(-240deg);
-}
-.circle-container > *:nth-of-type(19) {
-  -webkit-transform: rotate(300deg) translate(calc(24vw)) rotate(-300deg);
-          transform: rotate(300deg) translate(calc(24vw)) rotate(-300deg);
-}
 
-.circle-container > *:nth-of-type(20) {
-  -webkit-transform: rotate(0deg) translate(calc(32vw)) rotate(0deg);
-          transform: rotate(0deg) translate(calc(32vw)) rotate(0deg);
-}
-.circle-container > *:nth-of-type(21) {
-  -webkit-transform: rotate(60deg) translate(calc(32vw)) rotate(-60deg);
-          transform: rotate(60deg) translate(calc(32vw)) rotate(-60deg);
-}
-.circle-container > *:nth-of-type(22) {
-  -webkit-transform: rotate(120deg) translate(calc(32vw)) rotate(-120deg);
-          transform: rotate(120deg) translate(calc(32vw)) rotate(-120deg);
-}
-.circle-container > *:nth-of-type(23) {
-  -webkit-transform: rotate(180deg) translate(calc(32vw)) rotate(-180deg);
-          transform: rotate(180deg) translate(calc(32vw)) rotate(-180deg);
-}
-.circle-container > *:nth-of-type(24) {
-  -webkit-transform: rotate(240deg) translate(calc(32vw)) rotate(-240deg);
-          transform: rotate(240deg) translate(calc(32vw)) rotate(-240deg);
-}
-.circle-container > *:nth-of-type(25) {
-  -webkit-transform: rotate(300deg) translate(calc(32vw)) rotate(-300deg);
-          transform: rotate(300deg) translate(calc(32vw)) rotate(-300deg);
-}
-
-
-.circle-container > *:nth-of-type(26) {
-  -webkit-transform: rotate(0deg) translate(calc(40vw)) rotate(0deg);
-          transform: rotate(0deg) translate(calc(40vw)) rotate(0deg);
-}
-.circle-container > *:nth-of-type(27) {
-  -webkit-transform: rotate(60deg) translate(calc(40vw)) rotate(-60deg);
-          transform: rotate(60deg) translate(calc(40vw)) rotate(-60deg);
-}
-.circle-container > *:nth-of-type(28) {
-  -webkit-transform: rotate(120deg) translate(calc(40vw)) rotate(-120deg);
-          transform: rotate(120deg) translate(calc(40vw)) rotate(-120deg);
-}
-.circle-container > *:nth-of-type(29) {
-  -webkit-transform: rotate(180deg) translate(calc(40vw)) rotate(-180deg);
-          transform: rotate(180deg) translate(calc(40vw)) rotate(-180deg);
-}
-.circle-container > *:nth-of-type(30) {
-  -webkit-transform: rotate(240deg) translate(calc(40vw)) rotate(-240deg);
-          transform: rotate(240deg) translate(calc(40vw)) rotate(-240deg);
-}
-.circle-container > *:nth-of-type(31) {
-  -webkit-transform: rotate(300deg) translate(calc(40vw)) rotate(-300deg);
-          transform: rotate(300deg) translate(calc(40vw)) rotate(-300deg);
-}*/
   
 .center-img img {
   position:relative;
@@ -277,20 +211,26 @@
 }
 
 .underchat {
-  position: relative;
-  width: 100%;
-  margin-left : -41px;
+  position: absolute;
+  width: 40%;
+  margin-right : 2vw;
   list-style: none;
   z-index: 0;
-  background: rgba(153, 204, 204, 1); /*linear-gradient(to bottom, rgba(153, 204, 204, 0) 0%, rgba(153, 204, 204, 1) 50%);*/
+  
   background-size: 100% 100%; /*controls background size*/
   font-size: 2vw;
+  right:0px;
+  top:calc(140px + 9vw);
+  height: 3vw;
 }
 
 .glob-messages{
-  background: rgba(150, 200, 200, 1);
+  top:calc(140px + 13vw);
+  background: rgba(221, 221, 221, 0.9);
   overflow: scroll;
-  height: 18vw;
+  height: 82vw;
+  display: none;
+  margin-top: 40px;
 }
 
 .g-message {
@@ -322,7 +262,7 @@ Carregant el teu perfil gamificat...
   </div>
 </div>
 
-<div class="underchat"><h3 style="padding: 0.5vw; text-align: center; height: 2.5vw;">Xat Global</h3><div id="messages" class="glob-messages"></div></div>
+<div class="underchat"><h3 style="padding: 0.5vw; text-align: center; height: 2.5vw;"><button style="font-size: 2vw;width: 50%; box-shadow: none;" class="btn btn-primary" onclick="clopenChat(this)">Xat Global         ▽</button></h3><div id="messages" class="glob-messages"></div></div>
 
 <script>
  options1 = ["A1", "A2", "A3"];
@@ -519,6 +459,20 @@ function OpenChangeAvatar(exp,current){
     }
   }
 
+var chat_is_open = false;
+function clopenChat(self){
+  if(chat_is_open){
+    document.getElementById("messages").style.display = "none";
+    self.innerHTML = "Xat Global         ▽"
+  }
+  else{
+    document.getElementById("messages").style.display = "block";
+    document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+    self.innerHTML = "Xat Global         △"
+  }
+  chat_is_open = !chat_is_open
+
+}
 
 function populateChat(ms_list){
   var ms_div = document.getElementById("messages");
