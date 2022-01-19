@@ -601,26 +601,30 @@ def get_previous_valoration(request, username, mechanic_id):
 
 def get_interaction_index(request, username, mechanic_id):
 
-    lock.acquire()
     try:
-        gm =  GMechanic.objects.filter(id = mechanic_id)
-        user_stats = InteractionStatistic.objects.filter(user = username, mechanic = gm[0])
-        _, gmech_type = g_mechanic_cast(mechanic_id)
+        lock.acquire()
         try:
-            demand = user_stats[0]
+            gm =  GMechanic.objects.filter(id = mechanic_id)
+            user_stats = InteractionStatistic.objects.filter(user = username, mechanic = gm[0])
+            _, gmech_type = g_mechanic_cast(mechanic_id)
+            try:
+                demand = user_stats[0]
+            except:
+                demand = None
+            if demand:
+                iidx = demand.interaction_index
+                lock.release()
+                return JsonResponse({'interaction_index': iidx, 'gmtype' : gmech_type})
+            else:
+                print("Error : Intereaction Statistic not found for given user and mechanic_id")
+                return JsonResponse({'interaction_index': 0.0, 'gmtype' : gmech_type})
         except:
-            demand = None
-        if demand:
-            iidx = demand.interaction_index
+            print("Error : Failed to load interaction index")
             lock.release()
-            return JsonResponse({'interaction_index': iidx, 'gmtype' : gmech_type})
-        else:
-            print("Error : Intereaction Statistic not found for given user and mechanic_id")
-            return JsonResponse({'interaction_index': 0.0, 'gmtype' : gmech_type})
+            raise Http404
     except:
-        print("Error : Failed to load interaction index")
-        lock.release()
         raise Http404
+
 
 def get_accessible_mechanics(request, username):
     try:
