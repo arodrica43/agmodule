@@ -23,6 +23,7 @@ from apps.api.urls import router
 from django.conf.urls import url
 from agmodule import settings
 from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 # Swagger documentation setup
 schema_view = get_schema_view(
