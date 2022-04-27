@@ -290,7 +290,7 @@ try {
                                                         '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-4-dynamic_index" onclick="valorate(4);" title="M\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-5-dynamic_index" onclick="valorate(5);" title="M\'encanta!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span></p>',
-                                                        document.querySelector(id).style.border = "20px solid #969696;",
+                                                        document.querySelector(id).style.border = "20px solid #969696",
                                                         document.querySelector(id).style.padding = "10px 10px 10px 90px" ,
                                                       valorate(res_json['results'])))
         .catch(error => (console.log("Error: " + error)))       
