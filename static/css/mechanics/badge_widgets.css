@@ -1,4 +1,5 @@
 .bdg-container{
+    border: 20px solid #969696;padding:10px;padding-bottom:90px;
 	position: relative;
 }
 .bdg-container > div{
