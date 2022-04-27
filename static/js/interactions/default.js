@@ -271,7 +271,6 @@ try {
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
         .then(res_json => (console.log(res_json), 
-            document.querySelector(id).style += "border: 20px solid #969696;padding:10px;padding-bottom:90px;",
             document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
         												'.grow:hover { transform: scale(1.3); }' + 
                                                         '.help-msg {transition: visibility 0s, opacity 0.3s linear; visibility: hidden; opacity:0;}'+ 
@@ -291,7 +290,7 @@ try {
                                                         '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-4-dynamic_index" onclick="valorate(4);" title="M\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-5-dynamic_index" onclick="valorate(5);" title="M\'encanta!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span></p>',
-                                                      valorate(res_json['results'])))
+                                                      valorate(res_json['results'])), document.querySelector(id).style += "border: 20px solid #969696;padding:10px;padding-bottom:90px;",)
         .catch(error => (console.log("Error: " + error)))       
     }
 }
