@@ -271,7 +271,7 @@ try {
         fetch("https://agmodule.herokuapp.com/api/statistics/get_current_valoration/dynamic_user/" + mechanic_id)
         .then(response => response.json())
         .then(res_json => (console.log(res_json), 
-            document.querySelector(id).style += "border: 20px solid #969696;padding:10px;padding-bottom:90px;"
+            document.querySelector(id).style += "border: 20px solid #969696;padding:10px;padding-bottom:90px;",
             document.querySelector(id).innerHTML += '<style>.grow { transition: all .2s ease-in-out; }' +
         												'.grow:hover { transform: scale(1.3); }' + 
                                                         '.help-msg {transition: visibility 0s, opacity 0.3s linear; visibility: hidden; opacity:0;}'+ 
