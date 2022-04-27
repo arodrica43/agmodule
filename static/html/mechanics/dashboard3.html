@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+.blocked-icon img {
+  opacity : 0.5;
+  position:relative;
+  display: block;
+  width: 6vw;
+  max-width: 100%;
+  min-width: 40%;
+  border-radius: 50%;
+  /*width: 60px; /* controls icons diameter*/ 
+  cursor: auto;
+}
+
+.circle-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  margin-left : -41px;
+  margin-top : -33px;
+  /*border-radius: 50%;*/
+  /*padding: 0 0 0;*/
+  list-style: none;
+
+  /*border: solid 5px none;*/
+  /*background:white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/background.png") no-repeat center;*/
+  background-size: 100% 100%; /*controls background size*/
+}
+.circle-container > * {
+  display: block;
+  position: absolute;
+  top: calc(50% - 2.7vw);
+  left: calc(50% - 2.5vw);
+  /*margin-top: -3vw;
+  margin-left:-3vw;
+  width: 5em;
+  height: 5em;*/
+}
+.circle-container > *:nth-of-type(1) { /*Center*/
+  -webkit-transform: rotate(240deg) translate(calc(0em)) rotate(-240deg); /*Concentric radius distant by 70/21 vw*/
+          transform: rotate(240deg) translate(calc(0em)) rotate(-240deg);
+}  
+
+.circle-container > *:nth-of-type(2) { /*Challenges*/
+  -webkit-transform: rotate(-90deg) translate(calc(23vw)) rotate(90deg);
+          transform: rotate(-90deg) translate(calc(23vw)) rotate(90deg);
+}
+.circle-container > *:nth-of-type(3) { /*Easter Eggs*/
+  -webkit-transform: rotate(90deg) translate(calc(22vw)) rotate(-90deg);
+          transform: rotate(90deg) translate(calc(22vw)) rotate(-90deg);
+}
+.circle-container > *:nth-of-type(4) { /*Levels*/
+  -webkit-transform: rotate(-23deg) translate(calc(32vw)) rotate(23deg);
+          transform: rotate(-23deg) translate(calc(32vw)) rotate(23deg);
+}
+/*.circle-container > *:nth-of-type(5) { //Points
+  -webkit-transform: rotate(35deg) translate(calc(33vw)) rotate(-35deg);
+          transform: rotate(35deg) translate(calc(33vw)) rotate(-35deg);
+}*/
+.circle-container > *:nth-of-type(5) { /*Social status*/
+  -webkit-transform: rotate(204deg) translate(calc(31.5vw)) rotate(-210deg);
+          transform: rotate(204deg) translate(calc(31.5vw)) rotate(-210deg);
+}
+.circle-container > *:nth-of-type(6) { /*Knowledge share*/
+  -webkit-transform: rotate(150deg) translate(calc(32.9vw)) rotate(-150deg);
+          transform: rotate(150deg) translate(calc(32.9vw)) rotate(-150deg);
+}
+
+.circle-container > *:nth-of-type(7) { /*Dev tools*/
+  -webkit-transform: rotate(-90deg) translate(calc(31.5vw)) rotate(90deg);
+          transform: rotate(-90deg) translate(calc(31.5vw)) rotate(90deg);
+}
+.circle-container > *:nth-of-type(8) { /*Unlockables*/
+  -webkit-transform: rotate(90deg) translate(calc(30.5vw)) rotate(-90deg);
+          transform: rotate(90deg) translate(calc(30.5vw)) rotate(-90deg);
+}
+.circle-container > *:nth-of-type(9) {/*Badges*/
+  -webkit-transform: rotate(-36deg) translate(calc(36vw)) rotate(36deg);
+          transform: rotate(-36deg) translate(calc(36vw)) rotate(36deg);
+}
+.circle-container > *:nth-of-type(10) { /*Leaderboards*/
+  -webkit-transform: rotate(26deg) translate(calc(27.5vw)) rotate(-26deg);
+          transform: rotate(26deg) translate(calc(27.5vw)) rotate(-26deg);
+}
+.circle-container > *:nth-of-type(11) { /*Gifts*/
+  -webkit-transform: rotate(163deg) translate(calc(29.5vw)) rotate(-163deg);
+          transform: rotate(163deg) translate(calc(29.5vw)) rotate(-163deg);
+}
+.circle-container > *:nth-of-type(12) { /*Gift openers*/
+  -webkit-transform: rotate(29deg) translate(calc(34.5vw)) rotate(-29deg);
+          transform: rotate(29deg) translate(calc(34.5vw)) rotate(-29deg);
+}
+
+.circle-container > *:nth-of-type(13) { /*Social Network*/
+  -webkit-transform: rotate(216deg) translate(calc(35.5vw)) rotate(-216deg);
+          transform: rotate(216deg) translate(calc(35.5vw)) rotate(-216deg);
+}
+.circle-container > *:nth-of-type(14) { /*Lotteries*/
+  -webkit-transform: rotate(16deg) translate(calc(32.5vw)) rotate(-16deg);
+          transform: rotate(16deg) translate(calc(32.5vw)) rotate(-16deg);
+}
+
+  
+.center-img img {
+  position:relative;
+  display: block;
+  /*width: 60px; /* controls icons diameter*/
+  width:6vw;
+  transform: scale(2.5,2.5) ;
+  max-width: 100%;
+  min-width: 40%;
+  border-radius: 50%;
+  /*-webkit-filter: grayscale(50%);
+          filter: grayscale(50%);
+  border: solid 5px none;
+  -webkit-transition: .15s;*/
+  transition: .15s;  
+  cursor: pointer;
+}
+.center-img img:hover {
+  -webkit-transform: scale(2.8);
+          transform: scale(2.8);    
+}
+  
+.dashboard-item img {
+  position:relative;
+  display: block;
+  /*width: 60px; /* controls icons diameter*/
+  width: calc(6vw);
+  max-width: 100%;
+  min-width: 40%;
+  border-radius: 50%;
+  /*-webkit-filter: grayscale(50%);
+          filter: grayscale(50%);*/
+  border: solid 5px none;
+  -webkit-transition: .15s;
+  transition: .15s;  
+  cursor: pointer;
+}
+.dashboard-item img:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);    
+}
+  
+/* Modal (background) */
+.main-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  overflow: auto; /* Enable scroll if needed */
+  height: calc(22vh + 23vw);
+  text-align: center;
+}
+
+/* The Close Button */
+.main-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.main-close:hover,
+.main-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.avatar-row {
+  display: flex;
+}
+
+/* Create three equal avatar-columns that sits next to each other */
+.avatar-column {
+  display:fluid;
+  flex: 10%;
+  margin: 10px;
+  text-align:center;
+}
+
+.avatar-image-select {
+    opacity: 0.5;
+     cursor: pointer;
+     width:48%;
+}
+
+.avatar-image-select:hover {
+    opacity: 1;
+}
+
+.underchat {
+  position: absolute;
+  width: 40%;
+  margin-right : 0.1vw;
+  list-style: none;
+  z-index: 2;
+  
+  background-size: 100% 100%; /*controls background size*/
+  font-size: 2vw;
+  right:0px;
+  top:0;
+  height: 3vw;
+}
+
+.glob-messages{
+  
+  background: rgba(221, 221, 221, 0.9);
+  overflow: scroll;
+  height: 10em;
+  display: none;
+  margin-top: 2em;
+}
+
+.g-message {
+  margin: 10px;
+
+}
+
+</style>
+
+<!-- Chart -->
+<div style="width:100vw; text-align:center;"> <!-- background:blue; .-->
+  <div style="z-index:1;position:relative;float:right; padding-top: 2vw; padding-right:13vw ; font-size:2vw;"><h2 id="points-label">Els teus punts: --</h2></div>
+  <div id="circle-container" class='circle-container'>
+   
+    
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="main-modal" class="main-modal">
+  <div class="modal-content" style = " width: 60%;">
+        <!-- Control the avatar-column width, and how they should appear on different devices -->
+          <div><span class="main-close">&times;</span></div>
+          <br>
+          <div><h2 id="main-modal-title"></h2></div> 
+        <div class="container-fluid" id="main-modal-content">
+        </div>
+  </div>
+</div>
+
+<div class="underchat" id="underchat"><h3 style="padding: 0.5vw; text-align: right; height: 0.1vw;">
+    <button style="font-size: calc(0.5vw + 0.5em); box-shadow: none; padding:0.5em;border-radius:200px;" class="btn btn-primary" onclick="clopenChat(this)"> ▽</button>
+    </h3>
+    <div id="messages" class="glob-messages">
+    </div>
+</div>
+
+<script>
+ options1 = ["A1", "A2", "A3"];
+ options2 = ["B1", "B2", "B3"];
+ global_avatar = "";
+
+  uname = "";
+  try{
+    uname = document.querySelector(".account-username").title;
+  }catch(error){
+    uname = document.querySelector(".username").innerHTML;
+  }
+
+  course_id = JSON.parse(document.querySelector("#user-metadata").text)["course_id"];
+
+
+  mechanic_names = [
+                      ['challenges', 'Challenges', 'challenge_widgets'],
+                      ['easter_eggs', 'Easter Eggs', 'easter_egg_widgets'],
+                      ['levels', 'Levels', 'level_widgets'],
+              //['','?','?'],
+                      //['points', 'Points', 'point_widgets'],
+                      ['social_statuses', 'Social Statuses', 'social_status_widgets'],
+                      ['knowledge_shares', 'Knowledge Sharing', 'knowledge_share_widgets'],
+                      ['development_tools', 'Development Tools', 'development_tool_widgets'],
+                      ['unlockables', 'Unlockables', 'unlockable_widgets'],
+                      ['badges', 'Badges', 'badge_widgets'],
+                      ['leaderboards', 'Leaderboards', 'leaderboard_widgets'],
+                      //['?', 'Publishing Tools', '?'],
+                      ['gifts', 'Gifting', 'gift_widgets'],
+                      //['?', 'Advanced Challenges', '?'],
+                      //['?', 'Advanced Easter Eggs', '?'],
+                      //['?', 'Expertise', '?'],
+                      ['gift_openers', 'Gift Openeing Tools', 'gift_opener_widgets'],
+                      ['social_networks', 'Social Networks', 'social_network_widgets'],
+                      //['?', 'Advanced Gifting', '?'],
+                      //['?', 'Advanced Development Tools', '?'],
+                      //['?', 'Advanced Unlockables', '?'],
+                      //['?', 'Advanced Badges', '?'],
+                      ['lotteries', 'Lotteries', 'lottery_widgets'],
+                      //['?', 'Team Tools', '?'],
+                      //['?', 'Valoration Tools', '?'],
+                    ]
+
+  //Helper functions for changing the Avatar ----------------
+
+function SaveProfile(){
+  fetch("https://agmodule.herokuapp.com/api/gamers/" + uname + "/edit_social_profile?new_image=" + global_avatar)
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function (myJson) {
+    document.querySelector("#avatar-image").src = "https://agmodule.herokuapp.com/media/avatars/" + global_avatar + ".png"; 
+  })
+  .catch(function (error) {
+      console.log("Error: " + error);
+  });
+  var container = $("#main-modal");
+  container.hide();
+}
+
+function SelectMyAvatar(name){
+  global_avatar = name;
+  console.log("Selected avatar");
+  console.log(name);
+  options2.forEach(function(item,index){
+     if(item[0] == name[1] && item[1] == name[2]){
+       document.querySelector("#avatar-" + name[0] + item).style = "width:80%; opacity:1;";
+    }else{
+       document.querySelector("#avatar-" + name[0] + item).style = "";
+    }
+  });
+  options1.forEach(function(item,index){
+     if(item[0] == name[1] && item[1] == name[2]){
+       document.querySelector("#avatar-" + name[0] + item).style = "width:80%; opacity:1;";
+    }else{
+       document.querySelector("#avatar-" + name[0] + item).style = "";
+    }
+  });
+ 
+}
+
+function OpenChangeAvatar(exp,current){
+  console.log("OpenChangeAvatar");
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=avatar")
+    .then(response => response.json())
+    .then(res => console.log(res))
+    .catch(error => (console.log("Error: " + error)))
+  document.querySelector("#main-modal-title").innerHTML = '<h2 style="text-align:center;">Escull el teu avatar</h2>';
+
+  document.querySelector("#main-modal-content").innerHTML = '<div><div id="first-row" class="avatar-row"></div><div id="second-row" class="avatar-row"></div></div>';
+  options2.forEach(function(item,index){
+    special_style = "";
+    if(item[0] == current[1] && item[1] == current[2]){
+      special_style = "width:80%; opacity:1;";
+    }
+    document.querySelector("#first-row").innerHTML += '<dic class="avatar-column"><img id = "avatar-' + exp + item + '" name="' + exp + item + '" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + item + '.png" alt="Snow" onclick="SelectMyAvatar(this.name)" style="' + special_style + '"></div>';
+  });
+
+  options1.forEach(function(item,index){
+    special_style = "";
+    if(item[0] == current[1] && item[1] == current[2]){
+      special_style = "width:70%; opacity:1;";
+    }
+    document.querySelector("#second-row").innerHTML += '<dic class="avatar-column"><img id = "avatar-' + exp + item + '" name="' + exp + item + '" class ="avatar-image-select" src="https://agmodule.herokuapp.com/media/avatars/' + exp + item + '.png" alt="Snow" onclick="SelectMyAvatar(this.name)" style="' + special_style + '"></div>';
+  });
+
+  document.querySelector("#main-modal-content").innerHTML += '<br><br><div style="bottom:0;" class="avatar-row"><button class="submit btn btn-primary" type="submit" style="width:100%;" onclick="SaveProfile()" >Desa</button></div>';
+  container.show();
+}
+
+  //---------------------------------------------------------
+
+function mapping(){
+    var vertical_position = 0;
+    if (pageYOffset)//usual
+        vertical_position = pageYOffset;
+    else if (document.documentElement.clientHeight)//ie
+        vertical_position = document.documentElement.scrollTop;
+    else if (document.body)//ie quirks
+        vertical_position = document.body.scrollTop;
+
+    var your_div = document.getElementById('underchat');
+    your_div.style.top = "calc(" + vertical_position + "px + 45vh)"//(vertical_position + 200) + 'px';//200 is arbitrary.. just to show you could now position it how you want
+}
+mapping();
+window.onscroll = function (e) {
+    mapping();
+}
+
+
+  fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=None")
+  .then(response => response.json())
+    .then(function(res_json){
+      document.getElementById("points-label").innerHTML = "Els teus punts: " + res_json.points;
+      console.log(res_json.avatar);
+      // for (var i = 0; i < 100000; i++) {
+      //   console.log(i);
+      // }
+      console.log(res_json.experience);
+      main_avatar = res_json.avatar.slice(res_json.avatar.indexOf(".") + 1, res_json.avatar.length);
+      if(main_avatar[0] == 'O'){
+        global_avatar = main_avatar;
+      }else{
+        global_avatar = res_json.experience + main_avatar[1] + main_avatar[2];
+      }
+      
+      console.log(global_avatar);
+      SaveProfile();
+      document.getElementById("circle-container").style.backgroundImage = "url('https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/" + res_json.predominant_type +".png'";//'white url("https://agmodule.herokuapp.com/media/dashboard_icons/backgrounds/1.png") no-repeat center;';
+      document.getElementById("circle-container").innerHTML = '<li class="center-img"><img name="avatar" id="avatar-image" data-title="Avatar" src="https://agmodule.herokuapp.com/media/avatars/' + global_avatar + '.png" onclick="OpenChangeAvatar(\'' + res_json.experience + '\', \'' + main_avatar + '\');"></li>';
+      return res_json.results;
+    })
+  .then(acc_mechanics => (
+      mechanic_names.forEach(function(item,index){
+        if(item[0] == 'label'){
+          document.getElementById("circle-container").innerHTML += '<li style="font-size: 2vw;">' + item[1] + '</li>';  
+        }else if(item[0] != '?'){
+          if(acc_mechanics.includes(item[2])){
+            document.getElementById("circle-container").innerHTML += '<li class="dashboard-item"><img name="' + item[0] + '" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + item[0] + '.png" onclick="openMechanic(this);"></li>';
+          }else{
+            document.getElementById("circle-container").innerHTML += '<li class="blocked-icon"><img name="blocked" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/b' + item[0] + '.png"></li>';
+          }
+        }else{
+          document.getElementById("circle-container").innerHTML += '<li class="blocked-icon"><img name="blocked" data-title="' + item[1] + '" src="https://agmodule.herokuapp.com/media/dashboard_icons/b' + item[0] + '.png"></li>';
+        }
+      })
+    ))
+  .catch(error => (console.log("Error: " + error)))
+
+  var url = "https://agmodule.herokuapp.com/api/gmechanic_lists/?user=" + uname + "&course_id=" + course_id;
+  var list_data = {};
+  fetch(url)
+        .then(response => response.json())
+        .then(res_json => (console.log(res_json), res_json))
+        .then(res_json => (res_json.results))
+        .then(list => list.forEach((item,index) => (list_data[item.mechanic] = item.url, console.log(item.url))))
+        .catch(error => (console.log("Error: " + error)))
+  var modal = document.getElementById("main-modal");
+  var container = $("#main-modal");
+  var span = document.getElementsByClassName("main-close")[0];
+  span.onclick = function() {
+    console.log(modal);
+    container.hide();
+  }
+  function openMechanic(mechanic){
+    fetch("https://agmodule.herokuapp.com/api/get_accessible_mechanics/" + uname + "?course_id=" + course_id + "&spec=" + mechanic.name)
+    .then(response => response.json())
+    .then(res => console.log(res))
+    .catch(error => (console.log("Error: " + error)))
+    if(mechanic.name != "blocked"){
+      document.querySelector("#main-modal-content").innerHTML = '<img src="https://i.pinimg.com/originals/23/35/32/23353292cc60b2bcb3f015ee362eeb74.gif"  width=250/>';
+      console.log(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name);
+      title_text = "Carregant ";
+      if(mechanic.dataset.title == "Badges" || mechanic.dataset.title == "Challenges" || mechanic.dataset.title == "Easter Eggs" || mechanic.dataset.title == "Unlockables"){
+        title_text = "Llista de ";
+      }
+      document.getElementById("main-modal-title").innerHTML = title_text + mechanic.dataset.title;
+      fetch(list_data[mechanic.name] + "?user=" + uname + "&dynamic_index=" + mechanic.name + "&course_id=" + course_id)
+      .then(response => response.json())
+      .then(function(res_json){
+        document.querySelector("#main-modal-content").innerHTML = (res_json.html); 
+        $(res_json.html).appendTo(document.body);
+       
+        console.log("loaded");
+        return 1;
+      })
+      .catch(error => (console.log("Error: " + error)))
+      container.show();
+    }else{
+      alert("This mechanic isn't alredy discovered!");
+    }
+  }
+
+var chat_is_open = false;
+function clopenChat(self){
+  if(chat_is_open){
+    document.getElementById("messages").style.display = "none";
+    self.innerHTML = "▽"
+  }
+  else{
+    document.getElementById("messages").style.display = "block";
+    document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+    self.innerHTML = "△"
+  }
+  chat_is_open = !chat_is_open
+
+}
+
+function populateChat(ms_list){
+  var ms_div = document.getElementById("messages");
+  ms_div.innerHTML = "";
+  ms_list.forEach((item,index) => (ms_div.innerHTML += "<div class='g-message'><b>" + item[0] + " ha escrit: </b>" + item[1]))
+  ms_div.innerHTML += '<input type="text" value="Unlock philantropist to write here..." style="margin-left:1em;height:1em;width:80%; background:whitesmoke;" disabled></input>';
+  ms_div.scrollTop = ms_div.scrollHeight;
+}
+function updateMessages(){
+   fetch("https://agmodule.herokuapp.com/api/knowledge_shares/")
+  .then(response => response.json())
+  .then(res_json => (res_json.results[0]))
+  .then((ksh) => (populateChat(ksh.messages.content))) 
+  .catch(error => (console.log("Error: " + error)))
+}
+setInterval(function() {
+  updateMessages()
+}, 1000*30, "JavaScript"); 
+updateMessages();
+
+</script>
