@@ -1,6 +1,5 @@
 .bdg-container{
 	position: relative;
-    border: 20px solid #969696;padding:10px;padding-bottom:90px;
 }
 .bdg-container > div{
     font-size: 30px;
