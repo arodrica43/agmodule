@@ -283,14 +283,14 @@ try {
             											'<a href="' + link_url.replace(/\s/g, "+") + '" ><img class="grow" style="width:6%;" src="https://agmodule.herokuapp.com/media/dashboard_icons/' + GMLabels[res_json.gmtype][1] + '.png"></a></p>' +
                                                     '<p style="position: absolute; top: 0; right: 0;font-size:calc(10px + 1vw);width:78%;left:calc(10% + 1vw);"> ' + 
                                                         'Has obtingut un premi: ' + GMLabels[res_json.gmtype][2] + '</p>' +   
-                                                    '<p style="position: absolute; bottom: calc(30px + 0vw); right: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
-            										'<p style="position: absolute; bottom: calc(0px + 0vw); right: 0;z-index:2">'+
+                                                    '<p style="padding-right:5px;position: absolute; bottom: calc(30px + 0vw); right: 0;font-size:calc(10px + 1vw);">T\'ha agradat el premi?</p>' +	
+            										'<p style="padding-right:5px;position: absolute; bottom: calc(0px + 0vw); right: 0;z-index:2">'+
                                                         '<span id="star-1-dynamic_index" onclick="valorate(1);" titxle="No m\'agrada gens!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-2-dynamic_index" onclick="valorate(2);" title="No m\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-3-dynamic_index" onclick="valorate(3);" title="M\'és indiferent" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-4-dynamic_index" onclick="valorate(4);" title="M\'agrada" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span>'+
                                                         '<span id="star-5-dynamic_index" onclick="valorate(5);" title="M\'encanta!" class="grow fa fa-star" style="cursor:pointer; font-size: calc(0.8em + 0.8vw);"></span></p>',
-                                                        document.querySelector(id).style.border = "20px solid #99CCCC",
+                                                        document.querySelector(id).style.border = "20px solid #ff6666ff",
                                                       valorate(res_json['results'])))
         .catch(error => (console.log("Error: " + error)))       
     }
