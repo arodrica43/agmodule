@@ -1,5 +1,6 @@
 .egg-container{
     position: relative;
+    padding: bottom: calc(30px + 10vw);
 }
 .egg-container > div{
         font-size: 30px;
