@@ -1,6 +1,7 @@
 
 .lvl-container{
     position: relative;
+    padding-bottom: 90px;
 }
 .lvl-container > div{
         font-size: 30px;
