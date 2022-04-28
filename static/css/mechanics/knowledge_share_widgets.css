@@ -2,6 +2,7 @@
 .ksh-container{
     position: relative;
 	top:-12px;
+    padding-bottom: 90px;
 }
 .ksh-container > div{
         padding: 1.5em;
