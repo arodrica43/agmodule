@@ -34,6 +34,7 @@
 #main-content-ksh {
   height: 100%;
   padding-top:3vw;
+  width: 90%;
 }
 #scrollable-content {
   padding-left: 20px;
