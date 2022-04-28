@@ -1,10 +1,12 @@
 
 #search-scrollable-content {
   padding-left: 20px;
+  padding-bottom: 90px;
   padding-right: 20px;
   height: calc(350px + 5vw);
   overflow: scroll;
   background-color: white;
+  max-width: 60vw;
 }
 
 .profilecards {
