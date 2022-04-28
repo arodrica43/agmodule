@@ -1,6 +1,7 @@
 
 .ldb-container{
     position: relative;
+    padding-bottom: 90px;
 }
 .ldb-container > div{
         font-size: 30px;
