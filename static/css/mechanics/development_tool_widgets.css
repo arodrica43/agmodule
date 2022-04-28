@@ -1,5 +1,6 @@
 .dvt-container{
     position: relative;
+    padding-bottom: 90px;
 }
 .dvt-container > div{
         font-size: 30px;
