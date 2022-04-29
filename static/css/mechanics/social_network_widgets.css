@@ -107,6 +107,7 @@
     padding:calc(30px + 4vw);
     padding-bottom: 120px;
     padding-top:calc(30px + 6vw);
+    animation: opacityOn 5s normal forwards;
     opacity: 0;
     animation-delay: 1s;
 }
