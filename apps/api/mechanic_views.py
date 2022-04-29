@@ -661,10 +661,12 @@ class LeaderboardViewSet(GMechanicViewSet):
     # Concrete logic for leaderboards view
     def logic(self,queryset,request):
         cuser = Gamer.objects.filter(user__username = request.GET['user'])
-        users, json = Gamer.objects.all()[:10] + [cuser], {}
-        print("Im here here",users)
+        users, json = Gamer.objects.all()[:10], {}
+        print("12321")
+        print(cuser)
+        print(users)
+        print(users + cuser)
         for user in users:
-            print("I'm stuck here")
             if user.gamer_profile.data:
                 if user.gamer_profile.data.keys():
                     if queryset[0].sort_by in user.gamer_profile.data.keys():
