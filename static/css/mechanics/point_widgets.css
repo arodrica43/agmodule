@@ -2,6 +2,14 @@
 .pnt-container{
     position: relative;
     padding:calc(30px + 4vw);
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
 }
 .pnt-container > div{
         font-size: 30px;

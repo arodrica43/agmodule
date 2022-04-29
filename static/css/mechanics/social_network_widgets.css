@@ -107,4 +107,12 @@
     padding:calc(30px + 4vw);
     padding-bottom: 120px;
     padding-top:calc(30px + 6vw);
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
 }

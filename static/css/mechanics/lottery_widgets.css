@@ -1,6 +1,14 @@
 
 .lot-container{
     position: relative;
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
 }
 .lot-container > div{
         font-size: 30px;
