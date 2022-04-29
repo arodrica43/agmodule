@@ -1,7 +1,19 @@
 .bdg-container{
 	position: relative;
     padding-bottom: 90px;
+    animation: opacityOn 5s normal forwards;
+    animation-delay: 2s;
 }
+
+@keyframes opacityOn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .bdg-container > div{
     font-size: 30px;
     padding: .5em;
