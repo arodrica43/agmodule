@@ -49,7 +49,12 @@ function send_gift(gift){
      // --------------------------------------------------------------------------
 	fetch("https://agmodule.herokuapp.com/api/gift_to_all?from=dynamic_user&type=" + gift.dataset.by + "&content=" + gift.dataset.value)
 	.then(response => response.json())
-	.then(res_json => (console.log(res_json), alert("Present sent!")))
+	.then(res_json => (console.log(res_json), swal.fire({
+                    title: 'Success!',
+                    text: "Regal enviat!",
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                  })))
 	.catch(error => (console.log("Error: " + error)));
 	gift.disabled = true;
 }
