@@ -662,6 +662,7 @@ class LeaderboardViewSet(GMechanicViewSet):
     def logic(self,queryset,request):
         users, json = Gamer.objects.all(), {}
         for user in users:
+            print("I'm stuck here")
             if user.gamer_profile.data:
                 if user.gamer_profile.data.keys():
                     if queryset[0].sort_by in user.gamer_profile.data.keys():

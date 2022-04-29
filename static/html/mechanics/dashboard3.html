@@ -499,7 +499,7 @@ function clopenChat(self){
 function populateChat(ms_list){
   var ms_div = document.getElementById("messages");
   ms_div.innerHTML = "";
-  ms_list.forEach((item,index) => (ms_div.innerHTML += "<div class='g-message'><b>" + item[0] + " ha escrit: </b>" + item[1]))
+  ms_list.forEach((item,index) => (ms_div.innerHTML += "<div class='g-message'><b>" + item[0] + " > </b>" + item[1]))
   ms_div.innerHTML += '<input type="text" value="Unlock philantropist to write here..." style="margin-left:1em;height:1em;width:80%; background:whitesmoke;" disabled></input>';
   ms_div.scrollTop = ms_div.scrollHeight;
 }
