@@ -1,7 +1,16 @@
 .chl-container{
     position: relative;
     padding-bottom: 90px;
+    opacity: 0;
+    animation-delay: 1s;
 }
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
+}
+
 .chl-container > div{
         font-size: 30px;
         margin: .5em;

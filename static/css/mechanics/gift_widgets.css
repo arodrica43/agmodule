@@ -3,7 +3,14 @@
     position: relative;
     top:-12px;
     padding-bottom: 90px;
-  	
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
 }
 .gft-container > div{
         padding: 1.5em;

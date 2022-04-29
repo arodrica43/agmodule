@@ -2,6 +2,14 @@
     position: relative;
     padding-bottom: 90px;
     padding-top: 15px;
+    opacity: 0;
+    animation-delay: 1s;
+}
+
+@keyframes opacityOn {
+    100% {
+        opacity: 1;
+    }
 }
 .egg-container > div{
         font-size: 30px;
