@@ -3,13 +3,17 @@
     padding-bottom: 90px;
     animation: opacityOn 5s normal forwards;
     opacity: 0;
-    animation-delay: 2s;
+    animation-delay: 1s;
 }
 
 @keyframes opacityOn {
     100% {
         opacity: 1;
     }
+}
+.bdg-container #slide {
+    transition: 1s;
+    left: 0;
 }
 
 .bdg-container > div{
