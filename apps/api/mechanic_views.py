@@ -665,7 +665,7 @@ class LeaderboardViewSet(GMechanicViewSet):
         print("12321")
         print(cuser)
         print(users)
-        print(users + cuser)
+        print(users | cuser)
         for user in users:
             if user.gamer_profile.data:
                 if user.gamer_profile.data.keys():
