@@ -21,9 +21,9 @@
                 
                 val = res_json.gamer_profile.data['edx_data'][course_id.replace(/\+/g, " ")].progress;
                 
-                var percent = Math.min(100,100*val.toFixed(3))  + '%';
+                var percent = Math.min(100,100*val.toFixed(3)).toFixed(1)  + '%';
                 document.querySelector("#header-lvl").innerHTML = myJson.title;
-                document.querySelector("#value").innerHTML = "<div></div><br><div>Progress: " + percent + "</div>" ;
+                document.querySelector("#value").innerHTML = "<div></div><br><div>Progrés : " + percent + "</div>" ;
                 document.querySelector("#progress").innerHTML = '<div class="progress" id="progress-bar-div">' +
                                                                     '<div class="meter red">' +
                                                                         '<span style="width: ' + percent + '"></span>' +
